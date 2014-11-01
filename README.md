@@ -1,7 +1,7 @@
 # Villeme [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme)
 
 Web app helps you to knows everything that is happening and what you can do in your neighborhood.
->John (Jonatas Eduardo)
+>John
 
 ### Show me something
 
