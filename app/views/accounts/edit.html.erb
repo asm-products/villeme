@@ -1,0 +1,35 @@
+
+<%= css('bootstrap-validator', 'bootstrap-select') %>
+<%= javascript('gmaps-builder-settings', 'bootstrap-validator', 'bootstrap-select') %>
+
+<%= content_for :javascript_area do %>
+  $('#edit-user').bootstrapValidator({
+    message: 'Algo está errado, acho que não pode ficar vazio.',
+    feedbackIcons: {
+      valid: 'glyphicon glyphicon-ok',
+      invalid: 'glyphicon glyphicon-remove',
+      validating: 'glyphicon glyphicon-refresh'
+    }
+  });
+
+  
+  $(".has-selectpicker").selectpicker();  
+
+  $('.has-selectpicker').change(function() {
+    if ($(this).val() == '') {
+      $(this).parent(".form-group").removeClass("has-success").addClass("has-error");
+    }
+    else{
+      $(this).parent(".form-group").removeClass("has-error").addClass("has-success");
+    }
+  });
+
+<% end %>
+
+  
+
+<% if current_user.account_complete %>
+  <%= render "edit_form" %>
+<% else %>
+  <%= render "complete_form" %>
+<% end %>

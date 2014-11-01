@@ -1,0 +1,42 @@
+
+
+	
+	<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Quero um convite!</h4>
+				</div>
+
+				<%= simple_form_for(@invite, html:{ id:'new-invite', autocomplete: 'off'}, defaults:{input_html:{class: "form-control"}, label_html: {class: "control-label"}, wrapper_html:{class: "form-group"}}) do |f| %>
+					<div class="modal-body">
+							
+						<!-- nome -->
+						<%= f.input :name, label: "Nome" %>
+						
+						<!-- email -->
+						<%= f.input :email, label: "Email" %>
+
+						<!-- cidade -->
+						<%= f.input :city, collection: City.all(order: 'name'), label_method: :name, value_method: :id, as: :select, include_blank: false, label: "Cidade", input_html:{ class: "has-selectpicker"}, prompt: "Qual a sua cidade?", hint: link_to('+ Criar cidade', '#city_sugest').html_safe %>
+
+						<!-- city sugest -->
+						<%= f.input :city_sugest, label: "Quero na minha cidade", placeholder: "Qual o nome da cidade?", wrapper_html:{ id: "city-sugest"} %>
+
+						<!-- persona -->
+						<%= f.input :persona, collection: Persona.all(order: 'name'), label_method: :name, value_method: :id, as: :select, include_blank: false, label: "Persona", input_html:{ class: "has-selectpicker"}, prompt: "Com qual você mais se identifica?", hint: link_to('+ Criar persona', '#persona_sugest').html_safe %>
+
+						<!-- persona sugest -->
+						<%= f.input :persona_sugest, label: "Quero sugerir uma persona", placeholder: "Em uma palavra", wrapper_html:{ id: "persona_sugest" } %>
+
+					</div>
+
+					<div class="modal-footer">
+						<%= f.button :submit, "Confirmar", :class => 'btn btn-primary' %>
+					</div>
+
+				<% end %>
+			</div>
+		</div>
+	</div>

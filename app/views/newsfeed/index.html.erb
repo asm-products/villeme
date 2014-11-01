@@ -1,0 +1,36 @@
+
+<!-- HEAD -->
+
+
+<%= stylesheet_link_tag params[:controller] %>
+<%= include_gon %>
+<%= javascript_include_tag params[:controller] %>
+<%= javascript_include_tag 'gmaps-builder-user' %>
+
+
+
+<!-- MAIN -->
+
+<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+	<div id="main-content" class="ps-container">
+	 	<div class="row">
+
+
+			<%= render "alert_none_events" %>
+
+			<%= render "events" %>
+			
+			<%= render "alert_create_new_event" %>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<!-- SIDEBAR -->
+
+<div class="col-lg-3 col-md-3 col-sm-4 hidden-xs">
+	<%= render "sidebar" %>
+</div>

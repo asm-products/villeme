@@ -1,0 +1,32 @@
+
+
+	
+	<div id="modal-feedback" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title centralize" id="myModalLabel">Sugestões e erros</h4>
+				</div>
+
+				<%= simple_form_for(@feedback_app, remote: true, html:{ id:'new-feedback', autocomplete: 'off'}, defaults:{input_html:{class: "form-control"}, label_html: {class: "control-label"}, wrapper_html:{class: "form-group"}}) do |f| %>
+					<div class="modal-body">
+							
+						<!-- nome -->
+						<%= f.input :title, label: "Titulo" %>
+						
+						<!-- email -->
+						<%= f.input :description, as: :text, input_html: {rows: 6}, label: "Descrição", hint: "Se necessario use este espaço para descrever mais detalhadamente sua sugestão ou erro encontrado." %>
+
+						
+
+					</div>
+
+					<div class="modal-footer">
+						<%= f.button :submit, "Enviar", :class => 'btn btn-primary' %>
+					</div>
+
+				<% end %>
+			</div>
+		</div>
+	</div>

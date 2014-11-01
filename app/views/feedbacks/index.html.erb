@@ -1,0 +1,30 @@
+<div class="panel-heading">
+  <h1>Feedbacks</h1>
+</div>
+
+<div class="panel-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Titulo</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr>
+          <td><%= link_to feedback.user.name, show_user_path(feedback.user) %></td>
+          <td><%= feedback.user.email %></td>
+          <td><%= link_to feedback.title, feedback %></td>
+          <td><%= feedback.description[0..140] %></td>
+          <td><%= link_to 'Excluir', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

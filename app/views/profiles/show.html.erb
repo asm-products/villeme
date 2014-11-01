@@ -1,0 +1,36 @@
+
+<%= content_for :header, "Meus eventos" %>
+
+<table id="table" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Ações</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to event.name, event %></td>
+        <td>
+          <%= button_to 'Editar',
+                      edit_event_path(event), method: :get, :class => 'btn btn-default btn-xs' %>
+
+          <%= button_to 'Excluir',
+                      event_path(event),
+                      method: :delete,
+                      data: { anchor: "tr"},
+                      class: 'btn btn-xs btn-danger excluir',
+                      remote: true %>
+
+ 
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Criar evento',
+            new_event_path,
+            :class => 'btn btn-primary' %>

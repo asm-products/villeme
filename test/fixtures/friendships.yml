@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  friend_id: 1
+  status: MyString
+  confirmed: false
+
+two:
+  user_id: 
+  friend_id: 1
+  status: MyString
+  confirmed: false

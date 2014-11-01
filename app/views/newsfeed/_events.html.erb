@@ -1,0 +1,101 @@
+
+<% letter = ('A'..'Z').to_a %>
+<% i = 0 %>
+
+<% @events.each do |event| %>
+
+
+	<% i += 1 %>
+
+	<!-- pega a distância entre o evento e o user -->
+	<% distance = current_user.distance_to?(event, :transport) %>
+
+	<% cache [current_user, event, event.agendas] do %>
+	<div id="event-<%= event.id %>" class="event grid col-lg-4 col-md-4 col-sm-6 col-xs-12">						
+
+		<div class="box-top">
+
+			<% if agended(event) %>
+				<%= event.day_of_week css: "agended" %>
+				<span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="agended-by-count has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>						
+			<% else %>
+				<%= event.day_of_week %>
+				<span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="agended-by-count has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+			<% end %>
+
+			
+
+		</div>
+
+		<div class="panel panel-default h-325 shadow-animation" address="<%= event_address event %>" latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" bus="<%= distance[:bus] %>min." car="<%= distance[:car] %>min." walk="<%= distance[:walk] %>min." bike="<%= distance[:bike] %>min." letter="<%= letter[i] %>">
+			<div class="row">
+				<div class="col-sm-12">
+
+					<div class="details-box">
+
+						<div class="categorias">
+							<%= render "newsfeed/events/strong_category", event: event %>
+						</div>	
+
+					</div>
+
+					<%= link_to event_path(event), data: { push: true } do %>	
+						<div class="image-box" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
+					<% end %>
+
+
+					<div class="caption">
+
+						<span class="sub-cat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
+
+						<h2 class="title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
+						<span class="description"><%= strip_tags event.description_with_limit %></span>
+
+						<div class="infos">
+							<span class="preco <%= cost(event.cost) == 'Gratuito' ? 'green-font' : nil %>">
+								<%= cost(event.cost) %>	
+							</span>
+
+							<span class="hora">
+								<% if event.hour_start_first %>
+									<%= event.hour_start_first.strftime("%H:%M") << "h" %>
+								<% end %>
+							</span>
+
+							<span class="friends pull-right">
+								<% current_user.which_friends_will_this_event?(event).each do |friend| %>
+									<i class="has-tooltip avatar-icon" title="<%= friend.first_name %> agendou o evento"><%= get_avatar(friend, "22", "22") %></i>
+								<% end %>
+							</span>
+						</div>									
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<% end %>
+
+
+
+	<% if i == 2 %>
+
+		<div class="col-lg-4 col-md-4 col-sm-6 hidden-xs h-325 grid" >
+			
+			<%# render "newsfeed/friends_requests" %>
+			<% cache [current_user, "friends_ranking"], skip_digest: true do %>
+			<%= render "newsfeed/friends_ranking" %>
+			<% end %>
+		
+			<%# render "newsfeed/friends_facebook" %>
+
+		</div>
+
+	<% end %>
+
+
+
+
+<% end %>

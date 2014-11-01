@@ -1,0 +1,19 @@
+
+
+<%= simple_form_for @level, html: { multipart: true }, defaults: {input_html:{class: 'form-control'}, label_html:{class: 'control-label'}, wrapper_html:{class: 'form-group'}} do |f| %>
+
+  <div class="panel-body">
+    <%= f.input :name %>
+    <%= f.input :slug %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :nivel, as: :integer %>
+    <%= f.input :url, as: :text %>
+    <%= f.input :points, as: :integer %>
+    <%= f.input :icon, as: :file, input_html: {class: false} %>
+  </div>
+  
+  <div class="panel-footer">
+    <%= f.button :submit, 'Salvar', class: 'btn btn-default' %>
+  </div>
+    
+<% end %>

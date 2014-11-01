@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <%= render 'layouts/head' %>
+    
+  </head>
+  <body>
+
+    <%= bootstrap_flash %>
+
+    <%# render 'layouts/shelf' %>
+
+
+    <div class="container">
+
+      <%= render 'layouts/header' %>
+
+       
+      <%= yield %>
+
+
+      <%= render 'layouts/footer' %>
+
+    </div> <!-- /container -->
+
+  </body>
+
+<%= render 'layouts/analitycs' %>
+  
+</html>

@@ -1,0 +1,75 @@
+
+	/* COLORS ------------------------*/
+
+
+	/* vermelho */
+	$red: #dc5c5a;
+	$red-light: #e37d7b;
+
+	/* azul */
+	$blue: #5476e9;
+	$blue-light: #7691ed;
+
+	/* verde */
+	$green: #5FCF80;
+
+	/* cinza */
+	$grey: #5f695a;
+
+		$border-color: scale_color($grey, $lightness: 90%);
+
+		$body-bg-color: scale_color($grey, $lightness: 90%);
+
+		$body-bg-dark-color: #fdfdfd;		
+
+	/* laranja */
+	$orange: #E98348;
+
+	/* amarelo */
+	$yellow: #E9DE53;
+
+	/* roxo */
+	$purple: #b378d7;
+
+	/* branco */
+	$white: #ffffff;
+
+
+
+
+
+	/* TEXTS ----------------------------------------*/
+
+	
+	/* texto de destaque e de identidade visual */
+	$font-family-identity: 'Varela Round', arial, sans-serif;
+
+	/* texto para leitura */
+	$font-family-default: 'Roboto', helvetica, arial, sans-serif;
+
+	/* cor para texto de leitura */
+	$font-color-default: $grey;
+
+	/* tamanho para leitura */
+	$font-size-default: 14px;
+
+
+
+	/* TRANSITION -----------------------*/
+
+	$transition-time: all 0.45s ease 0s;
+
+
+	/* SHAPE --------------------------- */
+
+	.radius{
+		border-radius: 10px;
+	}
+
+	.btn-radius{
+		border-radius: 6px;
+	}
+
+	.circle{
+		border-radius: 100%;
+	}	

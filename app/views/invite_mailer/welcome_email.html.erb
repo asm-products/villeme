@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Oi <b><%= @invite.name.split.first %></b>!
+    </p>
+
+
+    <%  
+    goal = @city.goal
+    
+    if goal.to_i <= Invite.where(city: @city.id).count
+      contador = "versão Beta lançada!" 
+      ativado = true
+    else
+      contador = "<b>#{(goal.to_i - Invite.where(city: @city.id).count)}</b> pessoas para ativar o Beta em <b>#{@city.name}</b>".html_safe
+    end  
+    %>
+
+    <% if ativado %>
+      <p>
+        Ficamos muito felizes em receber sua solicitação de convite para o <b>Villeme</b>.<br/>
+        Estamos em versão de testes para um número reduzido de pessoas e em breve lhe enviaremos o convite.<br/>
+      </p>
+    <% else %>
+      <p>
+        Ficamos muito felizes em receber sua solicitação de convite para o <b>Villeme</b>.<br/>
+        Ainda faltam <%= contador %>.<br/>
+        Você pode convidar seus amigos compartilhando o link: http://www.villeme.com.        
+      </p>
+    <% end %>
+
+    <p>
+      Qualquer coisa estou aberto para dúvidas e sugestões para tornar <%= @city.name == nil ? "nossa cidade" : @city.name  %> mais legal!
+    </p>
+
+
+    <p>
+      Abraço,
+    </p>
+
+    <p>
+      <a href="http://www.villeme.com" target="_blank">
+        <img src="https://s3-us-west-2.amazonaws.com/villeme-visual-identity/assinatura-email-jonatas.png">
+      </a>
+    </p>
+
+  </body>
+</html>

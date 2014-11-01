@@ -1,0 +1,8 @@
+<%= simple_form_for @price, defaults: {input_html: {class: "form-control"}, wrapper_html: {class: "form-group"}} do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                prices_path, :class => 'btn btn-default' %>
+<% end %>

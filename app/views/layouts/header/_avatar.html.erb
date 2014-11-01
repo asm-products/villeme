@@ -1,0 +1,54 @@
+  
+
+  <% if user_signed_in? %>
+    <div class="avatar">
+      
+      <%= get_avatar current_user, "38", "38" %>
+      
+      <div class="level-image">
+        <%= x_image_tag current_user.level_icon_url, class: "has-tooltip", data: {placement: "bottom"}, title: "#{current_user.level.name} - Lvl.#{current_user.level.nivel}" %>
+      </div>
+      
+      <span class="name dropdown">
+        <a href="#" class="has-dropdown" data-toggle="dropdown"> <%= current_user.first_name %> <span class="persona">(<%= current_user.persona.name %>)</span> <b class="caret"></b> </a>
+       
+        <div class="progress has-tooltip" data-placement="bottom" title="<%= "Faltam #{current_user.points_to_next_level} Pontos de Experiência para o próximo level." %>">
+          <div class="progress-bar" role="progressbar" aria-valuenow="<%= current_user.percentage_of_level %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.percentage_of_level %>%;">
+            <span><%= current_user.points %></span>
+          </div>
+        </div>
+        
+       
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li role="presentation"><%= link_to "Meus eventos", user_events_path(current_user) %></li>            
+          <li role="presentation"><%= link_to "Configurações", user_account_path(current_user) %></li>
+          <li class="divider" role="presentation"></li>
+          <% if current_user.admin? %><li role="presentation"><%= link_to "Aprovar eventos", events_path(), class: "inline" %> <span class="label label-default inline pull-right"><%= Event.where(moderate: 0).count %></span></li><% end %>
+          <li class="divider" role="presentation"></li>
+          <li role="presentation"><%= link_to "Sair", sair_path %></li>
+        </ul>
+
+      </span>
+
+    </div>
+
+  <% else %>
+
+    <div class="avatar">
+      
+      <%= get_avatar current_user %>
+      
+      <span class="name dropdown">
+        <a href="#" class="unlogged">Fulano <b class="caret"></b> </a>
+
+        <div class="progress has-tooltip" data-placement="bottom" title="Faltam 54 Pontos de Experiência para o próximo level.">
+          <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+            <span>238</span>
+          </div>
+        </div>
+
+      </span>
+
+    </div>
+
+  <% end %> 

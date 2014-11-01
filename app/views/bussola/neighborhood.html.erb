@@ -1,0 +1,5 @@
+
+<%= simple_form_for :neighborhood, url: '/bussola/selecionado' do |f| %>
+	<%= f.input :neighborhood, collection: params[:city].blank? ? @neighborhoods : @neighborhoods.where(:id => params[:city])  %>
+	<%= f.button :submit %>
+<% end %>

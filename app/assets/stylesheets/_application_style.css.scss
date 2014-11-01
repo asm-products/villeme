@@ -1,0 +1,184 @@
+/* FONT */
+
+.green-font{
+	color: $green;
+
+	& a{
+	color: $green; 			
+	}
+}
+
+.green-dark-font{
+	color: scale_color($green, $lightness: -20%);
+}
+
+.red-font{
+	color: $red;
+
+	& h3{
+		color: $red;
+	}
+
+	& a{
+		color: $red;
+		text-decoration: underline;
+	} 	
+
+} 	
+
+.blue-font{
+	color: $blue;
+
+	& h3{
+		color: $blue;
+	} 		
+
+	& a{
+		color: $blue;
+		text-decoration: underline;
+	} 	
+
+} 	 	
+
+.orange-font{
+	color: $orange;
+
+	& h3{
+		color: $orange;
+	}
+
+	& a{
+		color: $orange;
+		text-decoration: underline;
+	} 		
+} 	
+
+.white-font{
+	color: $white;
+}
+
+
+.grey-font-50{
+	color: scale_color($grey, $lightness: 50%);
+}
+
+
+
+
+
+/* BACKGROUND */
+.orange-bg{
+	background: $orange;
+	color: $white;
+}
+
+.blue-bg{
+	background: $blue;
+	color: $white;
+}
+
+.red-bg{
+	background: $red;
+	color: $white;
+
+	& a{
+		color: $white;
+
+		&:hover{
+			color: $white;
+		}
+	}
+}
+
+.green-bg{
+	background: $green;
+	color: $white;
+border-color: scale_color($green, $lightness: -10%);
+
+	& a{
+		color: $white;
+	}
+	& h2, h3, h4{
+	color: $white; 			
+	}		
+}
+
+.white-bg{
+	background: $white;
+	color: $grey;
+	border-color: $border-color;
+
+	& a{
+		color: $grey;
+	}
+	& h2{
+	color: $grey; 			
+	}
+}
+
+.grey-bg{
+	background: $grey;
+	color: $white;
+
+	& a{
+		color: $white;
+	}
+	& h2, h3, h4{
+	color: $white; 			
+	}		
+}
+
+.light-grey-bg{
+	background: $body-bg-color;
+	color: scale_color($grey, $lightness: 20%);
+
+	& a{
+		color: scale_color($grey, $lightness: 20%);
+	}
+	& h2, h3, h4{
+	color: scale_color($grey, $lightness: 20%);		
+	}	
+	& ul{	
+		& li{
+
+			& a{
+				color: $grey;
+			}
+		}
+	}
+
+	& footer ul{	
+		& li{
+		color: scale_color($grey, $lightness: 20%);
+			font-family: $font-family-default;
+			& a{
+				color: scale_color($grey, $lightness: 20%);
+				font-family: $font-family-default;
+			}
+		}
+	}
+
+
+}
+
+
+
+
+
+/* BORDER */
+.green-border{
+	border-color: $green !important;
+} 	
+
+
+
+
+
+
+/* EFFECTS */
+.opacity-50{
+	opacity: 0.5;
+}
+
+
+

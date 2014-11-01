@@ -1,0 +1,19 @@
+
+<% if user_signed_in? %>
+
+	<% if current_user.requested_friendships.blank? %>
+		<ul><li class="centralize font-14 p-15"><span>Sem notificações no momento</span></li></ul>
+	<% else %>
+		<ul>
+			<% current_user.requested_friendships.each do |request| %>
+			<% friend = User.find(request.friend_id) %>
+			<li id="friend-<%= friend.id.to_s %>" class="block avatar font-11 p-15-12 friend-accept" data-friend-object="<%= friend.slug %>">
+				<%= get_avatar friend, "36", "36" %> <span class="p-0-6 m-0 text"><b><%= friend.name %></b> quer ser seu amigo. Há <%= distance_of_time_in_words_to_now request.created_at %>.</span><span class="btn btn-sm btn-success">Aceitar</span>
+			</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+<% else %>
+	<ul><li class="centralize font-14 p-15"><span>Você precisa estar logado para ver as notificações.</span></li></ul>
+<% end %>

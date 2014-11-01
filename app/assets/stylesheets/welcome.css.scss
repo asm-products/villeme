@@ -1,0 +1,441 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+@import 'application_layout';
+
+body{
+  overflow: auto;
+  background: #fff;
+}
+
+.wodry-flipping {
+    display: inline-block;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin-x: 50%;
+}
+.wodry-flipping .front-face, .wodry-flipping .back-face {
+    display: inline-block;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.wodry-flipping .front-face {
+    position: absolute;
+}
+.wodry-flipping .back-face {
+    position: relative;
+}
+
+h2 {
+  color: scale_color($grey, $lightness: 20%);
+  font-family: $font-family-default;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -1.8px;
+  line-height: 1em;
+}
+
+
+
+h3 {
+  font-family: $font-family-default;
+  font-weight: 300;
+  font-size: 21px;
+  color: scale_color($grey, $lightness: 20%);
+  margin: 35px 0 25px;
+}
+
+
+h4 {
+  font-family: $font-family-default;
+  font-weight: 300;
+  font-size: 18px;
+  text-align: center;
+  color: scale_color($grey, $lightness: 20%);
+  margin: 35px 0 25px;
+}
+
+span {
+  font-family: $font-family-default;
+  font-size: 18px;
+  line-height: 1.6em;
+  font-weight: 300;
+}
+
+.varela-title{
+	
+	& h3{
+    font-family: $font-family-default;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1em;
+	}
+}
+
+
+.extra-padding{
+  padding: 100px 0 85px;
+}
+
+.container {
+
+  & .default{
+		padding: 95px 0 35px;
+  }
+}
+
+.container-fluid{
+  margin: 0;
+}
+
+.like-button{
+  left: 50%;
+  margin-left: 150px;
+  opacity: 0.5;
+  position: absolute;
+  top: 104px;
+  transition: all 0.3s ease 0s;
+
+  &:hover{
+    opacity:1;
+  }
+}
+
+.pattern{
+	background: url("/images/welcome/pattern.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.content {
+  margin-top: 0;
+}
+
+.logo-lg{
+	margin: 95px 0 0;
+
+  img{
+
+  }
+}
+
+
+.temporary-slogan{
+  margin: 25px 0;
+}
+
+.slogan{
+	margin: 25px 0;
+  display: none;
+
+	& span{
+    font-family: $font-family-default;
+    font-weight: 300;
+	}
+}
+
+#header-hide-on-scroll{
+  background-image: url("/images/capa-b.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+
+#header-hide-on-scroll-dark{
+  background-image: url("/images/capa.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 800px
+}
+
+.goals{
+  font-family: varela round;
+  padding: 35px 0 0 0;
+
+  & .rounded{
+    float: right;
+    height: auto;
+    margin: 0 0 0 30px;
+  }
+
+  & .number{
+    border-radius: 30px;
+    float: left;
+    height: 36px;
+    padding: 3px;
+    text-align: center;
+    width: 36px;
+  }
+
+  & .city{
+    float: left;
+    display: inline-block;
+    padding: 0 15px;
+  }
+
+  & .people{
+    display: inline-block;
+    float: right;
+    padding: 10px 0;
+  }
+
+  & li{
+    border-bottom: 1px solid scale_color($grey, $lightness: 80%);
+    display: inline-block;
+    list-style: none outside none;
+    padding: 12px 100px;
+    width: 100%;
+
+    & a{
+
+    }
+
+    &:last-child{
+      border: 0;
+    }
+  }
+
+  & .invite{
+
+    & span{
+      background: scale_color($green, $lightness: -20%);
+      cursor: pointer;
+      color: $white;
+      border-color: scale_color($green, $lightness: -25%);
+      border-style: solid;
+      border-width: 0 0 3px; 
+      min-width: 80px;     
+      
+      &:hover{
+        background: scale_color($green, $lightness: -15%);
+      }
+    }
+  }
+
+
+  
+
+}
+
+.login{
+
+  & .invite{
+    min-width: 200px;
+  }
+
+  & .facebook{
+
+    & span{
+      background: $blue;
+      cursor: pointer;
+      border-color: scale_color($blue, $lightness: -5%);
+      border-style: solid;
+      border-width: 0 0 3px;      
+
+      &:hover{
+        background: scale_color($blue, $lightness: 5%);
+      }     
+    }
+  }
+
+  & .gmail{
+
+    & span{
+      background: $red;
+      border-color: scale_color($red, $lightness: -5%);
+      border-style: solid;
+      border-width: 0 0 3px;       
+      
+      &:hover{
+        background: scale_color($red, $lightness: 5%);
+      }
+    }
+  }
+
+}
+
+.login-footer{
+  & .rounded{
+
+    & span{
+      float: none;
+      font-size: 16px;
+      margin: 0 auto;
+      max-width: 270px;
+      padding: 15px 25px;
+    }
+  }
+
+  & .fb-like {
+      background: none repeat scroll 0 0 #fff;
+      border-radius: 10px;
+      float: left;
+      opacity: 0.9;
+      padding: 10px;
+  }  
+}
+
+.marcador{
+  background-image: url("/images/welcome/marcador.png");
+  background-position: right -25px;
+  background-repeat: no-repeat;
+  padding: 20px 0 0;
+}
+
+.marcador-footer{
+  padding: 15px 0 0;
+}
+
+
+
+.rounded{
+
+  @extend .radius;
+  display: block;
+  font-family: $font-family-default;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 12px;
+
+  & img{
+    margin: 0 6px 0 0;
+  }
+
+  & span{
+
+  }   
+
+}
+
+.green-btn{
+  background: scale_color($green, $lightness: -20%);
+  cursor: pointer;
+  color: $white;
+  border-color: scale_color($green, $lightness: -25%);
+  border-style: solid;
+  border-width: 0 0 3px;      
+  
+  &:hover{
+    background: scale_color($green, $lightness: -15%);
+  } 
+}
+
+
+.white-btn{
+  background: $white;
+  cursor: pointer;
+  color: $grey;
+  border-color: scale_color($white, $lightness: -10%);
+  border-style: solid;
+  border-width: 0 0 3px;      
+  
+  &:hover{
+    background: scale_color($white, $lightness: -5%);
+  } 
+}
+
+.small-font{
+  font-size: 14px;
+}
+
+.plataforms{
+  height: 330px;
+  overflow: hidden;
+  text-align: center;
+  opacity: 1;
+  position: relative;
+  top: 320px;
+
+  & img{
+    height: auto;
+    max-width: 936px;
+    width:100%;
+  }
+}
+
+.city-img{
+  width: 100%; 
+  margin: 0px;  
+}
+
+.icons{
+
+  & img {
+    max-height: 65px;
+  } 
+}
+
+
+
+footer{
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    clear: both;
+    color: white;
+    display: table;
+    font-family: $font-family-default;
+    margin: 55px 0 0;
+    padding: 18px;
+    text-align: center;
+    width: 100%;
+
+  & ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+  }
+  & li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+
+    & a{
+      color: $white;
+      float: none;
+      font-size: 15px;
+      font-family: $font-family-default;
+      margin: 0 10px 0; 
+
+      &:hover{
+        color: $white;
+      }
+    }
+  } 
+}
+
+#city-sugest, #persona_sugest{
+  display: none;
+}
+
+.form-control {
+  background-color: #FFFFFF;
+  background-image: none;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  color: #555555;
+  display: block;
+  font-size: 12px;
+  height: 34px;
+  line-height: 1.42857;
+  padding: 8px 12px 6px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  width: 100%;
+}
+
+
+
+@import 'media_sizes';
+@import 'media_font_sizes';

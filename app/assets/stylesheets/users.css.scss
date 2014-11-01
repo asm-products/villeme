@@ -1,0 +1,22 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.avatar-absolute{
+  margin-right:6px;
+  position: relative;
+}
+
+.small-avatar{
+  & .level-image {
+    left: 32px;
+    position: absolute;
+    top: 22px;
+  }
+  & .level-image img {
+    width: 10px;
+  }
+  & .name{
+  	vertical-align: middle;
+  }
+}

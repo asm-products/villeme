@@ -1,0 +1,27 @@
+	<%= javascript 'gmaps-builder' %>
+
+	<%= simple_form_for @neighborhood, defaults: {input_html: {class: "form-control"}, wrapper_html: {class: "form-group"}, label_html: {class: ""} } do |f| %>
+	  <%= f.input :name, label: "Nome" %>
+	  <%= f.input :description, label: "Descrição" %>
+	  <%= f.association :city, as: :select, prompt: "Escolha a cidade", include_blank: false, label: "Cidade" %>
+
+    <div class="form-group">
+      <label class="label-control">Endereço</label>
+      <div class="input-group">
+        <%= f.input :address, label: false, label_html: false, input_html: {id: "endereco"}, wrapper_html: false %>
+        <span class="input-group-btn">
+          <div class="btn btn-default" id="btn-buscar-endereco">Buscar no mapa</div>
+        </span>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <%= f.input :latitude, label: 'Latitude', input_html: { id: 'latitude'} %>
+    <%= f.input :longitude, label: 'Longitude', input_html: { id: 'longitude'} %>
+
+
+	  <%= f.button :submit, "Criar bairro", :class => 'btn btn-primary' %>
+	  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                neighborhoods_path, :class => 'btn btn-default' %>
+	<% end %>

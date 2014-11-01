@@ -1,0 +1,34 @@
+<h1>Listing weeks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+      <th>Binary</th>
+      <th>Organizer</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weeks.each do |week| %>
+      <tr>
+        <td><%= week.name %></td>
+        <td><%= week.slug %></td>
+        <td><%= week.binary %></td>
+        <td><%= week.organizer_id %></td>
+        <td><%= link_to 'Show', week %></td>
+        <td><%= link_to 'Edit', edit_week_path(week) %></td>
+        <td><%= link_to 'Destroy', week, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Week', new_week_path %>

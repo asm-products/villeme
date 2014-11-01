@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @level.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @level.slug %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @level.description %>
+</p>
+
+<p>
+  <strong>Nivel:</strong>
+  <%= @level.nivel %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @level.url %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @level.points %>
+</p>
+
+<p>
+  <b>Icone:</b>
+  <%= x_image_tag @level.icon.url(:original) unless @level.icon.blank? %>
+</p>
+
+<%= link_to 'Edit', edit_level_path(@level) %> |
+<%= link_to 'Back', levels_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  email: MyString
+  name: MyString
+  city: 1
+  persona: 1
+  persona_sugest: MyString
+  city_sugest: MyString
+  key: MyString
+
+two:
+  user_id: 
+  email: MyString
+  name: MyString
+  city: 1
+  persona: 1
+  persona_sugest: MyString
+  city_sugest: MyString
+  key: MyString

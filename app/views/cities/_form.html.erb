@@ -1,0 +1,32 @@
+<%= javascript 'gmaps-builder' %>
+
+<%= simple_form_for @city, defaults: {input_html: {class: "form-control"}, label_html: {class: "control-label"}, wrapper_html: {class: "form-group"}} do |f| %>
+  
+
+    <%= f.input :name, label: 'Nome' %>
+    <%= f.input :description, label: 'Descrição' %>
+    <%= f.input :label, label: 'Sigla' %>
+    <%= f.input :goal, label: 'Meta' %>
+    
+    <div class="form-group">
+      <label class="label-control">Endereço</label>
+      <div class="input-group">
+        <%= f.input :address, label: false, label_html: false, input_html: {id: "endereco"}, wrapper_html: false %>
+        <span class="input-group-btn">
+          <div class="btn btn-default" id="btn-buscar-endereco">Buscar no mapa</div>
+        </span>
+      </div>
+    </div>
+
+    <div id="map"></div>
+    <%= f.input :latitude, label: 'Latitude', input_html: { id: 'latitude'} %>
+    <%= f.input :longitude, label: 'Longitude', input_html: { id: 'longitude'} %>
+
+
+  
+  <div class="footer">
+    <%= link_to "Cancelar", root_path %>
+    <%= f.button :submit, "Criar cidade", :class => 'btn btn-primary' %>
+  </div>
+ 
+<% end %>

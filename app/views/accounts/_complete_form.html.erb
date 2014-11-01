@@ -1,0 +1,41 @@
+
+<%= simple_form_for(@user, url: account_update_path(@user), method: :put, defaults: {input_html: {class: "form-control"}, label_html: {class: "control-label"}, wrapper_html: {class: "form-group"}}, :html => { id:'edit-user', multipart: true, autocomplete: 'off' }) do |f| %>
+
+  <div class="panel-heading">
+    <h1 class="panel-title">
+    	Completar conta
+  	</h1>
+  </div>
+
+  <div class="panel-body">
+  
+    <%= f.input :name, required:true, autofocus: true, label: 'Nome completo', input_html:{ :'data-bv-notempty-message' => "O nome deve ser preechido.", pattern: "[a-zA-Z0-9]+", :'data-bv-regexp-message' => "O nome deve ter somente letras e números.",  :'data-bv-stringlength-max' => "60", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 60 e mais que 2 caracteres."} %>
+    
+    <%= f.input :neighborhood_id, collection: @user.city.neighborhoods, label_method: :name, value_method: :id, label: "Meu bairro" , include_blank: "---------", input_html:{ class: "has-selectpicker show-tick", :'data-size' => "auto"}, required: true %>
+
+    <div class="input float optional user_latitude form-group">
+      <label class="float optional" for="latitude">Endereço</label>
+      <div class="row">
+        <div class="col-sm-9 no-left-padding">
+          <input id="endereco" autocomplete="off" placeholder="O endereço não será armazenado." class="form-control">
+        </div>
+
+        <div class="col-sm-3 btn btn-primary" id="btn-buscar-endereco">Buscar</div>
+
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    
+
+    <%= f.input :latitude, as: "hidden", input_html: {id: "latitude"} %>
+    <%= f.input :longitude, as: "hidden",  input_html: {id: "longitude"} %>
+
+  </div>
+
+  <div class="panel-footer">
+    <%= f.button :submit, "Salvar alterações", :class => 'btn btn-primary' %>
+  </div>
+
+<% end %>

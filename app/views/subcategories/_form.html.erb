@@ -1,0 +1,7 @@
+<%= simple_form_for @subcategory, defaults: {input_html: {class: "form-control"}, wrapper_html: {class: "form-group"}} do |f| %>
+
+  <%= f.input :name %>
+
+  <%= f.button :submit, "Criar subcategoria", class: "btn btn-default pull-right" %>
+
+<% end %>

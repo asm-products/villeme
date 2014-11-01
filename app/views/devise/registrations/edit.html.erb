@@ -1,0 +1,99 @@
+
+<%= css('bootstrap-validator', 'bootstrap-select') %>
+<%= javascript('gmaps-builder-settings', 'bootstrap-validator', 'bootstrap-select') %>
+
+<%= content_for :javascript_area do %>
+  $('#edit_user').bootstrapValidator({
+    message: 'Algo está errado, acho que não pode ficar vazio.',
+    feedbackIcons: {
+      valid: 'glyphicon glyphicon-ok',
+      invalid: 'glyphicon glyphicon-remove',
+      validating: 'glyphicon glyphicon-refresh'
+    }
+  });
+
+
+  $(".has-selectpicker").selectpicker(); 
+
+
+  $('.has-selectpicker').change(function() {
+    if ($(this).val() == '') {
+      $(this).parent(".form-group").removeClass("has-success").addClass("has-error");
+    }
+    else{
+      $(this).parent(".form-group").removeClass("has-error").addClass("has-success");
+    }
+  });
+
+<% end %>
+
+  
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), defaults: {input_html: {class: "form-control"}, label_html: {class: "control-label"}, wrapper_html: {class: "form-group"}}, :html => { multipart: true, autocomplete: 'off' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="panel-heading">
+    <%= current_user.account_complete ? "Editar conta" : "Completar conta"  %>
+  </div>
+
+  <div class="panel-body">
+  
+    <%= f.input :name, required:true, autofocus: true, label: 'Nome completo', required: true, input_html:{ :'data-bv-notempty-message' => "O nome deve ser preechido.", pattern: "[a-zA-Z0-9]+", :'data-bv-regexp-message' => "O nome deve ter somente letras e números.",  :'data-bv-stringlength-max' => "60", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 60 e mais que 2 caracteres."} %>
+    <%= f.input :username, required: true, label: 'Nome de usuário', input_html:{ value: create_username, :'data-bv-notempty-message' => "O nome de usuário deve ser preechido.", pattern: "^[a-z0-9_-]{2,30}$", :'data-bv-regexp-message' => "O nome de usuário deve ter somente letras, números, hífen e underscore.", :'data-bv-stringlength-max' => "30", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome de usuário deve ter menos que 30 e mais que 2 caracteres.", :'data-bv-greaterthan-message' => "O nome de usuário deve ser maior que 2 caracteres."} %>
+    <%= f.input :email, required: true, as: :email, label: 'Email', input_html:{ :'data-bv-emailaddress' => true, :'data-bv-emailaddress-message' => "Este email não é valido."} %>
+    <%= f.input :city_id, collection: City.all, label_method: :name, value_method: :id, label: 'Minha cidade' , include_blank: "---------", required: true, input_html:{ class: "has-selectpicker show-tick", :'data-size' => "auto", :'data-bv-notempty-message' => "A Cidade deve ser escolhida."}, required: true %>
+    <%= f.input :neighborhood_id, collection: current_user.city.neighborhoods, label_method: :name, value_method: :id, label: "Meu bairro" , include_blank: "---------", input_html:{ class: "has-selectpicker show-tick", :'data-size' => "auto"}, required: true %>
+
+    <div class="input float optional user_latitude form-group">
+      <label class="float optional" for="latitude">Endereço</label>
+      <div class="row">
+        <div class="col-sm-9 no-left-padding">
+          <input id="endereco" autocomplete="off" placeholder="O endereço não será armazenado." class="form-control">
+        </div>
+
+        <div class="col-sm-3 btn btn-primary" id="btn-buscar-endereco">Buscar</div>
+
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <label>Foto</label>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= get_avatar current_user %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.input :avatar, as: :file, label: false, input_html: {class: ""} %>
+      </div>
+    </div>
+    
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <div class="hidden">
+      <%= f.input :password, :autocomplete => "off", label: 'Senha', :hint => "Deixe em branco se não quiser alterar a senha", :required => false %>
+      <%= f.input :password_confirmation, :required => false, label: 'Repita a senha' %>
+      <%= f.input :current_password, label: 'Senha atual', :hint => "você precisa confirmar sua atual senha para alterar a senh antiga", :required => true %>
+    </div>
+
+
+
+    <%= f.input :latitude, as: "hidden", input_html: {id: "latitude"} %>
+    <%= f.input :longitude, as: "hidden",  input_html: {id: "longitude"} %>
+
+  </div>
+
+  <div class="panel-footer">
+    <%= f.button :submit, "Salvar alterações", :class => 'btn btn-primary' %>
+  </div>
+
+<% end %>
+
+
+<!-- <p><%= link_to "Cancelar conta", registration_path(resource_name), :data => { :confirm => "Você tem certeza?" }, :method => :delete %></p>
+
+<%= link_to "Voltar", :back %> -->

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title> Bem-vindo ao Villeme - Qualidade de vida e diversão na sua cidade.</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="O propósito do Villeme é aumentar o acesso à qualidade de vida e tornar divertido a interação das pessoas com a cidade.">
+    <meta name="keywords" content="cidade, diversão, qualidade de vida">
+
+    <!-- Open Graph para Facebook -->
+    <meta property="og:site_name" content="Villeme" />
+    <meta property="og:url" content="http://www.villeme.com/" />
+    <meta property="og:title" content="Qualidade de vida e diversão na sua cidade — Solicite um convite!" />
+    <meta property="og:description" content="Nosso propósito é aumentar e tornar divertido a interação das pessoas da [e com a] cidade e a forma como se relacionam com os diversos setores dela: público, privado, ONGs e mobilizações sociais." />
+    <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/villeme-visual-identity/app-opegraph-facebook-transparent.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:type" content="website" />
+    <meta property="fb:app_id" content="568047899941238">    
+    <meta property="og:locale" content="pt_BR">
+
+    <%= csrf_meta_tags %>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <%= stylesheet_link_tag "application", "bootstrap_and_overrides", :media => "all" %>
+    <%= stylesheet_link_tag params[:controller] %>
+
+
+
+  </head>
+
+  <body>
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=236068809754091&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>  
+
+  <%= bootstrap_flash -%>
+
+  <%= render 'modal' %>
+
+
+
+
+
+
+
+
+
+  <!-- Container 1 -->
+
+    <div id="header-hide-on-scroll" class="container-fluid green-bg">  
+      <div class="row">
+        
+
+        <!-- Logo -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 logo-lg centralize">
+         <!--  <div class="like-button">
+            <div class="fb-like" data-href="https://www.facebook.com/app.Villeme" data-layout="button_count" data-colorscheme="light" data-action="like" data-show-faces="false" data-share="false"></div>
+          </div> -->
+          <%= x_image_tag 'welcome/logo-lg.png', width: '267', height: '75' %>
+        </div>
+
+
+        <!-- Slogan -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slogan centralize">
+          <span class="font-36">Qualidade de vida e diversão <span class="wodry">no seu bairro|na sua cidade</span>!</span><br/>
+          <span class="font-14">um jeito fácil de se divertir, de aprender e de cuidar da saúde perto de casa</span>
+        </div>
+
+
+        <!-- Slogan -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 temporary-slogan centralize">
+          <span class="font-36">Qualidade de vida e diversão no seu bairro!</span><br/>
+          <span class="font-14">um jeito fácil de se divertir, de aprender e de cuidar da saúde perto de casa</span>
+        </div>        
+
+
+        <!-- Logins -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login">
+          <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+              <!-- invite -->
+              <div class="white-btn rounded pull-right has-modal invite centralize hidden-xs">
+                <span class="f-weight-400">solicitar convite</span><br/>
+                <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;">É grátis e sempre será!</span>
+              </div>
+
+              <!-- invite -->
+              <div class="green-btn rounded has-modal invite centralize visible-xs">
+                <span class="f-weight-400">solicitar convite</span><br/>
+                <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;">É grátis e sempre será!</span>
+              </div> 
+
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0 "><a href="#beneficios">Saiba mais</a></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0"><%= link_to "Entrar", user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: "Se já tiver um convite" %></div>
+              </div>
+            </div>  
+
+          </div>
+        </div>
+
+
+
+        <!-- Plataforms -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plataforms">
+          <%= x_image_tag 'welcome/plataforms-b.png', width: '936', height: '318' %>
+        </div>
+
+
+
+          
+        
+       
+      </div><!--/row-->
+
+      
+    </div> <!-- /container -->
+
+
+
+
+    <div id="header-hide-on-scroll-dark" class="container-fluid green-bg">
+
+    </div>
+
+
+
+
+    <!-- Container 2 -->
+
+    <div id="beneficios" class="container-fluid">  
+      <div class=" default row extra-padding">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 col-lg-offset-1">
+          
+
+          <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize" style="margin: 0px 0px 65px;">
+              <h2 class="green-font">Villeme irá lhe oferecer:</h2>
+            </div>
+
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+              <div class="row">
+                <div class="col-lg-4">
+                  <%= image_tag 'welcome/beneficio-a.png', class: "img-responsive" %>
+                </div>
+                <div class="col-lg-8">
+                  <h3 class="m-0 p-6-0">Eventos da vizinhança e bairro</h3>
+                  <span class="font-12">Fique sabendo de tudo que está acontecendo a sua volta, como: cursos, festas, shows, filmes no cinema... </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+              <div class="row">
+                <div class="col-lg-4">              
+                  <%= image_tag 'welcome/beneficio-b.png', class: "img-responsive" %>
+                </div>
+                <div class="col-lg-8">
+                  <h3 class="m-0 p-6-0">Atividades para você praticar perto de casa</h3>
+                  <span class="font-12">Descubra lugares para dar uma caminhada, jogar basquete, pegar um sol, se exercitar, nadar...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+              <div class="row">
+                <div class="col-lg-4">               
+                  <%= image_tag 'welcome/beneficio-c.png', class: "img-responsive" %>
+                </div>
+                <div class="col-lg-8">  
+                  <h3 class="m-0 p-6-0">Passeios com a família</h3>
+                  <span class="font-12">Aproveite os finais de semana para sair da rotina e se divertir com as pessoas que mais ama.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+              <div class="row">
+                <div class="col-lg-4">              
+                  <%= image_tag 'welcome/beneficio-d.png', class: "img-responsive" %>
+                </div>
+                <div class="col-lg-8">
+                  <h3 class="m-0 p-6-0">Motivações para cuidar da saúde</h3>
+                  <span class="font-12">Indicaremos profissionais, locais e até mesmo os períodos que você deve ir ao médico para consultas de rotina.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+              <div class="row">
+                <div class="col-lg-4">               
+                  <%= image_tag 'welcome/beneficio-e.png', class: "img-responsive" %>
+                </div>
+                <div class="col-lg-8">  
+                  <h3 class="m-0 p-6-0">Diversão com os amigos</h3>
+                  <span class="font-12">Combine com seus melhores amigos para aproveitarem os eventos que ocorrem no bairro e na cidade.</span>
+                </div>
+              </div>
+            </div>                                              
+
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+              <div class="row">
+                <div class="col-lg-4">               
+                  <%= image_tag 'welcome/beneficio-f.png', class: "img-responsive" %>
+                </div>
+                <div class="col-lg-8">  
+                  <h3 class="m-0 p-6-0">Promoções de comércios locais</h3>
+                  <span class="font-12">Busque por produtos e serviços e conheça novos mercadinhos, padarias, lancherias, pizzarias...</span>
+                </div>
+              </div>
+            </div> 
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
+              <h4>e muito mais!</h4>
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div><!--/row-->
+    </div> <!-- /container -->
+
+
+
+
+
+    <!-- Container 3 -->
+
+    <div class="container-fluid body-dark-grey">  
+      <div class="row" style="padding: 25px 0px 0px; margin: 0px;">
+        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 col-lg-offset-1">
+          
+
+          <div class="row">
+
+
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <h2 class="green-font">Mais que um aplicativo,<br/> um propósito</h2>
+              <span>O Villeme vai além de aplicativo, nosso propósito é aumentar e tornar divertido a interação das pessoas com o bairro e a forma como se relacionam com os diversos setores dele: público, privado, ONGs e mobilizações sociais.</span>
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 centralize">
+              <%= image_tag('welcome/city.png', class: 'city-img') %>
+            </div>                                 
+
+
+          </div>
+
+        
+        </div>
+      </div><!--/row-->
+    </div> <!-- /container -->
+
+
+
+
+
+
+    <!-- Container 6 -->
+
+
+    <div class="container-fluid">
+
+      <div class="extra-padding">
+
+        <div class="row">
+          
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
+            <h2 class="green-font">Quero um convite!</h2>
+            <span>Solicite um convite para testar o aplicativo na sua cidade, ou crie uma cidade</span>
+          </div>
+        
+
+          <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-0 col-sm-offset-0 col-xs-offset-0">
+
+            <ul class="goals">
+
+              <% number = 0 %>
+              <% @cities.each do |city| %>
+              <% 
+              goal = city.goal
+              
+              if goal.to_i <= Invite.where(city: city).count
+                contador = "Versão Beta lançada!" 
+                ativado = true
+              else
+                contador = "#{(goal.to_i - Invite.where(city: city).count)} pessoas para ativar o Beta"
+              end 
+              %>
+
+                <li> 
+                  <%= "<span class='number body-grey font-18'> #{number += 1} </span> ".html_safe unless ativado %>
+                  <%= "<span class='number body-grey font-18'><span class='glyphicon glyphicon-ok' style='float: left; padding: 5px;'></span></span> ".html_safe if ativado %>
+                  <span class='city font-22'><%= city.name %></span>
+                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>Eu tbm!</span> </div>".html_safe unless ativado %>
+                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>Quero testar tbm!</span> </div>".html_safe if ativado %>
+                  <span class="people font-18"><%= contador %>
+                </li>
+            
+              <% end %>
+
+                <li>
+                  <span class="people has-modal has-tooltip" title="Sua cidade não está acima?" style="cursor:pointer">+ Criar cidade</span>
+                </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <!-- Container 6 -->
+
+    <div class="container-fluid green-bg">  
+      <div class=" default row">
+       
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
+          <h3>Avise seus amigos que curtem se divertir na cidade, compartilhe!</h3>
+        </div>
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize blue-font">
+          <div class="fb-like" data-href="https://www.facebook.com/app.Villeme" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+        </div>
+
+
+      </div><!--/row-->
+    </div> <!-- /container -->
+
+
+
+
+
+    <div class="container-fluid green-bg">  
+      <footer>
+        <ul>
+          <!-- <li><a href="">Sobre</a></li> -->
+          <!-- <li><a href="">Blog</a></li> -->
+          <li><a href="">Termos</a></li>
+          <li id="contato"><a href="">Contato</a></li>
+          <!-- <li><a href="">Twitter</a></li> -->
+          <li><a href="https://www.facebook.com/app.Villeme">Facebook</a></li>
+          <li><a href="https://crowdcreative.github.io" class="has-tooltip" title="Todas as habilidades são bem vindas, e neste momento programadores, RPs e UX designers possuem bastante oportunidades">Empreenda com a gente</a></li>
+          
+        </ul>
+      </footer>      
+    </div>
+
+  </body>
+
+
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+
+    <%= include_gon %>
+
+    <%= javascript_include_tag "application", "wodry" %>
+    <%= javascript_include_tag params[:controller] %>
+    <%= stylesheet_link_tag('bootstrap-select') %>
+    <%= javascript_include_tag('bootstrap-select') %>
+
+    <%= render 'layouts/analitycs' %>
+
+</html>

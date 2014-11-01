@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  slug: MyString
+  description: MyText
+  nivel: 1
+  url: MyString
+  points: 1
+
+two:
+  name: MyString
+  slug: MyString
+  description: MyText
+  nivel: 1
+  url: MyString
+  points: 1

@@ -1,0 +1,8 @@
+<%= simple_form_for @persona, defaults: {input_html: {class: 'form-control'}, label_html: { class: 'control-label'}, wrapper_html: { class: 'form-group'} } do |f| %>
+  
+  <%= f.input :name, label: 'Nome' %>
+
+  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                personas_path, :class => 'btn btn-default' %>
+<% end %>

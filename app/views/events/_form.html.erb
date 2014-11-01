@@ -1,0 +1,315 @@
+  
+    
+<!-- HEAD -->
+
+<%= stylesheet_link_tag params[:controller] %>
+<%= javascript 'gmaps-builder', 'autocomplete' %>
+
+
+
+
+<!-- MAIN -->
+
+<div class="col-md-9 col-lg-9">
+
+	<div class="panel">
+
+	  <div class="panel-heading">
+	    <h1><%= yield :header %></h1>
+	  </div>
+
+
+	  <div class="panel-body">
+
+	  <%= simple_form_for @event, defaults:{ label: false, wrapper_html: false}, :html => { multipart: true, class: "form-horizontal", id: "event-form" } do |f| %>
+	        
+
+	        <!-- NOME DO EVENTO -->
+
+	        <div class="form-group has-helper" helper="<b>Dica:</b> O nome do evento fica mais legal se for curto e com uma palavra descritiva. <br><br><b>Exemplo:</b><ul><li>Nome original: Hell.</li> <li>Nome legal: <i>Peça de Teatro</i> Hell.</li></ul><br><b>Obrigações:</b><ul><li>O nome deve ter mais de 6 caracteres.</li></ul>">
+	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Nome do evento</label>
+	          <div class="col-lg-9">
+	            <%= f.input :name, input_html:{class: "form-control"} %>
+	          </div>
+	        </div>
+
+
+	        <!-- DESCRIÇÃO DO EVENTO -->
+
+	        <div class="form-group has-helper" helper="<b>Dicas:</b> A descrição fica mais legal se for bem organizada, explicar o que acontece e o que é possível fazer no evento.<br><br>Use as opções de negrito e numeração para organizar melhor a descrição.<br><br><b>Obrigações:</b><ul><li>Ter mais de 140 caracteres.</li></ul>">
+	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Descrição</label>
+	          <div class="col-lg-9">
+	            <%= f.input :description, input_html: {class: "form-control", rows: "5"} %>
+	          </div>
+	        </div>
+
+
+
+
+
+
+
+	        <!-- PERIODO -->
+
+	        <div class="form-group has-helper"  helper="<b>Dica:</b> A data inicial deve ser o dia que começa o evento, independente se o evento durar meses (exposição, festival, etc). A data de termino deve ser o dia que o evento termina no periodo.<br><br><b>Obrigações:</b><ul><li>O dia de início deve ser preenchido.</li></ul></b>">
+	          <label class="control-label col-lg-3">Periodo</label>
+	          <div class="col-lg-9 no-padding">
+	            <div class="col-lg-12">
+	              <span class="info"><abbr title="Obrigatório">*</abbr> Dia de início do evento</span>
+	            </div>
+	            <!-- <div class="col-lg-5">
+	              <span style="float: left; margin: -15px 0px 6px;">Hora de início do evento</span>
+	            </div>  -->       
+	            <div class="col-lg-12">
+	              <%= f.input :date_start, as: :date, input_html: {class: "form-control"}, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+	            </div>
+	            <div class="col-lg-12" style="margin-top: 12px;">
+	              <span class="info">Dia de termino do evento</span>
+	            </div>       
+	            <div class="col-lg-12 not-required">
+	              <%= f.input :date_finish, as: :date, input_html: {class: "form-control"}, start_year: Date.today.year, end_year: Date.today.year + 1 %>
+	            </div>                
+	          </div>
+	      
+	        </div>
+	        
+
+
+
+	        <!-- DIAS DA SEMANA -->
+
+	        <div class="form-group has-helper" helper="<b>Dica:</b> Marque os dias da semana que o evento acontece.<br><br><b>Obrigações:</b><ul><li>Pelo menos um dia da semana deve estar marcado.</li></ul></b>">
+	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Dias da semana</label>
+	          <div class="col-lg-9">
+	            <%= f.association :weeks, collection: Week.order('organizer_id ASC'), as: :check_boxes, include_blank: false %>
+	          </div>
+	        </div> 
+
+
+
+	        <!-- HORARIOS -->
+
+	        <div class="form-group has-helper hour-block"  helper="<b>Dica:</b> O horário de início deve ser o horário que o evento começa durante todos os dias do evento e o de termino a hora que o evento termina durante todos os dias do evento.<br><br><b>Obrigações:</b><ul><li>Ao menos um horário deve ser preenchido.</li><li>O horário de início deve ser preenchido.</li></ul>">
+	          <label class="control-label col-lg-3">1º Horario</label>
+	          <div class="col-lg-9 no-padding">
+	            <div class="col-lg-5">
+	              <span class="info"><abbr title="Obrigatório">*</abbr> Hora de inicio</span>
+	            </div>
+	            <div class="col-lg-7">
+	              <span class="info">Hora de termino</span>
+	            </div>
+	            <div class="col-lg-5">
+	              <%= f.input :hour_start_first, input_html: {class: "form-control"}, as: :time, prompt: '--' %>
+	            </div>
+	            <div class="col-lg-5 not-required">
+	              <%= f.input :hour_finish_first, input_html: {class: "form-control"}, as: :time, prompt: '--' %>
+	            </div>             
+	            <div class="col-lg-2 no-require">
+	              <span class="glyphicon glyphicon-plus has-tooltip" title="Adicionar mais um horario"></span>
+	            </div>
+	          </div>
+	        </div>
+
+
+
+
+
+
+
+
+	        
+	    <!-- PREÇO -->
+
+	    <div class="form-group has-helper" helper="<b>Dica 1:</b> Insira o preço cobrado para poder participar do evento.<br/><br/><b>Dica 2:</b> Use o espaço de <i>Detalhes</i> para colocar mais informações sobre os preços e a tabela para cada segmento de preço cobrado.<br><br><b>Obrigações:</b><ul><li>O preço deve ser preenchido.</li></ul>">
+	      <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Preço</label>
+	      <div class="col-lg-3">
+	        <input id="event_cost_fake" value="<%= @event.cost unless @event.cost.blank? %>" class="string optional has-tooltip form-control" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
+	        <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control"}  %>
+	      </div>
+	      <label class="control-label col-lg-2">Detalhes</label>            
+	      <div class="col-lg-4 not-required">
+	        <%= f.input :cost_details, as: :text, input_html:{rows: "2", class: "form-control"}  %>
+	      </div>            
+	    </div>    
+	   
+
+ 
+
+
+
+
+
+	    <!-- IMAGEM -->
+
+	    <div class="form-group has-helper" helper="<b>Dica:</b> Escolha e envie uma imagem do seu computador que represente o evento ou que seja uma foto do mesmo evento em uma data anterior.<br><br><b>Obrigações:</b><ul><li>A imagem deve ter menos de 5mb.</li><li>A imagem não deve ser cartaz apenas com texto.</li>">
+	      <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Imagem</label>
+	      <div class="col-lg-3">
+
+					<% unless @event.image.blank? %>
+		        <div class="img-thumbnail event-img image-upload" style="background-image: url('<%= @event.image.url(:thumb) %>')">
+		          
+		        </div>
+					<% else %>
+		        <div class="img-thumbnail event-img image-upload">
+		          <span class="glyphicon glyphicon-camera"></span>
+		          <span class="event-text">Enviar imagem</span>
+		        </div>
+		      <% end %>
+
+	      </div>
+	      <div class="col-lg-6">
+	        <%= f.input :image, as: :file, input_html: {class: "event-file form-control"}, wrapper_html: false %>
+	        <a class="remove-img hint">Remover</a>
+	      </div>
+	    </div> 
+
+
+
+
+
+
+
+
+	        
+
+
+
+
+	        <%= f.simple_fields_for :place, defaults: {input_html: false, label_html: false, wrapper_html: false, label: false} do |p| %>
+
+	        
+	          <!-- LOCALIZAÇÃO-->
+
+	          <div class="form-group place-form" style="margin-top: 30px;">
+	            <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Local</label>
+	            <div class="col-lg-9 place-div">
+
+	              <!-- <input id="place" class="string optional place-inputs has-tooltip col-lg-7 ui-autocomplete-input" type="text" title="" size="255" placeholder="Ex:. Parque Farroupilha" name="" maxlength="255" autocomplete="off" data-original-title="Busque pelo nome do lugar aqui"> -->
+	              <%= p.input :name, input_html: {id: "place", class: "place-inputs form-control has-tooltip col-lg-7 ui-autocomplete-input has-helper", placeholder: "Ex:. Parque Farroupilha", helper: "<b>Dica:</b> Escreva o nome do lugar completo, se ele ja existir você pode selecionar na lista que irá aparecer ou caso o lugar ainda não exista, você pode criá-lo.<br><br><b>Obrigações:</b><ul><li>O lugar deve ser selecionado ou criado.</li><li>O nome deve ter mais de 3 caracteres.</li>"} %>
+	            
+	            </div>
+
+	            <div class="col-lg-2">
+	              <div class="btn btn-default disabled has-tooltip" id="btn-criar-lugar" title="Verifique primeiro se o lugar não existe antes de criá-lo">Criar lugar</div>
+	            </div> 
+
+	          </div>
+	   
+
+	        <% end %>
+
+
+	          <!-- ENDEREÇO DO LUGAR -->
+
+	          <div class="form-group criar-lugar address-inputs has-helper" helper="<b>Dica 1:</b> Você pode buscar o lugar de duas maneiras: inserindo rua, numero e bairro e clicando em <i>Buscar</i> ou pegando e soltando o marcador no mapa.<br/><br/><b>Dica 2:</b> Você pode aumentar o mapa com o 'rolinho' do mouse.">
+	            <label class="control-label col-lg-3">Endereço do lugar</label>
+
+              <!-- rua ou avenida -->
+              <div class="col-lg-7 address-search">
+                <%= f.input :address, placeholder: "Ex:. Av. Bento Gonçalves", input_html: {id: "endereco", class: "place-inputs address-place-inputs has-tooltip form-control", title: "Rua ou avenida"} %>
+              </div>
+
+
+	            <!-- botão -->
+	            <span class="col-lg-2">
+	              <div class="btn btn-default w-100" id="btn-buscar-endereco">Buscar</div>
+	            </span>
+
+	            <!-- mapa -->
+	            <div class="col-lg-9 pull-right">
+	              <div id="map" class="place-inputs"></div>
+	            </div> 
+
+	          </div>
+
+	        
+					<div class="not-required-show green-font fake-link centralize">+ Mais detalhes</div>
+
+					<div class="not-required-block">
+
+
+				    <!-- CATEGORIAS -->
+
+				    <div class="form-group has-helper" helper="<b>Dica:</b> Marque a(s) categoria(s) que o evento mais se encaixa e tenha cuidado para selecionar as que realmente representam o evento.<br><br><b>Obrigações:</b><ul><li>No mínimo uma categoria deve ser marcada.</li><li>No máximo 3 categorias deves ser marcadas.</li></ul>">
+				      <label class="control-label col-lg-3">Categorias</label>
+				      <div class="col-lg-9">
+				        <%= f.association :categories, as: :check_boxes, include_blank: false %>
+				      </div>
+				    </div>
+
+
+						<!-- SUBCATEGORIA -->
+
+			      <div class="form-group has-helper" helper="<b>Dica:</b> Selecione uma subcategoria para melhor descrever o evento.">
+			        <label class="control-label col-lg-3">Subcategoria:</label>
+			        <div class="col-lg-9">
+			          <%= f.association :subcategory, as: :select, include_blank: "Todos", input_html:{ class: "form-control"} %>
+			        </div>
+			      </div>
+
+
+						<!-- PERSONA -->
+
+			      <div class="form-group has-helper" helper="<b>Dica:</b> Selecionar uma persona torna o evento mais visto por pessoas que se interessam pelo assunto. <br><br><b>Exemplo:</b><ul><li>Empreendedor: Evento sobre marketing.</li> <li>Fashionista: Exposição de moda.</li></ul>">
+			        <label class="control-label col-lg-3">Recomendado para:</label>
+			        <div class="col-lg-9">
+			          <%= f.association :persona, as: :select, include_blank: "Todos", input_html:{ class: "form-control"} %>
+			        </div>
+			      </div>
+
+
+		        <!-- CONTATO -->
+
+		        <div class="form-group has-helper" helper="<b>Dica:</b> Para deixar as informações mais confiaveis, insira os dados de contato do organizador ou local.">
+		          <label class="control-label col-lg-3">Contato e informações</label>
+		          <div class="col-lg-4">
+		            <%= f.input :email, input_html:{class: "form-control"}, placeholder: "email" %>
+		          </div>
+		          <div class="col-lg-5">
+		            <%= f.input :phone, as: :string, input_html:{class: "form-control"}, placeholder: "telefone" %>
+		          </div>
+		          <div class="control-label col-lg-3" style="margin-top:15px"></div>
+		          <div class="col-lg-9" style="margin-top:15px">
+		            <%= f.input :link, input_html:{class: "form-control"}, placeholder: "link ou site" %>
+		          </div>	          
+		        </div>	
+
+					</div>
+
+	        
+
+
+
+	        <div class="footer">
+
+	          <%= link_to "Cancelar", root_path %>
+	          <%= f.button :submit, "Criar evento", :class => 'btn-primary btn-lg' %>
+
+	        </div>
+
+	    </div>
+
+	  <% end %>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+<!-- SIDEBAR -->
+
+
+<div id="helper" class="col-md-3 col-lg-3">
+  <div class="bs-docs-sidebar col-fixed">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="helper-text">
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>

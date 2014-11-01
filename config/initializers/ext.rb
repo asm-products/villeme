@@ -1,0 +1,3 @@
+
+# String
+require 'ext/string'

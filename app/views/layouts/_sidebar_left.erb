@@ -1,0 +1,175 @@
+
+
+<!-- SCREEN > 1200px -->
+
+<div id="sidebar-left-lg" class="sidebar-left">
+	<ul class="nav nav-pills nav-stacked">
+
+
+	<!-- Newsfeed -->
+
+		<% if current_page?('/newsfeed') %>
+			<li class="active">
+				<%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
+					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify.count if current_user.newsfeed_notify.count > 0 %></span></a>
+				<% end %>
+			</li>
+		<% else %>
+			<li>
+				<%= link_to root_path do %>
+					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= Event.upcoming.where(moderate: 1).count %></span></a>
+				<% end %>
+			</li>	
+		<% end %>
+
+
+
+		<!-- Persona -->
+
+		<li>
+			<% if user_signed_in? %>
+				<%= link_to my_persona_events_path, data: { push: true } do %>
+					<span class="glyphicon glyphicon-user"></span><span class="has-tooltip" title="Minha persona"><%= current_user.persona.name %></span><span class="badge"><%= current_user.events_from_my_persona.count if current_user.events_from_my_persona.count >= 1 %></span>
+				<% end %>
+			<% else %>
+				<a>
+					<span class="glyphicon glyphicon-user unlogged"></span>Minha persona<span class="badge">4</span>
+				</a>
+			<% end %>
+		</li>
+
+
+		<!-- Neighborhood -->
+
+		<li>
+			<% if user_signed_in? %>
+				<%= link_to my_neighborhood_events_path, data: { push: true } do %>
+					<span class="glyphicon glyphicon-home"></span><span class="has-tooltip" title="Meu bairro"><%= current_user.neighborhood.name %></span><span class="badge"><%= current_user.events_from_my_neighborhood.count if current_user.events_from_my_neighborhood.count >= 1 %></span>
+				<% end %>
+			<% else %>
+				<a>
+					<span class="glyphicon glyphicon-home unlogged"></span>Meu bairro<span class="badge">18</span>
+				</a>
+			<% end %>
+		</li>
+
+
+
+		<!-- Agenda -->
+
+		<li>
+			<% if user_signed_in? %>
+				<%= link_to my_agenda_events_path, data: { push: true } do %>
+					<span class="glyphicon glyphicon-bookmark"></span>Minha agenda<span id="agenda-count" class="badge"><%= current_user.agenda_events.upcoming.count if current_user.agenda_events.upcoming.count >= 1 %></span>
+				<% end %>
+			<% else %>
+				<a>
+					<span class="glyphicon glyphicon-bookmark unlogged"></span>Minha agenda<span id="agenda-count" class="badge">6</span>
+				</a>
+			<% end %>
+		</li>
+		
+		
+
+		<!-- Categorias -->
+
+		<li class="sub-nav-anchor"><a><span class="glyphicon glyphicon-tag"></span>Categorias</a></li>
+
+
+		<ul class="sub-nav hide">
+			<% if user_signed_in? %>
+				<% Category.all.each do |category| %>
+					
+					<li>
+						<%= link_to newsfeed_category_path(category), data: { push: true } do %>
+							<%= category.name %><span class="badge"><%= category.events.upcoming.count if category.events.upcoming.count > 0 %></span>
+						<% end %>
+					</li>
+					
+				<% end %>
+			<% end %>
+		</ul>
+		
+
+
+
+	</ul>
+</div>
+
+
+
+
+
+
+
+<!-- SCREEN > 992px and  < 1200px-->
+
+<div id="sidebar-left-md" class="sidebar-left">
+	<ul class="nav nav-pills nav-stacked">
+
+
+	<!-- Newsfeed -->
+
+		<% if current_page?('/newsfeed') %>
+			<li class="active">
+				<%= link_to root_path do %>
+					<span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
+				<% end %>
+			</li>
+		<% else %>
+			<li>
+				<%= link_to root_path do %>
+					<span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
+				<% end %>
+			</li>	
+		<% end %>
+
+
+
+		<!-- Persona -->
+
+		<li>
+			<% if user_signed_in? %>
+				<%= link_to my_persona_events_path, data: { push: true } do %>
+					<span class="glyphicon glyphicon-user"></span><span class="has-tooltip text" title="<%= current_user.persona.name %>">Minha persona</span><span class="badge text"><%= current_user.events_from_my_persona.count if current_user.events_from_my_persona.count >= 1 %></span>
+				<% end %>
+			<% else %>
+				<a>
+					<span class="glyphicon glyphicon-user unlogged"></span><span class="text">Minha persona</span><span class="badge text">4</span>
+				</a>
+			<% end %>
+		</li>
+
+
+		<!-- Neighborhood -->
+
+		<li>
+			<% if user_signed_in? %>
+				<%= link_to my_neighborhood_events_path, data: { push: true } do %>
+					<span class="glyphicon glyphicon-home"></span><span class="has-tooltip" title="<%= current_user.neighborhood.name %>"><span class="text">Meu bairro</span></span><span class="badge text"><%= current_user.events_from_my_neighborhood.count if current_user.events_from_my_neighborhood.count >= 1 %></span>
+				<% end %>
+			<% else %>
+				<a>
+					<span class="glyphicon glyphicon-home unlogged"></span><span class="text">Meu bairro</span><span class="badge text">18</span>
+				</a>
+			<% end %>
+		</li>
+
+
+
+		<!-- Agenda -->
+
+		<li>
+			<% if user_signed_in? %>
+				<%= link_to my_agenda_events_path, data: { push: true } do %>
+					<span class="glyphicon glyphicon-bookmark"></span><span class="text">Minha agenda</span><span id="agenda-count" class="badge text"><%= current_user.agenda_events.count if current_user.agenda_events.count >= 1 %></span>
+				<% end %>
+			<% else %>
+				<a>
+					<span class="glyphicon glyphicon-bookmark unlogged"></span><span class="text">Minha agenda</span><span id="agenda-count" class="badge text">6</span>
+				</a>
+			<% end %>
+		</li>
+		
+	</ul>
+</div>

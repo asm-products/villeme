@@ -1,0 +1,11 @@
+<% unless @user.accepted_friends.empty? %>
+  <% @user.accepted_friends.each do |friend| %>
+    <li class="list-group-item avatar small-avatar">
+      <%= get_avatar friend, "26", "26" %><div class="level-image"><%= x_image_tag friend.level_icon_url, class: "has-tooltip", title: friend.level.name %></div> <span class="name p-0-6"><%= link_to friend.name, show_user_path(friend)  %></span> <span class="pull-right p-6-0"><%= friend.points %> Pts.</span>
+    </li>
+  <% end %>
+<% else %>
+  <li class="list-group-item centralize ">
+    <span class="font-14">Você ainda não possui nenhum amigo</span>
+  </li>
+<% end %>

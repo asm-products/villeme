@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <%= render 'layouts/head' %>
+    
+  </head>
+  <body>
+
+    <%# render 'layouts/shelf' %>
+
+    <%= bootstrap_flash %>
+
+    <div class="container-fluid">
+
+      <%= render 'layouts/header' %>
+
+      <div class="content row">
+
+        <div class="col-md-12">
+
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              
+              <%= yield %>
+            </div>
+          </div>
+
+        </div>
+
+        
+      </div><!--/row-->
+
+      
+
+      <%= render 'layouts/footer' %>
+
+    </div> <!-- /container -->
+
+  </body>
+
+<%= render 'layouts/analitycs' %>
+  
+</html>

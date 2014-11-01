@@ -1,0 +1,26 @@
+<div class="panel-heading">
+	<div class="panel-title">
+		<h2>Entrar</h2>
+	</div>
+</div>
+
+<div class="panel-body">
+
+	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), defaults: {input_html: {class: "form-control"}, wrapper_html: {class: "form-group"}}) do |f| %>
+	  <div class="form-inputs">
+	  	<%= link_to "Entrar com Facebook", user_omniauth_authorize_path(:facebook) %>
+	    <%= f.input :email, :required => false, :autofocus => true %>
+	    <%= f.input :password, :required => false %>
+	    <%= f.input :remember_me, input_html:{class: ""}, wrapper_html: {class: ""}, :as => :boolean if devise_mapping.rememberable? %>
+	  </div>
+
+	  <div class="form-actions">
+	    <%= f.button :submit, "Entrar", class: "btn btn-primary" %>
+	  </div>
+	<% end %>
+
+</div>
+
+<div class="panel-footer">
+	<%= render "devise/shared/links" %>
+</div>

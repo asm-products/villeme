@@ -1,0 +1,24 @@
+// Place all the styles related to the Places controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.address-search .col-sm-6 {
+    padding: 0 1px 0 0;
+}
+.address-search .col-sm-6 input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.address-search .col-sm-2 {
+    padding: 0 1px 0 0;
+}
+.address-search .col-sm-2 input {
+    border-radius: 0;
+}
+.address-search .col-sm-4 {
+    padding: 0;
+}
+.address-search .col-sm-4 input {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}

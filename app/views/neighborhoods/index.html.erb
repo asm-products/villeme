@@ -1,0 +1,43 @@
+
+<div class="panel-heading">
+  <h1>Bairros</h1>
+</div>
+
+<div class="panel-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Cidade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @neighborhoods.each do |neighborhood| %>
+        <tr>
+          <td><%= link_to neighborhood.id, neighborhood_path(neighborhood) %></td>
+          <td><%= neighborhood.name %></td>
+          <td><%= neighborhood.description %></td>
+          <td><%= neighborhood.city.name unless neighborhood.city.nil? %></td>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_neighborhood_path(neighborhood), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        neighborhood_path(neighborhood),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="panel-footer">
+  <%= link_to 'Criar bairro',
+              new_neighborhood_path,
+              :class => 'btn btn-primary' %>
+</div>

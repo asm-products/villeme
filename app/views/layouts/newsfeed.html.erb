@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <%= render 'layouts/head' %>
+    
+     <%= javascript_include_tag 'gmaps-builder-user' %>
+
+  </head>
+  <body>
+
+    <%= bootstrap_flash %>
+
+
+    <%# render 'layouts/shelf' %>
+
+
+    <div class="container-fluid">
+
+      <%= render 'layouts/header' %>
+
+      <div class="content row">
+
+        <div class="col-md-9">
+
+          <div class=" row no-padding no-margin">
+            
+            <div class="tabrow col-sm-6">
+              
+                <ul class="no-padding">
+                  <li class="selected">Descobrir <span class="badge"><%= @events.count %></span></li>
+                  <li>Explorar</li>
+                  <li>Buscar</li>
+                </ul>
+            </div>
+
+            <div class="tabrow-filters col-sm-6">
+
+              <div class="dropdown descobrir-dependent text-to-right">
+
+                <a href="#" class="has-dropdown" data-toggle="dropdown">
+                  <span class="ativator">Categorias: <%= current_page?(root_path) ? "todas" : @category.name.downcase %> <b class="caret"></b></span>
+                </a>  
+
+                <ul class="dropdown-menu dropdown-right categories" role="menu" aria-labelledby="dLabel">
+
+                  <% Category.all.each do |category| %>
+                    <li role="presentation">
+                      <%= link_to newsfeed_category_path(category.id) do %>
+                        <span class="item <%= category.slug %>"><span class="circle"></span><%= category.name %></span>
+                      <% end %>
+                    </li>
+                  <% end %>               
+                  <li role="presentation">
+                    <%= link_to root_path do %>
+                      <span class="item todas"><span class="circle"></span>Todas</span>
+                    <% end %>                  
+                  </li>
+                </ul>
+
+              </div> 
+
+            </div>         
+
+          </div>
+
+            <ul class="tabclose load-close">
+              <li class="selected">x Voltar</li>
+            </ul>          
+
+            <div class="deb-tab">
+              
+
+              <div id="load-event" class="panel panel-default event" style="display:none">
+                <div class="panel-body">
+
+                  <div class="row" style="margin: -15px -15px 6px; border-top-right-radius: 5px; overflow: hidden; border-top-left-radius: 5px;">
+
+                    <div class="col-sm-12 no-padding">
+                      <div class="row">
+
+                        <div class="load-image col-sm-4">
+                          <img  class="magic" src="">
+                        </div>
+
+                        <div id="load-map" class="col-sm-8" style="height:215px">
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="load-header">
+                        <h4 class="load-title"></h4>
+                          <div class="load-infos">
+                            <div class="place"><span></span></div>
+                            <div class="address"><span></span></div>
+                            <div class="number"><span></span></div>
+                            <div class="distance"><span></span></div>
+                          </div>
+                      </div>
+                      
+                        
+                      <div class="row  no-fifteen-margin">
+
+                        <div class="load-body col-sm-12 no-fifteen-margin no-fifteen-padding">
+                          <div class="row">
+
+                            <div class="col-sm-12 no-fifteen-padding">
+                              <h3 class="col-sm-4">Descrição</h3>
+                                <p class="col-sm-8"></p>
+
+                            </div>
+                          </div>
+                        </div>
+
+   
+                        
+                      </div>
+
+
+                      
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
+              
+              <%= yield %>
+                
+
+            </div>
+
+          </div>
+
+
+          <div id="sidebar" class="col-md-3">
+
+            <!-- infobox do gmaps customizado -->
+            <div id="infobox-wrapper" class="col-fixed">
+
+            </div>        
+       
+
+            <div id="sidebar-map" class="panel panel-default col-fixed">
+
+              <div class="panel-body user-box sidebar">
+
+                <div id="user-map" style="width:100%">
+
+                </div>
+
+                <div class="infos">
+                  <div class="walk">
+                  </div>
+                </div>
+
+                
+
+              </div>
+            </div>
+
+
+
+            <div id="load-event-sidebar" class="panel panel-default col-fixed">
+              <div class="panel-body user-box sidebar event-sidebar">
+
+                <div class="block">
+                  <h3>Categorias</h3>
+                  <div class="load-categories clear"></div>
+                </div>
+                <div class="block">
+                  <h3>Preço</h3>
+                  <div class="load-preco clear"></div>
+                </div>                 
+                <div class="block">
+                  <h3>Período</h3>
+                  <div class="load-periodo clear"></div>
+                </div>             
+                <div class="block">
+                  <h3>Horários</h3>
+                  <div class="load-horarios">
+                    <div class="start-first"></div><div class="finish-first"></div>
+                    <div class="start-second"></div><div class="finish-second"></div>
+                    <div class="start-third"></div><div class="finish-third"></div>
+                    <div class="start-fourth"></div><div class="finish-fourth"></div>     
+                    <div class="start-fifth"></div><div class="finish-fifth"></div>
+                    <div class="start-sixth"></div><div class="finish-sixth"></div>                       
+                  </div>
+                </div>                      
+              </div>
+            </div>
+
+          
+          </div>
+        
+      </div><!--/row-->
+
+      
+
+      <%= render 'layouts/footer' %>
+
+    </div> <!-- /container -->
+
+  </body>
+
+<%= render 'layouts/analitycs' %>
+  
+</html>

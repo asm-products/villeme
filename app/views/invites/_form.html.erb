@@ -1,0 +1,14 @@
+<%= simple_form_for @invite, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :user_id %>
+  <%= f.input :email %>
+  <%= f.input :name %>
+  <%= f.input :city %>
+  <%= f.input :persona %>
+  <%= f.input :persona_sugest %>
+  <%= f.input :city_sugest %>
+  <%= f.input :key %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                invites_path, :class => 'btn btn-default' %>
+<% end %>

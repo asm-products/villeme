@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="villeme">
+  <head>
+    
+    <%= render 'layouts/head' %>
+    
+  </head>
+  <body>
+
+    <%= bootstrap_flash %>
+
+    
+
+    <div class="container-fluid">
+
+      <%= render 'layouts/header' %>
+
+
+      <div class="content">
+
+        <%= render 'layouts/sidebar_left' %>
+
+        <!-- <span class="has-modal-feedback"><a>Sugestões ou erro?</a></span> -->
+
+        <div id="main" class="row">
+
+       		<%= yield %>
+
+        </div>
+        
+      </div><!--/row-->
+
+      
+
+      <%= render 'layouts/footer' %>
+
+    </div> <!-- /container -->
+
+  </body>
+
+<%= render 'layouts/analitycs' %>
+  
+</html>

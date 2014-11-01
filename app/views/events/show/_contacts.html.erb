@@ -1,0 +1,34 @@
+<h3 class="centralize">Mais informações</h3>
+<div class="row">
+
+
+  <!-- Email -->
+  <% unless @event.email.blank? %>
+  <div class="col-md-4 col-lg-4 no-padding">
+    <p>
+      <%= @event.email %>
+    </p>
+  </div>
+  <% end %>
+  
+
+  <!-- Telefone -->
+  <% unless @event.phone.blank? %>
+  <div class="col-md-4 col-lg-4">
+    <p>
+      <%= @event.phone %>
+    </p>
+  </div>
+  <% end %>
+
+
+  <!-- Link -->
+  <% unless @event.link.blank? %>
+  <div class="col-md-4 col-lg-4">
+    <p>
+      <%= link_to "#{clean_url @event.link[0..24]}...", @event.link, target: "_blank" %>
+    </p>
+  </div>
+  <% end %>
+
+</div>

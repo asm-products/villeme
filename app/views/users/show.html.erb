@@ -1,0 +1,76 @@
+<%= stylesheet_link_tag params[:controller] %>
+
+
+<div class="row">
+
+  <div class="col-lg-8 col-md-10 col-sm-20 col-xs-12 col-lg-offset-2 col-md-offset-1">
+
+    <div class="row">
+      
+      <div class="col-lg-4 col-md-4">
+        <div class="panel panel-default data-spy="affix" data-offset-top="60" data-offset-bottom="200"">
+          
+          <div class="panel-heading centralize">
+            <span class="avatar-absolute"><%= get_avatar @user, "50", "50" %></span>
+            <h2><%= @user.name %></h2>
+            <span class="font-14"><%= "#{@user.neighborhood.name} - #{@user.neighborhood.city.name}" %></span>
+          </div>
+            
+          <div class="panel-body">
+            <%= render "infos" %> 
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="col-lg-8 col-md-8">
+
+        <!-- EVENTOS -->
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <h3 class="inline">Eventos agendados</h3>
+          </div>
+
+          <ul class="list-group">
+            <% if current_user.are_friends? @user %>
+              <% @user.agenda_events.each do |event| %>
+                <li class="list-group-item"><%= link_to event.name, event %> <span class="pull-right"><%= event.day_of_week css: "grey-font f-weight-300" %></span></li>
+              <% end %>
+            <% else %>
+              <li class="list-group-item centralize font-12">Você precisa ser amigo de <%= @user.first_name %> para ver seus eventos</li>
+            <% end %>
+          </ul>
+
+        </div>
+
+
+
+        <!-- AMIGOS -->
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <h3 class="inline">Amigos <small><%= "(você é amigo de #{@user.first_name})" %></small></h3>
+            <% if current_user != @user %> 
+              <%= btn_friend current_user, @user, css: "pull-right" %>
+              <div style="clear: both"></div> 
+            <% end %>
+          </div>
+
+          <ul class="list-group">
+            <%= render "friends_list" %>
+          </ul>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div> 
+
+  
+</div><!--/row-->

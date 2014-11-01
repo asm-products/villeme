@@ -1,0 +1,2 @@
+module NotifyHelper
+end

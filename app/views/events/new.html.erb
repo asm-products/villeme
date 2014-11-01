@@ -1,0 +1,10 @@
+
+<%= javascript_include_tag params[:controller] %>
+
+<%= content_for :title, 'Criar evento na cidade' %>
+
+<% content_for :header do %>
+	Criar evento em 
+<% end %>
+
+<%= render :partial => 'form' %>

@@ -1,0 +1,20 @@
+
+<% content_for :header, "Bússola" %>
+  
+
+
+<%= simple_form_for :city, url: '/bussola/selecionado', defaults:{label: false, wrapper_html: false} do |f| %>
+
+  <div class="form-group centralize">
+    <h2>Em qual cidade você ira criar o evento?</h2>
+    <div class="">
+      <%= f.input :city, collection: @cities, prompt: 'Seleciona a cidade'  %>
+    </div>
+  </div>
+
+
+	<div class="footer">
+		<%= f.button :submit, "Continuar",  class: "btn btn-primary" %>
+	</div>
+
+<% end %>

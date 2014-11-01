@@ -1,0 +1,2 @@
+module BussolaHelper
+end

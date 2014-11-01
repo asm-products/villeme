@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <%= render 'layouts/head' %>
+    
+  </head>
+  <body>
+
+    <%= bootstrap_flash %>
+
+    <%# render 'layouts/shelf' %>
+
+
+    <div class="container">
+
+      <%= render 'layouts/header' %>
+
+      <div class="content row">
+
+
+        <!-- MAIN -->
+        <div class="col-md-9">
+          <%= bootstrap_flash %>
+
+          <div class="panel panel-default">
+            <div class="event panel-body">
+              
+              <%= yield %>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- SIDEBAR -->
+        <div class="col-md-3">
+
+          <div class="panel panel-default col-fixed sidebar">
+            <div class="panel-body event-sidebar">
+
+              <%= yield :sidebar %>
+
+            </div>
+          </div>
+        
+        </div>
+        
+      </div><!--/row-->
+
+      
+
+      <%= render 'layouts/footer' %>
+
+    </div> <!-- /container -->
+
+  </body>
+
+<%= render 'layouts/analitycs' %>
+  
+</html>

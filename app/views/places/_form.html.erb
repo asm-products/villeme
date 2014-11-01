@@ -1,0 +1,110 @@
+
+
+<!-- Construtor do mapa -->
+
+<%= javascript 'gmaps-builder' %>
+
+
+<!-- Formulario de criação de lugar -->
+
+<%= simple_form_for @place, defaults:{ label: false, wrapper_html: false, input_html:{class: "form-control"}}, :html => { multipart: true, class: "form-horizontal", id: "event-form" } do |f| %>
+  
+
+  <div class="panel-body">
+
+    <!-- Nome do lugar (input) -->
+
+    <div class="form-group" >
+      <label class="control-label col-lg-3">Nome do evento</label>
+      <div class="col-lg-9">
+        <%= f.input :name %>
+      </div>
+    </div>
+
+
+
+    <!-- Descrição (textarea) -->
+    
+    <div class="form-group">
+      <label class="control-label col-lg-3">Descrição</label>
+      <div class="col-lg-9">
+        <%= f.input :description, input_html: {rows: "3"} %>
+      </div>
+    </div>
+
+
+  <!--   Bairro (select)
+
+    <div class="form-group has-helper" helper="">
+      <label class="control-label col-lg-3">Bairro</label>
+      <div class="col-lg-9">  
+    		<%= f.association :neighborhood, as: :select, prompt: "Escolha o bairro", include_blank: false %>
+    	</div>
+    </div> -->
+
+
+    <!-- Categorias (checkboxes) -->
+
+    <div class="form-group">
+      <label class="control-label col-lg-3">Categorias</label>
+      <div class="col-lg-9">
+        <%= f.association :categories, as: :check_boxes, include_blank: false %>
+      </div>
+    </div>   
+
+
+
+    <!-- ENDEREÇO E MAPA -->
+
+    <div class="form-group address-inputs">
+      <label class="control-label col-lg-3">Endereço do lugar</label>
+
+      <div class="col-lg-7 address-search">
+
+        <!-- Rua ou avenida -->
+
+        <%= f.input :address, placeholder: "Rua ou Avenida:", input_html: {id: "endereco", class: "form-control has-tooltip"} %>
+
+      </div>
+
+      <!-- Botão -->
+
+      <span class="col-lg-2">
+        <div class="btn btn-primary" id="btn-buscar-endereco">Buscar</div>
+      </span>
+
+
+      <!-- Mapa (gmap3/googlemaps) -->
+    
+      <div class="col-lg-9 pull-right">
+        <div id="map" class="place-inputs address-inputs"></div>
+      </div>     
+
+    </div>
+
+
+      
+
+
+  </div>
+
+
+  <div class="panel-footer">
+
+    <!-- Botões de voltar e enviar formulario -->
+
+    <div class="row">
+
+      <div class="col-lg-9 p-15-0">
+        <%= link_to "Cancelar", root_path %>
+      </div>
+
+      <div class="col-lg-3 no-padding">
+        <%= f.button :submit, "Criar lugar", :class => 'btn btn-primary btn-lg' %>
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>

@@ -1,0 +1,38 @@
+
+<div class="col-md-4 col-lg-3">
+
+  <!-- Endereço -->
+  <% cache [@event, "map"] do %>
+  <div class="panel panel-default sidebar single-event-sidebar">
+    <div id="single-map" style="height:215px"></div>
+    <div class="panel-body">
+      <div class="place"><%= event_address @event %></div>
+    </div>
+  </div> 
+  <% end %>
+
+  
+	<!-- Transporte -->
+  <% cache [@event, "transport"] do %>
+  <div class="panel panel-default sidebar single-event-sidebar">
+		<%= render "events/show/transport" %>
+  </div>
+  <% end %>
+
+
+	<!-- Amigos que agendaram -->
+  <% unless current_user.which_friends_will_this_event?(@event).empty? %>
+    <div class="panel panel-default sidebar single-event-sidebar">
+			<%= render "events/show/friends_agended" %>
+    </div>
+  <% end %>
+
+
+	<!-- Quem criou o evento -->
+  <% cache [@event, "created_by"] do %>
+  <div class="panel panel-transparent sidebar single-event-sidebar p-15-0">
+    <%= render "events/show/created_by" %>
+  </div>
+  <% end %>
+
+</div>

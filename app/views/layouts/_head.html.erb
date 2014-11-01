@@ -1,0 +1,83 @@
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) + " — Villeme" : "Villeme" %></title>
+
+    <!-- Open Graph para Facebook -->
+    <meta property="og:site_name" content="Villeme" />
+    <meta property="og:url" content="http://www.villeme.com" />
+    <meta property="og:title" content="Villeme — Qualidade de vida e diversão na sua cidade!" />
+    <meta property="og:description" content="O Villeme vai além de uma plataforma web e mobile, nosso propósito é aumentar e tornar divertido a interação das pessoas da [e com a] cidade e a forma como se relacionam com os diversos setores dela: público, privado, ONGs e mobilizações sociais." />
+    <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/villeme-visual-identity/solicite-um-convite.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1191">
+    <meta property="og:image:height" content="841">
+    <meta property="og:type" content="website" />
+
+    <%= csrf_meta_tags %>
+
+
+    <%= stylesheet_link_tag "application", "bootstrap_and_overrides", :media => "all" %>
+
+    <%# stylesheet_link_tag params[:controller] %>
+
+    <%= yield :css %>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp language=en"></script>
+
+    <%= include_gon %>
+    <%= javascript_include_tag "application", "gmap3" %>
+    
+
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '568047899941238',
+          xfbml      : true,
+          version    : 'v2.1'
+        });        
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+      function invite_friend(to){
+        FB.ui({
+          app_id: '568047899941238',
+          method: 'send',
+          display: 'iframe',
+          link: 'http://www.villeme.com',
+          to: to
+        });
+      }
+
+    </script>
+
+    
+
+    <%= yield :javascript %>
+
+    <% if :javascript_area %>
+      <script type="text/javascript">
+      	$(document).ready(function(){
+          <%= yield :javascript_area %>
+        });
+      </script>
+    <% end %>
+
+
+    
