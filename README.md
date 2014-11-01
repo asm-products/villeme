@@ -5,7 +5,7 @@ Web app helps you to knows everything that is happening and what you can do in y
 
 ### Show me something
 
-You can see the software in action in [http://www.villeme.com](villeme.com).
+You can see the software in action in [villeme.com](http://www.villeme.com).
 
 The official repo is https://github.com/asm-products/villeme
 
@@ -68,17 +68,17 @@ This is a product being built by the Assembly community. You can help push this 
 
 Assembly products are like open-source and made with contributions from the community. Assembly handles the boring stuff like hosting, support, financing, legal, etc. Once the product launches we collect the revenue and split the profits amongst the contributors.
 
-Visit [https://assembly.com](https://assembly.com) to learn more.
+Visit [assembly.com](https://assembly.com) to learn more.
 
 
 ### I want interact with the project
 
-Go to [https://assembly.com/villeme/bounties](https://assembly.com/villeme/bounties) and do it! :D
+Go to [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties) and do it! :D
 
 
 ## Best practices 
 
-* Make part of Assembly community in [https://assembly.com/villeme](https://assembly.com/villeme)
+* Make part of Assembly community in [assembly.com/villeme](https://assembly.com/villeme)
 * Follow this style guide: https://github.com/bbatsov/ruby-style-guide
 * Create one acceptance tests for each scenario of the feature you are trying to implement.
 * Create model and controller tests to keep 100% of code coverage at least in the new parts that you are writing.
@@ -86,13 +86,13 @@ Go to [https://assembly.com/villeme/bounties](https://assembly.com/villeme/bount
 
 ## Team
 
-Founder: Jonatas Eduardo (John) from Brazil.
+Founder: [Jonatas Eduardo (John)](https://www.facebook.com/jonataseduardo/) from Brazil.
 
-Team: [https://assembly.com/villeme/people](https://assembly.com/villeme/people)
+Team: [assembly.com/villeme/people](https://assembly.com/villeme/people)
 
 
 ## License
 
 GNU AFFERO GENERAL PUBLIC LICENSE
 
-Read more on: [https://github.com/asm-products/villeme/blob/master/LICENSE](https://github.com/asm-products/villeme/LICENSE)
+Read more on: [asm-products/villeme/LICENSE](https://github.com/asm-products/villeme/blob/master/LICENSE)
