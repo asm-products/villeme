@@ -26,25 +26,25 @@ To run this project you need to have:
 
 * Clone the project
 
-				$ git clone https://github.com/asm-products/villeme.git
+	$ git clone https://github.com/asm-products/villeme.git
 
 * Enter project folder
 
-				$ cd villeme
+	$ cd villeme
 
 * Create the `database.yml`
 
-				$ cp config/database.sample.yml config/database.yml
+	$ cp config/database.sample.yml config/database.yml
 
 Add your database credentials if necessary.
 
 * Install the gems
 
-				$ bundle install
+	$ bundle install
 
 * Create the database
 
-				$ rake db:create db:migrate
+	$ rake db:create db:migrate
 
 If everything goes OK, you can now run the project!
 
@@ -74,11 +74,11 @@ Visit [assembly.com](https://assembly.com) to learn more.
 ## Collaborate with the Villeme community
 
 
-#### Know the current tasks
+##### Know the current tasks
 
 Go to [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties) and see the tasks and histories to develop 
 
-#### Tips
+##### Tips
 
 The best way to collaborate is to "Fork" repo on GitHub.
 This will create a copy of the repo on your GitHub account.
@@ -89,7 +89,6 @@ Each commit should do one thing, and each PR should be one specific improvement.
 
 ### Forking
 
-TODO: this
 
 	$ git clone
 
@@ -100,9 +99,10 @@ TODO: this
 
 Ok, you're ready to start editing the code, right?
 Not quite!
-Before you start editing, you should create a [branch].
+Before you start editing, you should create a *branch*.
 A branch is like an alternate timeline.
-You can read more about `git` branches [here].
+
+You can read more about *git branch* [here](http://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
 
 If you're trying to fix a bug, you might want to name the branch `fix-short-description`.
 If you're adding a feature, `feature-short-description` is a good name.
@@ -123,9 +123,7 @@ This helps keep the software stable.
 
 `git commit -m "your commit message"`
 
-#### Using Your Change
-
-Though it may not be obvious, you can begin using your code in your own projects immediately.
+**Using Your Change:** though it may not be obvious, you can begin using your code in your own projects immediately.
 
 
 ## Getting your Change into the Project
@@ -147,7 +145,7 @@ You can't read the minds of the project maintainers, but you can look at [assemb
 In GitHub, "Bug Reports" are called "Issues."
 
 
-#### Has This Been Asked Before?
+- **Has This Been Asked Before?**
 
 Before you submit a bug report, you should search existing issues.
 Be sure to check both currently open issues, as well as issues that are already closed.
@@ -157,7 +155,7 @@ If this issue is the same as yours, you can comment with additional information 
 Adding a comment will subscribe you to email notifications, which can be helpful in getting important updates regarding the issue.
 If you don't have anything to add but still want to receive email updates, you can click the "watch" button at the bottom of the comments.
 
-#### Nope, Hasn't Been Asked Before
+- **Nope, Hasn't Been Asked Before**
 
 If you can't find anything in the existing issues, don't be shy about filing a new one.
 
