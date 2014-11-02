@@ -26,34 +26,33 @@ To run this project you need to have:
 
 * Clone the project
 
-	$ git clone https://github.com/asm-products/villeme.git
+	`$ git clone https://github.com/asm-products/villeme.git`
 
 * Enter project folder
+	
+	`$ cd villeme`
 
-	$ cd villeme
+* Create the *database.yml*
 
-* Create the `database.yml`
-
-	$ cp config/database.sample.yml config/database.yml
+	`$ cp config/database.sample.yml config/database.yml`
 
 Add your database credentials if necessary.
 
 * Install the gems
 
-	$ bundle install
+	`$ bundle install`
 
 * Create the database
 
-	$ rake db:create db:migrate
+	`$ rake db:create db:migrate`
 
 If everything goes OK, you can now run the project!
 
 
 ### Running the project
 
-```bash
-$ rails server
-```
+
+	`$ rails server`
 
 Open [http://localhost:3000](http://localhost:3000)
 
