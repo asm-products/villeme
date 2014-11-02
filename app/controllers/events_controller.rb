@@ -27,23 +27,19 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
 
-    @distance = current_user.distance_to?(@event, :transport) if user_signed_in?
+    if user_signed_in?
+      @distance = current_user.distance_to?(@event, :transport)
+    end
 
     @tip = Tip.new
 
-
-    # geolocalização do usuario
+    # geolocalization of event
     gon.latitude = @event.latitude.blank? ? @event.place.latitude : @event.latitude
     gon.longitude = @event.longitude.blank? ? @event.place.longitude : @event.longitude
 
-
-    # array com os lugares para o mapa
+    # array with places for map
     gon.events_local_formatted = events_local_formatted    
 
-    respond_to do |format|
-      format.html {}
-      format.json { render json: {event: @event, event_categories: @event.categories, event_place: @event.place, event_neighborhood: @event.place.neighborhood, event_distance: @distance, event_image: @event.image, event_week: dia_da_semana({date_start: @event.date_start, date_finish: @event.date_finish}), event_hours:{hour_start_first: verifica_hora(@event.hour_start_first), hour_finish_first: verifica_hora(@event.hour_finish_first), hour_start_second: verifica_hora(@event.hour_start_second), hour_finish_second: verifica_hora(@event.hour_finish_second), hour_start_third: verifica_hora(@event.hour_start_third), hour_finish_third: verifica_hora(@event.hour_finish_third)}} }
-    end    
   end
 
 
@@ -226,7 +222,40 @@ class EventsController < ApplicationController
 
 
   def event_params
-    params.require(:event).permit(:name, :description, :address, :number, :date_start, :date_finish, :cost, :cost_details, :hour_start_first, :hour_start_second, :hour_start_third, :hour_start_fourth, :hour_start_fifth, :hour_start_sixth, :hour_finish_first, :hour_finish_second, :hour_finish_third, :hour_finish_fourth, :hour_finish_fifth, :hour_finish_sixth, :latitude, :longitude, :place_id, :price_id, :persona_id, :subcategory_id, :image, :link, :email, :phone, :category_ids => [], :week_ids => [])
+    params.require(:event).permit(
+        :name,
+        :description,
+        :address,
+        :number,
+        :date_start,
+        :date_finish,
+        :cost,
+        :cost_details,
+        :hour_start_first,
+        :hour_start_second,
+        :hour_start_third,
+        :hour_start_fourth,
+        :hour_start_fifth,
+        :hour_start_sixth,
+        :hour_finish_first,
+        :hour_finish_second,
+        :hour_finish_third,
+        :hour_finish_fourth,
+        :hour_finish_fifth,
+        :hour_finish_sixth,
+        :latitude,
+        :longitude,
+        :place_id,
+        :price_id,
+        :persona_id,
+        :subcategory_id,
+        :image,
+        :link,
+        :email,
+        :phone,
+        :category_ids => [],
+        :week_ids => []
+    )
   end
 
 
@@ -245,7 +274,7 @@ class EventsController < ApplicationController
     gon.places_array = places_array
 
 
-  end   
+  end
 
 
 
