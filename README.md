@@ -51,8 +51,7 @@ If everything goes OK, you can now run the project!
 
 ### Running the project
 
-
-	`$ rails server`
+	$ rails server
 
 Open [http://localhost:3000](http://localhost:3000)
 
@@ -62,7 +61,7 @@ Open [http://localhost:3000](http://localhost:3000)
 This is a product being built by the Assembly community. You can help push this idea forward by visiting [https://assembly.com/villeme](https://assembly.com/villeme).
 
 
-### How Assembly community works
+#### How Assembly community works
 
 Assembly products are like open-source and made with contributions from the community. Assembly handles the boring stuff like hosting, support, financing, legal, etc. Once the product launches we collect the revenue and split the profits amongst the contributors.
 
