@@ -74,11 +74,11 @@ Visit [assembly.com](https://assembly.com) to learn more.
 ## Collaborate with the Villeme community
 
 
-### Know the current tasks
+#### Know the current tasks
 
 Go to [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties) and see the tasks and histories to develop 
 
-### Tips
+#### Tips
 
 The best way to collaborate is to "Fork" repo on GitHub.
 This will create a copy of the repo on your GitHub account.
@@ -119,35 +119,35 @@ You can set of tests to make sure that the existing functionality of the code st
 This helps keep the software stable.
 
 
-### Committing and Pushing
+#### Committing and Pushing
 
 `git commit -m "your commit message"`
 
-### Using Your Change
+#### Using Your Change
 
 Though it may not be obvious, you can begin using your code in your own projects immediately.
 
 
-### Getting your Change into the Project
+## Getting your Change into the Project
 
 You made your change, tested it, committed it with `git commit`, and want to send it back to the project and have it included in a future version.
 
 To do this on GitHub, you need to submit a "pull request" (PR).
 
 
-## Submitting a Pull Request
+### Submitting a Pull Request
 
 The golden rule of submitting PRs is to do things the way the project maintainers would want it done.
 
 You can't read the minds of the project maintainers, but you can look at [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties).
 
 
-## Submitting a Bug Report (or "Issue")
+### Submitting a Bug Report (or "Issue")
 
 In GitHub, "Bug Reports" are called "Issues."
 
 
-### Has This Been Asked Before?
+#### Has This Been Asked Before?
 
 Before you submit a bug report, you should search existing issues.
 Be sure to check both currently open issues, as well as issues that are already closed.
@@ -157,7 +157,7 @@ If this issue is the same as yours, you can comment with additional information 
 Adding a comment will subscribe you to email notifications, which can be helpful in getting important updates regarding the issue.
 If you don't have anything to add but still want to receive email updates, you can click the "watch" button at the bottom of the comments.
 
-### Nope, Hasn't Been Asked Before
+#### Nope, Hasn't Been Asked Before
 
 If you can't find anything in the existing issues, don't be shy about filing a new one.
 
