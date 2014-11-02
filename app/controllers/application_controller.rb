@@ -25,27 +25,27 @@ class ApplicationController < ActionController::Base
   protected
 
 
-	# Cria o objeto para feedback em todo o app
+	
 	def set_feedback_for_all
 		@feedback_app = Feedback.new
 	end
 
 
-  # carrega layout no devise
+
 	def layout_devise_setting
 	  if devise_controller? 
 	    "centralize"
 	  end
 	end
 
-	# verifica se o user esta logado
+	
 	def is_logged
 		unless user_signed_in?
 			redirect_to welcome_path, alert: "Ops! Você precisa estar logado para acessar isto."
 		end
 	end
 
-	# verifica se o user e admin
+	
 	def is_admin
 		unless user_signed_in?
 			
@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
 	end
 
 
-	# verifica se o user possui convite
+	
 	def is_invited
 		if current_user.invited == false
 			redirect_to welcome_path, notice: "#{current_user.name.split.first}, você precisa de um convite para acessar. Solicite abaixo!"

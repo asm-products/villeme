@@ -1,7 +1,6 @@
 # Villeme [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme)
 
 Web app helps you to knows everything that is happening and what you can do in your neighborhood.
->John
 
 ### Show me something
 
@@ -71,9 +70,100 @@ Assembly products are like open-source and made with contributions from the comm
 Visit [assembly.com](https://assembly.com) to learn more.
 
 
-### I want interact with the project
 
-Go to [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties) and do it! :D
+## Collaborate with the Villeme community
+
+
+### Know the current tasks
+
+Go to [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties) and see the tasks and histories to develop 
+
+### Tips
+
+The best way to collaborate is to "Fork" repo on GitHub.
+This will create a copy of the repo on your GitHub account.
+
+Before you set out to improve the code, you should have a focused idea in mind of what you want to do.
+
+Each commit should do one thing, and each PR should be one specific improvement.
+
+### Forking
+
+TODO: this
+
+	$ git clone
+
+
+
+### Editing and Testing
+
+
+Ok, you're ready to start editing the code, right?
+Not quite!
+Before you start editing, you should create a [branch].
+A branch is like an alternate timeline.
+You can read more about `git` branches [here].
+
+If you're trying to fix a bug, you might want to name the branch `fix-short-description`.
+If you're adding a feature, `feature-short-description` is a good name.
+
+After you can execute checkout to go the branch
+`git checkout -b branch-name`
+
+
+As far as code style, just try to imitate the style of existing code.
+Don't sweat over this too much.
+If the maintainer doesn't like how your code looks, they'll suggest changes.
+
+You can set of tests to make sure that the existing functionality of the code stays the same as you make changes.
+This helps keep the software stable.
+
+
+### Committing and Pushing
+
+`git commit -m "your commit message"`
+
+### Using Your Change
+
+Though it may not be obvious, you can begin using your code in your own projects immediately.
+
+
+### Getting your Change into the Project
+
+You made your change, tested it, committed it with `git commit`, and want to send it back to the project and have it included in a future version.
+
+To do this on GitHub, you need to submit a "pull request" (PR).
+
+
+## Submitting a Pull Request
+
+The golden rule of submitting PRs is to do things the way the project maintainers would want it done.
+
+You can't read the minds of the project maintainers, but you can look at [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties).
+
+
+## Submitting a Bug Report (or "Issue")
+
+In GitHub, "Bug Reports" are called "Issues."
+
+
+### Has This Been Asked Before?
+
+Before you submit a bug report, you should search existing issues.
+Be sure to check both currently open issues, as well as issues that are already closed.
+If you find an issue that seems to be similar to yours, read through it.
+
+If this issue is the same as yours, you can comment with additional information to help the maintainer debug it.
+Adding a comment will subscribe you to email notifications, which can be helpful in getting important updates regarding the issue.
+If you don't have anything to add but still want to receive email updates, you can click the "watch" button at the bottom of the comments.
+
+### Nope, Hasn't Been Asked Before
+
+If you can't find anything in the existing issues, don't be shy about filing a new one.
+
+Project maintainers really appreciate thorough explanations.
+It usually helps them address the problem more quickly, so everyone wins!
+
 
 
 ## Best practices 
