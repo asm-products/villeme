@@ -34,11 +34,11 @@ class EventsController < ApplicationController
     @tip = Tip.new
 
     # geolocalization of event
-    gon.latitude = @event.latitude.blank? ? @event.place.latitude : @event.latitude
+    gon.latitude = get_event_latitude
     gon.longitude = @event.longitude.blank? ? @event.place.longitude : @event.longitude
 
     # array with places for map
-    gon.events_local_formatted = events_local_formatted    
+    gon.events_local_formatted = get_event_objects_for_map
 
   end
 
@@ -186,10 +186,10 @@ class EventsController < ApplicationController
     expire_fragment [@event, "agenda"]
 
     if agended(@event)
-      current_user.agenda_events.delete(@event)      
+      current_user.agenda_events.delete(@event)
       render json: {agended: false, event: "event-#{@event.id}", count: current_user.agenda_events.count, agended_by_count: @event.agended_by_count[:count], new_title: @event.agended_by_count[:text]}
-    else 
-      current_user.agenda_events << @event      
+    else
+      current_user.agenda_events << @event
       render json: {agended: true, event: "event-#{@event.id}", count: current_user.agenda_events.count, agended_by_count: @event.agended_by_count[:count], new_title: @event.agended_by_count[:text]}
     end
   end
@@ -280,14 +280,18 @@ class EventsController < ApplicationController
 
   def set_events_local
     @events_local = Hash.new
-    @events_local[@event.name] = {latitude: @event.latitude.blank? ? @event.place.latitude : @event.latitude , longitude: @event.longitude.blank? ? @event.place.longitude : @event.longitude , address: @event.address, url: event_url(@event), strong_category: strong_category(@event, 'slug')}
+    @events_local[@event.name] = {
+        latitude: @event.get_latitude,
+        longitude: get_event_longitude,
+        address: @event.address,
+        url: event_url(@event),
+        strong_category: strong_category(@event, 'slug')
+    }
     @events_local
   end
 
 
-
-
-  def events_local_formatted 
+  def get_event_objects_for_map
     letter = ('A'..'Z').to_a
     i = 0
     @events_local_array = Array.new
