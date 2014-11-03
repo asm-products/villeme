@@ -44,7 +44,7 @@ Add your database credentials if necessary.
 
 * Create the database
 
-	`$ rake db:create db:migrate`
+	`$ rake db:create db:migrate db:seed`
 
 If everything goes OK, you can now run the project!
 

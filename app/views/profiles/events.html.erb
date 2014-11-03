@@ -23,8 +23,8 @@
 			  <tbody>
 			    <% @events.each do |event| %>
 			      <tr>
-			        <td><%= link_to event.name, event %></td>
-			        <td><%= "#{event.date_start.strftime('%d/%m')} até #{event.date_finish.strftime('%d/%m/%Y')}" %></td>
+			        <td><%= link_to event.name, event, if: event.name %></td>
+			        <td><%= "#{event.date_start.strftime('%d/%m') if event.date_start} até #{event.date_finish.strftime('%d/%m/%Y') if event.date_finish}" %></td>
 			        <td><%= event.moderate == 1 ? 'Aprovado' : 'Em moderação' %></td>
 			        <td>
 			          <%= button_to 'Editar',

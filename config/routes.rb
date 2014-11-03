@@ -34,10 +34,10 @@ CidadeVc::Application.routes.draw do
       devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
       devise_scope :user do
-        get 'registrar', to: 'devise/registrations#new', as: :registrar
-        get 'entrar', to: 'devise/sessions#new', as: :entrar
-        get 'sair', to: 'devise/sessions#destroy', as: :sair
-        get 'editar/conta', to: 'devise/registrations#edit', as: 'conta_edit'
+        get 'sign_up', to: 'devise/registrations#new', as: :registrar
+        get 'sign_in', to: 'devise/sessions#new', as: :entrar
+        get 'sign_out', to: 'devise/sessions#destroy', as: :sair
+        get 'account/edit', to: 'devise/registrations#edit', as: 'conta_edit'
       end
 
 

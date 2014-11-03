@@ -8,6 +8,7 @@ gem 'rails', '4.0.3'
 # Heroku requisição
 group :development, :test do 
 	gem 'sqlite3'
+	gem 'faker'
 end
 
 # Heroku requisição
