@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-	after_validation :geocode
+	after_validation :geocode, if: :address
 
 
 	# Associações
@@ -92,7 +92,7 @@ class Event < ActiveRecord::Base
 	def name_with_limit
 		name = self.name
 		if name.length > 45
-			return "#{name[0..45]}..."
+      "#{name[0..45]}..."
 		else
 			name
 		end
@@ -103,9 +103,9 @@ class Event < ActiveRecord::Base
 		name = self.name
 		description = ActionController::Base.helpers.strip_tags(self.description)
 		if name.length > 25
-			return "#{description[0..70]}..."
+      "#{description[0..70]}..."
 		else
-			return "#{description[0..100]}..."
+      "#{description[0..100]}..."
 		end
 	end
 
@@ -120,6 +120,22 @@ class Event < ActiveRecord::Base
 		end
 	end
 
+  def get_longitude
+    if longitude.blank?
+      self.place.longitude
+    else
+      self.longitude
+    end
+  end
+
+
+  def get_latitude
+    if latitude.blank?
+      self.place.latitude
+    else
+      self.latitude
+    end
+  end
 
 	def agended_by_count
 		number = self.agended_by.count
@@ -136,7 +152,7 @@ class Event < ActiveRecord::Base
 
 
 	def period
-		return "#{self.date_start.strftime("%d/%m")} - #{self.date_finish.strftime("%d/%m")}"
+    "#{self.date_start.strftime("%d/%m")} - #{self.date_finish.strftime("%d/%m")}"
 	end
 
 
@@ -198,11 +214,11 @@ class Event < ActiveRecord::Base
 		# Pega as votações
 		rates = Rate.where(rateable_id: self.id)
 
-		unless rates.empty?
-			rates.average(:stars).to_f
-		else
-			nil
-		end
+    if rates.empty?
+      nil
+    else
+      rates.average(:stars).to_f
+    end
 	end
 
 
