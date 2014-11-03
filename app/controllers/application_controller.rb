@@ -98,29 +98,27 @@ class ApplicationController < ActionController::Base
 	# latitude e longitude de onde o usuário mora
 	def current_user_home
 		if user_signed_in?
-
-			# se o user tiver lat e long
-			unless current_user.latitude.blank?
-				gon.latitude = current_user.latitude
-				gon.longitude = current_user.longitude
-			else
-
-				# se o user nao tiver lat e long mas tiver cidade
-				unless current_user.city.nil?
-					gon.latitude = current_user.city.latitude
-					gon.longitude = current_user.city.longitude
-				else
-
-					# se o user nao tiver lat long nem cidade
-					gon.latitude = 0
-					gon.latitude = 0
-			 	end 
-			end
+      if current_user.latitude.blank?
+        set_currentuser_lat_long
+      else
+        gon.latitude = current_user.latitude
+        gon.longitude = current_user.longitude
+      end
 		end
 	end
 
+  def set_currentuser_lat_long
+    if current_user.city.nil?
+      gon.latitude = 0
+      gon.latitude = 0
+    else
+      gon.latitude = current_user.city.latitude
+      gon.longitude = current_user.city.longitude
+    end
+  end
 
-	# dia da semana que o evento esta acontecendo
+
+  # dia da semana que o evento esta acontecendo
 	def dia_da_semana(variables)
 		if Date.current.between?(variables[:date_start], variables[:date_finish]) 
 			return ('<span class="label label-success today">Hoje</span>').html_safe
@@ -152,54 +150,69 @@ class ApplicationController < ActionController::Base
 	# Pega o endereço do evento
 	def event_address(event)
 
-		if event.place.nil?
-			nil
-		else
-			place = "Em #{event.place.name}, "
-		end
+		place = return_place(event)
+    address = return_address(event)
+    number = return_number(event)
+    neighborhood = return_neighborhood(event)
 
-
-		# se o endereço do evento estiver branco
-		if event.address.blank?
-
-			# se o endereço do lugar <- evento não estiver branco
-			unless event.place.address.blank?
-				address = "#{event.place.address}, "
-			else
-				address = "Sem endereço"
-			end
-
-		# se o endereço do evento não estiver branco 	
-		else
-			address = "#{event.address}, "
-		end
-
-		# se o numero do evento estiver branco
-		if event.number.blank?
-
-			# se o numero do lugar <- evento não estiver branco
-			unless event.place.number.blank?
-				number = event.place.number
-			else
-				number = "Sem nº"
-			end
-		else
-			number = event.number
-		end		
-
-		if event.neighborhood
-			neighborhood = event.neighborhood.name
-		elsif event.place.neighborhood
-			neighborhood = event.place.neighborhood.name
-		else
-			neighborhood = event.neighborhood.address
-		end		
-
-		return place.to_s + address.to_s + number.to_s + " - " + neighborhood.to_s
+    return place.to_s + address.to_s + number.to_s + " - " + neighborhood.to_s
 
 	end
 
-	helper_method :event_address
+  def return_place(event)
+    if event.place.nil?
+      nil
+    else
+      place = "Em #{event.place.name}, "
+    end
+    place
+  end
+
+
+  def return_neighborhood(event)
+    if event.neighborhood
+      neighborhood = event.neighborhood.name
+    elsif event.place.neighborhood
+      neighborhood = event.place.neighborhood.name
+    else
+      neighborhood = event.neighborhood.address
+    end
+    neighborhood
+  end
+
+  def return_number(event)
+    if event.number.blank?
+
+      # se o numero do lugar <- evento não estiver branco
+      if event.place.number.blank?
+        number = "Sem nº"
+      else
+        number = event.place.number
+      end
+    else
+      number = event.number
+    end
+    number
+  end
+
+  def return_address(event)
+    if event.address.blank?
+
+      # se o endereço do lugar <- evento não estiver branco
+      if event.place.address.blank?
+        address = "Sem endereço"
+      else
+        address = "#{event.place.address}, "
+      end
+
+      # se o endereço do evento não estiver branco
+    else
+      address = "#{event.address}, "
+    end
+    address
+  end
+
+  helper_method :event_address
 
 
 
@@ -211,38 +224,46 @@ class ApplicationController < ActionController::Base
 
 		case type
 		when 'slug'
-			unless event.categories.empty?
-				event.categories[0,2].each do |category|
-					if i == 1
-						return category.name
-					elsif category.name != 'Lazer' 
-						return category.name
-					end
-				end
-			else
-				return "lazer"
-			end
+      return categories_slug(event, i)
 		when 'item'
-			unless event.categories.empty?
-				event.categories[0,2].each do |category|
-					if i == 1
-						return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.name.downcase}'>#{category.name}</span></a>".html_safe
-					elsif category.name != 'Lazer'
-						return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.name.downcase}'>#{category.name}</span></a>".html_safe						
-					end
-				end
-			else
-				return nil
-			end
+      return categories_item(event, i)
 		end
 
 	end
 
+  def categories_item(event, i)
+    if event.categories.empty?
+      return nil
+    else
+      event.categories[0, 2].each do |category|
+        if i == 1
+          return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.name.downcase}'>#{category.name}</span></a>".html_safe
+        elsif category.name != 'Lazer'
+          return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.name.downcase}'>#{category.name}</span></a>".html_safe
+        end
+      end
+    end
+  end
+
+  def categories_slug(event, i)
+    if event.categories.empty?
+      return "lazer"
+    else
+      event.categories[0, 2].each do |category|
+        if i == 1
+          return category.name
+        elsif category.name != 'Lazer'
+          return category.name
+        end
+      end
+    end
+  end
 
 
 
 
-	def cost(variable)
+
+  def cost(variable)
 		if variable == 0 or variable.blank?
 			return "Gratuito"
 		else
@@ -289,9 +310,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :to_slug
 
-  
 
-  
+
+
 
 
 end
