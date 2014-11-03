@@ -9,7 +9,7 @@ class NewsfeedController < ApplicationController
   # verifica se a conta esta completa
   before_action :is_complete
 
-
+  include Gmaps
 
 
 
@@ -48,7 +48,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = events_local_formatted
+    gon.events_local_formatted = get_event_objects_for_map
 
   end
 
@@ -64,7 +64,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = events_local_formatted
+    gon.events_local_formatted = get_event_objects_for_map
 
     render 'index'
 
@@ -83,7 +83,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = events_local_formatted
+    gon.events_local_formatted = get_event_objects_for_map
 
     render 'index'
 
@@ -102,7 +102,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = events_local_formatted
+    gon.events_local_formatted = get_event_objects_for_map
 
     render 'index'
 
@@ -114,40 +114,6 @@ private
   def set_event
     @event = Event.find(params[:id])
   end
-
-  def set_events_local
-    @events_local = Hash.new
-    @events.each do |event|
-      @events_local[event.name] = {latitude: event.latitude.blank? ? event.place.latitude : event.latitude , longitude: event.longitude.blank? ? event.place.longitude : event.longitude , address: event_address(event), url: event_url(event), strong_category: strong_category(event, 'slug')}
-    end
-    return @events_local
-  end
-
-
-  def events_local_formatted 
-    letter = ('A'..'Z').to_a
-    i = 0
-    @events_local_array = Array.new
-
-    set_events_local.each do |index, value|
-      @events_local_array << {latLng:[value[:latitude].to_s, value[:longitude].to_s], id: letter[i].to_s, data: {link: value[:url].to_s, name: index.to_s, address: value[:address] }, options: {icon: "/images/marker-default-" + value[:strong_category].to_s.parameterize  + ".png"}}
-      i += 1
-    end
-
-    set_user_local
-
-    return @events_local_array
-  end
-
-
-  def set_user_local
-    @events_local_array << {latLng:[current_user.latitude, current_user.longitude], data: current_user.name.to_s, options: {icon: "/images/marker-default-home.png"}}
-  end
-
-
-
-
-
 
 
 
