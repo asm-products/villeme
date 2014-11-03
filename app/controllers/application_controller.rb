@@ -127,7 +127,10 @@ class ApplicationController < ActionController::Base
 		else
 			return I18n.localize variables[:date_start], format: "%A" 
 		end			
-	end	
+  end
+
+
+  helper_method :dia_da_semana
 
 
 	def verifica_hora(hora_db)
@@ -137,10 +140,6 @@ class ApplicationController < ActionController::Base
 			nil
 		end
 	end
-
-
-
-
 
 
 

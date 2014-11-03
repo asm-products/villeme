@@ -37,22 +37,7 @@ module EventsHelper
 				resposta[2] = "bus"
 				return resposta				
 			
-			# when distance >= 4.0 # car
-			# 	algorithm = (distance / 40 * 60).round(3)
-			# 	resposta[0] = algorithm.round.to_s << "min."
-			# 	resposta[1] = "de carro"
-			# 	resposta[2] = "car"
-			# 	return resposta
-			# 	# return ((algorithm / 60).round.to_s << "h") + (((algorithm / 60).round(3).to_s.last(3).to_i / 100 * 60).to_s.slice(0..1) + "min")
-			
-			# when distance >= 4.0 # bike
-			# 	margem = (distance / 100) * 20
-			# 	algorithm = (distance / 20 * 60) + (margem).round(3)
-			# 	resposta[0] = algorithm.round.to_s << "min."
-			# 	resposta[1] = "de bicicleta"
-			# 	resposta[2] = "bike"
-			# 	return resposta				
-			
+
 			when distance < 4.0 # walk
 				algorithm = (distance / 4.5 * 60).round(3)
 				resposta[0] = algorithm.round.to_s << "min."
@@ -82,20 +67,6 @@ module EventsHelper
 			return event.place.name
 		end
 	end
-
-
-
-
-	# dia da semana que o evento esta acontecendo
-	def dia_da_semana(variables)
-		if Date.today.between?(variables[:date_start], variables[:date_finish]) 
-			return ('<span class="label label-success today">Hoje</span>').html_safe
-		elsif variables[:date_start] == Date.today.tomorrow
-			return ('<span class="label label-success tomorrow">Amanhã</span>').html_safe
-		else
-			return I18n.localize variables[:date_start], format: "%A" 
-		end			
-	end	
 
 
 
