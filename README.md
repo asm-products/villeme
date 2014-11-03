@@ -1,4 +1,4 @@
-# Villeme [![Code Climate](https://codeclimate.com/github/jonatassalgado/villeme/badges/gpa.svg)](https://codeclimate.com/github/jonatassalgado/villeme)
+# Villeme [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme)
 
 Web app helps you to knows everything that is happening and what you can do in your neighborhood.
 
@@ -44,7 +44,7 @@ Add your database credentials if necessary.
 
 * Create the database
 
-	`$ rake db:create db:migrate db:seed`
+	`$ rake db:create db:migrate`
 
 If everything goes OK, you can now run the project!
 
