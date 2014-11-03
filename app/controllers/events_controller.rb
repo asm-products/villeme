@@ -34,8 +34,8 @@ class EventsController < ApplicationController
     @tip = Tip.new
 
     # geolocalization of event
-    gon.latitude = get_event_latitude
-    gon.longitude = @event.longitude.blank? ? @event.place.longitude : @event.longitude
+    gon.latitude = @event.get_latitude
+    gon.longitude = @event.get_longitude
 
     # array with places for map
     gon.events_local_formatted = get_event_objects_for_map
@@ -76,8 +76,8 @@ class EventsController < ApplicationController
 
     gon.places_array = places_array
 
-    gon.latitude = @event.latitude.blank? ? current_user.city.latitude : @event.latitude
-    gon.longitude = @event.longitude.blank? ? current_user.city.longitude : @event.longitude
+    gon.latitude = @event.get_latitude
+    gon.longitude = @event.get_longitude
   end
 
 
@@ -88,7 +88,7 @@ class EventsController < ApplicationController
   def create
 
 
-    @event = current_user.events.create event_params
+    @event = current_user.events.create(event_params)
     place_name_from_form = params[:event][:place_attributes][:name]
 
     unless place_name_from_form.nil?
@@ -99,7 +99,6 @@ class EventsController < ApplicationController
         place = Place.new name: place_name_from_form
         @event.copy_attributes_to place
         @event.place = place
-
       else
         place.copy_attributes_to @event
         @event.place = place
@@ -108,15 +107,13 @@ class EventsController < ApplicationController
     end
 
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'O evento foi  criado com sucesso!' }
-        format.json { render action: 'show', status: :created, location: @event }
-      else
-        format.html { render action: 'new', alert: 'O evento não pode ser criado, arrume as informações abaixo.' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+
+    if @event.save
+      redirect_to @event, notice: 'O evento foi  criado com sucesso!'
+    else
+      render action: 'new', alert: 'O evento não pode ser criado, arrume as informações abaixo.'
     end
+
 
   end
 
@@ -138,20 +135,18 @@ class EventsController < ApplicationController
       if @event.place.nil?
         geocoder_place_address_and_copy_attributes_to_event
       else
-        copy_place_attributes_to_event      
+        copy_place_attributes_to_event
       end
     end
 
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'O evento foi atualizado com sucesso!' }
-        format.json { render action: 'show', status: :created, location: @event }
-      else
-        format.html { render action: 'new', alert: 'O evento não pode ser atualizado, arrume as informações abaixo.' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+
+    if @event.save
+      format.html { redirect_to @event, notice: 'O evento foi atualizado com sucesso!' }
+    else
+      format.html { render action: 'new', alert: 'O evento não pode ser atualizado, arrume as informações abaixo.' }
     end
+
 
   end
 
@@ -192,6 +187,7 @@ class EventsController < ApplicationController
       current_user.agenda_events << @event
       render json: {agended: true, event: "event-#{@event.id}", count: current_user.agenda_events.count, agended_by_count: @event.agended_by_count[:count], new_title: @event.agended_by_count[:text]}
     end
+
   end
 
 
@@ -262,8 +258,8 @@ class EventsController < ApplicationController
   # variables javascript for views
   def gon_variables
     if user_signed_in?
-      gon.latitude = @event.latitude.blank? ? current_user.city.latitude : @event.latitude
-      gon.longitude = @event.longitude.blank? ? current_user.city.longitude : @event.longitude
+      gon.latitude = @event.get_latitude
+      gon.longitude = @event.get_longitude
       gon.city = @city.name     
     end
 
@@ -271,6 +267,7 @@ class EventsController < ApplicationController
     Place.all.each do |place|
       places_array << {label: place.name, value: place.id} 
     end
+
     gon.places_array = places_array
 
 

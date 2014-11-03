@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-	after_validation :geocode
+	after_validation :geocode, if: :address
 
 
 	# Associações
