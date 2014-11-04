@@ -75,7 +75,7 @@ gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branc
 gem 'geocoder'
 
 # Paperclip
-gem "paperclip", "~> 3.5.3"
+gem 'paperclip', '~> 3.5.3'
 
 # Amazon S3
 gem 'aws-sdk'

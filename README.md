@@ -56,9 +56,19 @@ If everything goes OK, you can now run the project!
 Open [http://localhost:3000](http://localhost:3000)
 
 
+#### If some errors occur try:
+
+* [Installing PG gem - failure to build native extension](http://stackoverflow.com/questions/19262312/installing-pg-gem-failure-to-build-native-extension/19620569#19620569)
+* [No bundle shim; rbenv: bundle: command not found](https://github.com/sstephenson/rbenv/issues/576#issuecomment-50113969)
+* ExecJS::RuntimeUnavailable: Could not find a JavaScript runtime
+	* [Solution A](http://stackoverflow.com/questions/11598655/therubyracer-install-error)
+	* [Solution B - Ubuntu](http://stackoverflow.com/questions/6282307/execjs-and-could-not-find-a-javascript-runtime)
+
+
+
 ## Community of makers
 
-This is a product being built by the Assembly community. You can help push this idea forward by visiting [https://assembly.com/villeme](https://assembly.com/villeme).
+This is a product being built by the Assembly community. You can help push this idea forward by visiting [assembly.com/villeme](https://assembly.com/villeme).
 
 
 #### How Assembly community works
