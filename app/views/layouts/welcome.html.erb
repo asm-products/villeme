@@ -75,15 +75,15 @@
 
         <!-- Slogan -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slogan centralize">
-          <span class="font-36">Qualidade de vida e diversão <span class="wodry">no seu bairro|na sua cidade</span>!</span><br/>
-          <span class="font-14">um jeito fácil de se divertir, de aprender e de cuidar da saúde perto de casa</span>
+          <span class="font-36"><%= t('welcome.first_screen.slogan') %> <span class="wodry"><%= t('welcome.first_screen.slogan_neighborhood') %>|<%= t('welcome.first_screen.slogan_city') %></span>!</span><br/>
+          <span class="font-14"><%= t('welcome.first_screen.sub_slogan') %></span>
         </div>
 
 
         <!-- Slogan -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 temporary-slogan centralize">
-          <span class="font-36">Qualidade de vida e diversão no seu bairro!</span><br/>
-          <span class="font-14">um jeito fácil de se divertir, de aprender e de cuidar da saúde perto de casa</span>
+          <span class="font-36"><%= t('welcome.first_screen.slogan') %> <%= t('welcome.first_screen.slogan_neighborhood') %></span><br/>
+          <span class="font-14"><%= t('welcome.first_screen.sub_slogan') %></span>
         </div>        
 
 
@@ -95,22 +95,22 @@
 
               <!-- invite -->
               <div class="white-btn rounded pull-right has-modal invite centralize hidden-xs">
-                <span class="f-weight-400">solicitar convite</span><br/>
-                <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;">É grátis e sempre será!</span>
+                <span class="f-weight-400"><%= t('welcome.first_screen.request_invite') %></span><br/>
+                <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;"><%= t('welcome.first_screen.request_invite_free') %></span>
               </div>
 
               <!-- invite -->
               <div class="green-btn rounded has-modal invite centralize visible-xs">
-                <span class="f-weight-400">solicitar convite</span><br/>
-                <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;">É grátis e sempre será!</span>
+                <span class="f-weight-400"><%= t('welcome.first_screen.request_invite') %></span><br/>
+                <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;"><%= t('welcome.first_screen.request_invite_free') %></span>
               </div> 
 
             </div>
 
             <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0 "><a href="#beneficios">Saiba mais</a></div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0"><%= link_to "Entrar", user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: "Se já tiver um convite" %></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0 "><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0"><%= link_to t('welcome.first_screen.sign_in'), user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: "Se já tiver um convite" %></div>
               </div>
             </div>  
 
@@ -154,7 +154,7 @@
           <div class="row">
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize" style="margin: 0px 0px 65px;">
-              <h2 class="green-font">Villeme irá lhe oferecer:</h2>
+              <h2 class="green-font"><%= t('welcome.attributes.offers') %>:</h2>
             </div>
 
 
@@ -164,8 +164,8 @@
                   <%= image_tag 'welcome/beneficio-a.png', class: "img-responsive" %>
                 </div>
                 <div class="col-lg-8">
-                  <h3 class="m-0 p-6-0">Eventos da vizinhança e bairro</h3>
-                  <span class="font-12">Fique sabendo de tudo que está acontecendo a sua volta, como: cursos, festas, shows, filmes no cinema... </span>
+                  <h3 class="m-0 p-6-0"><%= t('welcome.attributes.event.title') %></h3>
+                  <span class="font-12"><%= t('welcome.attributes.event.description') %></span>
                 </div>
               </div>
             </div>
@@ -176,8 +176,8 @@
                   <%= image_tag 'welcome/beneficio-b.png', class: "img-responsive" %>
                 </div>
                 <div class="col-lg-8">
-                  <h3 class="m-0 p-6-0">Atividades para você praticar perto de casa</h3>
-                  <span class="font-12">Descubra lugares para dar uma caminhada, jogar basquete, pegar um sol, se exercitar, nadar...</span>
+                  <h3 class="m-0 p-6-0"><%= t('welcome.attributes.activity.title') %></h3>
+                  <span class="font-12"><%= t('welcome.attributes.activity.description') %></span>
                 </div>
               </div>
             </div>
@@ -188,8 +188,8 @@
                   <%= image_tag 'welcome/beneficio-c.png', class: "img-responsive" %>
                 </div>
                 <div class="col-lg-8">  
-                  <h3 class="m-0 p-6-0">Passeios com a família</h3>
-                  <span class="font-12">Aproveite os finais de semana para sair da rotina e se divertir com as pessoas que mais ama.</span>
+                  <h3 class="m-0 p-6-0"><%= t('welcome.attributes.family.title') %></h3>
+                  <span class="font-12"><%= t('welcome.attributes.family.description') %></span>
                 </div>
               </div>
             </div>
@@ -202,8 +202,8 @@
                   <%= image_tag 'welcome/beneficio-d.png', class: "img-responsive" %>
                 </div>
                 <div class="col-lg-8">
-                  <h3 class="m-0 p-6-0">Motivações para cuidar da saúde</h3>
-                  <span class="font-12">Indicaremos profissionais, locais e até mesmo os períodos que você deve ir ao médico para consultas de rotina.</span>
+                  <h3 class="m-0 p-6-0"><%= t('welcome.attributes.health.title') %></h3>
+                  <span class="font-12"><%= t('welcome.attributes.health.description') %></span>
                 </div>
               </div>
             </div>
@@ -214,8 +214,8 @@
                   <%= image_tag 'welcome/beneficio-e.png', class: "img-responsive" %>
                 </div>
                 <div class="col-lg-8">  
-                  <h3 class="m-0 p-6-0">Diversão com os amigos</h3>
-                  <span class="font-12">Combine com seus melhores amigos para aproveitarem os eventos que ocorrem no bairro e na cidade.</span>
+                  <h3 class="m-0 p-6-0"><%= t('welcome.attributes.friends.title') %></h3>
+                  <span class="font-12"><%= t('welcome.attributes.friends.description') %></span>
                 </div>
               </div>
             </div>                                              
@@ -227,15 +227,15 @@
                   <%= image_tag 'welcome/beneficio-f.png', class: "img-responsive" %>
                 </div>
                 <div class="col-lg-8">  
-                  <h3 class="m-0 p-6-0">Promoções de comércios locais</h3>
-                  <span class="font-12">Busque por produtos e serviços e conheça novos mercadinhos, padarias, lancherias, pizzarias...</span>
+                  <h3 class="m-0 p-6-0"><%= t('welcome.attributes.services.title') %></h3>
+                  <span class="font-12"><%= t('welcome.attributes.services.description') %></span>
                 </div>
               </div>
             </div> 
 
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
-              <h4>e muito mais!</h4>
+              <h4><%= t('welcome.attributes.more') %></h4>
             </div>
 
 
@@ -261,8 +261,8 @@
 
 
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-              <h2 class="green-font">Mais que um aplicativo,<br/> um propósito</h2>
-              <span>O Villeme vai além de aplicativo, nosso propósito é aumentar e tornar divertido a interação das pessoas com o bairro e a forma como se relacionam com os diversos setores dele: público, privado, ONGs e mobilizações sociais.</span>
+              <h2 class="green-font"><%= t('welcome.proposition.title') %></h2>
+              <span><%= t('welcome.proposition.description') %></span>
             </div>
 
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 centralize">
@@ -292,8 +292,8 @@
         <div class="row">
           
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
-            <h2 class="green-font">Quero um convite!</h2>
-            <span>Solicite um convite para testar o aplicativo na sua cidade, ou crie uma cidade</span>
+            <h2 class="green-font"><%= t('welcome.want_invite.title') %></h2>
+            <span><%= t('welcome.want_invite.description') %></span>
           </div>
         
 
@@ -307,10 +307,10 @@
               goal = city.goal
               
               if goal.to_i <= Invite.where(city: city).count
-                contador = "Versão Beta lançada!" 
+                contador = t('welcome.want_invite.beta_launched')
                 ativado = true
               else
-                contador = "#{(goal.to_i - Invite.where(city: city).count)} pessoas para ativar o Beta"
+                contador = "#{(goal.to_i - Invite.where(city: city).count) }" + t('welcome.want_invite.people')
               end 
               %>
 
@@ -318,15 +318,15 @@
                   <%= "<span class='number body-grey font-18'> #{number += 1} </span> ".html_safe unless ativado %>
                   <%= "<span class='number body-grey font-18'><span class='glyphicon glyphicon-ok' style='float: left; padding: 5px;'></span></span> ".html_safe if ativado %>
                   <span class='city font-22'><%= city.name %></span>
-                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>Eu tbm!</span> </div>".html_safe unless ativado %>
-                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>Quero testar tbm!</span> </div>".html_safe if ativado %>
-                  <span class="people font-18"><%= contador %>
+                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want')}</span> </div>".html_safe unless ativado %>
+                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want_to')}</span> </div>".html_safe if ativado %>
+                  <span class="people font-18"><%= contador %></span>
                 </li>
             
               <% end %>
 
                 <li>
-                  <span class="people has-modal has-tooltip" title="Sua cidade não está acima?" style="cursor:pointer">+ Criar cidade</span>
+                  <span class="people has-modal has-tooltip" title="Sua cidade não está acima?" style="cursor:pointer"><%= t('welcome.want_invite.new_city') %></span>
                 </li>
 
             </ul>
@@ -350,7 +350,7 @@
        
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
-          <h3>Avise seus amigos que curtem se divertir na cidade, compartilhe!</h3>
+          <h3><%= t('welcome.footer.title') %></h3>
         </div>
 
 
@@ -371,11 +371,11 @@
         <ul>
           <!-- <li><a href="">Sobre</a></li> -->
           <!-- <li><a href="">Blog</a></li> -->
-          <li><a href="">Termos</a></li>
-          <li id="contato"><a href="">Contato</a></li>
+          <li><a href=""><%= t('welcome.footer.terms') %></a></li>
+          <li id="contato"><a href=""><%= t('welcome.footer.contact') %></a></li>
           <!-- <li><a href="">Twitter</a></li> -->
           <li><a href="https://www.facebook.com/app.Villeme">Facebook</a></li>
-          <li><a href="https://crowdcreative.github.io" class="has-tooltip" title="Todas as habilidades são bem vindas, e neste momento programadores, RPs e UX designers possuem bastante oportunidades">Empreenda com a gente</a></li>
+          <li><a href="https://crowdcreative.github.io" ><%= t('welcome.footer.work_with_us') %></a></li>
           
         </ul>
       </footer>      

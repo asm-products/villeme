@@ -28,7 +28,7 @@ module CidadeVc
     
 
     # Tradução do app para português
-    config.i18n.default_locale = 'pt-BR'
+    config.i18n.default_locale = 'en'
 
     config.time_zone = 'Brasilia'
 
