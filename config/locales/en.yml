@@ -2,6 +2,8 @@
 
 en:
   welcome:
+    head:
+      title: "Welcome to Villeme - Quality life and fun"
     first_screen:
       slogan: "Quality life and fun"
       slogan_neighborhood: "in your neighborhood"

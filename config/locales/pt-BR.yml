@@ -220,6 +220,8 @@ pt-BR:
 
 
   welcome:
+    head:
+      title: "Bem-vindo ao Villeme - Qualidade de vida e diversão!"
     first_screen:
       slogan: "Qualidade de vida e diversão"
       slogan_neighborhood: "no seu bairro"
