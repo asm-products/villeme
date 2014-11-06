@@ -3,49 +3,49 @@
 en:
   welcome:
     first_screen:
-      slogan: "Quality of life and fun"
+      slogan: "Quality life and fun"
       slogan_neighborhood: "in your neighborhood"
       slogan_city: "in your city"
-      sub_slogan: "um jeito fácil de se divertir, de aprender e de cuidar da saúde perto de casa"
-      request_invite: "solicitar convite"
-      request_invite_free: "É grátis e sempre será!"
-      learn_more: "Saiba mais"
-      sign_in: "Entrar"
+      sub_slogan: "The easiest way to find events, activities and services near your home."
+      request_invite: "Request an invite"
+      request_invite_free: "It's free and always will be!"
+      learn_more: "Learn more"
+      sign_in: "Sign in"
     attributes:
-      offers: "Villeme irá lhe oferecer"
+      offers: "Villeme offers"
       event:
-        title: "Eventos da vizinhança e bairro"
-        description: "Fique sabendo de tudo que está acontecendo a sua volta, como: cursos, festas, shows, filmes no cinema..."
+        title: "Events in your city"
+        description: "Keep track of everything that is happening around you: workshops, festivals, concerts, movies..."
       activity:
-        title: "Atividades para você praticar perto de casa"
-        description: "Descubra lugares para dar uma caminhada, jogar basquete, pegar um sol, se exercitar, nadar..."
+        title: "Activities close to home"
+        description: "Discover places to go for a walk, play basketball, get some sun, exercise, swim..."
       health:
-        description: "Indicaremos profissionais, locais e até mesmo os períodos que você deve ir ao médico para consultas de rotina."
-        title: "Motivações para cuidar da saúde"
+        description: "Get reminders for when you should go to the doctor for routine visits."
+        title: "Stay healthy"
       family:
-        title: "Passeios com a família"
-        description: "Aproveite os finais de semana para sair da rotina e se divertir com as pessoas que mais ama."
+        title: "Family friendly activites"
+        description: "Enjoy weekend activites and have fun with the people you love most."
       friends:
-        title: "Diversão com os amigos"
-        description: "Combine com seus melhores amigos para aproveitarem os eventos que ocorrem no bairro e na cidade."
+        title: "Fun with friends"
+        description: "Invite friends to take advantage of events in your neighborhood and city."
       services:
-        description: "Busque por produtos e serviços e conheça novos mercadinhos, padarias, lancherias, pizzarias..."
-        title: "Promoções de comércios locais"
-      more: "e muito mais!"
+        description: "Search for products and services: discover new grocery stores, bakeries, snack bars, pizzerias..."
+        title: "Support local businesses"
+      more: "and much more!"
     proposition:
-      title: "Mais que um aplicativo,<br/> um propósito"
-      description: "O Villeme vai além de aplicativo, nosso propósito é aumentar e tornar divertido a interação das pessoas com o bairro e a forma como se relacionam com os diversos setores dele: público, privado, ONGs e mobilizações sociais."
+      title: "Many services,<br/> one purpose"
+      description: "Villeme is not just any social website, our purpose is to increase the interaction of people with their neighborhood and the various sectors of city: public, private, NGOs and social movements."
     want_invite:
-      title: "Quero um convite!"
-      description: "Solicite um convite para testar o aplicativo na sua cidade, ou crie uma cidade"
-      beta_launched: "Versão Beta lançada!"
-      i_want: "Eu tbm!"
-      i_want_to: "Quero testar tbm!"
-      new_city: "+ Criar cidade"
+      title: "I want an invite!"
+      description: "Request an invitation to test the application in your city, or create a city"
+      beta_launched: "Beta version released!"
+      i_want: "I want!"
+      i_want_to: "I want to test!"
+      new_city: "+ Create city"
     footer:
-      title: "Avise seus amigos que curtem se divertir na cidade, compartilhe!"
-      terms: "Termos"
-      contact: "Contato"
-      work_with_us: "Empreenda com a gente"
+      title: "Tell your friends who like to have fun in the city, share!"
+      terms: "Terms"
+      contact: "Contact"
+      work_with_us: "Work with us"
 
 
