@@ -37,7 +37,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 4.2.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
@@ -75,7 +75,7 @@ gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branc
 gem 'geocoder'
 
 # Paperclip
-gem 'paperclip', '~> 3.5.3'
+gem "paperclip", "~> 3.5.3"
 
 # Amazon S3
 gem 'aws-sdk'
