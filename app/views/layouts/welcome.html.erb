@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-    <title> Bem-vindo ao Villeme - Qualidade de vida e diversão na sua cidade.</title>
+    <title><%= t('welcome.head.title') %></title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -261,7 +261,7 @@
 
 
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-              <h2 class="green-font"><%= t('welcome.proposition.title') %></h2>
+              <h2 class="green-font"><%= t('welcome.proposition.title').html_safe %></h2>
               <span><%= t('welcome.proposition.description') %></span>
             </div>
 
