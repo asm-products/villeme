@@ -62,6 +62,7 @@ en:
       in_one_word: "In a word"
       confirm: "Confirm"
       i_want_invite: "I want an invite!"
+      name: "Name"
     tooltip:
       have_an_invitation: "If ou have an invitation"
       i_want_invite_for: "Want a invitation to"

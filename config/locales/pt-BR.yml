@@ -280,6 +280,7 @@ pt-BR:
       in_one_word: "Em uma palavra"
       confirm: "Confirmar"
       i_want_invite: "Quero um convite!"
+      name: "Nome"
     tooltip:
       have_an_invitation: "Se já tiver um convite"
       i_want_invite_for: "Quero um convite para"
