@@ -310,7 +310,7 @@
                 contador = t('welcome.want_invite.beta_launched')
                 ativado = true
               else
-                contador = "#{(goal.to_i - Invite.where(city: city).count) }" + t('welcome.want_invite.people')
+                contador = "#{(goal.to_i - Invite.where(city: city).count) } " + t('welcome.want_invite.people')
               end 
               %>
 
