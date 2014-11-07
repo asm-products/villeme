@@ -110,7 +110,7 @@
             <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0 "><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0"><%= link_to t('welcome.first_screen.sign_in'), user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: "Se já tiver um convite" %></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0"><%= link_to t('welcome.first_screen.sign_in'), user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>
               </div>
             </div>  
 
@@ -318,15 +318,15 @@
                   <%= "<span class='number body-grey font-18'> #{number += 1} </span> ".html_safe unless ativado %>
                   <%= "<span class='number body-grey font-18'><span class='glyphicon glyphicon-ok' style='float: left; padding: 5px;'></span></span> ".html_safe if ativado %>
                   <span class='city font-22'><%= city.name %></span>
-                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want')}</span> </div>".html_safe unless ativado %>
-                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='Quero um convite para #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want_to')}</span> </div>".html_safe if ativado %>
+                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='#{t('welcome.tooltip.i_want_invite_for')} #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want')}</span> </div>".html_safe unless ativado %>
+                  <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='#{t('welcome.tooltip.i_want_invite_for')} #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want_to')}</span> </div>".html_safe if ativado %>
                   <span class="people font-18"><%= contador %></span>
                 </li>
             
               <% end %>
 
                 <li>
-                  <span class="people has-modal has-tooltip" title="Sua cidade não está acima?" style="cursor:pointer"><%= t('welcome.want_invite.new_city') %></span>
+                  <span class="people has-modal has-tooltip" title="<%= t('welcome.tooltip.your_city_dont_exist') %>" style="cursor:pointer"><%= t('welcome.want_invite.new_city') %></span>
                 </li>
 
             </ul>
