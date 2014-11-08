@@ -5,31 +5,34 @@ puts '*********** Seed initialize ****************'
 "\n"
 "\n"
 
-puts '=========== Users fakers creator ==========='
+
+puts '=== Cities and Neighborhoods fakers creator ==='
 
 "\n"
 "\n"
 
-admin = User.new(
-    :email => "admin@gmail.com",
-    :password => 'password',
-    :password_confirmation => 'password'
-)
-admin.save
-
-20.times do
-  password = Faker::Internet.password(8, 20)
-  user = User.create(
-      name: Faker::Name.name,
-      email: Faker::Internet.email,
-      password: password,
-      password_confirmation: password
+3.times do
+  city = City.create(
+      name: Faker::Address.city,
+      address: Faker::Address.street_address,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude,
   )
-  puts "#{user.name} - #{user.email} created with success!"
+  3.times do
+    city.neighborhoods << Neighborhood.create(
+        name: Faker::Address.city,
+        address: Faker::Address.street_address,
+        latitude: Faker::Address.latitude,
+        longitude: Faker::Address.longitude,
+    )
+  end
+  puts "City #{city.name} with #{city.neighborhoods.count} neighborhoods created with success!"
 end
 
 "\n"
 "\n"
+
+
 
 puts '=========== Events fakers creator ==========='
 
@@ -57,10 +60,45 @@ puts '=========== Events fakers creator ==========='
       state_code: Faker::Address.state_abbr,
       neighborhood_name: Faker::Lorem.word
   )
+  puts "Event #{event.name} created with success!"
 end
 
 "\n"
 "\n"
+
+
+puts '=========== Users fakers creator ==========='
+
+"\n"
+"\n"
+
+admin = User.create(
+    name: 'John Doe',
+    email: 'admin@gmail.com',
+    password: 'password',
+    password_confirmation: 'password',
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
+    admin: true,
+    invited: true,
+    city_id: City.first.id
+)
+
+
+10.times do
+  password = Faker::Internet.password(8, 20)
+  user = User.create(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      password: password,
+      password_confirmation: password
+  )
+  puts "User #{user.name} created with success!"
+end
+
+"\n"
+"\n"
+
 
 puts '=========== Admin access ==============='
 
