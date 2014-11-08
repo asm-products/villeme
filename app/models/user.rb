@@ -187,17 +187,21 @@ class User < ActiveRecord::Base
 
   # Pega os amigos do facebook que estão no villeme
   def friends_from_facebook
-    
-    # Array de retorno
-    friends_from_facebook = Array.new
 
-    # Pega os amigos do facebook via koala
-    graph = Koala::Facebook::API.new(self.token)
-    friends = graph.get_connections("me", "friends?fields=id,name,picture.type(square)")
+    if token
 
-    # Retorna 15 amigos
-    friends[0..15]
+      # Array de retorno
+      friends_from_facebook = Array.new
 
+      # Pega os amigos do facebook via koala
+      graph = Koala::Facebook::API.new(self.token)
+      friends = graph.get_connections("me", "friends?fields=id,name,picture.type(square)")
+
+      # Retorna 15 amigos
+      friends[0..15]
+    else
+      false
+    end
 
   end
 

@@ -136,11 +136,11 @@ class ApplicationController < ActionController::Base
 
 
 	def verifica_hora(hora_db)
-		unless hora_db.to_s == "2000-01-01 00:00:00 UTC"
-			hora_db.strftime("%H:%M") << "h"
-		else
-			nil
-		end
+    if hora_db.to_s == "2000-01-01 00:00:00 UTC"
+      nil
+    else
+      hora_db.strftime("%H:%M") << "h"
+    end
 	end
 
 
@@ -162,7 +162,7 @@ class ApplicationController < ActionController::Base
 
   def return_place(event)
     if event.place.nil?
-      nil
+      place = nil
     else
       place = "Em #{event.place.name}, "
     end
@@ -172,13 +172,10 @@ class ApplicationController < ActionController::Base
 
   def return_neighborhood(event)
     if event.neighborhood
-      neighborhood = event.neighborhood.name
-    elsif event.place.neighborhood
-      neighborhood = event.place.neighborhood.name
+      event.neighborhood.name
     else
-      neighborhood = event.neighborhood.address
+      nil
     end
-    neighborhood
   end
 
   def return_number(event)
@@ -268,7 +265,7 @@ class ApplicationController < ActionController::Base
 		if variable == 0 or variable.blank?
 			return "Gratuito"
 		else
-			return variable.to_s.insert(-3, ",").insert(0, "R$")
+			return variable
 		end
 	end
 

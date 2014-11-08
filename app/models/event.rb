@@ -159,25 +159,26 @@ class Event < ActiveRecord::Base
 	# Retorna o dia da semana que o evento acontece
 
 	def day_of_week(options = {})
-    date_start = self.date_start
-    date_finish = self.date_finish
-    today_in_week = Week.find_by(binary: Date.current.strftime("%w"))
-    tomorrow_in_week = Week.find_by(binary: (Date.current + 1).strftime("%w"))
 
-    if Date.current.between?(date_start, date_finish)
-      if self.weeks.include?(today_in_week)
-        return ("<span title='#{self.period}' class='label day today has-tooltip #{options[:css]}'>Hoje</span>").html_safe
-      elsif self.weeks.include?(tomorrow_in_week)
-        return ("<span title='#{self.period}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
+    if weeks.any?
+      today_in_week = Week.find_by(binary: Date.current.strftime("%w"))
+      tomorrow_in_week = Week.find_by(binary: (Date.current + 1).strftime("%w"))
+
+      if Date.current.between?(date_start, date_finish)
+        if weeks.include?(today_in_week)
+          return ("<span title='#{period}' class='label day today has-tooltip #{options[:css]}'>Hoje</span>").html_safe
+        elsif weeks.include?(tomorrow_in_week)
+          return ("<span title='#{period}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
+        else
+          return ("<span title='#{period}' class='label day has-tooltip #{options[:css]}'>#{self.weeks.first.name}</span>").html_safe
+        end
+      elsif date_start == Date.current.tomorrow
+        return ("<span title='#{period}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
       else
-        return ("<span title='#{self.period}' class='label day has-tooltip #{options[:css]}'>#{self.weeks.first.name}</span>").html_safe
+        ("<span title='#{period}' class='label day tomorrow has-tooltip #{options[:css]}'>#{I18n.localize date_start, format: '%A'}</span>").html_safe
       end
-
-    elsif date_start == Date.current.tomorrow
-      return ("<span title='#{self.period}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
-
     else
-      ("<span title='#{self.period}' class='label day tomorrow has-tooltip #{options[:css]}'>#{I18n.localize date_start, format: '%A'}</span>").html_safe
+      nil
     end
   end
 
