@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
 
 	# Geocoder
 	geocoded_by :address do |event_obj, results|
-		if geo  = results.first
+		if geo == results.first
 			event_obj.latitude = geo.latitude
 			event_obj.longitude = geo.longitude
 			event_obj.postal_code = geo.postal_code
@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-	after_validation :geocode, if: :address
+	after_validation :geocode, if: "latitude.nil?"
 
 
 	# Associações
