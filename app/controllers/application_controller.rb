@@ -105,7 +105,9 @@ class ApplicationController < ActionController::Base
         gon.longitude = current_user.longitude
       end
 		end
-	end
+  end
+
+  helper_method :current_user_home
 
   def set_currentuser_lat_long
     if current_user.city.nil?

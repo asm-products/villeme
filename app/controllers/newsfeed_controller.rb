@@ -18,7 +18,7 @@ class NewsfeedController < ApplicationController
 
 
   def index
-  	
+
     if params[:category]
 
       # filtra os eventos por categoria
@@ -41,14 +41,12 @@ class NewsfeedController < ApplicationController
 
     @feedback = Feedback.new
 
-
-
     # geolocalização do usuario
     gon.latitude = current_user.latitude
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = get_event_objects_for_map
+    gon.events_local_formatted = format_for_map_this(@events)
 
   end
 
@@ -64,7 +62,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = get_event_objects_for_map
+    gon.events_local_formatted = format_for_map_this(@events)
 
     render 'index'
 
@@ -83,7 +81,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = get_event_objects_for_map
+    gon.events_local_formatted = format_for_map_this(@events)
 
     render 'index'
 
@@ -102,7 +100,7 @@ class NewsfeedController < ApplicationController
     gon.longitude = current_user.longitude
 
     # array com os lugares para o mapa
-    gon.events_local_formatted = get_event_objects_for_map
+    gon.events_local_formatted = format_for_map_this(@events)
 
     render 'index'
 
