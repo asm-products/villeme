@@ -2,108 +2,136 @@
 
 puts '*********** Seed initialize ****************'
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
 
 puts '=== Cities and Neighborhoods fakers creator ==='
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
 3.times do
+  faker_address = Faker::Address
   city = City.create(
-      name: Faker::Address.city,
-      address: Faker::Address.street_address,
-      latitude: Faker::Address.latitude,
-      longitude: Faker::Address.longitude,
+      name: faker_address.city,
+      address: faker_address.street_address,
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
   )
   3.times do
     city.neighborhoods << Neighborhood.create(
-        name: Faker::Address.city,
-        address: Faker::Address.street_address,
-        latitude: Faker::Address.latitude,
-        longitude: Faker::Address.longitude,
+        name: faker_address.city,
+        address: faker_address.street_address,
+        latitude: faker_address.latitude,
+        longitude: faker_address.longitude,
     )
   end
   puts "City #{city.name} with #{city.neighborhoods.count} neighborhoods created with success!"
 end
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
+
+
+puts '=== Personas fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+persona_names = ["Entrepreneur", "Gourmet", "Nerd", "Activist", "Actor", "Athlete"]
+
+persona_names.each do |name|
+  persona = Persona.create(
+      name: name
+  )
+  puts "Persona #{persona.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
 
 
 
 puts '=========== Events fakers creator ==========='
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
 10.times do
+  faker_address = Faker::Address
   event = Event.create(
       name: Faker::Lorem.sentence(4, false, 6),
       description: Faker::Lorem.paragraph(5),
-      address: Faker::Address.street_address,
+      address: faker_address.street_address,
       date_start: Faker::Date.between(30.days.ago, Date.today),
+      date_finish: Faker::Date.between(Date.today, 60.days.from_now),
       hour_start_first: Faker::Time.between(Date.today, Date.tomorrow, :all),
-      latitude: Faker::Address.latitude,
-      longitude: Faker::Address.longitude,
-      number: Faker::Address.building_number,
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      number: faker_address.building_number,
       cost: Faker::Commerce.price,
       cost_details: Faker::Lorem.paragraph(1),
-      full_address: Faker::Address.street_address,
-      city_name: Faker::Address.city,
-      country: Faker::Address.country,
-      country_code: Faker::Address.country_code,
-      postal_code: Faker::Address.postcode,
-      state: Faker::Address.state,
-      state_code: Faker::Address.state_abbr,
+      full_address: faker_address.street_address,
+      city_name: faker_address.city,
+      country: faker_address.country,
+      country_code: faker_address.country_code,
+      postal_code: faker_address.postcode,
+      state: faker_address.state,
+      state_code: faker_address.state_abbr,
       neighborhood_name: Faker::Lorem.word
   )
   puts "Event #{event.name} created with success!"
 end
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
 
 puts '=========== Users fakers creator ==========='
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
+faker_address = Faker::Address
 admin = User.create(
     name: 'John Doe',
     email: 'admin@gmail.com',
     password: 'password',
     password_confirmation: 'password',
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
+    latitude: faker_address.latitude,
+    longitude: faker_address.longitude,
     admin: true,
     invited: true,
-    city_id: City.first.id
+    city_id: City.first.id,
+    persona_id: Persona.first.id
 )
 
 
-10.times do
+8.times do
   password = Faker::Internet.password(8, 20)
   user = User.create(
       name: Faker::Name.name,
       email: Faker::Internet.email,
       password: password,
-      password_confirmation: password
+      password_confirmation: password,
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      invited: true,
+      city_id: City.first.id,
+      persona_id: Persona.order("RANDOM()").first.id
   )
   puts "User #{user.name} created with success!"
 end
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
 
 puts '=========== Admin access ==============='
 
-"\n"
-"\n"
+puts "\n"
+puts "\n"
 
 if admin.save
 	puts "User admin crated with email: #{admin.email} and password: #{admin.password} \n"
