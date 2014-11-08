@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   belongs_to :neighborhood
   belongs_to :level
   belongs_to :persona
+  delegate :name, to: :persona, prefix: true
 
   has_one :notify
 
@@ -107,17 +108,28 @@ class User < ActiveRecord::Base
 
 
 
-  # Primeiro nome do usuario
   def first_name
     self.name.split.first
   end
 
-  
 
 
   def events_from_my_neighborhood
-    neighborhood = Neighborhood.find(self.neighborhood.id)
-    neighborhood.events
+    if self.neighborhood.nil?
+      nil
+    else
+      neighborhood = Neighborhood.find(self.neighborhood.id)
+      neighborhood.events
+    end
+  end
+
+
+  def events_from_my_neighborhood_count
+    if events_from_my_neighborhood
+      events_from_my_neighborhood.count
+    else
+      0
+    end
   end
 
 
@@ -315,17 +327,31 @@ class User < ActiveRecord::Base
 
   # notificações de eventos no newsfeed não vistos
   def newsfeed_notify
-    if self.notify.newsfeed_view.blank?
-      notify_date = DateTime.current - 300
-    else
-      notify_date = self.notify.newsfeed_view
+    if self.has_notify
+      if self.notify.newsfeed_view.blank?
+        notify_date = DateTime.current - 300
+      else
+        notify_date = self.notify.newsfeed_view
+      end
+      Event.where("created_at BETWEEN ? AND ?", notify_date, DateTime.current)
     end
-    Event.where("created_at BETWEEN ? AND ?", notify_date, DateTime.current)
   end
 
+  def newsfeed_notify_count
+    if self.has_notify
+      self.newsfeed_notify.count
+    else
+      0
+    end
+  end
 
-
-
+  def has_notify
+    if self.notify.nil?
+      false
+    else
+      true
+    end
+  end
 
 
 end
