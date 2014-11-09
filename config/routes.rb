@@ -16,7 +16,9 @@ CidadeVc::Application.routes.draw do
       get '/newsfeed', to: "newsfeed#index", via: :get, as: :root    
      
       # root para o index
-      root to: 'welcome#index', as: :welcome
+      scope "(:locale)", locale: /en|br/ do
+        root to: 'welcome#index', as: :welcome
+      end
 
       # /events com link para agendar via /schedule
       resources :events do

@@ -63,6 +63,11 @@
     <div id="header-hide-on-scroll" class="container-fluid green-bg">  
       <div class="row">
         
+        <div class="col-lg-8 col-lg-offset-2 p-15-0 a-right a_p-0-12">
+          <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
+          <%= link_to_unless I18n.locale == :br, "Português", locale: :br %>
+        </div>
+
 
         <!-- Logo -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 logo-lg centralize">

@@ -11,7 +11,7 @@
 		<% if current_page?('/newsfeed') %>
 			<li class="active">
 				<%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
-					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify.count if current_user.newsfeed_notify.count > 0 %></span></a>
+					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
 				<% end %>
 			</li>
 		<% else %>
@@ -26,10 +26,11 @@
 
 		<!-- Persona -->
 
+
 		<li>
-			<% if user_signed_in? %>
+			<% if user_signed_in? and current_user.persona %>
 				<%= link_to my_persona_events_path, data: { push: true } do %>
-					<span class="glyphicon glyphicon-user"></span><span class="has-tooltip" title="Minha persona"><%= current_user.persona.name %></span><span class="badge"><%= current_user.events_from_my_persona.count if current_user.events_from_my_persona.count >= 1 %></span>
+					<span class="glyphicon glyphicon-user"></span><span class="has-tooltip" title="Minha persona"><%= current_user.persona_name %></span><span class="badge"><%= current_user.events_from_my_persona.count if current_user.events_from_my_persona.count >= 1 %></span>
 				<% end %>
 			<% else %>
 				<a>
@@ -39,10 +40,12 @@
 		</li>
 
 
+
 		<!-- Neighborhood -->
 
+
 		<li>
-			<% if user_signed_in? %>
+			<% if user_signed_in? and current_user.neighborhood %>
 				<%= link_to my_neighborhood_events_path, data: { push: true } do %>
 					<span class="glyphicon glyphicon-home"></span><span class="has-tooltip" title="Meu bairro"><%= current_user.neighborhood.name %></span><span class="badge"><%= current_user.events_from_my_neighborhood.count if current_user.events_from_my_neighborhood.count >= 1 %></span>
 				<% end %>
@@ -52,6 +55,7 @@
 				</a>
 			<% end %>
 		</li>
+
 
 
 
@@ -129,7 +133,7 @@
 		<!-- Persona -->
 
 		<li>
-			<% if user_signed_in? %>
+			<% if user_signed_in? and current_user.persona %>
 				<%= link_to my_persona_events_path, data: { push: true } do %>
 					<span class="glyphicon glyphicon-user"></span><span class="has-tooltip text" title="<%= current_user.persona.name %>">Minha persona</span><span class="badge text"><%= current_user.events_from_my_persona.count if current_user.events_from_my_persona.count >= 1 %></span>
 				<% end %>
@@ -141,10 +145,12 @@
 		</li>
 
 
+
 		<!-- Neighborhood -->
 
+
 		<li>
-			<% if user_signed_in? %>
+			<% if user_signed_in? and current_user.neighborhood %>
 				<%= link_to my_neighborhood_events_path, data: { push: true } do %>
 					<span class="glyphicon glyphicon-home"></span><span class="has-tooltip" title="<%= current_user.neighborhood.name %>"><span class="text">Meu bairro</span></span><span class="badge text"><%= current_user.events_from_my_neighborhood.count if current_user.events_from_my_neighborhood.count >= 1 %></span>
 				<% end %>

@@ -1,2 +1,1 @@
-<% neighborhood_count = Event.where(neighborhood_id: current_user.neighborhood_id, moderate: 1).count %>
-<li class="list-item-group">Você <%= neighborhood_count > 0 ? "possui #{neighborhood_count} eventos" : "não possui nenhum evento"  %> na sua vizinhaça ou no <%= current_user.neighborhood.name %>. <%= link_to "Criar um evento", new_event_path, class: "green-font link" if neighborhood_count == 0 %></li>
+<li class="list-item-group"> <%= show_events_number_in_neighborhood_of(current_user) %></li>

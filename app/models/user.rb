@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   belongs_to :neighborhood
   belongs_to :level
   belongs_to :persona
+  delegate :name, to: :persona, prefix: true
 
   has_one :notify
 
@@ -107,17 +108,42 @@ class User < ActiveRecord::Base
 
 
 
-  # Primeiro nome do usuario
   def first_name
     self.name.split.first
   end
 
-  
+
+  def localize_from_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '123.45.67.89'
+    else
+      Geocoder.search("#{request.remote_ip}").first.coordinates
+    end
+  end
+
+
+  def coordinates
+    [latitude, longitude]
+  end
 
 
   def events_from_my_neighborhood
-    neighborhood = Neighborhood.find(self.neighborhood.id)
-    neighborhood.events
+    if self.neighborhood.nil?
+      nil
+    else
+      neighborhood = Neighborhood.find(self.neighborhood.id)
+      neighborhood.events
+    end
+  end
+
+
+  def events_from_my_neighborhood_count
+    if events_from_my_neighborhood
+      events_from_my_neighborhood.count
+    else
+      0
+    end
   end
 
 
@@ -175,17 +201,21 @@ class User < ActiveRecord::Base
 
   # Pega os amigos do facebook que estão no villeme
   def friends_from_facebook
-    
-    # Array de retorno
-    friends_from_facebook = Array.new
 
-    # Pega os amigos do facebook via koala
-    graph = Koala::Facebook::API.new(self.token)
-    friends = graph.get_connections("me", "friends?fields=id,name,picture.type(square)")
+    if token
 
-    # Retorna 15 amigos
-    friends[0..15]
+      # Array de retorno
+      friends_from_facebook = Array.new
 
+      # Pega os amigos do facebook via koala
+      graph = Koala::Facebook::API.new(self.token)
+      friends = graph.get_connections("me", "friends?fields=id,name,picture.type(square)")
+
+      # Retorna 15 amigos
+      friends[0..15]
+    else
+      false
+    end
 
   end
 
@@ -315,17 +345,31 @@ class User < ActiveRecord::Base
 
   # notificações de eventos no newsfeed não vistos
   def newsfeed_notify
-    if self.notify.newsfeed_view.blank?
-      notify_date = DateTime.current - 300
-    else
-      notify_date = self.notify.newsfeed_view
+    if self.has_notify
+      if self.notify.newsfeed_view.blank?
+        notify_date = DateTime.current - 300
+      else
+        notify_date = self.notify.newsfeed_view
+      end
+      Event.where("created_at BETWEEN ? AND ?", notify_date, DateTime.current)
     end
-    Event.where("created_at BETWEEN ? AND ?", notify_date, DateTime.current)
   end
 
+  def newsfeed_notify_count
+    if self.has_notify
+      self.newsfeed_notify.count
+    else
+      0
+    end
+  end
 
-
-
+  def has_notify
+    if self.notify.nil?
+      false
+    else
+      true
+    end
+  end
 
 
 end

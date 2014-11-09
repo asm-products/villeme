@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :current_user_home, if: :devise_controller?
-
+  before_filter :set_locale
  	before_filter :set_feedback_for_all
-
   layout :layout_devise_setting
 
   helper_method :strong_category
@@ -19,14 +18,15 @@ class ApplicationController < ActionController::Base
  	helper Gamification
 
 
- 	
-
 
   protected
 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
-	
-	def set_feedback_for_all
+
+  def set_feedback_for_all
 		@feedback_app = Feedback.new
 	end
 
@@ -105,7 +105,9 @@ class ApplicationController < ActionController::Base
         gon.longitude = current_user.longitude
       end
 		end
-	end
+  end
+
+  helper_method :current_user_home
 
   def set_currentuser_lat_long
     if current_user.city.nil?
@@ -134,11 +136,11 @@ class ApplicationController < ActionController::Base
 
 
 	def verifica_hora(hora_db)
-		unless hora_db.to_s == "2000-01-01 00:00:00 UTC"
-			hora_db.strftime("%H:%M") << "h"
-		else
-			nil
-		end
+    if hora_db.to_s == "2000-01-01 00:00:00 UTC"
+      nil
+    else
+      hora_db.strftime("%H:%M") << "h"
+    end
 	end
 
 
@@ -160,7 +162,7 @@ class ApplicationController < ActionController::Base
 
   def return_place(event)
     if event.place.nil?
-      nil
+      place = nil
     else
       place = "Em #{event.place.name}, "
     end
@@ -170,13 +172,10 @@ class ApplicationController < ActionController::Base
 
   def return_neighborhood(event)
     if event.neighborhood
-      neighborhood = event.neighborhood.name
-    elsif event.place.neighborhood
-      neighborhood = event.place.neighborhood.name
+      event.neighborhood.name
     else
-      neighborhood = event.neighborhood.address
+      nil
     end
-    neighborhood
   end
 
   def return_number(event)
@@ -266,16 +265,24 @@ class ApplicationController < ActionController::Base
 		if variable == 0 or variable.blank?
 			return "Gratuito"
 		else
-			return variable.to_s.insert(-3, ",").insert(0, "R$")
+			return variable
 		end
 	end
 
 	helper_method :cost
 
 
+  def get_user_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '123.45.67.89'
+    else
+      request.remote_ip
+    end
+  end
 
 
-	# Verifica se o evento foi agendado pelo usuario
+  # Verifica se o evento foi agendado pelo usuario
   def agended(event, user = current_user)
 
 	    if user.agenda_events.include?(event)
