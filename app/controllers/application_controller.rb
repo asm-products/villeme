@@ -272,9 +272,17 @@ class ApplicationController < ActionController::Base
 	helper_method :cost
 
 
+  def get_user_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '123.45.67.89'
+    else
+      request.remote_ip
+    end
+  end
 
 
-	# Verifica se o evento foi agendado pelo usuario
+  # Verifica se o evento foi agendado pelo usuario
   def agended(event, user = current_user)
 
 	    if user.agenda_events.include?(event)

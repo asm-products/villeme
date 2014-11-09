@@ -48,6 +48,7 @@ class NewsfeedController < ApplicationController
     # array com os lugares para o mapa
     gon.events_local_formatted = format_for_map_this(@events)
 
+
   end
 
   def mypersona

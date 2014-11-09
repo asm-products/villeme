@@ -20,12 +20,7 @@ module Gmaps
       i += 1
     end
 
-    @array_of_events << {latLng: [current_user.latitude, current_user.longitude],
-                         data: current_user.name.to_s,
-                         options: {
-                             icon: "/images/marker-default-home.png"
-                         }
-    }
+    @array_of_events << get_current_user_in_a_hash
 
     @array_of_events
   end
@@ -47,12 +42,12 @@ module Gmaps
   end
 
 
-  def set_user_local
-    @array_of_events << {latLng:[current_user.latitude, current_user.longitude],
-                         data: current_user.name.to_s,
-                         options: {
-                             icon: "/images/marker-default-home.png"
-                         }
+  def get_current_user_in_a_hash
+    {latLng: current_user.coordinates,
+     data: current_user.name.to_s,
+     options: {
+         icon: "/images/marker-default-home.png"
+     }
     }
   end
 

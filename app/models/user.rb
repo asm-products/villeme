@@ -113,6 +113,20 @@ class User < ActiveRecord::Base
   end
 
 
+  def localize_from_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '123.45.67.89'
+    else
+      Geocoder.search("#{request.remote_ip}").first.coordinates
+    end
+  end
+
+
+  def coordinates
+    [latitude, longitude]
+  end
+
 
   def events_from_my_neighborhood
     if self.neighborhood.nil?
