@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :current_user_home, if: :devise_controller?
-
+  before_filter :set_locale
  	before_filter :set_feedback_for_all
-
   layout :layout_devise_setting
 
   helper_method :strong_category
@@ -19,14 +18,15 @@ class ApplicationController < ActionController::Base
  	helper Gamification
 
 
- 	
-
 
   protected
 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
-	
-	def set_feedback_for_all
+
+  def set_feedback_for_all
 		@feedback_app = Feedback.new
 	end
 
