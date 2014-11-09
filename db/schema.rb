@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020201747) do
+ActiveRecord::Schema.define(version: 20141108202721) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20141020201747) do
     t.time     "hour_finish_first"
     t.string   "number"
     t.integer  "neighborhood_id"
-    t.integer  "cost"
+    t.decimal  "cost",               precision: 8, scale: 2
     t.time     "hour_start_second"
     t.time     "hour_start_third"
     t.time     "hour_start_fourth"

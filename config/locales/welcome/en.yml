@@ -67,3 +67,7 @@ en:
       have_an_invitation: "If ou have an invitation"
       i_want_invite_for: "Want a invitation to"
       your_city_dont_exist: "Your city is not above?"
+  dictionary:
+    have_events: "have %{neighborhood_count} events"
+    no_have_events: "no have events"
+    show_events_number_in_neighborhood: "You %{count} near you or in your neighborhood."

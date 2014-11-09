@@ -1,4 +1,4 @@
-pt-BR:
+br:
   date:
     abbr_day_names:
     - Dom
@@ -285,3 +285,7 @@ pt-BR:
       have_an_invitation: "Se já tiver um convite"
       i_want_invite_for: "Quero um convite para"
       your_city_dont_exist: "Sua cidade não está acima?"
+  dictionary:
+    show_events_number_in_neighborhood: "Você %{count} perto de você ou no seu bairro."
+    no_have_events: "não possui eventos"
+    have_events: "possui %{neighborhood_count} eventos"

@@ -17,18 +17,15 @@ module CidadeVc
     # config.time_zone = 'Central Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :en
 
     # Carrega arquivos no /lib
     config.autoload_paths += %W(#{config.root}/lib)
 
     # Constantes do aplicativo
     HOME_URL = "http://www.villeme.com"
-    
 
-    # Tradução do app para português
-    config.i18n.default_locale = 'en'
 
     config.time_zone = 'Brasilia'
 
