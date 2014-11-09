@@ -1,3 +1,5 @@
+[Imgur](http://i.imgur.com/V7T6r88.jpg)
+
 # Villeme [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme)
 
 Web app helps you to knows everything that is happening and what you can do in your neighborhood.
@@ -45,6 +47,10 @@ Add your database credentials if necessary.
 * Create the database
 
 	`$ rake db:create db:migrate`
+	
+* Create faker data with seed
+
+    `$ rake db:seed`
 
 If everything goes OK, you can now run the project!
 
@@ -55,6 +61,15 @@ If everything goes OK, you can now run the project!
 
 Open [http://localhost:3000](http://localhost:3000)
 
+* Login as admin
+
+    Go to [http://localhost:3000/sign_in](http://localhost:3000/sign_in)
+    
+* Complete the form with
+
+    **email:** admin@gmail.com
+    
+    **password:** password
 
 #### If some errors occur try:
 
