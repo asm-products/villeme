@@ -1,4 +1,4 @@
-[Imgur](http://i.imgur.com/V7T6r88.jpg)
+![alt tag](http://i.imgur.com/V7T6r88.jpg)
 
 # Villeme [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme)
 
