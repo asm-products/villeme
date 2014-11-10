@@ -106,14 +106,13 @@
 
 
 	footer{
-		margin: 45px 0 0 0;
 	  clear: both;
 	  display: table;
-	  margin: 25px 0 15px;
 	  width: 100%;
 	  color: $grey;
 	  font-family: $font-family-identity;
 	  text-align: center;
+      padding:15px 0;
 
 		& ul {
 	    list-style: none outside none;
@@ -128,10 +127,9 @@
 	    &	a{
 		    color: $grey;
 		    cursor: pointer;
-				float: none;
-				font-size: 13px;
+            float: none;
+            font-size: 13px;
 		    font-family: $font-family-default;
-		    font-weight: normal;
 		    margin: 0 10px 0;	
 
 		    &:hover{
@@ -1227,11 +1225,11 @@
 
 
 
-	/*==========================================================================================
-		
-		MODAL 
+/*==========================================================================================
 
-	*/
+    MODAL
+
+*/
 
 
 #modal{

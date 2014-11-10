@@ -95,6 +95,7 @@ span {
 
 .container-fluid{
   margin: 0;
+  overflow: hidden;
 }
 
 .like-button{
@@ -119,7 +120,7 @@ span {
 }
 
 .logo-lg{
-	margin: 95px 0 0;
+	margin: 35px 0 0;
 
   img{
 
@@ -381,12 +382,10 @@ span {
 
 
 footer{
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
     clear: both;
     color: white;
     display: table;
     font-family: $font-family-default;
-    margin: 55px 0 0;
     padding: 18px;
     text-align: center;
     width: 100%;
@@ -394,7 +393,7 @@ footer{
   & ul {
     list-style: none outside none;
     margin: 0;
-    padding: 0;
+    padding: 6px 0;
   }
   & li {
     display: inline;
