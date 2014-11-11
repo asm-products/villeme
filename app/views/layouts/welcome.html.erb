@@ -71,12 +71,8 @@
 
         <!-- Logo -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 logo-lg centralize">
-         <!--  <div class="like-button">
-            <div class="fb-like" data-href="https://www.facebook.com/app.Villeme" data-layout="button_count" data-colorscheme="light" data-action="like" data-show-faces="false" data-share="false"></div>
-          </div> -->
           <%= x_image_tag 'welcome/logo-lg.png', width: '267', height: '75' %>
         </div>
-
 
         <!-- Slogan -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slogan centralize">
@@ -96,7 +92,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login">
           <div class="row">
 
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 col-sm-offset-0 col-xs-offset-2">
 
               <!-- invite -->
               <div class="white-btn rounded pull-right has-modal invite centralize hidden-xs">
@@ -105,7 +101,7 @@
               </div>
 
               <!-- invite -->
-              <div class="green-btn rounded has-modal invite centralize visible-xs">
+              <div class="white-btn rounded has-modal invite centralize visible-xs">
                 <span class="f-weight-400"><%= t('welcome.first_screen.request_invite') %></span><br/>
                 <span class="small-font" style="position: relative; top: -3px; opacity: 0.65;"><%= t('welcome.first_screen.request_invite_free') %></span>
               </div> 
@@ -158,41 +154,41 @@
 
           <div class="row">
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize" style="margin: 0px 0px 65px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize-xs" style="margin: 0px 0px 65px;">
               <h2 class="green-font"><%= t('welcome.attributes.offers') %>:</h2>
             </div>
 
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 align-left-lg align-left-md centralize-sm centralize-xs p-45-15">
               <div class="row">
-                <div class="col-lg-4">
-                  <%= image_tag 'welcome/beneficio-a.png', class: "img-responsive" %>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-sm-offset-3 col-md-offset-0 col-xs-offset-3">
+                  <%= image_tag 'welcome/beneficio-a.png', class: 'img-responsive' %>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <h3 class="m-0 p-6-0"><%= t('welcome.attributes.event.title') %></h3>
                   <span class="font-12"><%= t('welcome.attributes.event.description') %></span>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 align-left-lg align-left-md centralize-sm centralize-xs p-45-15">
               <div class="row">
-                <div class="col-lg-4">              
-                  <%= image_tag 'welcome/beneficio-b.png', class: "img-responsive" %>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
+                  <%= image_tag 'welcome/beneficio-b.png', class: 'img-responsive' %>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <h3 class="m-0 p-6-0"><%= t('welcome.attributes.activity.title') %></h3>
                   <span class="font-12"><%= t('welcome.attributes.activity.description') %></span>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 align-left-lg align-left-md centralize-sm centralize-xs p-45-15">
               <div class="row">
-                <div class="col-lg-4">               
-                  <%= image_tag 'welcome/beneficio-c.png', class: "img-responsive" %>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
+                  <%= image_tag 'welcome/beneficio-c.png', class: 'img-responsive' %>
                 </div>
-                <div class="col-lg-8">  
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <h3 class="m-0 p-6-0"><%= t('welcome.attributes.family.title') %></h3>
                   <span class="font-12"><%= t('welcome.attributes.family.description') %></span>
                 </div>
@@ -201,24 +197,24 @@
 
             <div class="clear"></div>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 align-left-lg align-left-md centralize-sm centralize-xs p-45-15">
               <div class="row">
-                <div class="col-lg-4">              
-                  <%= image_tag 'welcome/beneficio-d.png', class: "img-responsive" %>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
+                  <%= image_tag 'welcome/beneficio-d.png', class: 'img-responsive' %>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <h3 class="m-0 p-6-0"><%= t('welcome.attributes.health.title') %></h3>
                   <span class="font-12"><%= t('welcome.attributes.health.description') %></span>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 align-left-lg align-left-md centralize-sm centralize-xs p-45-15">
               <div class="row">
-                <div class="col-lg-4">               
-                  <%= image_tag 'welcome/beneficio-e.png', class: "img-responsive" %>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
+                  <%= image_tag 'welcome/beneficio-e.png', class: 'img-responsive' %>
                 </div>
-                <div class="col-lg-8">  
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <h3 class="m-0 p-6-0"><%= t('welcome.attributes.friends.title') %></h3>
                   <span class="font-12"><%= t('welcome.attributes.friends.description') %></span>
                 </div>
@@ -226,12 +222,12 @@
             </div>                                              
 
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 p-45-15">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 col-lg-offset-0 col-md-offset-0 col-sm-offset-0 col-xs-offset-2 align-left-lg align-left-md centralize-sm centralize-xs p-45-15">
               <div class="row">
-                <div class="col-lg-4">               
-                  <%= image_tag 'welcome/beneficio-f.png', class: "img-responsive" %>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-3">
+                  <%= image_tag 'welcome/beneficio-f.png', class: 'img-responsive' %>
                 </div>
-                <div class="col-lg-8">  
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <h3 class="m-0 p-6-0"><%= t('welcome.attributes.services.title') %></h3>
                   <span class="font-12"><%= t('welcome.attributes.services.description') %></span>
                 </div>
@@ -239,7 +235,7 @@
             </div> 
 
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize-lg">
               <h4><%= t('welcome.attributes.more') %></h4>
             </div>
 

@@ -6,154 +6,166 @@
 /* Custom, iPhone Retina */ 
 @media only screen and (min-width : 320px) {
 	
-.plataforms {
-  height: 140px;
-}
+  .plataforms {
+    height: 140px;
+  }
+
+  .centralize-xs{text-align: center}
+  .align-left-xs{text-align: left}
+  .align-right-xs{text-align: right}
 
 }
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (min-width : 480px) {
 
-.goals li {
-  padding: 12px 0;
-}
+  .goals li {
+    padding: 12px 0;
+  }
 
-.plataforms {
-  height: 120px;
-}
+  .plataforms {
+    height: 120px;
+  }
 
+  .centralize-xs{text-align: center}
+  .align-left-xs{text-align: left}
+  .align-right-xs{text-align: right}
 
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
 
-.goals li {
-  padding: 12px 0;
-}
+  .goals li {
+    padding: 12px 0;
+  }
 
-.plataforms {
-  height: 200px;
-}
+  .plataforms {
+    height: 200px;
+  }
 
-.p-xs-100-0{padding: 0}
-.p-xs-0-110{padding: 0}
+  .p-xs-100-0{padding: 0}
+  .p-xs-0-110{padding: 0}
+
+  .centralize-sm{text-align: center}
+  .align-left-sm{text-align: left}
+  .align-right-sm{text-align: right}
 
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
 
-	/* Sidebar-left */
-
-.plataforms {
-  height: 280px;
-}
-
-/* Sidebar-left */
-
-	#sidebar-left-lg{
-		display: none;
-	}
-
-	#sidebar-left-md{
-		display: inline-block;
-
-		&:hover{		
-			
-			& li {
-
-				.text{
-			    display: inline-block;
-			    opacity: 1;			
-				}		
-
-				.text:empty{
-					display: none;
-				}					
-
-				& .badge {
-			    left: 0;
-			    position: relative;
-			    top: 0;
-				}		
-			}
-		}
-
-	}
-
- 	.content{
- 		padding-left: 60px;
-		
-		& .sidebar-left{
-			left: 225px;
-			width: 50px;
-
-			& li {
-
-				.text{
-					display: none;
-					opacity: 0;
-					transition: opacity 0.4s ease 0s;
-				}
-
-				.text:empty{
-					display: none;
-				}				
-			}
-
-			& .badge {
-		    left: -4px;
-		    position: relative;
-		    top: -22px;
-			}			
-		} 		
- 	}	
-
- 	.content.active{
- 		padding-left: 200px;
-		
-		& .sidebar-left{
-			left: 225px;
-			width: 200px;
-		} 		
-
-			& li {
-
-				.text{
-					display: inline-block;
-					opacity: 1;
-					transition: opacity 0.4s ease 0s;
-				}	
-
-				.text:empty{
-					display: none;
-				}					
-			}	
- 	}	
 
 
-	/* Welcome */
-
-	.logo-lg{
-		margin: 35px 0 0;
-
-	  img{
-	    width: 267px;
-	    height: 75px;
-	  }
-	}
+  .plataforms {
+    height: 280px;
+  }
 
 
-	.like-button{
-	  overflow: hidden;
-	  width: 147px;
-	}
+  #sidebar-left-lg{
+      display: none;
+  }
 
-	.small-font {
-	  font-size: 13px;
-	}		
+  #sidebar-left-md{
+      display: inline-block;
+
+      &:hover{
+
+          & li {
+
+              .text{
+              display: inline-block;
+              opacity: 1;
+              }
+
+              .text:empty{
+                  display: none;
+              }
+
+              & .badge {
+              left: 0;
+              position: relative;
+              top: 0;
+              }
+          }
+      }
+
+  }
+
+  .content{
+      padding-left: 60px;
+
+      & .sidebar-left{
+          left: 225px;
+          width: 50px;
+
+          & li {
+
+              .text{
+                  display: none;
+                  opacity: 0;
+                  transition: opacity 0.4s ease 0s;
+              }
+
+              .text:empty{
+                  display: none;
+              }
+          }
+
+          & .badge {
+          left: -4px;
+          position: relative;
+          top: -22px;
+          }
+      }
+  }
+
+  .content.active{
+      padding-left: 200px;
+
+      & .sidebar-left{
+          left: 225px;
+          width: 200px;
+      }
+
+      & li {
+
+          .text{
+              display: inline-block;
+              opacity: 1;
+              transition: opacity 0.4s ease 0s;
+          }
+
+          .text:empty{
+              display: none;
+          }
+      }
+  }
+
+
+
+  .logo-lg{
+      margin: 35px 0 0;
+
+    img{
+      width: 267px;
+      height: 75px;
+    }
+  }
+
+
+  .like-button{
+    overflow: hidden;
+    width: 147px;
+  }
+
+  .small-font {font-size: 13px}
+
+
+  .centralize-md{text-align: center}
+  .align-left-md{text-align: left}
+  .align-right-md{text-align: right}
 
 }
 
@@ -161,50 +173,52 @@
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
 
-.plataforms {
-  height: 320px;
-}
-
-	/* Sidebar-left */
-
-	#sidebar-left-md{
-		display: none;
-	}
-
-	#sidebar-left-lg{
-		display: inline-block;
-	}
-
- 	.content{
- 		padding-left: 200px;
-		
-		& .sidebar-left{
-			left: 225px;
-			width: 170px;
-
-			& .badge {
-		    left: 0;
-		    position: relative;
-		    top: 0;
-			}
-
-		} 	
-
- 	}	
-
- 	.content.active{
- 		padding-left: 200px;
- 		transition: all 0.4s ease 0s;
-		
-		& .sidebar-left{
-			left: 225px;
-			width: 200px;
-		} 		
- 	}	
+  .plataforms {
+    height: 320px;
+  }
 
 
-.p-xs-100-0{padding: 0}
-.p-xs-0-110{padding: 0}
 
+  #sidebar-left-md{
+      display: none;
+  }
+
+  #sidebar-left-lg{
+      display: inline-block;
+  }
+
+  .content{
+      padding-left: 200px;
+
+      & .sidebar-left{
+          left: 225px;
+          width: 170px;
+
+          & .badge {
+          left: 0;
+          position: relative;
+          top: 0;
+          }
+
+      }
+
+  }
+
+  .content.active{
+      padding-left: 200px;
+      transition: all 0.4s ease 0s;
+
+      & .sidebar-left{
+          left: 225px;
+          width: 200px;
+      }
+  }
+
+  .p-xs-100-0{padding: 0}
+  .p-xs-0-110{padding: 0}
+
+  .centralize-lg{text-align: center}
+  .align-left-lg{text-align: left}
+  .align-right-lg{text-align: right}
 
 }
