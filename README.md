@@ -127,9 +127,14 @@ A branch is like an alternate timeline.
 
 You can read more about *git branch* [here](http://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell).
 
-If you're trying to fix a bug, you might want to name the branch `fix-short-description`.
-If you're adding a feature, `feature-short-description` is a good name.
+If you're trying to fix a bug, you might want to name the branch:
+    
+    `fix-short-description`
+    
+If you're adding a feature: 
 
+    `feature-short-description` 
+    
 After you can execute checkout to go the branch
 `git checkout -b branch-name`
 
