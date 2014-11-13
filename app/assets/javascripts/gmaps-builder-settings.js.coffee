@@ -42,7 +42,7 @@ buscaLatlong = (endereco) ->
                     latLng = results[0].geometry.location
                     latitude = results[0].geometry.location.lat()
                     longitude = results[0].geometry.location.lng()
-                    map.panTo latLng 
+                    map.panTo latLng
                     $("#latitude, #place-latitude").val latitude
                     $("#longitude, #place-longitude").val longitude
                     return
@@ -53,7 +53,7 @@ buscaLatlong = (endereco) ->
         latLng = results[0].geometry.location
         latitude = results[0].geometry.location.lat()
         longitude = results[0].geometry.location.lng()
-        map.panTo latLng 
+        map.panTo latLng
         $("#latitude, #place-latitude").val latitude
         $("#longitude, #place-longitude").val longitude
         return
@@ -82,7 +82,7 @@ $(document).ready ->
         scrollwheel: true
         streetViewControl: false
         zoomControl: true
-        zoomControlOptions: 
+        zoomControlOptions:
           style: google.maps.ZoomControlStyle.SMALL,
           position: google.maps.ControlPosition.RIGHT_TOP
         styles: style
@@ -92,7 +92,7 @@ $(document).ready ->
         gon.latitude
         gon.longitude
       ]
-      options: 
+      options:
         draggable: true
         icon: "/images/marker-green-vc.png"
 
@@ -122,11 +122,11 @@ $(document).ready ->
                 return
 
 
-            
+
 
               # address = results[0].address_components[1].long_name
 
-              
+
               content = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
 
               if infowindow
@@ -138,22 +138,22 @@ $(document).ready ->
                   options:
                     content: content
 
-              
+
 
               map = $(this).gmap3("get")
               latLng = results[0].geometry.location
               latitude = results[0].geometry.location.lat()
               longitude = results[0].geometry.location.lng()
-              map.panTo latLng 
+              map.panTo latLng
               $("#latitude, #place-latitude").val latitude
               $("#longitude, #place-longitude").val longitude
 
               return
-          
+
           return
 
   map = $(this).gmap3("get")
-  
+
   # Botao para chamar o endereço no mapa
   $("#btn-place-buscar-endereco").click ->
     endereco = $("#place-endereco").val()
@@ -166,4 +166,4 @@ $(document).ready ->
     buscaLatlong endereco
     return
 
-	return
+  return
