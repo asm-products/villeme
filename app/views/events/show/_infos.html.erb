@@ -29,9 +29,9 @@
       <h3>Horários</h3>
       <div class="horarios">
 
-
-            <%= @event.hour_start_first %><br/>
-
+          <% get_hours(@event).each do |hour| %>
+            <%= hour.html_safe %><br/>
+          <% end %>
                   
       </div>
     </p>

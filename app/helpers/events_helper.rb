@@ -8,12 +8,12 @@ module EventsHelper
 	def set_distance(variables)
 
 		# pega a distância entro o usuário e o evento
-		unless variables[:event_latitude].blank? and variables[:event_longitude].blank? 
-			get_distance = Geocoder::Calculations.distance_between([variables[:user_latitude], variables[:user_longitude]],[variables[:event_latitude],variables[:event_longitude]], {units: :km}).round(3)
-		else
-			place = Place.find(variables[:place_id])
-			get_distance = Geocoder::Calculations.distance_between([variables[:user_latitude], variables[:user_longitude]],[place.latitude,place.longitude], {units: :km}).round(3)			
-		end
+		if variables[:event_latitude].blank? and variables[:event_longitude].blank?
+      place = Place.find(variables[:place_id])
+      get_distance = Geocoder::Calculations.distance_between([variables[:user_latitude], variables[:user_longitude]], [place.latitude, place.longitude], {units: :km}).round(3)
+    else
+      get_distance = Geocoder::Calculations.distance_between([variables[:user_latitude], variables[:user_longitude]], [variables[:event_latitude], variables[:event_longitude]], {units: :km}).round(3)
+    end
 
 		# cria uma margem de erro de 20% positivo
 		margem = get_distance.round(3) / 100 * 33
@@ -35,17 +35,20 @@ module EventsHelper
 				resposta[0] = algorithm.round.to_s << "min. indo de ônibus"
 				resposta[1] = "de ônibus"
 				resposta[2] = "bus"
-				return resposta				
-			
-
+				return resposta
 			when distance < 4.0 # walk
 				algorithm = (distance / 4.5 * 60).round(3)
 				resposta[0] = algorithm.round.to_s << "min."
 				resposta[1] = "à pé"
 				resposta[2] = "walk" 
 				return resposta
-			end
-		end
+      else
+          nil
+      end
+
+    else
+      nil
+    end
 
 	end
 
@@ -64,7 +67,7 @@ module EventsHelper
 		if event.place.nil?
 			event.address
 		else
-			return event.place.name
+      event.place.name
 		end
 	end
 
@@ -98,29 +101,29 @@ module EventsHelper
 
 		# 2 horario
 		if event.hour_start_second != "2000-01-01 00:00:00 UTC"
-			valid_hours[:second] = Hash.new 
+			valid_hours[:second] = Hash.new
 			valid_hours[:second][:start] = formata_hora(event.hour_start_second)
 		end
 
 		if event.hour_finish_second != "2000-01-01 00:00:00 UTC"
-			valid_hours[:second][:finish] = formata_hora(event.hour_finish_second)	
-		end		
-				
+			valid_hours[:second][:finish] = formata_hora(event.hour_finish_second)
+		end
+
 
 		# 3 horario
 		if event.hour_start_third != "2000-01-01 00:00:00 UTC"
-			valid_hours[:third] = Hash.new 
+			valid_hours[:third] = Hash.new
 			valid_hours[:third][:start] = formata_hora(event.hour_start_third)
 		end
 
 		if event.hour_finish_third != "2000-01-01 00:00:00 UTC"
 			valid_hours[:third][:finish] = formata_hora(event.hour_finish_third)
-		end			
-			
+		end
+
 
 		# 4 horario
 		if event.hour_start_fourth != "2000-01-01 00:00:00 UTC"
-			valid_hours[:fourth] = Hash.new 
+			valid_hours[:fourth] = Hash.new
 			valid_hours[:fourth][:start] = formata_hora(event.hour_start_fourth)
 		end
 
@@ -131,7 +134,7 @@ module EventsHelper
 
 		# 5 horario
 		if event.hour_start_fifth != "2000-01-01 00:00:00 UTC"
-			valid_hours[:fifth] = Hash.new 
+			valid_hours[:fifth] = Hash.new
 			valid_hours[:fifth][:start] = formata_hora(event.hour_start_fifth)
 		end
 
@@ -142,13 +145,13 @@ module EventsHelper
 
 		# 6 horario
 		if event.hour_start_sixth != "2000-01-01 00:00:00 UTC"
-			valid_hours[:sixth] = Hash.new 
+			valid_hours[:sixth] = Hash.new
 			valid_hours[:sixth][:start] = formata_hora(event.hour_start_sixth)
 		end
 
 		if event.hour_finish_sixth != "2000-01-01 00:00:00 UTC"
 			valid_hours[:sixth][:finish] = formata_hora(event.hour_finish_sixth)
-		end			
+		end
 
 
 		array_retorno = []
@@ -165,11 +168,9 @@ module EventsHelper
 			count+= 1
 		end
 
-		return array_retorno
+    array_retorno
 
-		# o valor de 'valid_hours'
-		# {:first=>{:start=>"19:00h", :finish=>"05:04h"}, :second=>{:start=>"05:04h", :finish=>"03:05h"}, :third=>{:start=>"04:03h", :finish=>"04:04h"}}
-		
+
 	end	
 
 end
