@@ -20,9 +20,6 @@ end
 # URL bonita
 gem 'friendly_id', '~> 5.0.0'
 
-# Criar um db seed com o db local
-gem 'seed_dump'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

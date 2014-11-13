@@ -185,9 +185,6 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
-    seed_dump (3.2.0)
-      activerecord (~> 4)
-      activesupport (~> 4)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -250,7 +247,6 @@ DEPENDENCIES
   ratyrate
   sass-rails (~> 4.0.0)
   sdoc
-  seed_dump
   simple_form
   sqlite3
   twitter-bootstrap-rails!

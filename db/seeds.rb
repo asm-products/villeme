@@ -52,6 +52,45 @@ puts "\n"
 puts "\n"
 
 
+puts '=== Categories fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+categories = ["Leisure", "Health", "Sport", "Education", "Culture", "Food"]
+
+categories.each do |name|
+  category = Category.create(
+      name: name
+  )
+  puts "Category #{category.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
+
+puts '=== Weeks fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+weeks = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+n = 1
+
+weeks.each do |name|
+  week = Category.create(
+      name: name,
+      slug: name.downcase,
+      organizer_id: n
+  )
+  n += 1
+  puts "Week #{week.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
 
 puts '=========== Events fakers creator ==========='
 
