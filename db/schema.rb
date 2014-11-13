@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108202721) do
+ActiveRecord::Schema.define(version: 20141113201232) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -319,6 +319,31 @@ ActiveRecord::Schema.define(version: 20141108202721) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "rates", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id"
+
+  create_table "rating_caches", force: true do |t|
+    t.integer  "cacheable_id"
+    t.string   "cacheable_type"
+    t.float    "avg",            null: false
+    t.integer  "qty",            null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
 
   create_table "sashes", force: true do |t|
     t.datetime "created_at"

@@ -12,7 +12,8 @@ class Event < ActiveRecord::Base
 
 	# Geocoder
 	geocoded_by :address do |event_obj, results|
-		if geo == results.first
+    geo = results.first
+    if geo
 			event_obj.latitude = geo.latitude
 			event_obj.longitude = geo.longitude
 			event_obj.postal_code = geo.postal_code

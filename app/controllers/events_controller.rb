@@ -40,7 +40,7 @@ class EventsController < ApplicationController
     gon.longitude = @event.get_longitude
 
     # array with places for map
-    gon.events_local_formatted = format_for_map_this
+    gon.events_local_formatted = format_for_map_this(Event.all)
 
   end
 
