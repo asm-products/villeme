@@ -58,7 +58,8 @@ class EventsController < ApplicationController
     @event = current_user.events.build
     place = @event.build_place
 
-    gon_variables
+    set_current_user_lat_long_in_gon
+    set_array_of_places_in_gon
 
   end
 
@@ -70,13 +71,7 @@ class EventsController < ApplicationController
 
     @event.build_place if @event.place.nil?
 
-    places_array = Array.new
-
-    Place.all.each do |place|
-      places_array << {label: place.name, value: place.id} 
-    end
-
-    gon.places_array = places_array
+    set_array_of_places_in_gon
 
     gon.latitude = @event.get_latitude
     gon.longitude = @event.get_longitude
@@ -255,21 +250,23 @@ class EventsController < ApplicationController
 
 
   # variables javascript for views
-  def gon_variables
+  def set_current_user_lat_long_in_gon
     if user_signed_in?
-      gon.latitude = @event.get_latitude
-      gon.longitude = @event.get_longitude
-      gon.city = @city.name     
+      gon.current_user_latitude = current_user.latitude
+      gon.current_user_longitude = current_user.longitude
     end
 
+    set_array_of_places_in_gon
+  end
+
+  def set_array_of_places_in_gon
     places_array = Array.new
     Place.all.each do |place|
-      places_array << {label: place.name, value: place.id} 
+      places_array << {label: place.name, value: place.id}
     end
 
     gon.places_array = places_array
   end
-
 
 
 end

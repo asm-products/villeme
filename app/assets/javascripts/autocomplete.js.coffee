@@ -1,13 +1,10 @@
 
 
 	places = gon.places_array
-
 	latLng = new google.maps.LatLng(gon.latitude, gon.longitude)
 
 
 	$(document).ready ->
-
-		Gmaps.teste_alert()
 
 		$("#place").autocomplete 
 			minLength: 3
@@ -19,8 +16,7 @@
 				if ui.content.length is 0
 					$("#place").css("border-color","#5fcf80")
 					$(".criar-lugar").show()
-					Gmaps.teste_alert()
-					Gmaps.builder()
+          Gmaps.new_map(gon.current_user_latitude, gon.current_user_longitude)
 					map = $(this).gmap3("get")
 
 				else
@@ -43,11 +39,6 @@
 			$("<li>").append("<a>" + item.label + "</a>").appendTo ul
 
 
-
-
-		
-
-
 		$(".has-tooltip").tooltip()
 
 		$("#btn-criar-lugar").click ->
@@ -55,7 +46,6 @@
 				
 				$("#place").css("border-color","#5fcf80")
 
-				
 				# Ajusta o tamanho do mapa - hide to show bug
 				map = $("#place-map").gmap3("get")
 				google.maps.event.trigger(map, "resize") 
@@ -78,10 +68,4 @@
 
 			return
 
-
-
-
-
-
-		
 		return
