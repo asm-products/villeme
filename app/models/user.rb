@@ -32,10 +32,11 @@ class User < ActiveRecord::Base
   belongs_to :neighborhood
 
   belongs_to :level
-  delegate :name, to: :level, prefix: true, allow_nil: true
+    delegate :name, to: :level, prefix: true, allow_nil: true
+    delegate :nivel, to: :level, prefix: true, allow_nil: true
 
   belongs_to :persona
-  delegate :name, to: :persona, prefix: true
+    delegate :name, to: :persona, prefix: true
 
   has_one :notify
 
@@ -166,11 +167,9 @@ class User < ActiveRecord::Base
 
   # Pontos que faltam para o proximo level
   def points_to_next_level
-    user = self
-    current_points = user.points
-    current_level = self.level
-
-    (current_level.next.points).to_i - (current_points).to_i
+    unless level.nil?
+      (level.next.points).to_i - (points).to_i
+    end
   end
 
 
@@ -184,11 +183,9 @@ class User < ActiveRecord::Base
 
   # Porcentagem ralizado no level atual
   def percentage_of_level
-    user = self
-    current_points = user.points
-    current_level = self.level
-
-    ((current_points - current_level.points) * 100) / (user.level.next.points - current_level.points)
+    unless level.nil?
+      ((points - level.points) * 100) / (level.next.points - level.points)
+    end
   end
 
 

@@ -1,5 +1,5 @@
 
-GAMIFICATION = false
+GAMIFICATION = true
 
 module Gamification
 
