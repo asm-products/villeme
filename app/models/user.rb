@@ -30,7 +30,10 @@ class User < ActiveRecord::Base
   # associações
   belongs_to :city
   belongs_to :neighborhood
+
   belongs_to :level
+  delegate :name, to: :level, prefix: true, allow_nil: true
+
   belongs_to :persona
   delegate :name, to: :persona, prefix: true
 
@@ -155,7 +158,9 @@ class User < ActiveRecord::Base
 
   # Url do icone do level atual do usuario
   def level_icon_url
-    self.level.icon.url(:original)
+    unless self.level.nil?
+      self.level.icon.url(:original)
+    end
   end
 
 
