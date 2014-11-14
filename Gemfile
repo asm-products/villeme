@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
@@ -9,6 +7,7 @@ gem 'rails', '4.0.3'
 group :development, :test do 
 	gem 'sqlite3'
 	gem 'faker'
+  gem 'better_errors'
 end
 
 # Heroku requisição

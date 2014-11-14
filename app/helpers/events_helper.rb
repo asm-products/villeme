@@ -28,7 +28,7 @@ module EventsHelper
 		when :km
 			return distance.to_s << "km"
 		when :transport
-			case 
+			case
 			when distance >= 4.0 # bus
 				margem = (distance / 100) * 30
 				algorithm = (distance / 35 * 60) + (margem) + (10).round(3)
@@ -40,7 +40,7 @@ module EventsHelper
 				algorithm = (distance / 4.5 * 60).round(3)
 				resposta[0] = algorithm.round.to_s << "min."
 				resposta[1] = "à pé"
-				resposta[2] = "walk" 
+				resposta[2] = "walk"
 				return resposta
       else
           nil
@@ -84,72 +84,73 @@ module EventsHelper
 
 	def get_hours(event)
 
-		# array que armazenara os horarios validos
-		valid_hours = Hash.new 
 
-		# verifica os horarios
+		valid_hours = Hash.new
 
-		# 1 horario
-		if event.hour_start_first != "2000-01-01 00:00:00 UTC"
-			valid_hours[:first] = Hash.new 
+
+    # 1 horario
+    if hour_valid?(event.hour_start_first)
+			valid_hours[:first] = Hash.new
 			valid_hours[:first][:start] = formata_hora(event.hour_start_first)
-		end
+    end
 
-		if event.hour_finish_first != "2000-01-01 00:00:00 UTC"
+
+
+		if hour_valid? event.hour_finish_first
 			valid_hours[:first][:finish] = formata_hora(event.hour_finish_first)
 		end
 
 		# 2 horario
-		if event.hour_start_second != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_start_second
 			valid_hours[:second] = Hash.new
 			valid_hours[:second][:start] = formata_hora(event.hour_start_second)
 		end
 
-		if event.hour_finish_second != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_finish_second
 			valid_hours[:second][:finish] = formata_hora(event.hour_finish_second)
 		end
 
 
 		# 3 horario
-		if event.hour_start_third != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_start_third
 			valid_hours[:third] = Hash.new
 			valid_hours[:third][:start] = formata_hora(event.hour_start_third)
 		end
 
-		if event.hour_finish_third != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_finish_third
 			valid_hours[:third][:finish] = formata_hora(event.hour_finish_third)
 		end
 
 
 		# 4 horario
-		if event.hour_start_fourth != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_start_fourth
 			valid_hours[:fourth] = Hash.new
 			valid_hours[:fourth][:start] = formata_hora(event.hour_start_fourth)
 		end
 
-		if event.hour_finish_fourth != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_finish_fourth
 			valid_hours[:fourth][:finish] = formata_hora(event.hour_finish_fourth)
 		end
 
 
 		# 5 horario
-		if event.hour_start_fifth != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_start_fifth
 			valid_hours[:fifth] = Hash.new
 			valid_hours[:fifth][:start] = formata_hora(event.hour_start_fifth)
 		end
 
-		if event.hour_finish_fifth != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_finish_fifth
 			valid_hours[:fifth][:finish] = formata_hora(event.hour_finish_fifth)
 		end
 
 
 		# 6 horario
-		if event.hour_start_sixth != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_start_sixth
 			valid_hours[:sixth] = Hash.new
 			valid_hours[:sixth][:start] = formata_hora(event.hour_start_sixth)
 		end
 
-		if event.hour_finish_sixth != "2000-01-01 00:00:00 UTC"
+		if hour_valid? event.hour_finish_sixth
 			valid_hours[:sixth][:finish] = formata_hora(event.hour_finish_sixth)
 		end
 
@@ -162,15 +163,29 @@ module EventsHelper
 			start_hour = hash[:start]
 
 			# exibe a data final somente se existir
-			finish_hour = " até #{hash[:finish]}" unless hash[:finish].blank?
+      if hash[:finish].blank?
+        array_retorno << "#{count}º - #{start_hour}"
+      else
+        array_retorno << "#{count}º - #{start_hour} até #{hash[:finish]}"
+      end
 
-			array_retorno << "#{count}º - #{start_hour}#{finish_hour}"
-			count+= 1
+			count += 1
 		end
 
-    array_retorno
+    return array_retorno
 
 
-	end	
+	end
+
+  def hour_valid?(hour)
+    case hour
+      when nil
+        false
+      when "2000-01-01 00:00:00 UTC"
+        false
+      else
+        true
+    end
+  end
 
 end

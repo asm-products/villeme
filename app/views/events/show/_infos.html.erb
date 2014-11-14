@@ -28,11 +28,9 @@
     <p>
       <h3>Horários</h3>
       <div class="horarios">
-
           <% get_hours(@event).each do |hour| %>
             <%= hour.html_safe %><br/>
           <% end %>
-                  
       </div>
     </p>
   </div>
