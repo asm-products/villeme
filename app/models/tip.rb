@@ -17,4 +17,5 @@ class Tip < ActiveRecord::Base
 	  end  
   end
 
+
 end

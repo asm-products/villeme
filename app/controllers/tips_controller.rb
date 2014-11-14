@@ -5,7 +5,10 @@ class TipsController < ApplicationController
     @tip = Tip.new(tip_params)
     @tip.user_id = current_user.id
     if @tip.save
-    	render json: {description: @tip.description, user: @tip.user.name, created_at: ActionView::Helpers::DateHelper.distance_of_time_in_words_to_now(@tip.created_at), valid: true} 
+    	render json: {description: @tip.description,
+                    user: view_context.link_to(@tip.user.name, @tip.user),
+                    created_at: view_context.distance_of_time_in_words_to_now(@tip.created_at),
+                    valid: true}
     else
     	render json: {valid: false}
     end
