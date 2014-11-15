@@ -43,8 +43,10 @@ module Gamification
 		# lvl7 - Martelo duplo de ferro 
 		when 226...316
 			nivel = 8
-			
-		end
+
+    else
+      nivel = nil
+    end
 
 		# get level que o user se encaixa
 		to_level = Level.find_by(nivel: nivel)
