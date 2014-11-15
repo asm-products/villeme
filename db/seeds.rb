@@ -154,7 +154,8 @@ puts "\n"
       postal_code: faker_address.postcode,
       state: faker_address.state,
       state_code: faker_address.state_abbr,
-      neighborhood_name: Faker::Lorem.word
+      neighborhood_name: Faker::Lorem.word,
+      moderate: 1
   )
   puts "Event #{event.name} created with success!"
 end
