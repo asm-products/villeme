@@ -22,7 +22,7 @@
           <td><%= link_to level.name, level %></td>
           <td><%= level.nivel %></td>
           <td><%= level.points %></td>
-          <td><%= x_image_tag level.icon.url(:original) unless level.icon.blank? %></td>
+          <td><%= image_tag level.icon.url(:original) unless level.icon.blank? %></td>
           <td><%= link_to 'Editar', edit_level_path(level),  class: 'btn btn-default' %></td>
           <td><%= link_to 'Destruir', level, class: 'btn btn-alert', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

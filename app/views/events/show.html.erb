@@ -59,7 +59,7 @@
                   <% # noinspection RailsChecklist05
                      cat = Category.find(id) %>
                   <%= link_to newsfeed_category_path(cat) do %>
-                    <%= x_image_tag "categories/#{cat.slug}.png", title: cat.name, class: "has-tooltip"  %>
+                    <%= image_tag "categories/#{cat.slug}.png", title: cat.name, class: "has-tooltip"  %>
                   <% end %>
                 <% end %>
               </div>

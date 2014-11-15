@@ -32,7 +32,7 @@
 
 <p>
   <b>Icone:</b>
-  <%= x_image_tag @level.icon.url(:original) unless @level.icon.blank? %>
+  <%= image_tag @level.icon.url(:original) unless @level.icon.blank? %>
 </p>
 
 <%= link_to 'Edit', edit_level_path(@level) %> |

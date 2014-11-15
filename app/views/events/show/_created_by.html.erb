@@ -10,7 +10,7 @@
       <%= get_avatar @event.user, "26", "26" %>
       
       <div class="level-image">
-        <%= x_image_tag @event.user.level_icon_url, class: "has-tooltip", title: @event.user.level_name if @event.user.level %>
+        <%= image_tag @event.user.level_icon_url, class: "has-tooltip", title: @event.user.level_name if @event.user.level %>
       </div>
 
       <%= link_to @event.user.name, show_user_path(@event.user) %> há <%= distance_of_time_in_words_to_now @event.created_at %>

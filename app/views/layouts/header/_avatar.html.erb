@@ -6,7 +6,7 @@
       <%= get_avatar current_user, "38", "38" %>
       
       <div class="level-image">
-        <%= x_image_tag current_user.level_icon_url, class: "has-tooltip", data: {placement: "bottom"}, title: "#{current_user.level_name} - Lvl.#{current_user.level_nivel}" if current_user.level %>
+        <%= image_tag current_user.level_icon_url, class: "has-tooltip", data: {placement: "bottom"}, title: "#{current_user.level_name} - Lvl.#{current_user.level_nivel}" if current_user.level %>
       </div>
       
       <span class="name dropdown">

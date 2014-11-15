@@ -78,14 +78,14 @@ module ApplicationHelper
 
 		if user_signed_in?
 			if user.avatar_file_name != nil
-				return x_image_tag user.avatar.url(:thumb), class: "avatar-upload img-circle image", size: size, alt: user.name
+				return image_tag user.avatar.url(:thumb), class: "avatar-upload img-circle image", size: size, alt: user.name
 			elsif user.facebook_avatar
-				return x_image_tag "#{user.facebook_avatar}?width=#{w}&height=#{h}", class: "avatar-upload img-circle image", size: size, alt: user.name
+				return image_tag "#{user.facebook_avatar}?width=#{w}&height=#{h}", class: "avatar-upload img-circle image", size: size, alt: user.name
 			else
-				return x_image_tag "thumb/missing.png", class: "avatar-upload img-circle image", size: size
+				return image_tag "thumb/missing.png", class: "avatar-upload img-circle image", size: size
 			end
 		else
-			return x_image_tag "thumb/missing.png", class: "avatar-upload img-circle image", size: size
+			return image_tag "thumb/missing.png", class: "avatar-upload img-circle image", size: size
 		end
 	end
 

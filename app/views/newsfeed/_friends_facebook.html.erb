@@ -6,7 +6,7 @@
 		<ul class="list-group">
 			<% current_user.friends_from_facebook.each do |friend| %>
 				<li class="list-group-item avatar font-11">
-					<%= x_image_tag friend["picture"]["data"]["url"], size: "26x26", class: "img-circle" %> <span class="p-3-0"><%= friend["name"] %> <span class="green-font pull-right p-6-0 pointer">Convidar</span></span>
+					<%= image_tag friend["picture"]["data"]["url"], size: "26x26", class: "img-circle" %> <span class="p-3-0"><%= friend["name"] %> <span class="green-font pull-right p-6-0 pointer">Convidar</span></span>
 				</li>				
 			<% end %>
 		</ul>
