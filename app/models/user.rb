@@ -133,9 +133,7 @@ class User < ActiveRecord::Base
 
 
   def events_from_my_neighborhood
-    if self.neighborhood.nil?
-      nil
-    else
+    unless neighborhood.nil?
       neighborhood = Neighborhood.find(self.neighborhood.id)
       neighborhood.events
     end
