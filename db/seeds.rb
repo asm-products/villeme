@@ -52,6 +52,42 @@ puts "\n"
 puts "\n"
 
 
+puts '=== Levels fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+levels = {
+    egg: {
+        name: 'Egg',
+        slug: 'egg',
+        points: 0,
+    },
+    little_chicken: {
+        name: 'Little chicken',
+        slug: 'little-chicken',
+        points: 30
+    },
+    wood_hammer:{
+        name: 'Wood hammer',
+        slug: 'wood-hammer',
+        points: 42
+    }
+}
+
+levels.each do |level_data|
+  level = Level.create(
+      name: level_data[:name],
+      slug: level_data[:slug],
+      points: level_data[:points]
+  )
+  puts "Level #{level.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
+
 puts '=== Categories fakers creator ==='
 
 puts "\n"
