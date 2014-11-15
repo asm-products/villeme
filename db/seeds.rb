@@ -128,42 +128,6 @@ puts "\n"
 puts "\n"
 
 
-puts '=========== Events fakers creator ==========='
-
-puts "\n"
-puts "\n"
-
-10.times do
-  faker_address = Faker::Address
-  event = Event.create(
-      name: Faker::Lorem.sentence(4, false, 6),
-      description: Faker::Lorem.paragraph(5),
-      address: faker_address.street_address,
-      date_start: Faker::Date.between(30.days.ago, Date.today),
-      date_finish: Faker::Date.between(Date.today, 60.days.from_now),
-      hour_start_first: Faker::Time.between(Date.today, Date.tomorrow, :all),
-      latitude: faker_address.latitude,
-      longitude: faker_address.longitude,
-      number: faker_address.building_number,
-      cost: Faker::Commerce.price,
-      cost_details: Faker::Lorem.paragraph(1),
-      full_address: faker_address.street_address,
-      city_name: faker_address.city,
-      country: faker_address.country,
-      country_code: faker_address.country_code,
-      postal_code: faker_address.postcode,
-      state: faker_address.state,
-      state_code: faker_address.state_abbr,
-      neighborhood_name: Faker::Lorem.word,
-      moderate: 1
-  )
-  puts "Event #{event.name} created with success!"
-end
-
-puts "\n"
-puts "\n"
-
-
 puts '=========== Users fakers creator ==========='
 
 puts "\n"
@@ -203,6 +167,43 @@ end
 puts "\n"
 puts "\n"
 
+
+
+puts '=========== Events fakers creator ==========='
+
+puts "\n"
+puts "\n"
+
+10.times do
+  faker_address = Faker::Address
+  event = Event.create(
+      name: Faker::Lorem.sentence(4, false, 6),
+      description: Faker::Lorem.paragraph(5),
+      address: faker_address.street_address,
+      date_start: Faker::Date.between(30.days.ago, Date.today),
+      date_finish: Faker::Date.between(Date.today, 60.days.from_now),
+      hour_start_first: Faker::Time.between(Date.today, Date.tomorrow, :all),
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      number: faker_address.building_number,
+      cost: Faker::Commerce.price,
+      cost_details: Faker::Lorem.paragraph(1),
+      full_address: faker_address.street_address,
+      city_name: faker_address.city,
+      country: faker_address.country,
+      country_code: faker_address.country_code,
+      postal_code: faker_address.postcode,
+      state: faker_address.state,
+      state_code: faker_address.state_abbr,
+      neighborhood_name: Faker::Lorem.word,
+      user_id: User.order("RANDOM()").first.id,
+      moderate: 1
+  )
+  puts "Event #{event.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
 
 puts '=========== Admin access ==============='
 
