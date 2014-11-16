@@ -62,16 +62,19 @@ levels = {
         name: 'Egg',
         slug: 'egg',
         points: 0,
+        nivel: 1
     },
     little_chicken: {
         name: 'Little chicken',
         slug: 'little-chicken',
-        points: 30
+        points: 30,
+        nivel: 2
     },
     wood_hammer:{
         name: 'Wood hammer',
         slug: 'wood-hammer',
-        points: 42
+        points: 42,
+        nivel: 3
     }
 }
 
@@ -144,6 +147,7 @@ admin = User.create(
     admin: true,
     invited: true,
     city_id: City.first.id,
+    level_id: 1,
     persona_id: Persona.first.id
 )
 
@@ -159,6 +163,7 @@ admin = User.create(
       longitude: faker_address.longitude,
       invited: true,
       city_id: City.first.id,
+      level_id: 1,
       persona_id: Persona.order("RANDOM()").first.id
   )
   puts "User #{user.name} created with success!"

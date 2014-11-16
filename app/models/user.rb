@@ -179,7 +179,6 @@ class User < ActiveRecord::Base
 
 
 
-  # Porcentagem ralizado no level atual
   def percentage_of_level
     unless level.nil?
       ((points - level.points) * 100) / (level.next.points - level.points)
