@@ -5,10 +5,28 @@
   
     <div class="panel-body user-box sidebar no-padding">
 
-      <div id="user-map" style="width:100%"></div>
+        <div id="user-map" style="width:100%"></div>
 
     </div>
 
+
+
+    <% if user_signed_in? %>
+        <div id="neighborhood-count" class="panel-body">
+            <ul class="list-group m-0 font-12">
+                <%= render "newsfeed/sidebar/neighborhood_count" %>
+            </ul>
+        </div>
+
+
+        <ul class="infos list-group">
+          <li class="item list-group-item walk" title="Indo caminhando"><%= image_tag 'walk.svg' %> <span class="data"></span> caminhando</li>
+          <li class="item list-group-item bike" title="Indo de bicicleta"><%= image_tag 'bike.svg' %> <span class="data"></span> pedalando</li>
+          <li class="item list-group-item bus" title="Indo de ônibus"><%= image_tag 'bus.svg' %> <span class="data"></span> de ônibus</li>
+          <li class="item list-group-item car" title="Indo de carro"><%= image_tag 'car.svg' %> <span class="data"></span> dirigindo</li>
+        </ul>
+
+    <% end %>
 
   </div>
 

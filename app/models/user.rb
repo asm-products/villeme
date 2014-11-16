@@ -134,7 +134,7 @@ class User < ActiveRecord::Base
 
   def events_from_my_neighborhood
     unless neighborhood.nil?
-      neighborhood = Neighborhood.find(self.neighborhood.id)
+      neighborhood = Neighborhood.find(self.neighborhood)
       neighborhood.events
     end
   end
