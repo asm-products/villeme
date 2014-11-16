@@ -9,21 +9,12 @@ class ProfilesController < ApplicationController
 
   def events
 
-  	# mostra os eventos somente para/e do o usuario logado
-  	if current_user.username == params[:id] 
+		if user_signed_in?
+			@events = current_user.events
+		else
+			redirect_to newsfeed_path, flash: "Sem eventos"
+		end
 
-	  	# cria o usuario com o :id que sera requisitado os eventos
-	  	@user = current_user
-
-	  	if @user
-	  		@events = @user.events
-	  	else
-	  		render file: 'public/404', status: 404, formats: [:html]
-	  	end   
-
-	  else
-	  	render file: 'public/404', status: 404, formats: [:html]
-  	end	
 
   end
 

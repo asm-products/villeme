@@ -107,16 +107,12 @@ $(document).on 'ready page:done', ->
 
 		# ativa o wysing para o campo 'cost details'
 	$("#event_cost_details").wysihtml5
-		"color": false
+	  "color": false
 		"image": false
 		"font-styles": false
 		"link": false
 		"emphasis": false		
 		"lists": false
-
-
-
-
 
 
 	# botões add maior horarios
@@ -134,7 +130,7 @@ $(document).on 'ready page:done', ->
 
 	$("#event_cost_fake").focusout ->
 		dinheiro = $("#event_cost_fake").val()
-		dinheiroConvertido = dinheiro.replace(",", "").replace(".", "").replace("R$","")
+		dinheiroConvertido = dinheiro.replace(",", ".").replace("R$","")
 		$("#event_cost").val(dinheiroConvertido)
 		return
 

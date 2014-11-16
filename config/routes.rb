@@ -19,6 +19,8 @@ CidadeVc::Application.routes.draw do
         resources :events do
           get :schedule, on: :member
         end
+
+        get ':id/events', to: 'profiles#events', as: :user_events
       end
 
 
@@ -44,7 +46,7 @@ CidadeVc::Application.routes.draw do
     # Profiles
     
       # :id/events
-      get ':id/events', to: 'profiles#events', as: :user_events
+
 
 
 

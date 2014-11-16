@@ -139,9 +139,9 @@ class EventsController < ApplicationController
 
 
     if @event.save
-      format.html { redirect_to @event, notice: 'O evento foi atualizado com sucesso!' }
+      redirect_to @event, notice: 'O evento foi atualizado com sucesso!'
     else
-      format.html { render action: 'new', alert: 'O evento não pode ser atualizado, arrume as informações abaixo.' }
+      render action: 'new', alert: 'O evento não pode ser atualizado, arrume as informações abaixo.'
     end
 
 
