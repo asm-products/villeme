@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113201232) do
+ActiveRecord::Schema.define(version: 20141116185833) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(version: 20141113201232) do
     t.string   "key"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "locale",         default: "en"
   end
 
   add_index "invites", ["user_id"], name: "index_invites_on_user_id"
@@ -412,6 +413,7 @@ ActiveRecord::Schema.define(version: 20141113201232) do
     t.string   "facebook_avatar"
     t.string   "slug"
     t.string   "token_expires_at"
+    t.string   "locale"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id"
