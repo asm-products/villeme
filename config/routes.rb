@@ -1,8 +1,5 @@
 CidadeVc::Application.routes.draw do
 
-
-
-
     get "tips/create"
     get "tips/destroy"
 
@@ -11,19 +8,20 @@ CidadeVc::Application.routes.draw do
     
 
     # URL BASE -------------------------
-
-      # root direciona para o controller newsfeed
-      get '/newsfeed', to: "newsfeed#index", via: :get, as: :root    
      
       # root para o index
       scope "(:locale)", locale: /en|br/ do
+
+        get '/newsfeed', to: "newsfeed#index", via: :get, as: :root
+
         root to: 'welcome#index', as: :welcome
+
+        resources :events do
+          get :schedule, on: :member
+        end
       end
 
-      # /events com link para agendar via /schedule
-      resources :events do
-        get :schedule, on: :member
-      end
+
 
 
       get "bussola/city"
