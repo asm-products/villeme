@@ -82,7 +82,8 @@ levels.each do |key, hash|
   level = Level.create(
       name: hash[:name],
       slug: hash[:slug],
-      points: hash[:points]
+      points: hash[:points],
+      nivel: hash[:nivel]
   )
   puts "Level #{level.name} created with success!"
 end

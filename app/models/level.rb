@@ -4,13 +4,9 @@ class Level < ActiveRecord::Base
 	# Associações
 	has_many :users
 
-
-
 	# Avisa a classe que possui imagem no POST
 	has_attached_file :icon
 
-	# Validações
-	validates_attachment_presence :icon
 
 
 	def next
