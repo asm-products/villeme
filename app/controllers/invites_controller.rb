@@ -6,7 +6,7 @@ class InvitesController < ApplicationController
   # acesso somente para admin
   before_action :is_admin, except: :create
   
-  layout 'full-width'
+
  
 
   # GET /invites

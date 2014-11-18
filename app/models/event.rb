@@ -136,7 +136,15 @@ class Event < ActiveRecord::Base
     else
       self.latitude
     end
-  end
+	end
+
+	def get_cost
+		if cost == 0 or cost.blank?
+			"Gratuito"
+		else
+			cost
+		end
+	end
 
 	def agended_by_count
 		number = self.agended_by.count
