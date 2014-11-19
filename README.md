@@ -14,15 +14,11 @@ The official repo is https://github.com/asm-products/villeme
 
 ### Dependencies
 
-To run this project you need to have:
+To run this project in **development** you need to have:
 
-* Ruby 1.9.3
+* Git
+* Ruby 2.0.0
 * Rails 4.0.3
-* [PostgreSQL](http://www.postgresql.org/)
-	* OSX - [Postgress.app](http://postgresapp.com/)
-	* Linux - `$ sudo apt-get install postgresql`
-	* Windows - [PostgreSQL for Windows](http://www.postgresql.org/download/windows/)
-
 
 ### Setup the project
 
@@ -34,17 +30,21 @@ To run this project you need to have:
 	
 	`$ cd villeme`
 
-* Install the gems
+* Install the gems (dependencies)
 
 	`$ bundle install`
 
+* Compile assets (js, css, images)
+
+	`$ exec bundle rake assets:precompile`
+
 * Create the database
 
-	`$ rake db:schema:load`
+	`$ exec bundle rake db:schema:load`
 	
 * Create faker data with seed
 
-    `$ rake db:seed`
+    `$ exec bundle rake db:seed`
 
 If everything goes OK, you can now run the project!
 
