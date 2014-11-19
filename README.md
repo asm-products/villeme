@@ -34,19 +34,13 @@ To run this project you need to have:
 	
 	`$ cd villeme`
 
-* Create the *database.yml*
-
-	`$ cp config/database.sample.yml config/database.yml`
-
-Add your database credentials if necessary.
-
 * Install the gems
 
 	`$ bundle install`
 
 * Create the database
 
-	`$ rake db:create db:migrate`
+	`$ rake db:schema:load`
 	
 * Create faker data with seed
 
