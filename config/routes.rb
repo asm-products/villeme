@@ -1,5 +1,7 @@
 CidadeVc::Application.routes.draw do
 
+  resources :countries
+
   resources :states
 
     get "tips/create"
