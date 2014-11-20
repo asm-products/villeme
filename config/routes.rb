@@ -1,5 +1,7 @@
 CidadeVc::Application.routes.draw do
 
+  resources :states
+
     get "tips/create"
     get "tips/destroy"
 
