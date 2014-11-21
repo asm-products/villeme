@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120224722) do
+ActiveRecord::Schema.define(version: 20141120234350) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -82,6 +82,15 @@ ActiveRecord::Schema.define(version: 20141120224722) do
     t.string   "country_code"
     t.string   "state"
     t.string   "state_code"
+  end
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -367,6 +376,17 @@ ActiveRecord::Schema.define(version: 20141120224722) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "country"
+    t.string   "country_code"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subcategories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -397,14 +417,12 @@ ActiveRecord::Schema.define(version: 20141120224722) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "city_id"
     t.string   "name"
     t.string   "username"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "neighborhood_id"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "provider"
@@ -420,11 +438,18 @@ ActiveRecord::Schema.define(version: 20141120224722) do
     t.string   "slug"
     t.string   "token_expires_at"
     t.string   "locale"
+    t.string   "postal_code"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.string   "state_code"
+    t.string   "country"
+    t.string   "country_code"
+    t.string   "street_number"
+    t.string   "full_address"
   end
 
-  add_index "users", ["city_id"], name: "index_users_on_city_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["neighborhood_id"], name: "index_users_on_neighborhood_id"
   add_index "users", ["persona_id"], name: "index_users_on_persona_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true
