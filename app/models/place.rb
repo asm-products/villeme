@@ -10,7 +10,6 @@ class Place < ActiveRecord::Base
 
 	belongs_to :price
 
-	accepts_nested_attributes_for :neighborhood
 
 	# Geocoder
 	geocoded_by :address do |place_obj, results|
