@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120234350) do
+ActiveRecord::Schema.define(version: 20141121012230) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 20141120234350) do
     t.date     "date_finish"
     t.time     "hour_finish_first"
     t.string   "number"
-    t.integer  "neighborhood_id"
     t.decimal  "cost",               precision: 8, scale: 2
     t.time     "hour_start_second"
     t.time     "hour_start_third"
@@ -134,15 +133,15 @@ ActiveRecord::Schema.define(version: 20141120234350) do
     t.string   "phone"
     t.integer  "subcategory_id"
     t.string   "full_address"
-    t.string   "city_name"
     t.string   "country"
     t.string   "country_code"
-    t.string   "cross_street"
     t.string   "postal_code"
     t.string   "state"
     t.string   "state_code"
     t.string   "formatted_address"
-    t.string   "neighborhood_name"
+    t.string   "city"
+    t.string   "neighborhood"
+    t.string   "street_number"
   end
 
   add_index "events", ["persona_id"], name: "index_events_on_persona_id"
