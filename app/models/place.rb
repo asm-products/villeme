@@ -12,19 +12,22 @@ class Place < ActiveRecord::Base
 
 
 	# Geocoder
-	geocoded_by :address do |place_obj, results|
-		if geo  = results.first
-			place_obj.latitude = geo.latitude
-			place_obj.longitude = geo.longitude
-			place_obj.postal_code = geo.postal_code
-			place_obj.neighborhood_name = geo.address_components_of_type(:neighborhood).first["long_name"]
-			place_obj.city_name = geo.city
-			place_obj.state = geo.state
-			place_obj.state_code = geo.state_code
-			place_obj.country = geo.country
-			place_obj.country_code = geo.country_code
-			place_obj.number = geo.street_number
-			place_obj.full_address = geo.address
+	geocoded_by :address do |place, geocoder_results|
+		geocoder  = geocoder_results.first
+
+		if geocoder
+			place.latitude = geocoder.latitude
+			place.longitude = geocoder.longitude
+			place.street_number = geocoder.street_number
+			place.postal_code = geocoder.postal_code
+			place.neighborhood = geocoder.address_components_of_type(:neighborhood).first["long_name"]
+			place.city = geocoder.city
+			place.full_address = geocoder.address
+			place.state = geocoder.state
+			place.state_code = geocoder.state_code
+			place.country_code = geocoder.country_code
+			place.country = geocoder.country
+			place.formatted_address = "#{geocoder.address_components_of_type(:route).first["short_name"]}, #{geocoder.street_number} - #{geocoder.address_components_of_type(:neighborhood).first["long_name"]}"
 		end
 	end
 
