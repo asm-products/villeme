@@ -12,17 +12,12 @@ class WelcomeController < ApplicationController
 			if current_user.invited
 				redirect_to newsfeed_path and return
 			end
-
 		end
 
 		if params[:key]
-
 			create_user_from_invite(params[:key])
-
   		@invite = Invite.new
-
- 		else
-
+		else
   		@invite = Invite.new
   	end
 

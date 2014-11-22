@@ -8,27 +8,11 @@ class Event < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+	extend Geocoderize
 
 
 	# Geocoder
-	geocoded_by :address do |event_obj, results|
-    geo = results.first
-    if geo
-			event_obj.latitude = geo.latitude
-			event_obj.longitude = geo.longitude
-			event_obj.postal_code = geo.postal_code
-			event_obj.neighborhood_name = geo.address_components_of_type(:neighborhood).first["long_name"]
-			event_obj.city_name = geo.city
-			event_obj.state = geo.state
-			event_obj.state_code = geo.state_code
-			event_obj.country = geo.country
-			event_obj.country_code = geo.country_code
-			event_obj.number = geo.street_number
-			event_obj.full_address = geo.address
-		end
-	end
-
-	after_validation :geocode, if: "latitude.nil?"
+	geocoder_by_address
 
 
 	# Associações
