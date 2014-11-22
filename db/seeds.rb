@@ -6,7 +6,7 @@ puts "\n"
 puts "\n"
 
 
-puts '=== Cities and Neighborhoods fakers creator ==='
+puts '=== Cities fakers creator ==='
 
 puts "\n"
 puts "\n"
@@ -15,15 +15,43 @@ puts "\n"
   faker_address = Faker::Address
   city = City.create(
       name: faker_address.city,
-      address: faker_address.street_address,
       latitude: faker_address.latitude,
       longitude: faker_address.longitude,
+      state_name: faker_address.state,
+      state_code: faker_address.state_abbr,
+      country_name: faker_address.country,
+      country_code: faker_address.country_code,
   )
   puts "City #{city.name} with #{city.neighborhoods.count} neighborhoods created with success!"
 end
 
 puts "\n"
 puts "\n"
+
+
+puts '=== Neighborhoods fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+3.times do
+  faker_address = Faker::Address
+  neighborhood = Neighborhood.create(
+      name: Faker::Lorem.word,
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      city_name: faker_address.city,
+      state_name: faker_address.state,
+      state_code: faker_address.state_abbr,
+      country_name: faker_address.country,
+      country_code: faker_address.country_code,
+  )
+  puts "City #{neighborhood.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
 
 
 puts '=== Personas fakers creator ==='
@@ -137,9 +165,18 @@ admin = User.create(
     password_confirmation: 'password',
     latitude: faker_address.latitude,
     longitude: faker_address.longitude,
+    route: faker_address.street_address,
+    street_number: faker_address.building_number,
+    neighborhood_name: Neighborhood.order("RANDOM()").first.name,
+    city_name: faker_address.city,
+    postal_code: faker_address.postcode,
+    state_name: faker_address.state,
+    state_code: faker_address.state_abbr,
+    country_name: faker_address.country,
+    country_code: faker_address.country_code,
+    full_address: faker_address.street_address,
     admin: true,
     invited: true,
-    city_id: City.first.id,
     level_id: 1,
     persona_id: Persona.first.id
 )
@@ -154,8 +191,17 @@ admin = User.create(
       password_confirmation: password,
       latitude: faker_address.latitude,
       longitude: faker_address.longitude,
+      route: faker_address.street_address,
+      street_number: faker_address.building_number,
+      neighborhood_name: Neighborhood.order("RANDOM()").first.name,
+      city_name: faker_address.city,
+      postal_code: faker_address.postcode,
+      state_name: faker_address.state,
+      state_code: faker_address.state_abbr,
+      country_name: faker_address.country,
+      country_code: faker_address.country_code,
+      full_address: faker_address.street_address,
       invited: true,
-      city_id: City.first.id,
       level_id: 1,
       persona_id: Persona.order("RANDOM()").first.id
   )
@@ -177,16 +223,16 @@ puts "\n"
   event = Event.create(
       name: Faker::Lorem.sentence(4, false, 6),
       description: Faker::Lorem.paragraph(5),
-      address: faker_address.street_address,
       date_start: Faker::Date.between(30.days.ago, Date.today),
       date_finish: Faker::Date.between(Date.today, 60.days.from_now),
       hour_start_first: Faker::Time.between(Date.today, Date.tomorrow, :all),
-      latitude: faker_address.latitude,
-      longitude: faker_address.longitude,
       cost: Faker::Commerce.price,
       cost_details: Faker::Lorem.paragraph(1),
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      route: faker_address.street_address,
       street_number: faker_address.building_number,
-      neighborhood_name: Faker::Lorem.word,
+      neighborhood_name: Neighborhood.order("RANDOM()").first.name,
       city_name: faker_address.city,
       postal_code: faker_address.postcode,
       state_name: faker_address.state,
