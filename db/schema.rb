@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121013817) do
+ActiveRecord::Schema.define(version: 20141122213023) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -133,14 +133,14 @@ ActiveRecord::Schema.define(version: 20141121013817) do
     t.string   "phone"
     t.integer  "subcategory_id"
     t.string   "full_address"
-    t.string   "country"
+    t.string   "country_name"
     t.string   "country_code"
     t.string   "postal_code"
-    t.string   "state"
+    t.string   "state_name"
     t.string   "state_code"
     t.string   "formatted_address"
-    t.string   "city"
-    t.string   "neighborhood"
+    t.string   "city_name"
+    t.string   "neighborhood_name"
     t.string   "street_number"
   end
 
@@ -436,11 +436,11 @@ ActiveRecord::Schema.define(version: 20141121013817) do
     t.string   "token_expires_at"
     t.string   "locale"
     t.string   "postal_code"
-    t.string   "neighborhood"
-    t.string   "city"
-    t.string   "state"
+    t.string   "neighborhood_name"
+    t.string   "city_name"
+    t.string   "state_name"
     t.string   "state_code"
-    t.string   "country"
+    t.string   "country_name"
     t.string   "country_code"
     t.string   "street_number"
     t.string   "full_address"
