@@ -1,7 +1,7 @@
 module Geocoderize
 
 
-  def geocoded_by_address
+  def geocoder_by_address
     geocoded_by :address do |object, geocoder_results|
       geocoder = geocoder_results.first
 

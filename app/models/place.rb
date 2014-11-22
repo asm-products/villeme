@@ -10,12 +10,7 @@ class Place < ActiveRecord::Base
 
 
 	# Geocoder
-	geocoded_by_address
-
-
-
-
-
+	geocoder_by_address
 
 
 end

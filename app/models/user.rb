@@ -1,9 +1,13 @@
 class User < ActiveRecord::Base
+  #GEMs
   has_merit
   ratyrate_rater
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged  
+  friendly_id :slug_candidates, use: :slugged
+
+  extend Geocoderize
+  geocoder_by_address
 
   # Try building a slug based on the following fields in
   # increasing order of specificity.
