@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122214339) do
+ActiveRecord::Schema.define(version: 20141122225652) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20141122214339) do
     t.string   "city_name"
     t.string   "neighborhood_name"
     t.string   "street_number"
+    t.string   "route"
   end
 
   add_index "events", ["persona_id"], name: "index_events_on_persona_id"
@@ -322,6 +323,7 @@ ActiveRecord::Schema.define(version: 20141122214339) do
     t.string   "neighborhood_name"
     t.string   "city_name"
     t.string   "street_number"
+    t.string   "route"
   end
 
   add_index "places", ["neighborhood_id"], name: "index_places_on_neighborhood_id"
@@ -444,6 +446,7 @@ ActiveRecord::Schema.define(version: 20141122214339) do
     t.string   "country_code"
     t.string   "street_number"
     t.string   "full_address"
+    t.string   "route"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

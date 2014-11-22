@@ -8,6 +8,7 @@ module Geocoderize
       if geocoder
         object.latitude = geocoder.latitude
         object.longitude = geocoder.longitude
+        object.route = geocoder.address_components_of_type(:route).first["short_name"]
         object.street_number = geocoder.street_number
         object.postal_code = geocoder.postal_code
         object.neighborhood_name = geocoder.address_components_of_type(:neighborhood).first["long_name"]
