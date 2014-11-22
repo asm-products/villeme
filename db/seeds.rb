@@ -19,14 +19,6 @@ puts "\n"
       latitude: faker_address.latitude,
       longitude: faker_address.longitude,
   )
-  3.times do
-    city.neighborhoods << Neighborhood.create(
-        name: faker_address.city,
-        address: faker_address.street_address,
-        latitude: faker_address.latitude,
-        longitude: faker_address.longitude,
-    )
-  end
   puts "City #{city.name} with #{city.neighborhoods.count} neighborhoods created with success!"
 end
 
@@ -191,17 +183,17 @@ puts "\n"
       hour_start_first: Faker::Time.between(Date.today, Date.tomorrow, :all),
       latitude: faker_address.latitude,
       longitude: faker_address.longitude,
-      number: faker_address.building_number,
       cost: Faker::Commerce.price,
       cost_details: Faker::Lorem.paragraph(1),
-      full_address: faker_address.street_address,
-      city_name: faker_address.city,
-      country: faker_address.country,
-      country_code: faker_address.country_code,
-      postal_code: faker_address.postcode,
-      state: faker_address.state,
-      state_code: faker_address.state_abbr,
+      street_number: faker_address.building_number,
       neighborhood_name: Faker::Lorem.word,
+      city_name: faker_address.city,
+      postal_code: faker_address.postcode,
+      state_name: faker_address.state,
+      state_code: faker_address.state_abbr,
+      country_name: faker_address.country,
+      country_code: faker_address.country_code,
+      full_address: faker_address.street_address,
       user_id: User.order("RANDOM()").first.id,
       moderate: 1
   )
