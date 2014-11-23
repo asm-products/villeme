@@ -22,7 +22,7 @@ puts "\n"
       country_name: faker_address.country,
       country_code: faker_address.country_code,
   )
-  puts "City #{city.name} with #{city.neighborhoods.count} neighborhoods created with success!"
+  puts "City #{city.name} created with success!"
 end
 
 puts "\n"

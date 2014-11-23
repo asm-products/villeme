@@ -178,69 +178,7 @@ class ApplicationController < ActionController::Base
 
 
 
-	# Pega o endereço do evento
-	def event_address(event)
 
-		place = return_place(event)
-    address = return_address(event)
-    number = return_number(event)
-    neighborhood = return_neighborhood(event)
-
-    return place.to_s + address.to_s + number.to_s + " - " + neighborhood.to_s
-
-	end
-
-  def return_place(event)
-    if event.place.nil?
-      place = nil
-    else
-      place = "Em #{event.place.name}, "
-    end
-    place
-  end
-
-
-  def return_neighborhood(event)
-    if event.neighborhood
-      event.neighborhood.name
-    else
-      nil
-    end
-  end
-
-  def return_number(event)
-    if event.number.blank?
-
-      # se o numero do lugar <- evento não estiver branco
-      if event.place.number.blank?
-        number = "Sem nº"
-      else
-        number = event.place.number
-      end
-    else
-      number = event.number
-    end
-    number
-  end
-
-  def return_address(event)
-    if event.address.blank?
-
-      # se o endereço do lugar <- evento não estiver branco
-      if event.place.address.blank?
-        address = "Sem endereço"
-      else
-        address = "#{event.place.address}, "
-      end
-
-      # se o endereço do evento não estiver branco
-    else
-      address = "#{event.address}, "
-    end
-    address
-  end
-
-  helper_method :event_address
 
 
 

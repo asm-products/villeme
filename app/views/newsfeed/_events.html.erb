@@ -29,7 +29,7 @@
 
 		</div>
 
-		<div class="panel panel-default h-325 shadow-animation" address="<%= event_address event %>" latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" bus="<%= distance[:bus] %>min." car="<%= distance[:car] %>min." walk="<%= distance[:walk] %>min." bike="<%= distance[:bike] %>min." letter="<%= letter[i] %>">
+		<div class="panel panel-default h-325 shadow-animation" address="<%= event.full_address %>" latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" bus="<%= distance[:bus] %>min." car="<%= distance[:car] %>min." walk="<%= distance[:walk] %>min." bike="<%= distance[:bike] %>min." letter="<%= letter[i] %>">
 			<div class="row">
 				<div class="col-sm-12">
 

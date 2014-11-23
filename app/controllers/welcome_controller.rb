@@ -2,7 +2,7 @@
 
 class WelcomeController < ApplicationController
 
-	include Invite
+	include InviteModule
 
 	layout 'welcome'
 

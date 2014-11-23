@@ -1,4 +1,4 @@
-module Invite
+module InviteModule
 
 
   def create_user_from_invite(key)
