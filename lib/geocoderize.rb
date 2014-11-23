@@ -2,7 +2,7 @@ module Geocoderize
 
 
   def geocoder_by_address
-    geocoded_by :full_address do |object, geocoder_results|
+    geocoded_by :address do |object, geocoder_results|
       geocoder = geocoder_results.first
 
       if geocoder
