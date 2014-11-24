@@ -113,6 +113,9 @@ class User < ActiveRecord::Base
 
   end  
 
+  def city
+    City.find_by(name: city_name)
+  end
 
 
 

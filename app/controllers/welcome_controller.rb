@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
 
 		if user_signed_in?
 			if current_user.invited
-				redirect_to newsfeed_path and return
+				redirect_to "/#{current_user.city.slug}" and return
 			end
 		end
 

@@ -27,9 +27,9 @@ CidadeVc::Application.routes.draw do
         get ':id/events', to: 'profiles#events', as: :user_events
 
         # /city
-         get '/:city', to: 'newsfeed#index'
+        get '/:city/:neighborhood', to: 'newsfeed#index'
+        get '/:city', to: 'newsfeed#index'
 
-        get ':city/:model', to: 'newsfeed#index'
       end
 
 
