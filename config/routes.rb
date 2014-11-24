@@ -4,144 +4,148 @@ CidadeVc::Application.routes.draw do
 
   resources :states
 
-    get "tips/create"
-    get "tips/destroy"
 
 
-    post '/rate' => 'rater#create', :as => 'rate'
-    
+  post '/rate' => 'rater#create', :as => 'rate'
 
-    # URL BASE -------------------------
-     
-      # root para o index
-      scope "(:locale)", locale: /en|br/ do
 
-        get '/newsfeed', to: "newsfeed#index", via: :get, as: :root
 
-        root to: 'welcome#index', as: :welcome
+  # Devise
 
-        resources :events do
-          get :schedule, on: :member
-        end
+  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
-        get ':id/events', to: 'profiles#events', as: :user_events
+  devise_scope :user do
+    get 'sign_up', to: 'devise/registrations#new', as: :registrar
+    get 'sign_in', to: 'devise/sessions#new', as: :entrar
+    get 'sign_out', to: 'devise/sessions#destroy', as: :sair
+    get 'account/edit', to: 'devise/registrations#edit', as: 'conta_edit'
+  end
 
-        # /city
-        get '/:city/:neighborhood', to: 'newsfeed#index'
-        get '/:city', to: 'newsfeed#index'
 
+  # URL BASE -------------------------
+
+    scope "(:locale)", locale: /en|br/ do
+
+      get '/newsfeed', to: "newsfeed#index", via: :get, as: :root
+
+      root to: 'welcome#index', as: :welcome
+
+      resources :events do
+        get :schedule, on: :member
       end
 
+      get ':id/events', to: 'profiles#events', as: :user_events
 
+      # /city
+      get '/:city/:neighborhood', to: 'newsfeed#index'
+      get '/:city', to: 'newsfeed#index'
 
-
-      get "bussola/city"
-      get "bussola/neighborhood"
-      post "bussola/selecionado"
-
-
-    # Devise
-    
-      devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
-
-      devise_scope :user do
-        get 'sign_up', to: 'devise/registrations#new', as: :registrar
-        get 'sign_in', to: 'devise/sessions#new', as: :entrar
-        get 'sign_out', to: 'devise/sessions#destroy', as: :sair
-        get 'account/edit', to: 'devise/registrations#edit', as: 'conta_edit'
-      end
-
-
-    # Profiles
-    
-      # :id/events
+    end
 
 
 
 
-    # Account
-    
-      # :id/account
-      get ':id/account', to: 'accounts#edit', as: :user_account
-
-      match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
+  get "bussola/city"
+  get "bussola/neighborhood"
+  post "bussola/selecionado"
 
 
 
-    # Newsfeed
-    
-      # /
-      get 'newsfeed',  to: 'newsfeed#index', as: :newsfeed
-
-      # /mypersona -> filtra os eventos pela persona do current_user
-      get 'mypersona/', to: 'newsfeed#mypersona', as: :my_persona_events
-
-      # /category/:category -> filtra os eventos por categoria
-      get 'category/:category/', to: 'newsfeed#index', as: :newsfeed_category
-
-      # /neighborhood/events -> filtra os eventos por bairro
-      get 'neighborhood/:neighborhood/', to: 'newsfeed#index', as: :newsfeed_neighborhood 
-
-      # /myneighborhood -> filtra os eventos por bairro para o current_user
-      get 'myneighborhood/', to: 'newsfeed#myneighborhood', as: :my_neighborhood_events   
-
-      # /myagenda -> filtra os eventos da minha agenda
-      get 'myagenda/', to: 'newsfeed#myagenda', as: :my_agenda_events     
 
 
-    # Notificações
+  # Profiles
 
-      get "notify/bell"
-      get "notify/newsfeed"
+    # :id/events
 
 
 
-    resources :subcategories
 
-    resources :categories
+  # Account
 
-    resources :cities
+    # :id/account
+    get ':id/account', to: 'accounts#edit', as: :user_account
 
-    resources :neighborhoods
+    match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
 
-    resources :places
 
-    resources :levels    
 
-    resources :users, except: :show
+  # Newsfeed
 
-    resources :invites
+    # /
+    get 'newsfeed',  to: 'newsfeed#index', as: :newsfeed
 
-    resources :weeks
+    # /mypersona -> filtra os eventos pela persona do current_user
+    get 'mypersona/', to: 'newsfeed#mypersona', as: :my_persona_events
 
-    resources :prices
+    # /category/:category -> filtra os eventos por categoria
+    get 'category/:category/', to: 'newsfeed#index', as: :newsfeed_category
 
-    # /feedback
-    resources :feedbacks
+    # /neighborhood/events -> filtra os eventos por bairro
+    get 'neighborhood/:neighborhood/', to: 'newsfeed#index', as: :newsfeed_neighborhood
 
-    # /persona
-    resources :personas
+    # /myneighborhood -> filtra os eventos por bairro para o current_user
+    get 'myneighborhood/', to: 'newsfeed#myneighborhood', as: :my_neighborhood_events
 
-    resources :tips
+    # /myagenda -> filtra os eventos da minha agenda
+    get 'myagenda/', to: 'newsfeed#myagenda', as: :my_agenda_events
+
+
+  # Notificações
+
+    get "notify/bell"
+    get "notify/newsfeed"
+
+
+
+  resources :subcategories
+
+  resources :categories
+
+  resources :cities
+
+  resources :neighborhoods
+
+  resources :places
+
+  resources :levels
+
+  resources :users, except: :show
+
+  resources :invites
+
+  resources :weeks
+
+  resources :prices
+
+  # /feedback
+  resources :feedbacks
+
+  # /persona
+  resources :personas
+
+  resources :tips
 
   # AJAX ------------------------------------------
   
-    # Descrição completa em "event#show"
+    # Complete description of event on show
     get 'events/:event/fulldescription', to: 'events#full_description', as: 'full_description'
 
-    # Aprova evento para o newsfeed pelo admin
+    # Aprove event to newsfeed
     match 'events/aprove/:id', to: 'events#aprove', via: :put, as: 'event_aprove'
   
-    # Urls de gerenciamento de amizades
+    # Friendship routes
     get "friendships/request", to: "friendships#request_friendship", as: :friend_request
     get "friendships/accept", to: "friendships#accept_friendship", as: :friend_accept
     get "friendships/destroy", to: "friendships#destroy_friendship", as: :friend_destroy
 
-    # Envia convite para usuarios
+    # Send invite to users
     get 'invites/send/:key', to: 'invites#send_invite', as: 'send_invite'
 
     get ':id/', to: 'users#show', as: :show_user
 
+    # Tips on events
+    get "tips/create"
+    get "tips/destroy"
 
   # torna possivel "redirects" para root_path
   # root :controller => 'static', :action => '/' 
