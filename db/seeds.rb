@@ -6,6 +6,51 @@ puts "\n"
 puts "\n"
 
 
+puts '=== Countries fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+3.times do
+  faker_address = Faker::Address
+  faker_name = Faker::Lorem.word
+  country = Country.create(
+      name: faker_name,
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      code: faker_name[0..2].upcase
+  )
+  puts "Country #{country.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
+
+
+puts '=== States fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+3.times do
+  faker_address = Faker::Address
+  country = Country.order("RANDOM()").first
+  state = State.create(
+      name: Faker::Lorem.word,
+      latitude: faker_address.latitude,
+      longitude: faker_address.longitude,
+      country_name: country.name,
+      country_code: country.code
+  )
+  puts "State #{state.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
+
+
 puts '=== Cities fakers creator ==='
 
 puts "\n"
