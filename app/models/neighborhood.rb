@@ -1,7 +1,7 @@
 class Neighborhood < ActiveRecord::Base
 
   extend FriendlyId
-  friendly_id :name, use: :slug_candidates
+  friendly_id :slug_candidates, use: :slugged
 
   # Try building a slug based on the following fields in
   # increasing order of specificity.

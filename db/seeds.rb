@@ -11,7 +11,7 @@ puts '=== Countries fakers creator ==='
 puts "\n"
 puts "\n"
 
-3.times do
+2.times do
   faker_address = Faker::Address
   faker_name = Faker::Lorem.word
   country = Country.create(
@@ -33,7 +33,7 @@ puts '=== States fakers creator ==='
 puts "\n"
 puts "\n"
 
-3.times do
+2.times do
   faker_address = Faker::Address
   country = Country.order("RANDOM()").first
   state = State.create(
@@ -56,16 +56,18 @@ puts '=== Cities fakers creator ==='
 puts "\n"
 puts "\n"
 
-3.times do
+2.times do
   faker_address = Faker::Address
+  country = Country.order("RANDOM()").first
+  state = State.order("RANDOM()").first
   city = City.create(
       name: faker_address.city,
       latitude: faker_address.latitude,
       longitude: faker_address.longitude,
-      state_name: faker_address.state,
-      state_code: faker_address.state_abbr,
-      country_name: faker_address.country,
-      country_code: faker_address.country_code,
+      state_name: state.name,
+      state_code: state.code,
+      country_name: country.name,
+      country_code: country.code,
   )
   puts "City #{city.name} created with success!"
 end
@@ -79,17 +81,19 @@ puts '=== Neighborhoods fakers creator ==='
 puts "\n"
 puts "\n"
 
-3.times do
+2.times do
   faker_address = Faker::Address
+  country = Country.order("RANDOM()").first
+  state = State.order("RANDOM()").first
   neighborhood = Neighborhood.create(
       name: Faker::Lorem.word,
       latitude: faker_address.latitude,
       longitude: faker_address.longitude,
       city_name: City.order("RANDOM()").first.name,
-      state_name: faker_address.state,
-      state_code: faker_address.state_abbr,
-      country_name: faker_address.country,
-      country_code: faker_address.country_code,
+      state_name: state.name,
+      state_code: state.code,
+      country_name: country.name,
+      country_code: country.code,
   )
   puts "City #{neighborhood.name} created with success!"
 end
@@ -215,10 +219,10 @@ admin = User.create(
     neighborhood_name: Neighborhood.order("RANDOM()").first.name,
     city_name: City.order("RANDOM()").first.name,
     postal_code: faker_address.postcode,
-    state_name: faker_address.state,
-    state_code: faker_address.state_abbr,
-    country_name: faker_address.country,
-    country_code: faker_address.country_code,
+    state_name: State.order("RANDOM()").first.name,
+    state_code: nil,
+    country_name: Country.order("RANDOM()").first.name,
+    country_code: nil,
     full_address: faker_address.street_address,
     admin: true,
     invited: true,
@@ -241,10 +245,10 @@ admin = User.create(
       neighborhood_name: Neighborhood.order("RANDOM()").first.name,
       city_name: City.order("RANDOM()").first.name,
       postal_code: faker_address.postcode,
-      state_name: faker_address.state,
-      state_code: faker_address.state_abbr,
-      country_name: faker_address.country,
-      country_code: faker_address.country_code,
+      state_name: State.order("RANDOM()").first.name,
+      state_code: nil,
+      country_name: Country.order("RANDOM()").first.name,
+      country_code: nil,
       full_address: faker_address.street_address,
       invited: true,
       level_id: 1,
@@ -280,10 +284,10 @@ puts "\n"
       neighborhood_name: Neighborhood.order("RANDOM()").first.name,
       city_name: City.order("RANDOM()").first.name,
       postal_code: faker_address.postcode,
-      state_name: faker_address.state,
-      state_code: faker_address.state_abbr,
-      country_name: faker_address.country,
-      country_code: faker_address.country_code,
+      state_name: State.order("RANDOM()").first.name,
+      state_code: nil,
+      country_name: Country.order("RANDOM()").first.name,
+      country_code: nil,
       full_address: faker_address.street_address,
       user_id: User.order("RANDOM()").first.id,
       moderate: 1

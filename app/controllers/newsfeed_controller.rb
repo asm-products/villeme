@@ -25,16 +25,21 @@ class NewsfeedController < ApplicationController
       @category = Category.friendly.find params[:category]
       @events = @category.events.upcoming
 
+    elsif params[:city]
+
+      # filtra eventos por bairro
+      @events = Event.where(city_name: params[:city]).upcoming
+
+
     elsif params[:neighborhood]
 
       # filtra eventos por bairro
-      @neighborhood = Neighborhood.friendly.find params[:neighborhood]
-      @events = @neighborhood.events.upcoming 
+      @events = Event.where(city_name: params[:city], neighborhood_name: params[:model]).upcoming
    
     else
 
       # pega todos os eventos
-    	@events = Event.upcoming
+    	@events = Event.where(city_name: current_user.city_name).upcoming
     end
 
     @number_of_events = @events.count
