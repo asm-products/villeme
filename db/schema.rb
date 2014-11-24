@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122234631) do
+ActiveRecord::Schema.define(version: 20141123234849) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20141122234631) do
     t.string   "state_code"
   end
 
-  create_table "countries", force: true do |t|
+  create_table "", force: true do |t|
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
@@ -379,11 +379,12 @@ ActiveRecord::Schema.define(version: 20141122234631) do
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "country"
+    t.string   "country_name"
     t.string   "country_code"
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "subcategories", force: true do |t|
@@ -447,6 +448,7 @@ ActiveRecord::Schema.define(version: 20141122234631) do
     t.string   "street_number"
     t.string   "full_address"
     t.string   "route"
+    t.string   "address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
