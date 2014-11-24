@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20141123234849) do
     t.string   "state_code"
   end
 
-  create_table "", force: true do |t|
+  create_table "countries", force: true do |t|
     t.string   "name"
     t.float    "latitude"
     t.float    "longitude"
