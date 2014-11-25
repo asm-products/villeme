@@ -1,6 +1,6 @@
 ![alt tag](http://i.imgur.com/V7T6r88.jpg)
 
-# Villeme  [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
+# Villeme  [![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
 
 Web app helps you to knows everything that is happening and what you can do in your neighborhood.
 
