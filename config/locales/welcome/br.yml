@@ -63,6 +63,7 @@ br:
       confirm: "Confirmar"
       i_want_invite: "Quero um convite!"
       name: "Nome"
+      address: "Endereço"
     tooltip:
       have_an_invitation: "Se já tiver um convite"
       i_want_invite_for: "Quero um convite para"

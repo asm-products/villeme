@@ -65,6 +65,8 @@ en:
       confirm: "Confirm"
       i_want_invite: "I want an invite!"
       name: "Name"
+      address: "Address"
+      address_placeholder: "Example: 3030A 16th Street, California - USA"
     tooltip:
       have_an_invitation: "If ou have an invitation"
       i_want_invite_for: "Want a invitation to"

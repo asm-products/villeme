@@ -16,13 +16,11 @@
 
 						<%= f.input :email, label: "Email" %>
 
-						<%= f.input :city, collection: City.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: t('welcome.modal.city'), input_html:{ class: "has-selectpicker"}, prompt: t('welcome.modal.what_your_city'), hint: link_to(t('welcome.modal.create_city'), '#city_sugest').html_safe %>
-
-						<%= f.input :city_sugest, label: t('welcome.modal.want_in_my_city'), placeholder: t('welcome.modal.name_of_city'), wrapper_html:{ id: "city-sugest"} %>
-
 						<%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: "Persona", input_html:{ class: "has-selectpicker"}, prompt: t('welcome.modal.persona_identify'), hint: link_to(t('welcome.modal.create_persona'), '#persona_sugest').html_safe %>
 
 						<%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: "persona_sugest" } %>
+
+                        <%= f.input :address, label: t('welcome.modal.address'), placeholder: t('welcome.modal.address_placeholder'), input_html:{class: ".btn-geocoder-address-for-map"} %>
 
                         <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>
 					</div>
