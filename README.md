@@ -40,15 +40,15 @@ To run this project in **development** you need to have:
 
 * Compile assets (js, css, images)
 
-	`$ exec bundle rake assets:precompile`
+	`$ bundle exec rake assets:precompile`
 
 * Create the database
 
-	`$ exec bundle rake db:schema:load`
+	`$ bundle exec rake db:schema:load`
 	
 * Create faker data with seed
 
-    `$ exec bundle rake db:seed`
+    `$ bundle exec rake db:seed`
 
 If everything goes OK, you can now run the project!
 
