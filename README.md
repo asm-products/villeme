@@ -10,9 +10,9 @@ You can see the software in action in [villeme.com](http://www.villeme.com).
 
 The official repo is https://github.com/asm-products/villeme
 
-## Status
+## Status [![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master)
 
-[![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Coverage Status](https://coveralls.io/repos/jonatassalgado/villeme/badge.png)](https://coveralls.io/r/jonatassalgado/villeme) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
+[![Build Status](https://travis-ci.org/jonatassalgado/villeme.svg)](https://travis-ci.org/jonatassalgado/villeme) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Coverage Status](https://img.shields.io/coveralls/jonatassalgado/villeme.svg)](https://coveralls.io/r/jonatassalgado/villeme?branch=master) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
 
 ## Getting started
 
