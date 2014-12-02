@@ -7,7 +7,7 @@ describe NewsfeedController do
     context 'current_user logged in and invited' do
 
       before(:each) do
-        login_user
+        set_user_logged_in
       end
 
       it 'should be load the page with success' do
@@ -18,11 +18,12 @@ describe NewsfeedController do
     end
 
     context 'current_user logged in and NOT invited' do
-      it 'should be block access for user' do
-        @request.env["devise.mapping"] = Devise.mappings[:user]
-        user = create(:user, invited: false)
-        sign_in user
 
+      before(:each) do
+        set_current_user_nil
+      end
+
+      it 'should be block access for user' do
         get :index, locale: :en
 
         expect(response).to redirect_to(welcome_path)

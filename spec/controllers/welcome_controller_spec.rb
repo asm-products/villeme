@@ -7,13 +7,12 @@ describe WelcomeController, type: :controller do
     context 'current_user logged in' do
 
       before(:each) do
-        login_user
+        set_user_logged_in
         allow(@user).to receive_message_chain(:city, :slug).and_return(:ny)
         allow(controller).to receive(:current_user) { @user }
       end
 
       it 'should redirected to NewsfeedController#index' do
-
         get :index, locale: :en
 
         expect(response).to redirect_to("/#{@user.city.slug}")
