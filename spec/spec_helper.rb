@@ -17,11 +17,13 @@
 
 require 'devise'
 require 'factory_girl'
+require 'supports/controller_macros'
+require 'database_cleaner'
 
 RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
+  config.include ControllerMacros, :type => :controller
   config.include FactoryGirl::Syntax::Methods
 
   # rspec-expectations config goes here. You can use an alternate
@@ -91,4 +93,18 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+
+  # Database cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
 end
