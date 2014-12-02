@@ -21,6 +21,7 @@ require 'factory_girl'
 RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
   config.include FactoryGirl::Syntax::Methods
 
   # rspec-expectations config goes here. You can use an alternate
