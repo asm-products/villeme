@@ -8,6 +8,8 @@ FactoryGirl.define do
     admin false
     latitude 0.000
     longitude 0.000
+    password "password"
+    password_confirmation "password"
     city_name "Nova York"
   end
 
@@ -16,9 +18,12 @@ FactoryGirl.define do
     name "Admin"
     email "admin@gmail.com"
     locale "en"
+    password "password"
+    password_confirmation "password"
     account_complete true
     invited true
     admin true
+    city_name "Nova York"
   end
 
 
