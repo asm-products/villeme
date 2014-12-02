@@ -1,0 +1,15 @@
+rvm:
+  - 2.0.0
+
+before_install:
+  - "gem install bundler"
+
+before_script:
+  - "bundle exec rake db:schema:load RAILS_ENV=test"
+
+script:
+  - "bundle exec rspec"
+
+branches:
+  only:
+    - master
