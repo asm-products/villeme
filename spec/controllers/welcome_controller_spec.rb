@@ -3,14 +3,34 @@ require 'rails_helper'
 describe WelcomeController, type: :controller do
 
   describe '#index' do
-    it "should load with success" do
 
-      user = User.new
-      allow(controller).to receive(:current_user).and_return(user)
+    context 'current_user logged in' do
 
-      get :index, locale: :en
-      expect(response.status).to eq(200)
+      before(:each) do
+        login_user
+        allow(@user).to receive_message_chain(:city, :slug).and_return(:ny)
+        allow(controller).to receive(:current_user) { @user }
+      end
+
+      it 'should redirected to NewsfeedController#index' do
+
+        get :index, locale: :en
+
+        expect(response).to redirect_to("/#{@user.city.slug}")
+      end
     end
+
+    context 'current_user NOT logged in' do
+
+      it 'should load page with success' do
+        allow(controller).to receive(:current_user).and_return(nil)
+
+        get :index, locale: :en
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+
   end
 
 end
