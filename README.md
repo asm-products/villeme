@@ -12,7 +12,7 @@ The official repo is https://github.com/asm-products/villeme
 
 ## Status
 
-[![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
+[![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Coverage Status](https://coveralls.io/repos/jonatassalgado/villeme/badge.png)](https://coveralls.io/r/jonatassalgado/villeme) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
 
 ## Getting started
 
