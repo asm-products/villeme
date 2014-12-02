@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   has_many :tips
 
   has_many :agendas
-  has_many :agenda_events, through: :agendas, source: :event, uniq: true
+  has_many :agenda_events, -> { uniq }, through: :agendas, source: :event
 
   has_many :friendships
   has_many :friends, through: :friendships
