@@ -19,6 +19,8 @@ require 'devise'
 require 'factory_girl'
 require 'supports/controller_macros'
 require 'database_cleaner'
+require 'coveralls'
+Coveralls.wear!
 
 RSpec.configure do |config|
 
