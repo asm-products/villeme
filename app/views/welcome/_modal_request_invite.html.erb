@@ -20,7 +20,7 @@
 
 						<%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: "persona_sugest" } %>
 
-                        <%= f.input :address, label: t('welcome.modal.address'), placeholder: t('welcome.modal.address_placeholder'), input_html:{class: ".btn-geocoder-address-for-map"} %>
+                        <%= f.input :address, label: t('welcome.modal.address'), placeholder: t('welcome.modal.address_placeholder'), input_html:{class: "btn-geocoder-address-for-map form-control"} %>
 
                         <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>
 					</div>
