@@ -22,7 +22,7 @@ module Geocoderize
       end
     end
 
-    after_validation :geocode
+    after_validation :geocode, unless: 'address.nil?'
   end
 
 
