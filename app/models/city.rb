@@ -16,4 +16,5 @@ class City < ActiveRecord::Base
     User.where(city_name: self.name)
   end
 
+
 end
