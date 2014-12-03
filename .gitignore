@@ -20,4 +20,3 @@ coverage/
 /tmp
 
 /public/system/*
-/db/migrate/*
