@@ -188,7 +188,7 @@ weeks = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Su
 n = 1
 
 weeks.each do |name|
-  week = Week.create(
+  week = Category.create(
       name: name,
       slug: name.downcase,
       organizer_id: n
