@@ -55,7 +55,7 @@ class NewsfeedController < ApplicationController
   def mypersona
 
     # filtra eventos por persona
-    @persona = Persona.find current_user.persona.id
+    @persona = Persona.find current_user.persona
     @events = @persona.events.upcoming     
     @number_of_events = @events.count 
 

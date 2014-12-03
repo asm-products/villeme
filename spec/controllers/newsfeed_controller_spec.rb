@@ -33,4 +33,25 @@ describe NewsfeedController do
 
   end
 
+  describe '#mypersona' do
+
+    context 'current_user logged in and invited' do
+
+      before(:each) do
+        set_user_logged_in
+      end
+
+      it 'should redirect to #index' do
+        allow(@user).to receive_message_chain(:persona).and_return(create(:persona))
+        allow(controller).to receive(:current_user){ @user }
+
+        get :mypersona, locale: :en
+
+        expect(response).to render_template(:index)
+      end
+
+    end
+
+  end
+
 end

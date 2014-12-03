@@ -24,12 +24,17 @@ FactoryGirl.define do
     invited true
     admin true
     city_name "Nova York"
+    persona
   end
 
 
   factory :city do
     name "Nova York"
     slug "ny"
+  end
+
+  factory :persona do
+    name "Entrepreuner"
   end
 
 
