@@ -54,4 +54,26 @@ describe NewsfeedController do
 
   end
 
+
+  describe '#myagenda' do
+
+    context 'current_user logged in and invited' do
+
+      before(:each) do
+        set_user_logged_in
+      end
+
+      it 'should redirect_to #index' do
+        allow(@user).to receive_message_chain(:agenda_events, :upcoming).and_return(nil)
+
+        get :myagenda, locale: :en
+
+        expect(response).to render_template(:index)
+      end
+
+    end
+
+  end
+
+
 end
