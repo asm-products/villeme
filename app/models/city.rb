@@ -12,4 +12,8 @@ class City < ActiveRecord::Base
     ]
   end
 
+  def users
+    User.where(city_name: self.name)
+  end
+
 end
