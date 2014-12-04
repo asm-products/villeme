@@ -37,5 +37,12 @@ FactoryGirl.define do
     name "Entrepreuner"
   end
 
+  factory :invite do
+    email "user@gmail.com"
+    name "John Doe"
+    persona "Entrepreuner"
+    address "Rua Rivadavia Correia, 08 - Partenon"
+  end
+
 
 end
