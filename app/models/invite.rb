@@ -6,7 +6,6 @@ class Invite < ActiveRecord::Base
   # validações
   validates :name, presence: true, length: 1..140
   validates :email, presence: true, length: 6..140
-  validates :city, presence: true, length: {maximum: 10}, if: lambda {self.city_sugest.blank?}
   validates :persona, presence: true, length: {maximum: 10}, if: lambda {self.persona_sugest.blank?}
   validates :city_sugest, length: {maximum: 140}
   validates :persona_sugest, length: {maximum: 140}
