@@ -34,6 +34,11 @@ CidadeVc::Application.routes.draw do
         get :schedule, on: :member
       end
 
+      # Account
+      get ':id/account', to: 'accounts#edit', as: :user_account
+      match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
+
+
       get ':id/events', to: 'profiles#events', as: :user_events
 
       # /city
@@ -60,12 +65,6 @@ CidadeVc::Application.routes.draw do
 
 
 
-  # Account
-
-    # :id/account
-    get ':id/account', to: 'accounts#edit', as: :user_account
-
-    match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
 
 
 
