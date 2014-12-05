@@ -2,7 +2,7 @@
 
 # Villeme
 
-Web app helps you to knows everything that is happening and what you can do in your neighborhood.
+Web app helps you to knows everything that is happening and what you can do in your neighborhood
 
 ### Show me something
 
@@ -23,6 +23,12 @@ To run this project in **development** you need to have:
 * Git
 * Ruby 2.0.0
 * Rails 4.0.3
+
+### Tech Stacks
+
+* **Back-end:** Ruby / Rails / Postgresql
+* **Front-end:** HTML / CSS / SASS / jQuery / CoffeescriptOO
+* **Tests:** RSpec / FactoryGirl / Faker
 
 ### Setup the project
 
@@ -83,6 +89,10 @@ Open [http://localhost:3000](http://localhost:3000)
 
 This is a product being built by the Assembly community. You can help push this idea forward by visiting [assembly.com/villeme](https://assembly.com/villeme).
 
+## The plan
+
+Villeme is a "open startup", where anyone can contribute.
+The plan is this: [assembly.com/villeme/plan](https://assembly.com/villeme/plan)
 
 #### How Assembly community works
 
@@ -127,11 +137,11 @@ You can read more about *git branch* [here](http://git-scm.com/book/en/v2/Git-Br
 
 If you're trying to fix a bug, you might want to name the branch:
     
-    `fix-short-description`
+    fix-short-description
     
 If you're adding a feature: 
 
-    `feature-short-description` 
+    feature-short-description 
     
 After you can execute checkout to go the branch
 `git checkout -b branch-name`
@@ -170,21 +180,6 @@ You can't read the minds of the project maintainers, but you can look at [assemb
 
 In GitHub, "Bug Reports" are called "Issues."
 
-
-- **Has This Been Asked Before?**
-
-Before you submit a bug report, you should search existing issues.
-Be sure to check both currently open issues, as well as issues that are already closed.
-If you find an issue that seems to be similar to yours, read through it.
-
-If this issue is the same as yours, you can comment with additional information to help the maintainer debug it.
-Adding a comment will subscribe you to email notifications, which can be helpful in getting important updates regarding the issue.
-If you don't have anything to add but still want to receive email updates, you can click the "watch" button at the bottom of the comments.
-
-- **Nope, Hasn't Been Asked Before**
-
-If you can't find anything in the existing issues, don't be shy about filing a new one.
-
 Project maintainers really appreciate thorough explanations.
 It usually helps them address the problem more quickly, so everyone wins!
 
@@ -194,8 +189,8 @@ It usually helps them address the problem more quickly, so everyone wins!
 
 * Make part of Assembly community in [assembly.com/villeme](https://assembly.com/villeme)
 * Follow this style guide: https://github.com/bbatsov/ruby-style-guide
-* Create one acceptance tests for each scenario of the feature you are trying to implement.
-* Create model and controller tests to keep 100% of code coverage at least in the new parts that you are writing.
+* Create one acceptance tests in **RSpec** (not obrigatory if you don't know to do) for each scenario of the feature you are trying to implement.
+
 
 
 ## Team
