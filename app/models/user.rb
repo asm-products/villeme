@@ -117,7 +117,9 @@ class User < ActiveRecord::Base
     City.find_by(name: city_name)
   end
 
-
+  def neighborhood
+    Neighborhood.find_by(name: neighborhood_name)
+  end
 
   def first_name
     self.name.split.first

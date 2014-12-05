@@ -33,6 +33,10 @@ FactoryGirl.define do
     slug "ny"
   end
 
+  factory :neighborhood do
+    name "Partenon"
+  end
+
   factory :persona do
     name "Entrepreuner"
   end
