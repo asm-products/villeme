@@ -16,5 +16,8 @@ class City < ActiveRecord::Base
     User.where(city_name: self.name)
   end
 
+  def neighborhoods
+    Neighborhood.where(city_name: name)
+  end
 
 end
