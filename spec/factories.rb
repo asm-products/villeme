@@ -28,6 +28,11 @@ FactoryGirl.define do
   end
 
 
+  factory :event do
+    name "Campus Party"
+  end
+
+
   factory :city do
     name "Nova York"
     slug "ny"
@@ -47,6 +52,7 @@ FactoryGirl.define do
     persona "Entrepreuner"
     address "Rua Rivadavia Correia, 08 - Partenon"
   end
+
 
 
 end

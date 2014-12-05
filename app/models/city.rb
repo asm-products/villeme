@@ -13,11 +13,15 @@ class City < ActiveRecord::Base
   end
 
   def users
-    User.where(city_name: self.name)
+    User.where(city_name: name)
   end
 
   def neighborhoods
     Neighborhood.where(city_name: name)
+  end
+
+  def events
+    Event.where(city_name: name)
   end
 
 end

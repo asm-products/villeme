@@ -25,4 +25,15 @@ describe City, type: :model do
     end
   end
 
+  describe '#events' do
+    it 'should return a list of events' do
+      @city = create(:city, name: 'New York')
+      @events = []
+      @events << create(:event, name: 'Campus Party', city_name: 'New York')
+      @events << create(:event, name: 'Hackaton', city_name: 'New York')
+
+      expect(@city.events).to eq(@events)
+    end
+  end
+
 end
