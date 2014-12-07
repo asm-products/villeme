@@ -13,6 +13,17 @@ describe User, type: :model do
 
   end
 
+  describe '#city' do
+
+    it 'should return city for user' do
+      user = create(:user)
+      city = create(:city)
+
+      expect(user.city).to eq(city)
+    end
+
+  end
+
   describe '#country' do
 
     it 'should return country for user' do
