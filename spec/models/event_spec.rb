@@ -6,29 +6,39 @@ describe Event, type: :model do
 
   describe '#country' do
     it 'should return country of event' do
-      country = create(:country)
-                create(:country)
+      country = create(:country, name: 'United States')
+      create(:country, name: 'Brazil')
 
       expect(event.country).to eq(country)
     end
   end
 
-  describe '#neighborhood' do
-    it 'should return neighborhood of event' do
-      neighborhood = create(:neighborhood, name: 'Albany County')
-                     create(:neighborhood, name: 'Bronx')
+  describe '#state' do
+    it 'should return state of event' do
+      state = create(:state, name: 'New York')
+      create(:state, name: 'Florida')
 
-      expect(event.neighborhood).to eq(neighborhood)
+      expect(event.state).to eq(state)
     end
   end
 
   describe '#city' do
     it 'should return city of event' do
       city = create(:city, name: 'Albany')
-             create(:city, name: 'Rio de Janeiro')
+      create(:city, name: 'Rio de Janeiro')
 
       expect(event.city).to eq(city)
     end
   end
+
+  describe '#neighborhood' do
+    it 'should return neighborhood of event' do
+      neighborhood = create(:neighborhood, name: 'Albany County')
+      create(:neighborhood, name: 'Bronx')
+
+      expect(event.neighborhood).to eq(neighborhood)
+    end
+  end
+
 
 end

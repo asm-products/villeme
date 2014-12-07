@@ -10,6 +10,7 @@ FactoryGirl.define do
     longitude 0.000
     password "password"
     password_confirmation "password"
+    neighborhood_name "Albany County"
     city_name "Albany"
     state_name "New York"
     country_name "United States"
