@@ -32,6 +32,8 @@ FactoryGirl.define do
 
   factory :event do
     name "Campus Party"
+    neighborhood_name "Albany County"
+    city_name "Albany"
   end
 
 
