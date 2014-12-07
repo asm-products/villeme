@@ -104,6 +104,10 @@ class Event < ActiveRecord::Base
 		end
 	end
 
+	def neighborhood
+		Neighborhood.find_by(name: neighborhood_name)
+	end
+
   def get_longitude
     if longitude.blank?
       self.place.longitude

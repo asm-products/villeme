@@ -109,14 +109,15 @@ class User < ActiveRecord::Base
       userauth
     end
 
-  end  
-
-  def city
-    City.find_by(name: city_name)
   end
+
 
   def neighborhood
     Neighborhood.find_by(name: neighborhood_name)
+  end
+
+  def city
+    City.find_by(name: city_name)
   end
 
   def state
