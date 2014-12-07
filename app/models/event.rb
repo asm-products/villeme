@@ -3,7 +3,7 @@
 class Event < ActiveRecord::Base
 
 	ratyrate_rateable "geral"
-	
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
