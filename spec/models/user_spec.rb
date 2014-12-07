@@ -13,4 +13,15 @@ describe User, type: :model do
 
   end
 
+  describe '#country' do
+
+    it 'should return country for user' do
+      user = create(:user, country_name: 'United States')
+      country = create(:country, name: 'United States')
+
+      expect(user.country).to eq(country)
+    end
+
+  end
+
 end

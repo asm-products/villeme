@@ -32,8 +32,6 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   # associações
-  belongs_to :city
-  belongs_to :neighborhood
 
   belongs_to :level
     delegate :name, to: :level, prefix: true, allow_nil: true
@@ -119,6 +117,10 @@ class User < ActiveRecord::Base
 
   def neighborhood
     Neighborhood.find_by(name: neighborhood_name)
+  end
+
+  def country
+    Country.find_by(name: country_name)
   end
 
   def first_name

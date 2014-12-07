@@ -11,6 +11,7 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     city_name "Nova York"
+    country_name "United States"
   end
 
   # This will use the User class (Admin would have been guessed)
@@ -40,6 +41,10 @@ FactoryGirl.define do
 
   factory :neighborhood do
     name "Partenon"
+  end
+
+  factory :country do
+    name "Brazil"
   end
 
   factory :persona do
