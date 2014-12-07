@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  extend Geocoderize
-  geocoder_by_address
+  include Geocoderize
 
   # Try building a slug based on the following fields in
   # increasing order of specificity.
@@ -111,22 +110,6 @@ class User < ActiveRecord::Base
 
   end
 
-
-  def neighborhood
-    Neighborhood.find_by(name: neighborhood_name)
-  end
-
-  def city
-    City.find_by(name: city_name)
-  end
-
-  def state
-    State.find_by(name: state_name)
-  end
-
-  def country
-    Country.find_by(name: country_name)
-  end
 
   def first_name
     self.name.split.first

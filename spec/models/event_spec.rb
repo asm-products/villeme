@@ -4,6 +4,15 @@ describe Event, type: :model do
 
   let(:event){ create(:event) }
 
+  describe '#country' do
+    it 'should return country of event' do
+      country = create(:country)
+                create(:country)
+
+      expect(event.country).to eq(country)
+    end
+  end
+
   describe '#neighborhood' do
     it 'should return neighborhood of event' do
       neighborhood = create(:neighborhood, name: 'Albany County')

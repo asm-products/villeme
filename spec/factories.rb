@@ -34,6 +34,8 @@ FactoryGirl.define do
     name "Campus Party"
     neighborhood_name "Albany County"
     city_name "Albany"
+    state_name "New York"
+    country_name "United States"
   end
 
 

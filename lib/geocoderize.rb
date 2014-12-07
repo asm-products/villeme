@@ -43,4 +43,22 @@ module Geocoderize
   end
 
 
+  def neighborhood
+    Neighborhood.find_by(name: neighborhood_name)
+  end
+
+  def city
+    City.find_by(name: city_name)
+  end
+
+  def state
+    State.find_by(name: state_name)
+  end
+
+  def country
+    Country.find_by(name: country_name)
+  end
+
+
+
 end

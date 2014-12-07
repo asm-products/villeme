@@ -3,16 +3,12 @@
 class Event < ActiveRecord::Base
 
 	ratyrate_rateable "geral"
-
-	# Url bonita
+	
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-	extend Geocoderize
+	include Geocoderize
 
-
-	# Geocoder
-	geocoder_by_address
 
 
 	# Associações
@@ -238,20 +234,6 @@ class Event < ActiveRecord::Base
 
 
 
-	def copy_attributes_to(place)
-    place.address = self.address
-    place.number = self.number
-    place.neighborhood_name = self.neighborhood_name
-    place.city_name = self.city_name
-    place.postal_code = self.postal_code
-    place.state = self.state
-    place.state_code = self.state_code
-    place.country = self.country
-    place.country_code = self.country_code
-    place.full_address = self.full_address
-    place.latitude = self.latitude
-    place.longitude = self.longitude
-	end
 
 
 
