@@ -119,6 +119,10 @@ class User < ActiveRecord::Base
     Neighborhood.find_by(name: neighborhood_name)
   end
 
+  def state
+    State.find_by(name: state_name)
+  end
+
   def country
     Country.find_by(name: country_name)
   end

@@ -10,7 +10,8 @@ FactoryGirl.define do
     longitude 0.000
     password "password"
     password_confirmation "password"
-    city_name "Nova York"
+    city_name "Albany"
+    state_name "New York"
     country_name "United States"
   end
 
@@ -24,7 +25,7 @@ FactoryGirl.define do
     account_complete true
     invited true
     admin true
-    city_name "Nova York"
+    city_name "Albany"
     persona
   end
 
@@ -35,16 +36,19 @@ FactoryGirl.define do
 
 
   factory :city do
-    name "Nova York"
-    slug "ny"
+    name "Albany"
   end
 
   factory :neighborhood do
-    name "Partenon"
+    name "Albany County"
+  end
+
+  factory :state do
+    name "New York"
   end
 
   factory :country do
-    name "Brazil"
+    name "United States"
   end
 
   factory :persona do
