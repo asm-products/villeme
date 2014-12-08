@@ -306,7 +306,7 @@
               <% 
               goal = city.goal
               
-              if goal.to_i <= Invite.where(city: city).count
+              if goal.to_i <= Invite.where(city_name: city).count
                 contador = t('welcome.want_invite.beta_launched')
                 ativado = true
               else
