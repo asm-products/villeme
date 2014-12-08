@@ -12,4 +12,9 @@ class Neighborhood < ActiveRecord::Base
     ]
   end
 
+
+  def events
+    Event.where(neighborhood_name: name)
+  end
+
 end
