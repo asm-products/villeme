@@ -64,7 +64,7 @@ FactoryGirl.define do
     email "user@gmail.com"
     name "John Doe"
     persona "Entrepreuner"
-    address "544 Madison Ave, Albany, NY 12208, USA"
+    address "544 Madison Ave, Albany, NY 12208, US"
     city_name "Albany"
   end
 
