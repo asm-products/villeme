@@ -2,18 +2,21 @@ module GeocodedActions
 
 
   def copy_attributes_to(object)
-    object.address = self.address
-    object.number = self.number
+    object.latitude = self.latitude
+    object.longitude = self.longitude
+    object.route = self.route
     object.neighborhood_name = self.neighborhood_name
     object.city_name = self.city_name
-    object.postal_code = self.postal_code
     object.state_name = self.state_name
     object.state_code = self.state_code
     object.country_name = self.country_name
     object.country_code = self.country_code
+    object.postal_code = self.postal_code
+    object.street_number = self.street_number
     object.full_address = self.full_address
-    object.latitude = self.latitude
-    object.longitude = self.longitude
+    object.formatted_address = self.formatted_address
+
+    object.save
   end
 
 
