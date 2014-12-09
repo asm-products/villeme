@@ -17,8 +17,8 @@ describe WelcomeController, type: :controller do
       end
     end
 
-    context 'current_user NOT logged in' do
 
+    context 'current_user NOT logged in' do
       before(:each) do
         set_current_user_nil
       end
@@ -29,8 +29,8 @@ describe WelcomeController, type: :controller do
         expect(response).to have_http_status(:success)
       end
 
-      context 'current_user as a invite key' do
 
+      context 'current_user as a invite key' do
         it 'should active invite and create user' do
           invite = create(:invite)
 
@@ -38,7 +38,6 @@ describe WelcomeController, type: :controller do
 
           expect(response).to redirect_to('http://www.villeme.com/users/auth/facebook')
         end
-
       end
 
     end
