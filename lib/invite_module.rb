@@ -1,21 +1,42 @@
 module InviteModule
 
+  include GeocodedActions
 
   def create_user_from_invite(key)
-    # verifica o convite
-    invite_user = Invite.where(key: key).first
+    invite = Invite.where(key: key).first
+    user = User.where(email: invite.email).first
 
-    # verifica se o user ja existe
-    user_exist = User.where(email: invite_user.email).first
-
-    # cria o user caso não exista
-    if user_exist.blank?
-      new_user = User.create(name: invite_user.name, email: invite_user.email, password: Devise.friendly_token[0, 8], city_id: invite_user.city, persona_id: invite_user.persona, invited: true)
+    if user_not_exist?(user)
+      user_create(invite)
       redirect_to "http://www.villeme.com/users/auth/facebook" and return
     else
-      user_exist.update_attributes(city_id: invite_user.city, persona_id: invite_user.persona, invited: true)
+      user_update(invite, user)
       redirect_to "http://www.villeme.com/users/auth/facebook" and return
     end
+  end
+
+
+  # helpers methods
+
+  def user_not_exist?(user)
+    user.blank?
+  end
+
+  def user_create(invite)
+    user = User.create(name: invite.name,
+                email: invite.email,
+                password: Devise.friendly_token[0, 8],
+                persona_id: invite.persona,
+                invited: true)
+
+    invite.copy_attributes_to(user)
+  end
+
+  def user_update(invite, user)
+    user.update_attributes(persona_id: invite.persona,
+                           invited: true)
+
+    invite.copy_attributes_to(user)
   end
 
 end
