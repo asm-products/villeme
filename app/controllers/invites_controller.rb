@@ -33,45 +33,17 @@ class InvitesController < ApplicationController
   # POST /invites.json
   def create
 
-    # verifica se ja existe um convite com este email
-    invite_exist = Invite.where(email: invite_params[:email]).first
-
-
-    # se não existir cria o convite
-    if invite_exist.blank?
-
-      # classe para criar keys randomicas
-      require 'securerandom'
-
-      # criar uma key para url
-      key = SecureRandom.urlsafe_base64
-      values = invite_params
-      values[:key] = key
-
-      @invite = Invite.new(values)
-      
-      respond_to do |format|
-        if @invite.save
-
-          # Envia email de boas vindas
-          InviteMailer.welcome_email(@invite).deliver
-
-          format.html { redirect_to welcome_path, notice: values[:name].split.first + ', seu convite foi solicitado com sucesso. Enviaremos por email em breve.' }
-          format.json { render action: 'show', status: :created, location: @invite }
-        else
-          format.html { redirect_to welcome_path, alert: 'Ops! Não foi possível criar seu convite, você preencheu todas as informações?' }
-          format.json { render json: @invite.errors, status: :unprocessable_entity }
-        end
-      end
-
+    if invite_not_exist?
+      invite_attributes = create_key_for_active_account(invite_params)
+      @invite = Invite.new(invite_attributes)
+      save_and_redirect_to_welcome(invite_attributes)
     else
-
       redirect_to welcome_path, notice: invite_params[:name].split.first + ', você já solicitou um convite. Assim que possível, lhe enviaremos por email.'
-
     end
 
-
   end
+
+
 
   # PATCH/PUT /invites/1
   # PATCH/PUT /invites/1.json
@@ -116,4 +88,32 @@ class InvitesController < ApplicationController
     def invite_params
       params.require(:invite).permit(:user_id, :email, :name, :address, :persona, :persona_sugest, :city_sugest, :locale, :key)
     end
+end
+
+
+
+# Helper Methods
+
+def create_key_for_active_account(invite)
+  require 'securerandom'
+  key_for_active_account = SecureRandom.urlsafe_base64
+  values = invite
+  values[:key] = key_for_active_account
+  values
+end
+
+
+def save_and_redirect_to_welcome(values)
+  if @invite.save
+    # InviteMailer.welcome_email(@invite).deliver
+    redirect_to welcome_path, notice: values[:name].split.first + ', seu convite foi solicitado com sucesso. Enviaremos por email em breve.'
+  else
+    redirect_to welcome_path, alert: 'Ops! Não foi possível criar seu convite, você preencheu todas as informações?'
+  end
+end
+
+
+def invite_not_exist?
+  searchable_invite = Invite.where(email: invite_params[:email]).first
+  searchable_invite.blank?
 end
