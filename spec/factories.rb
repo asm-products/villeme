@@ -66,6 +66,7 @@ FactoryGirl.define do
     persona "Entrepreuner"
     address "544 Madison Ave, Albany, NY 12208, US"
     city_name "Albany"
+    key "qowiqmas01231ljadao"
   end
 
 
