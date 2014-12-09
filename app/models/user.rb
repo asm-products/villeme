@@ -6,7 +6,10 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  include Geocoderize
+  extend  GeocodedByAddress
+  include GeocodedActions
+
+  geocoder_by_address
 
   # Try building a slug based on the following fields in
   # increasing order of specificity.

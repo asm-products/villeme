@@ -5,7 +5,7 @@ class InviteMailer < ActionMailer::Base
   def welcome_email(invite)
     @invite = invite
     @url  = 'http://www.villeme.com/'
-    @city = City.find(@invite.city)
+    @city = @invite.city
  
     mail(
     	to: @invite.email, 

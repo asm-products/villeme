@@ -1,8 +1,10 @@
 class Invite < ActiveRecord::Base
 
-  include Geocoderize
+  extend  GeocodedByAddress
+  include GeocodedActions
 
-  after_validation :geocoder_by_address
+  geocoder_by_address
+
 
 	# associações
   belongs_to :user

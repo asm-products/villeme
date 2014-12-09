@@ -7,8 +7,10 @@ class Event < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-	include Geocoderize
+	extend  GeocodedByAddress
+	include GeocodedActions
 
+	geocoder_by_address
 
 
 	# Associações
@@ -100,13 +102,7 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-	def neighborhood
-		Neighborhood.find_by(name: neighborhood_name)
-	end
 
-	def city
-		City.find_by(name: city_name)
-	end
 
   def get_longitude
     if longitude.blank?

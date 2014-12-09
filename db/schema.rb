@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 20141208202642) do
     t.integer  "user_id"
     t.string   "email"
     t.string   "name"
+    t.integer  "city"
     t.integer  "persona"
     t.string   "persona_sugest"
     t.string   "city_sugest"
