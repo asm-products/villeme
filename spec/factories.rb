@@ -43,6 +43,17 @@ FactoryGirl.define do
     longitude -73.7729633802915
   end
 
+  factory :place do
+    name "City Sandwich"
+    neighborhood_name "Park South"
+    city_name "Albany"
+    state_name "New York"
+    country_name "United States"
+    country_code "US"
+    address "544 Madison Ave, Albany, NY 12208, USA"
+    latitude 42.6531078197085
+    longitude -73.7729633802915
+  end
 
   factory :city do
     name "Albany"
@@ -50,6 +61,9 @@ FactoryGirl.define do
 
   factory :neighborhood do
     name "Park South"
+    city_name "Albany"
+    state_name "New York"
+    country_name "United States"
   end
 
   factory :state do
