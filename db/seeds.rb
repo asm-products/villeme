@@ -11,14 +11,27 @@ puts '=== Countries fakers creator ==='
 puts "\n"
 puts "\n"
 
-2.times do
-  faker_address = Faker::Address
-  faker_name = Faker::Lorem.word
+COUNTRIES = [
+    {
+      name: 'Brazil',
+      latitude: -33.7517484,
+      longitude: -73.982817,
+      code: 'BR'
+    },
+    {
+      name: 'United States',
+      latitude: 25.82,
+      longitude: -124.39,
+      code: 'US'
+    }
+]
+
+COUNTRIES.each do |country|
   country = Country.create(
-      name: faker_name,
-      latitude: faker_address.latitude,
-      longitude: faker_address.longitude,
-      code: faker_name[0..2].upcase
+      name: country[:name],
+      latitude: country[:latitude],
+      longitude: country[:longitude],
+      code: country[:code]
   )
   puts "Country #{country.name} created with success!"
 end
@@ -33,15 +46,32 @@ puts '=== States fakers creator ==='
 puts "\n"
 puts "\n"
 
-2.times do
-  faker_address = Faker::Address
-  country = Country.order("RANDOM()").first
+STATES = [
+    {
+        name: 'Rio de Janeiro',
+        code: 'RJ',
+        latitude: -11.8048222802915,
+        longitude: -46.0550868802915,
+        country_name: 'Brazil',
+        country_code: 'BR'
+    },
+    {
+        name: 'New York',
+        code: 'NY',
+        latitude: 40.91525559999999,
+        longitude: -73.70027209999999,
+        country_name: 'United States',
+        country_code: 'US'
+    }
+]
+
+STATES.each do |state|
   state = State.create(
-      name: Faker::Lorem.word,
-      latitude: faker_address.latitude,
-      longitude: faker_address.longitude,
-      country_name: country.name,
-      country_code: country.code
+      name: state[:name],
+      latitude: state[:latitude],
+      longitude: state[:longitude],
+      country_name: state[:country_name],
+      country_code: state[:country_code]
   )
   puts "State #{state.name} created with success!"
 end
@@ -56,18 +86,36 @@ puts '=== Cities fakers creator ==='
 puts "\n"
 puts "\n"
 
-2.times do
-  faker_address = Faker::Address
-  country = Country.order("RANDOM()").first
-  state = State.order("RANDOM()").first
+CITIES = [
+    {
+        name: 'Rio de Janeiro',
+        latitude: -22.9147443802915,
+        longitude: -43.2020590802915,
+        state_name: 'Rio de Janeiro',
+        state_code: 'RJ',
+        country_name: 'Brazil',
+        country_code: 'BR'
+    },
+    {
+        name: 'Albany',
+        latitude: 42.6139008,
+        longitude: -73.898099,
+        state_name: 'New York',
+        state_code: 'NY',
+        country_name: 'United States',
+        country_code: 'US'
+    }
+]
+
+CITIES.each do |city|
   city = City.create(
-      name: faker_address.city,
-      latitude: faker_address.latitude,
-      longitude: faker_address.longitude,
-      state_name: state.name,
-      state_code: state.code,
-      country_name: country.name,
-      country_code: country.code,
+      name: city[:name],
+      latitude: city[:latitude],
+      longitude: city[:longitude],
+      state_name: city[:state_name],
+      state_code: city[:state_code],
+      country_name: city[:country_name],
+      country_code: city[:country_code],
   )
   puts "City #{city.name} created with success!"
 end
@@ -81,21 +129,42 @@ puts '=== Neighborhoods fakers creator ==='
 puts "\n"
 puts "\n"
 
-2.times do
-  faker_address = Faker::Address
-  country = Country.order("RANDOM()").first
-  state = State.order("RANDOM()").first
+
+NEIGHBORHOODS = [
+    {
+        name: 'Copacabana',
+        city_name: 'Rio de Janeiro',
+        latitude: -22.9586588,
+        longitude: -43.1724355,
+        state_name: 'Rio de Janeiro',
+        state_code: 'RJ',
+        country_name: 'Brazil',
+        country_code: 'BR'
+    },
+    {
+        name: 'Park South',
+        city_name: 'Albany',
+        latitude: 42.650379,
+        longitude: -73.7793652,
+        state_name: 'New York',
+        state_code: 'NY',
+        country_name: 'United States',
+        country_code: 'US'
+    }
+]
+
+NEIGHBORHOODS.each do |neighborhood|
   neighborhood = Neighborhood.create(
-      name: Faker::Lorem.word,
-      latitude: faker_address.latitude,
-      longitude: faker_address.longitude,
-      city_name: City.order("RANDOM()").first.name,
-      state_name: state.name,
-      state_code: state.code,
-      country_name: country.name,
-      country_code: country.code,
+      name: neighborhood[:name],
+      latitude: neighborhood[:latitude],
+      longitude: neighborhood[:longitude],
+      city_name: neighborhood[:city_name],
+      state_name: neighborhood[:state_name],
+      state_code: neighborhood[:state_code],
+      country_name: neighborhood[:country_name],
+      country_code: neighborhood[:country_code],
   )
-  puts "City #{neighborhood.name} created with success!"
+  puts "Neighborhood #{neighborhood.name} created with success!"
 end
 
 puts "\n"
@@ -108,9 +177,9 @@ puts '=== Personas fakers creator ==='
 puts "\n"
 puts "\n"
 
-persona_names = ["Entrepreneur", "Gourmet", "Nerd", "Activist", "Actor", "Athlete"]
+PERSONAS = ["Entrepreneur", "Gourmet", "Nerd", "Activist", "Actor", "Athlete"]
 
-persona_names.each do |name|
+PERSONAS.each do |name|
   persona = Persona.create(
       name: name
   )
@@ -126,7 +195,7 @@ puts '=== Levels fakers creator ==='
 puts "\n"
 puts "\n"
 
-levels = {
+LEVELS = {
     egg: {
         name: 'Egg',
         slug: 'egg',
@@ -147,7 +216,7 @@ levels = {
     }
 }
 
-levels.each do |key, hash|
+LEVELS.each do |key, hash|
   level = Level.create(
       name: hash[:name],
       slug: hash[:slug],
@@ -166,9 +235,9 @@ puts '=== Categories fakers creator ==='
 puts "\n"
 puts "\n"
 
-categories = ["Leisure", "Health", "Sport", "Education", "Culture", "Food"]
+CATEGORIES = ["Leisure", "Health", "Sport", "Education", "Culture", "Food"]
 
-categories.each do |name|
+CATEGORIES.each do |name|
   category = Category.create(
       name: name
   )
@@ -184,10 +253,10 @@ puts '=== Weeks fakers creator ==='
 puts "\n"
 puts "\n"
 
-weeks = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+WEEKS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 n = 1
 
-weeks.each do |name|
+WEEKS.each do |name|
   week = Week.create(
       name: name,
       slug: name.downcase,
@@ -262,16 +331,69 @@ puts "\n"
 
 
 
+puts '=== Places fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+
+PLACES = [
+    {
+        name: 'Cristo Redentor',
+        neighborhood_name: 'Copacabana',
+        city_name: 'Rio de Janeiro',
+        latitude: -22.9532707302915,
+        longitude: -43.2116648802915,
+        state_name: 'Rio de Janeiro',
+        state_code: 'RJ',
+        country_name: 'Brazil',
+        country_code: 'BR'
+    },
+    {
+        name: 'New York State Museum',
+        neighborhood_name: 'Park South',
+        city_name: 'Albany',
+        latitude: 42.6497478302915,
+        longitude: -73.7614809697085,
+        state_name: 'New York',
+        state_code: 'NY',
+        country_name: 'United States',
+        country_code: 'US'
+    }
+]
+
+PLACES.each do |place|
+  place = Place.create(
+      name: place[:name],
+      latitude: place[:latitude],
+      longitude: place[:longitude],
+      neighborhood_name: place[:neighborhood_name],
+      city_name: place[:city_name],
+      state_name: place[:state_name],
+      state_code: place[:state_code],
+      country_name: place[:country_name],
+      country_code: place[:country_code],
+  )
+  puts "Place #{place.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
+
+
+
 puts '=========== Events fakers creator ==========='
 
 puts "\n"
 puts "\n"
 
 10.times do
+  place = Place.order("RANDOM()").first
   faker_address = Faker::Address
   event = Event.create(
-      name: Faker::Lorem.sentence(4, false, 6),
-      description: Faker::Lorem.paragraph(5),
+      name: Faker::Lorem.sentence(2, false, 4),
+      description: Faker::Lorem.paragraph(5..20),
       date_start: Faker::Date.between(30.days.ago, Date.today),
       date_finish: Faker::Date.between(Date.today, 60.days.from_now),
       hour_start_first: Faker::Time.between(Date.today, Date.tomorrow, :all),
@@ -281,15 +403,16 @@ puts "\n"
       longitude: faker_address.longitude,
       route: faker_address.street_address,
       street_number: faker_address.building_number,
-      neighborhood_name: Neighborhood.order("RANDOM()").first.name,
-      city_name: City.order("RANDOM()").first.name,
+      neighborhood_name: place.neighborhood_name,
+      city_name: place.city_name,
       postal_code: faker_address.postcode,
-      state_name: State.order("RANDOM()").first.name,
-      state_code: nil,
-      country_name: Country.order("RANDOM()").first.name,
-      country_code: nil,
-      full_address: faker_address.street_address,
+      state_name: place.state_name,
+      state_code: place.state_code,
+      country_name: place.country_name,
+      country_code: place.country_code,
+      full_address: nil,
       user_id: User.order("RANDOM()").first.id,
+      place_id: place.id,
       moderate: 1
   )
   puts "Event #{event.name} created with success!"
