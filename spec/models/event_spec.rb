@@ -48,5 +48,13 @@ describe Event, type: :model do
     end
   end
 
+  describe '#place' do
+    it 'should return a place from event' do
+      create(:place, name: 'New York State Museum')
+      create(:place, name: 'Cristo Redentor')
+
+      expect(event.place.name).to eq('New York State Museum')
+    end
+  end
 
 end

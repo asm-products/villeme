@@ -41,10 +41,11 @@ FactoryGirl.define do
     address "544 Madison Ave, Albany, NY 12208, USA"
     latitude 42.6531078197085
     longitude -73.7729633802915
+    place
   end
 
   factory :place do
-    name "City Sandwich"
+    name "New York State Museum"
     neighborhood_name "Park South"
     city_name "Albany"
     state_name "New York"
