@@ -1,7 +1,7 @@
 module GeocodedByAddress
 
 
-  unless Rails.env.test?
+  if Rails.env.test?
     def geocoder_by_address
       nil
     end
