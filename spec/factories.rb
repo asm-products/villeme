@@ -37,7 +37,10 @@ FactoryGirl.define do
     city_name "Albany"
     state_name "New York"
     country_name "United States"
+    country_code "US"
     address "544 Madison Ave, Albany, NY 12208, USA"
+    latitude 42.6531078197085
+    longitude -73.7729633802915
   end
 
 
@@ -65,8 +68,14 @@ FactoryGirl.define do
     email "user@gmail.com"
     name "John Doe"
     persona "Entrepreuner"
-    address "544 Madison Ave, Albany, NY 12208, US"
+    neighborhood_name "Park South"
     city_name "Albany"
+    state_name "New York"
+    country_name "United States"
+    country_code "US"
+    address "544 Madison Ave, Albany, NY 12208, USA"
+    latitude 42.6531078197085
+    longitude -73.7729633802915
     key "qowiqmas01231ljadao"
   end
 
