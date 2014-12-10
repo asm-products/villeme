@@ -1,6 +1,4 @@
 # encoding: utf-8
-
-
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :schedule]
 
@@ -86,9 +84,9 @@ class EventsController < ApplicationController
 
 
     @event = current_user.events.create(event_params)
-    place_name_from_form = params[:event][:place_attributes][:name]
 
-    unless place_name_from_form.nil?
+
+    if place_name_from_form?
 
       place = Place.find_by name: place_name_from_form
 
@@ -249,7 +247,17 @@ class EventsController < ApplicationController
   end
 
 
-  # variables javascript for views
+  def place_name_from_form?
+    place_name_from_form = params[:event][:place_attributes][:name]
+
+    if place_name_from_form.nil?
+      false
+    else
+      true
+    end
+  end
+
+
   def set_current_user_lat_long_in_gon
     if user_signed_in?
       gon.current_user_latitude = current_user.latitude
