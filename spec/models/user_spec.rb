@@ -6,7 +6,7 @@ describe User, type: :model do
 
   describe '#neighborhood' do
     it 'should return neighborhood for user' do
-      neighborhood = create(:neighborhood, name: 'Albany County')
+      neighborhood = create(:neighborhood, name: 'Park South')
 
       expect(user.neighborhood).to eq(neighborhood)
     end
@@ -38,11 +38,11 @@ describe User, type: :model do
 
   describe '#events' do
     it 'should return events belongs to user' do
-      events = [create(:event, name: 'Campus Party', user_id: 1),
-                create(:event, name: 'Hackaton', user_id: 1)]
-                create(:event, name:'Octoberfest')
+      create(:event, name: 'Campus Party', user_id: 1)
+      create(:event, name: 'Hackaton', user_id: 1)
+      create(:event, name:'Octoberfest')
 
-      expect(user.events).to eq(events)
+      expect(user.events.size).to eq(2)
     end
   end
 

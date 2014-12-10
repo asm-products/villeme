@@ -2,15 +2,15 @@ require 'rails_helper'
 
 describe Neighborhood, type: :model do
 
-  let(:neighborhood){ create(:neighborhood) }
 
   describe '#events' do
     it 'should return events from neighborhood' do
-      events = [create(:event, name: 'Campus Party'),
-                create(:event, name: 'Hackathon')]
-      create(:event, name: 'Oktoberfest', neighborhood_name: 'Partenon')
+      neighborhood = create(:neighborhood, name: 'Park South')
+      create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
+      create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
+      create(:event, name: 'Oktoberfest', neighborhood_name: 'Partenon', address: 'Rua Rivadavia Correia, 08 - Partenon Brasil')
 
-      expect(neighborhood.events).to eq(events)
+      expect(neighborhood.events.size).to eq(2)
     end
   end
 

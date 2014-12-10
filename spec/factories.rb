@@ -10,7 +10,7 @@ FactoryGirl.define do
     longitude 0.000
     password "password"
     password_confirmation "password"
-    neighborhood_name "Albany County"
+    neighborhood_name "Park South"
     city_name "Albany"
     state_name "New York"
     country_name "United States"
@@ -33,10 +33,11 @@ FactoryGirl.define do
 
   factory :event do
     name "Campus Party"
-    neighborhood_name "Albany County"
+    neighborhood_name "Park South"
     city_name "Albany"
     state_name "New York"
     country_name "United States"
+    address "544 Madison Ave, Albany, NY 12208, USA"
   end
 
 
@@ -45,7 +46,7 @@ FactoryGirl.define do
   end
 
   factory :neighborhood do
-    name "Albany County"
+    name "Park South"
   end
 
   factory :state do
