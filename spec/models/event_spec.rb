@@ -4,6 +4,19 @@ describe Event, type: :model do
 
   let(:event){ create(:event) }
 
+  describe 'associations' do
+    it { is_expected.to belong_to :place }
+    it { is_expected.to belong_to :user }
+    it { is_expected.to belong_to :price }
+    it { is_expected.to belong_to :persona }
+    it { is_expected.to belong_to :subcategory }
+    it { is_expected.to have_and_belong_to_many :categories }
+    it { is_expected.to have_and_belong_to_many :weeks }
+    it { is_expected.to have_many :agendas }
+    it { is_expected.to have_many :agended_by }
+    it { is_expected.to have_many :tips }
+  end
+
   describe '.geocoded_by_address' do
     it('should geocoded country') { expect(event.country_code).to eq('US') }
     it('should geocoded state') { expect(event.state_name).to eq('New York') }
