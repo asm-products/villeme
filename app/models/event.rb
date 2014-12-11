@@ -41,8 +41,8 @@ class Event < ActiveRecord::Base
 
 
 	validates :name, presence: true, uniqueness: true, length: 6..140
-	# validates :description, presence: true, length: 140..5000
-	validates :address, presence: true, unless: lambda {|address| address.nil?}
+	validates :description, allow_blank: true, length: 140..5000
+	validates :address, presence: true, length: {maximum: 200}, unless: lambda {|address| address.nil?}
 	validates :hour_start_first, presence: true
 	validates :date_start, presence: true
 	validates :cost, length: {maximum: 8}
@@ -50,8 +50,8 @@ class Event < ActiveRecord::Base
 	validates :email, allow_blank: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 	validates :link, length: {maximum: 300}
 	validates :phone, length: {maximum: 20}
-	# validates_attachment_presence :image
-	# validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+	validates_attachment_presence :image
+	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
 
 	# Validações ASSOCIAÇÔES

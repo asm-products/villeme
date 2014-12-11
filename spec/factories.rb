@@ -44,6 +44,9 @@ FactoryGirl.define do
     date_start Faker::Date.between(30.days.ago, Date.today)
     hour_start_first Faker::Time.between(Date.today, Date.tomorrow, :all)
     place
+    image_file_name 'test.jpg'
+    image_content_type 'image/jpg'
+    image_file_size 1024
   end
 
   factory :place do
