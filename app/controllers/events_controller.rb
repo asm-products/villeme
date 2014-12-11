@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   def show
 
     if user_signed_in?
-      @distance = current_user.distance_to(@event, :transport)
+      @distance = current_user.distance_until(@event, :minutes)
     end
 
     @tip = Tip.new

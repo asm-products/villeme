@@ -27,7 +27,7 @@ module EventsHelper
 		case variables[:type]
 		when :km
 			return distance.to_s << "km"
-		when :transport
+		when :minutes
 			case
 			when distance >= 4.0 # bus
 				margem = (distance / 100) * 30

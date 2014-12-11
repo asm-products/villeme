@@ -10,7 +10,7 @@
 	<% i += 1 %>
 
 	<!-- pega a distância entre o evento e o user -->
-	<% distance = current_user.distance_to(event, :transport) %>
+	<% distance = current_user.distance_until(event, :minutes) %>
 
 	<% cache [current_user, event, event.agendas] do %>
 	<div id="event-<%= event.id %>" class="event grid col-lg-4 col-md-4 col-sm-6 col-xs-12">						

@@ -242,43 +242,6 @@ class User < ActiveRecord::Base
 
 
 
-  def distance_to(event, type)
-
-    if has_geocoded?(event)
-      distance = calculate_distance(event)
-    end
-
-    resposta = Hash.new
-
-    case type
-    when :km
-      return distance.to_s << "km"
-    when :transport
-      resposta[:bus] = ((distance / 35 * 60) + ((distance / 100) * 30) + (10).round(3)).round.to_s
-      resposta[:car] = ((distance / 40 * 60) + ((distance / 100) * 10) + (3).round(3)).round.to_s
-      resposta[:walk] = ((distance / 4.5 * 60) + (distance / 100 * 5)).round.to_s
-      resposta[:bike] = ((distance / 20 * 60) + (distance / 100 * 10)).round.to_s
-      return resposta
-    else
-        nil
-    end
-
-  end
-
-  def calculate_distance(event)
-    distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [event.latitude, event.longitude], {units: :km}).round(3)
-    margem = distance.round(3) / 100 * 33
-    (distance + margem).round(3)
-  end
-
-  def has_geocoded?(event)
-    unless event.latitude.blank? and event.longitude.blank?
-      true
-    end
-  end
-
-
-  # notificações de solicitações de amizade
   def requested_friendships_notify
     if self.notify.nil?
       self.requested_friendships.where("created_at BETWEEN ? AND ?", DateTime.current - 365, DateTime.current)

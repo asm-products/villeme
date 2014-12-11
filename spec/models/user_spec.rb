@@ -46,13 +46,13 @@ describe User, type: :model do
     end
   end
 
-  describe '#distance_to(event, :type)' do
+  describe '#distance_until' do
     it 'should return a distance from user to event' do
       user = create(:user)
       event = double('Event', attributes_for(:event))
-      distance_of_bus = "16"
+      distance_result = {bus: "16", car: "8", walk: "8", bike: "9"}
 
-      expect(user.distance_to(event, :transport)[:bus]).to eq(distance_of_bus)
+      expect(user.distance_until(event, :minutes)).to eq(distance_result)
     end
   end
 
