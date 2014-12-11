@@ -6,8 +6,8 @@ FactoryGirl.define do
     account_complete true
     invited true
     admin false
-    latitude 0.000
-    longitude 0.000
+    latitude 42.670443
+    longitude -73.788397
     password "password"
     password_confirmation "password"
     neighborhood_name "Park South"

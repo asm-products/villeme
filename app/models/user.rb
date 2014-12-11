@@ -278,59 +278,40 @@ class User < ActiveRecord::Base
 
 
 
+  def distance_to(event, type)
 
-
-  def distance_to?(event_or_place, type)
-
-    # pega a distância entro o usuário e o evento
-    if event_or_place.latitude.blank? and event_or_place.longitude.blank?
-      place = event_or_place.place
-      get_distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [place.latitude, place.longitude], {units: :km}).round(3)
-    else
-      get_distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [event_or_place.latitude, event_or_place.longitude], {units: :km}).round(3)
+    if has_geocoded?(event)
+      distance = calculate_distance(event)
     end
 
-    # cria uma margem de erro de 20% positivo
-    margem = get_distance.round(3) / 100 * 33
-
-    # adiciona a margem a distância
-    distance = (get_distance + margem).round(3)
-
-    # hash de resposta
     resposta = Hash.new
 
     case type
     when :km
       return distance.to_s << "km"
-
     when :transport
-      
-      # ônibus
-      # distância - margem - tempo de espera
       resposta[:bus] = ((distance / 35 * 60) + ((distance / 100) * 30) + (10).round(3)).round.to_s
-      
-      # carro
-      # distância - margem - tempo de espera
       resposta[:car] = ((distance / 40 * 60) + ((distance / 100) * 10) + (3).round(3)).round.to_s
-
-      # caminhando
-      # distância - margem - tempo de espera
       resposta[:walk] = ((distance / 4.5 * 60) + (distance / 100 * 5)).round.to_s
-
-      # bicicleta
-      # distância - margem - tempo de espera
-      resposta[:bike] = ((distance / 20 * 60) + (distance / 100 * 10)).round.to_s      
-
-
+      resposta[:bike] = ((distance / 20 * 60) + (distance / 100 * 10)).round.to_s
       return resposta
-
-      else
+    else
         nil
     end
 
   end
 
+  def calculate_distance(event)
+    distance = Geocoder::Calculations.distance_between([self.latitude, self.longitude], [event.latitude, event.longitude], {units: :km}).round(3)
+    margem = distance.round(3) / 100 * 33
+    (distance + margem).round(3)
+  end
 
+  def has_geocoded?(event)
+    unless event.latitude.blank? and event.longitude.blank?
+      true
+    end
+  end
 
 
   # notificações de solicitações de amizade
