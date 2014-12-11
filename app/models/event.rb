@@ -39,12 +39,12 @@ class Event < ActiveRecord::Base
                     default_url: "/images/:style/missing.png"
 
 
-	# Validações FORMULARIO
+
 	validates :name, presence: true, uniqueness: true, length: 6..140
 	# validates :description, presence: true, length: 140..5000
-	# validates :address, presence: true, unless: "address.nil?"
-	# validates :hour_start_first, presence: true
-	# validates :date_start, presence: true
+	validates :address, presence: true, unless: lambda {|address| address.nil?}
+	validates :hour_start_first, presence: true
+	validates :date_start, presence: true
 	validates :cost, length: {maximum: 8}
 	validates :cost_details, length: {maximum: 300}
 	validates :email, allow_blank: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }

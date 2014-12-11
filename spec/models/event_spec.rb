@@ -17,6 +17,37 @@ describe Event, type: :model do
     it { is_expected.to have_many :tips }
   end
 
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :date_start }
+    it { is_expected.to validate_presence_of :hour_start_first }
+    it { is_expected.to validate_presence_of :address }
+  end
+
+  describe '#create' do
+
+    context 'event valid' do
+      it 'should create event' do
+        event = create(:event)
+
+        event.save
+
+        expect(event).to be_valid
+      end
+    end
+
+    context 'event invalid' do
+      it 'should NOT create event' do
+        event = Event.new()
+
+        event.save
+
+        expect(event).to_not be_valid
+      end
+    end
+
+  end
+
   describe '.geocoded_by_address' do
     it('should geocoded country') { expect(event.country_code).to eq('US') }
     it('should geocoded state') { expect(event.state_name).to eq('New York') }
