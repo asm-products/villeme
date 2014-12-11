@@ -50,7 +50,6 @@ describe User, type: :model do
     it 'should return a distance from user to event' do
       user = create(:user)
       event = double('Event', attributes_for(:event))
-
       distance_of_bus = "16"
 
       expect(user.distance_to(event, :transport)[:bus]).to eq(distance_of_bus)
