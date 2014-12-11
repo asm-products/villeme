@@ -13,6 +13,7 @@ group :development, :test do
 	gem 'binding_of_caller'
 	gem 'rspec'
 	gem 'rspec-rails'
+	gem 'shoulda-matchers'
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'database_cleaner'
 	gem 'coveralls', require: false
@@ -79,13 +80,13 @@ gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branc
 gem 'geocoder'
 
 # Paperclip
-gem "paperclip", "~> 3.5.3"
+gem 'paperclip', '~> 3.5.3'
 
 # Amazon S3
 gem 'aws-sdk'
 
 # Gon
-gem "gon"
+gem 'gon'
 
 # i18n
 gem 'rails-i18n', '~> 4.0.0' 
