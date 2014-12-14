@@ -15,8 +15,8 @@ module NewsfeedHelper
 
   def show_events_number_in_neighborhood_of(user)
 
-    if user.events_from_my_neighborhood_count > 0
-      count = "#{t('dictionary.have_events', neighborhood_count: user.events_from_my_neighborhood.count)}"
+    if user.my_neighborhood_has_events?
+      count = "#{t('dictionary.have_events', neighborhood_count: user.quantity_of_events_from_neighborhood)}"
     else
       count = "#{t('dictionary.no_have_events')}"
     end

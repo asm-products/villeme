@@ -39,6 +39,18 @@ module GeocodedActions
     Country.find_by(name: country_name)
   end
 
+  def localize_from_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '123.45.67.89'
+    else
+      Geocoder.search("#{request.remote_ip}").first.coordinates
+    end
+  end
+
+  def coordinates
+    [latitude, longitude]
+  end
 
   def distance_until(event, format)
 
@@ -53,6 +65,7 @@ module GeocodedActions
 
 
   end
+
 
   KM_HOUR_BUS = 35
   KM_HOUR_CAR = 40

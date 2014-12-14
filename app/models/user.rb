@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  require_relative '../core/usecases/user/get_events'
 
 
   has_merit
@@ -12,6 +13,7 @@ class User < ActiveRecord::Base
   include GeocodedActions
 
   geocoder_by_address
+
 
   # Try building a slug based on the following fields in
   # increasing order of specificity.
@@ -61,18 +63,18 @@ class User < ActiveRecord::Base
   has_many :accepted_friends,
           through: :accepted_friendships,
           source: :friend,
-          foreign_key: :friend_id  
-  has_many :requested_friendships, 
+          foreign_key: :friend_id
+  has_many :requested_friendships,
           -> { where status: 'requested', confirmed: false},
           class_name: 'Friendship'
-  has_many :requested_friends, 
+  has_many :requested_friends,
           through: :requested_friendships,
           source: :friend,
-          foreign_key: :friend_id              
-  has_many :pending_friendships, 
+          foreign_key: :friend_id
+  has_many :pending_friendships,
           -> { where status: 'pending', confirmed: false },
           class_name: 'Friendship'
-  has_many :pending_friends, 
+  has_many :pending_friends,
           through: :pending_friendships,
           source: :friend,
           foreign_key: :friend_id
@@ -83,43 +85,26 @@ class User < ActiveRecord::Base
   end
 
 
-  def localize_from_ip
-    if request.remote_ip == '127.0.0.1'
-      # Hard coded remote address
-      '123.45.67.89'
-    else
-      Geocoder.search("#{request.remote_ip}").first.coordinates
-    end
+  def events_from_neighborhood
+    Villeme::User::GetEvents.new(self).events_from_neighborhood
   end
 
 
-  def coordinates
-    [latitude, longitude]
+  def quantity_of_events_from_neighborhood
+    Villeme::User::GetEvents.new(self).quantity_of_events_from_neighborhood
   end
 
-
-  def events_from_my_neighborhood
-    unless neighborhood.nil?
-      neighborhood = Neighborhood.find(self.neighborhood)
-      neighborhood.events
-    end
+  def my_neighborhood_has_events?
+    Villeme::User::GetEvents.new(self).neighborhood_has_events?
   end
 
-
-  def events_from_my_neighborhood_count
-    if events_from_my_neighborhood
-      events_from_my_neighborhood.count
-    else
-      0
-    end
+  def events_from_persona
+    Villeme::User::GetEvents.new(self).events_from_persona
   end
 
-
-  def events_from_my_persona
-    persona = Persona.find(self.persona.id)
-    persona.events
-  end  
-
+  def quantity_of_events_from_persona
+    Villeme::User::GetEvents.new(self).quantity_of_events_from_persona
+  end
 
   # Url do icone do level atual do usuario
   def level_icon_url

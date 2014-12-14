@@ -60,13 +60,46 @@ describe User, type: :model do
     end
   end
 
-  describe '#events_from_my_neighborhood_count' do
+  describe '#events_from_neighborhood' do
+    it 'should return events going in neighborhood of user' do
+      events = []
+      events << create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
+      events << create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
+      create(:neighborhood)
+
+      expect(user.events_from_neighborhood).to eq(events)
+    end
+  end
+
+  describe '#quantity_of_events_from_neighborhood' do
     it 'should return a number of events going in neighborhood of user' do
       create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
       create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
       create(:neighborhood)
 
-      expect(user.events_from_my_neighborhood_count).to eq(2)
+      expect(user.quantity_of_events_from_neighborhood).to eq(2)
+    end
+  end
+
+  describe '#events_from_persona' do
+    it 'should return events from user persona' do
+      user = create(:user, persona_id: 1)
+      events = []
+      events << create(:event, name: 'Campus Party', neighborhood_name: 'Park South', persona_id: 1)
+      events << create(:event, name: 'Hackathon', neighborhood_name: 'Park South', persona_id: 1)
+
+      expect(user.events_from_persona).to eq(events)
+    end
+  end
+
+  describe '#quantity_of_events_from_persona' do
+    it 'should return quantity of events from user persona' do
+      user = create(:user, persona_id: 1)
+      events = []
+      events << create(:event, name: 'Campus Party', neighborhood_name: 'Park South', persona_id: 1)
+      events << create(:event, name: 'Hackathon', neighborhood_name: 'Park South', persona_id: 1)
+
+      expect(user.quantity_events_from_persona).to eq(2)
     end
   end
 

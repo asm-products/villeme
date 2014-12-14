@@ -14,6 +14,7 @@ FactoryGirl.define do
     city_name "Albany"
     state_name "New York"
     country_name "United States"
+    persona
   end
 
   # This will use the User class (Admin would have been guessed)
@@ -44,6 +45,7 @@ FactoryGirl.define do
     date_start Faker::Date.between(30.days.ago, Date.today)
     hour_start_first Faker::Time.between(Date.today, Date.tomorrow, :all)
     place
+    persona
     image_file_name 'test.jpg'
     image_content_type 'image/jpg'
     image_file_size 1024
