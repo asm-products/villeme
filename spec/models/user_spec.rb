@@ -4,6 +4,10 @@ describe User, type: :model do
 
   let(:user){ create(:user) }
 
+  describe 'validations' do
+    it{ is_expected.to belong_to :level }
+  end
+
   describe '#neighborhood' do
     it 'should return neighborhood for user' do
       neighborhood = create(:neighborhood, name: 'Park South')
@@ -53,6 +57,16 @@ describe User, type: :model do
       distance_result = {bus: "16", car: "8", walk: "8", bike: "9"}
 
       expect(user.distance_until(event, :minutes)).to eq(distance_result)
+    end
+  end
+
+  describe '#events_from_my_neighborhood_count' do
+    it 'should return a number of events going in neighborhood of user' do
+      create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
+      create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
+      create(:neighborhood)
+
+      expect(user.events_from_my_neighborhood_count).to eq(2)
     end
   end
 
