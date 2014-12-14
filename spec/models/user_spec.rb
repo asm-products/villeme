@@ -99,7 +99,7 @@ describe User, type: :model do
       events << create(:event, name: 'Campus Party', neighborhood_name: 'Park South', persona_id: 1)
       events << create(:event, name: 'Hackathon', neighborhood_name: 'Park South', persona_id: 1)
 
-      expect(user.quantity_events_from_persona).to eq(2)
+      expect(user.quantity_of_events_from_persona).to eq(2)
     end
   end
 
