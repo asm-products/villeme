@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  require_relative '../core/usecases/user/get_events'
+  require_relative '../core/usecases/events/get_events'
+  require_relative '../core/usecases/level/get_level_points'
 
 
   has_merit
@@ -86,24 +87,23 @@ class User < ActiveRecord::Base
 
 
   def events_from_neighborhood
-    Villeme::User::GetEvents.new(self).events_from_neighborhood
+    Villeme::Events::GetEvents.from_neighborhood(self)
   end
 
-
   def quantity_of_events_from_neighborhood
-    Villeme::User::GetEvents.new(self).quantity_of_events_from_neighborhood
+    Villeme::Events::GetEvents.quantity_from_neighborhood(self)
   end
 
   def my_neighborhood_has_events?
-    Villeme::User::GetEvents.new(self).neighborhood_has_events?
+    Villeme::Events::GetEvents.neighborhood_has_events?(self)
   end
 
   def events_from_persona
-    Villeme::User::GetEvents.new(self).events_from_persona
+    Villeme::Events::GetEvents.from_persona(self)
   end
 
   def quantity_of_events_from_persona
-    Villeme::User::GetEvents.new(self).quantity_of_events_from_persona
+    Villeme::Events::GetEvents.quantity_of_events_from_persona(self)
   end
 
   # Url do icone do level atual do usuario
@@ -114,11 +114,8 @@ class User < ActiveRecord::Base
   end
 
 
-  # Pontos que faltam para o proximo level
   def points_to_next_level
-    unless level.nil?
-      (level.next.points).to_i - (points).to_i
-    end
+    Villeme::Level::GetPoints.points_to_next_level(self)
   end
 
 

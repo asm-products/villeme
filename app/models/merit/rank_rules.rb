@@ -16,7 +16,7 @@ module Merit
 
     def initialize
       # set_rank level: 1, to: User do |user|
-      #   user.points > 1 
+      #   user.points > 1
       # end
       #
       # set_rank :level => 2, :to => Commiter.active do |commiter|

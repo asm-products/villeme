@@ -102,5 +102,11 @@ FactoryGirl.define do
   end
 
 
+  factory :level do
+    name "Ovo"
+    points 30
+    nivel 1
+  end
+
 
 end
