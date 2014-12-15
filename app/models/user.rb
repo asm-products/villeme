@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   require_relative '../core/usecases/events/get_events'
   require_relative '../core/usecases/level/get_level'
-  require_relative '../core/usecases/level/get_level_points'
+  require_relative '../core/usecases/level/points_level'
+  require_relative '../core/usecases/friends/get_friends'
+  require_relative '../core/usecases/friends/ranking_friends'
 
 
   has_merit
@@ -170,47 +172,12 @@ class User < ActiveRecord::Base
   end
 
 
-  # Pega os amigos do facebook que estão no villeme
   def friends_from_facebook_on_villeme
-    
-    # Array de retorno
-    friends_from_facebook = Array.new
-
-    # Pega os amigos do facebook via koala
-    graph = Koala::Facebook::API.new(self.token)
-    friends = graph.get_connections("me", "friends?fields=id,name,picture.type(square)")
-
-    # Testa cada amigo do facebook para ver se esta na plataforma
-    friends.each do |fb_friend| 
-
-      # compara o nome dos usuarios de facebook e da plataforma
-      self.city.users.each do |friend| 
-        if fb_friend["name"].split.first == friend.first_name 
-
-          # friend_user = User.where("name like ?", "%#{friend["name"].split.first}%").first 
-          if self.are_friends?(friend) == false and self.are_friedship_invite?(friend) == false 
-            friends_from_facebook << friend
-          end 
-        end 
-      end 
-    end
-
-    friends_from_facebook
-
+    Villeme::UseCases::GetFriends.friends_from_facebook_on_villeme(self)
   end
 
-
-  # Retorna os amigos em un ranking ordenado por pontos
-  def ranking_friends
-    ranking_array = Array.new
-
-    self.accepted_friends[0..25].each do |friend|
-      friend_attributes = {id: friend.id, name: friend.name, points: friend.points, slug: friend.slug}
-      ranking_array << friend_attributes
-    end
-
-    ranking_array << {id: self.id, name: self.name, points: self.points}
-    ranking_array = ranking_array.sort_by{|obj| obj[:points]}.reverse!
+  def ranking_of_friends
+    Villeme::UseCases::RankingFriends.get_ranking(self)
   end
 
 
@@ -236,17 +203,8 @@ class User < ActiveRecord::Base
   end
 
 
-
-  # notificações de eventos no newsfeed não vistos
   def newsfeed_notify
-    if self.has_notify
-      if self.notify.newsfeed_view.blank?
-        notify_date = DateTime.current - 300
-      else
-        notify_date = self.notify.newsfeed_view
-      end
-      Event.where("created_at BETWEEN ? AND ?", notify_date, DateTime.current)
-    end
+    Villeme::UseCases::NewsfeedNotify.get_notifies(self)
   end
 
   def newsfeed_notify_count

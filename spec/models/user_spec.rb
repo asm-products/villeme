@@ -133,4 +133,10 @@ describe User, type: :model do
     end
   end
 
+  describe '#friends_from_facebook_on_villeme' do
+
+
+
+  end
+
 end

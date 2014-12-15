@@ -8,7 +8,7 @@
 			
 			<% unless current_user.accepted_friends.blank? %>
 				<!-- amigos que estão na plataforma -->
-				<% current_user.ranking_friends.each do |friend| %>
+				<% current_user.ranking_of_friends.each do |friend| %>
 					<% if friend[:name] == current_user.name %> 
 						<li class="list-group-item avatar small-avatar font-11">
 							<%= get_avatar friend[:id], "26", "26" %> <span class="name p-6"><%= friend[:name].cut 0, 16  %></span> <span class="pull-right p-6-0"><%= friend[:points] %> Pts.</span>
