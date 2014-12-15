@@ -6,6 +6,10 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 
 
+group :test do
+
+end
+
 group :development, :test do 
 	gem 'sqlite3'
 	gem 'faker'
@@ -17,6 +21,7 @@ group :development, :test do
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'database_cleaner'
 	gem 'coveralls', require: false
+	gem 'simplecov', require: false
 end
 
 # Heroku requisição

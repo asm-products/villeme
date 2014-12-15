@@ -19,9 +19,14 @@ require 'devise'
 require 'factory_girl'
 require 'supports/controller_macros'
 require 'database_cleaner'
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!
 
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start
 RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
