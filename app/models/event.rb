@@ -2,6 +2,8 @@
 
 class Event < ActiveRecord::Base
 
+	require_relative '../core/usecases/events/event_attributes'
+
 	ratyrate_rateable "geral"
 
   extend FriendlyId
@@ -41,7 +43,7 @@ class Event < ActiveRecord::Base
 
 
 	validates :name, presence: true, uniqueness: true, length: 6..140
-	validates :description, allow_blank: true, length: 140..5000
+	validates :description, allow_blank: true, length: 70..5000
 	validates :address, presence: true, length: {maximum: 200}, unless: lambda {|address| address.nil?}
 	validates :hour_start_first, presence: true
 	validates :date_start, presence: true
@@ -52,12 +54,6 @@ class Event < ActiveRecord::Base
 	validates :phone, length: {maximum: 20}
 	validates_attachment_presence :image
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-
-
-	# Validações ASSOCIAÇÔES
-	# validates_associated :event, :user
-
-
 
 
 	# scopes
@@ -72,23 +68,12 @@ class Event < ActiveRecord::Base
 
 
 	def name_with_limit
-		name = self.name
-		if name.length > 45
-      "#{name[0..45]}..."
-		else
-			name
-		end
+		Villeme::UseCases::EventAttributes.name_with_limit(self)
 	end
 
 
 	def description_with_limit
-		name = self.name
-		description = ActionController::Base.helpers.strip_tags(self.description)
-		if name.length > 25
-      "#{description[0..70]}..."
-		else
-      "#{description[0..100]}..."
-		end
+		Villeme::UseCases::EventAttributes.description_with_limit(self)
 	end
 
 

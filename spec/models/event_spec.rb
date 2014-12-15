@@ -101,4 +101,20 @@ describe Event, type: :model do
     end
   end
 
+  describe '#name_with_limit' do
+    it 'should return name of event with limit of chars' do
+      event = create(:event, name: "This name of events have more than 45 chars for make this test testable")
+
+      expect(event.name_with_limit.length).to eq(49)
+    end
+  end
+
+  describe '#description_whit_limit' do
+    it 'should return description of event with limit of chars' do
+      event = create(:event, description: "This description of events have more than 70 chars for make this test testable testable")
+
+      expect(event.description_with_limit.length).to eq(90)
+    end
+  end
+
 end
