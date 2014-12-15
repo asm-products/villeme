@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   require_relative '../core/usecases/events/get_events'
   require_relative '../core/usecases/level/get_level'
   require_relative '../core/usecases/level/points_level'
+  require_relative '../core/usecases/level/icon_level'
   require_relative '../core/usecases/friends/get_friends'
   require_relative '../core/usecases/friends/ranking_friends'
 
@@ -109,11 +110,8 @@ class User < ActiveRecord::Base
     Villeme::UseCases::GetEvents.quantity_of_events_from_persona(self)
   end
 
-  # Url do icone do level atual do usuario
   def level_icon_url
-    unless self.level.nil?
-      self.level.icon.url(:original)
-    end
+    Villeme::UseCases::IconLevel.get_icon(self)
   end
 
 
@@ -122,7 +120,7 @@ class User < ActiveRecord::Base
   end
 
   def points_to_next_level
-    Villeme::UseCases::GetPoints.points_to_next_level(self)
+    Villeme::UseCases::PointsLevel.points_to_next_level(self)
   end
 
   def percentage_of_current_level

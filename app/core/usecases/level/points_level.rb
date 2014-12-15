@@ -1,6 +1,6 @@
 module Villeme
   module UseCases
-    class GetPoints
+    class PointsLevel
       class << self
 
         def points_to_next_level(entity)
