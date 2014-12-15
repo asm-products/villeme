@@ -123,6 +123,9 @@ class User < ActiveRecord::Base
     Villeme::UseCases::GetPoints.points_to_next_level(self)
   end
 
+  def percentage_of_current_level
+    Villeme::UseCases::GetLevel.percentage_of_current_level(self)
+  end
 
 
   # Verifica se o evento foi agendado pelo usuario
@@ -132,11 +135,6 @@ class User < ActiveRecord::Base
 
 
 
-  def percentage_of_level
-    unless level.nil?
-      ((points - level.points) * 100) / (level.next.points - level.points)
-    end
-  end
 
 
 

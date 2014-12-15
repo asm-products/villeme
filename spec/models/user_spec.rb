@@ -123,4 +123,14 @@ describe User, type: :model do
     end
   end
 
+  describe '#percentage_of_current_level' do
+    it 'should return percentage completed of current level' do
+      create(:level, name: 'Ovo', points: 0, nivel: 1)
+      create(:level, name: 'Pintinho', points: 30, nivel: 2)
+      user.add_points(10)
+
+      expect(user.percentage_of_current_level).to eq(33)
+    end
+  end
+
 end
