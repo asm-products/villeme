@@ -103,6 +103,16 @@ describe User, type: :model do
     end
   end
 
+  describe '#next_level' do
+    it 'should return next level' do
+      create(:level, name: 'Ovo', points: 0, nivel: 1)
+      create(:level, name: 'Pintinho', points: 30, nivel: 2)
+      user.add_points(10)
+
+      expect(user.next_level.nivel).to eq(2)
+    end
+  end
+
   describe '#points_to_next_level' do
     it 'should return points necessary to next level' do
       create(:level, name: 'Ovo', points: 0, nivel: 1)

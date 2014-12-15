@@ -1,6 +1,5 @@
 class Level < ActiveRecord::Base
 
-
 	# Associações
 	has_many :users
 

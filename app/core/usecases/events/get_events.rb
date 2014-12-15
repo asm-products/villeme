@@ -1,5 +1,5 @@
 module Villeme
-  module Events
+  module UseCases
     class GetEvents
       class << self
 
