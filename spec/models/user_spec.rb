@@ -4,8 +4,22 @@ describe User, type: :model do
 
   let(:user){ create(:user) }
 
-  describe 'validations' do
+  describe 'associations' do
     it{ is_expected.to belong_to :level }
+    it{ is_expected.to belong_to :persona }
+    it{ is_expected.to have_one :notify }
+    it{ is_expected.to have_many :events }
+    it{ is_expected.to have_many :feedbacks }
+    it{ is_expected.to have_many :tips }
+    it{ is_expected.to have_many :agendas }
+    it{ is_expected.to have_many :agenda_events }
+    it{ is_expected.to have_many :friendships }
+    it{ is_expected.to have_many :friends }
+    it{ is_expected.to have_many :accepted_friends }
+    it{ is_expected.to have_many :requested_friendships }
+    it{ is_expected.to have_many :requested_friends }
+    it{ is_expected.to have_many :pending_friendships }
+    it{ is_expected.to have_many :pending_friends }
   end
 
   describe '#neighborhood' do
@@ -133,10 +147,6 @@ describe User, type: :model do
     end
   end
 
-  describe '#friends_from_facebook_on_villeme' do
 
-
-
-  end
 
 end
