@@ -42,6 +42,7 @@ FactoryGirl.define do
     address "544 Madison Ave, Albany, NY 12208, USA"
     latitude 42.6531078197085
     longitude -73.7729633802915
+    cost 1200
     date_start Faker::Date.between(30.days.ago, Date.today)
     hour_start_first Faker::Time.between(Date.today, Date.tomorrow, :all)
     place

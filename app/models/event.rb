@@ -85,11 +85,7 @@ class Event < ActiveRecord::Base
 	end
 
 	def price
-		if cost == 0 or cost.blank?
-			'Gratuito'
-		else
-			cost
-		end
+		Villeme::UseCases::EventAttributes.price(self)
 	end
 
 	def agended_by_count

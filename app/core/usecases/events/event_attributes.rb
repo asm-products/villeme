@@ -24,6 +24,16 @@ module Villeme
           end
         end
 
+
+        def price(entity)
+          if entity.cost == 0 or entity.cost.blank?
+            'Gratuito'
+          else
+            entity.cost
+          end
+        end
+
+
       end
     end
   end
