@@ -34,8 +34,8 @@ class EventsController < ApplicationController
     @tip = Tip.new
 
     # geolocalization of event
-    gon.latitude = @event.get_latitude
-    gon.longitude = @event.get_longitude
+    gon.latitude = @event.relative_latitude
+    gon.longitude = @event.relative_longitude
 
     # array with places for map
     gon.events_local_formatted = format_for_map_this(Event.all)
@@ -71,8 +71,8 @@ class EventsController < ApplicationController
 
     set_array_of_places_in_gon
 
-    gon.latitude = @event.get_latitude
-    gon.longitude = @event.get_longitude
+    gon.latitude = @event.relative_latitude
+    gon.longitude = @event.relative_longitude
   end
 
 

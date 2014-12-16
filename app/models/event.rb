@@ -1,8 +1,8 @@
 # encoding: utf-8
-
 class Event < ActiveRecord::Base
 
 	require_relative '../core/usecases/events/event_attributes'
+	require_relative '../core/usecases/geolocalization/geocoder_attributes'
 
 	ratyrate_rateable "geral"
 
@@ -76,39 +76,17 @@ class Event < ActiveRecord::Base
 		Villeme::UseCases::EventAttributes.description_with_limit(self)
 	end
 
-
-	def get_city
-		if self.place.neighborhood.city
-			self.place.neighborhood.city
-		elsif self.neighborhood.city
-			self.neighborhood.city
-		else
-			nil
-		end
+	def relative_latitude
+		Villeme::UseCases::GeocoderAttributes.relative_latitude(self)
 	end
 
-
-
-  def get_longitude
-    if longitude.blank?
-      self.place.longitude
-    else
-      self.longitude
-    end
-  end
-
-
-  def get_latitude
-    if latitude.blank?
-      self.place.latitude
-    else
-      self.latitude
-    end
+	def relative_longitude
+		Villeme::UseCases::GeocoderAttributes.relative_longitude(self)
 	end
 
-	def get_cost
+	def price
 		if cost == 0 or cost.blank?
-			"Gratuito"
+			'Gratuito'
 		else
 			cost
 		end
@@ -119,7 +97,7 @@ class Event < ActiveRecord::Base
 		if number == 0
 			respota = {valid: false, count: ""}
 		elsif number == 1
-			respota = {valid: true, count: 1, text: "1 pessoa agendou"}
+			respota = {valid: true, count: 1, text: '1 pessoa agendou'}
 		else
 			respota = {valid: true, count: number, text: "#{number} pessoas agendaram"}
 		end

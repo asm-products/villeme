@@ -38,7 +38,7 @@ describe Event, type: :model do
 
     context 'event invalid' do
       it 'should NOT create event' do
-        event = Event.new()
+        event = Event.new
 
         event.save
 
@@ -103,7 +103,7 @@ describe Event, type: :model do
 
   describe '#name_with_limit' do
     it 'should return name of event with limit of chars' do
-      event = create(:event, name: "This name of events have more than 45 chars for make this test testable")
+      event = create(:event, name: 'This name of events have more than 45 chars for make this test testable')
 
       expect(event.name_with_limit.length).to eq(49)
     end
@@ -111,10 +111,23 @@ describe Event, type: :model do
 
   describe '#description_whit_limit' do
     it 'should return description of event with limit of chars' do
-      event = create(:event, description: "This description of events have more than 70 chars for make this test testable testable")
+      event = create(:event, description: 'This description of events have more than 70 chars for make this test testable testable')
 
       expect(event.description_with_limit.length).to eq(90)
     end
   end
+
+  describe '#latitude' do
+    it 'should return the latitude from event' do
+      expect(event.relative_latitude).to eq(42.6531078197085)
+    end
+  end
+
+  describe '#longitude' do
+    it 'should return the longitude from event' do
+      expect(event.relative_longitude).to eq(-73.7729633802915)
+    end
+  end
+
 
 end

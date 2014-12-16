@@ -31,8 +31,8 @@ module Gmaps
     @hash_of_events = Hash.new
     events.each do |event|
       @hash_of_events[event.name] = {
-          latitude: event.get_latitude,
-          longitude: event.get_longitude,
+          latitude: event.relative_latitude,
+          longitude: event.relative_longitude,
           address: event.address,
           url: event_url(event),
           strong_category: strong_category(event, 'slug')
