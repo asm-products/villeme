@@ -24,41 +24,34 @@ CidadeVc::Application.routes.draw do
 
   # URL BASE -------------------------
 
-    scope "(:locale)", locale: /en|br/ do
+  scope "(:locale)", locale: /en|br/ do
 
-      get '/newsfeed', to: "newsfeed#index", via: :get, as: :root
+    get '/newsfeed', to: 'newsfeed#index', via: :get, as: :root
 
-      root to: 'welcome#index', as: :welcome
+    root to: 'welcome#index', as: :welcome
 
-      resources :events do
-        get :schedule, on: :member
-      end
-
-      # Account
-      get ':id/account', to: 'accounts#edit', as: :user_account
-      match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
-
-
-      get ':id/events', to: 'profiles#events', as: :user_events
-
-      # /city
-      get '/:city/:neighborhood', to: 'newsfeed#index'
-      get '/:city', to: 'newsfeed#index'
-
+    resources :events do
+      get :schedule, on: :member
     end
 
+    # Account
+    get ':id/account', to: 'accounts#edit', as: :user_account
+    match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
+
+
+    get ':id/events', to: 'profiles#events', as: :user_events
 
 
 
-  get "bussola/city"
-  get "bussola/neighborhood"
-  post "bussola/selecionado"
+    get "bussola/city"
+    get "bussola/neighborhood"
+    post "bussola/selecionado"
 
 
 
 
 
-  # Profiles
+    # Profiles
 
     # :id/events
 
@@ -68,7 +61,7 @@ CidadeVc::Application.routes.draw do
 
 
 
-  # Newsfeed
+    # Newsfeed
 
     # /
     get 'newsfeed',  to: 'newsfeed#index', as: :newsfeed
@@ -89,40 +82,49 @@ CidadeVc::Application.routes.draw do
     get 'myagenda/', to: 'newsfeed#myagenda', as: :my_agenda_events
 
 
-  # Notificações
-
+    # Notifications
     get "notify/bell"
     get "notify/newsfeed"
 
 
 
-  resources :subcategories
+    resources :subcategories
 
-  resources :categories
+    resources :categories
 
-  resources :cities
+    resources :cities
 
-  resources :neighborhoods
+    resources :neighborhoods
 
-  resources :places
+    resources :places
 
-  resources :levels
+    resources :levels
 
-  resources :users, except: :show
+    resources :users, except: :show
 
-  resources :invites
+    resources :invites
 
-  resources :weeks
+    resources :weeks
 
-  resources :prices
+    resources :prices
 
-  # /feedback
-  resources :feedbacks
+    # /feedback
+    resources :feedbacks
 
-  # /persona
-  resources :personas
+    # /persona
+    resources :personas
 
-  resources :tips
+    resources :tips
+
+
+    # /city
+    get '/:city/:neighborhood', to: 'newsfeed#index'
+    get '/:city', to: 'newsfeed#index'
+
+
+  end
+
+
 
   # AJAX ------------------------------------------
   
@@ -145,6 +147,9 @@ CidadeVc::Application.routes.draw do
     # Tips on events
     get "tips/create"
     get "tips/destroy"
+
+
+
 
   # torna possivel "redirects" para root_path
   # root :controller => 'static', :action => '/' 
