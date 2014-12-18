@@ -34,6 +34,12 @@ module Villeme
         end
 
 
+
+        def period_that_occurs(entity)
+          "#{entity.date_start.strftime("%d/%m")} - #{entity.date_finish.strftime("%d/%m")}"
+        end
+
+
       end
     end
   end
