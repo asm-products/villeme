@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+  # Dependencies
   require_relative '../domain/usecases/events/get_events'
   require_relative '../domain/usecases/level/get_level'
   require_relative '../domain/usecases/level/points_level'
@@ -7,21 +9,27 @@ class User < ActiveRecord::Base
   require_relative '../domain/usecases/friends/ranking_friends'
 
 
+  # Gamification
   has_merit
+
+
+  # Rating
   ratyrate_rater
 
+
+  # Urls personalized
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
+
+  # Facebook oauth
   extend FacebookOauth
+
+
+  # Geocoder
   extend  GeocodedByAddress
   include GeocodedActions
-
   geocoder_by_address
-
-
-  # Try building a slug based on the following fields in
-  # increasing order of specificity.
   def slug_candidates
     [
       :name,
@@ -30,36 +38,29 @@ class User < ActiveRecord::Base
   end
 
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # Devise
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :omniauth_providers => [:facebook]
+
 
   # Paperclip
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>", :avatar => "38x38" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  #omniAuth com devise
-  devise :omniauthable, :omniauth_providers => [:facebook]
 
-  # associações
-
+  # Associations
   belongs_to :level
     delegate :name, to: :level, prefix: true, allow_nil: true
     delegate :nivel, to: :level, prefix: true, allow_nil: true
-
   belongs_to :persona
     delegate :name, to: :persona, prefix: true
-
   has_one :notify
-
   has_many :events
   has_many :feedbacks
   has_many :tips
-
   has_many :agendas
   has_many :agenda_events, -> { uniq }, through: :agendas, source: :event
-
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :accepted_friendships,
@@ -89,7 +90,6 @@ class User < ActiveRecord::Base
     self.name.split.first
   end
 
-
   def events_from_neighborhood
     Villeme::UseCases::GetEvents.from_neighborhood(self)
   end
@@ -114,7 +114,6 @@ class User < ActiveRecord::Base
     Villeme::UseCases::IconLevel.get_icon(self)
   end
 
-
   def next_level
     Villeme::UseCases::GetLevel.next_level(self)
   end
@@ -127,29 +126,18 @@ class User < ActiveRecord::Base
     Villeme::UseCases::GetLevel.percentage_of_current_level(self)
   end
 
-
-  # Verifica se o evento foi agendado pelo usuario
   def agended?(event)
     self.agenda_events.include?(event) ? true : false
   end
-
-
-
-
-
 
   def are_friends?(friend)
     self.accepted_friends.exists?(friend)
   end
 
-
-  # Se o usuario possui convites de amizade
   def are_friedship_invite?(friend)
     self.pending_friends.exists?(friend)
   end
 
-
-  # Pega os amigos do facebook que estão no villeme
   def friends_from_facebook
 
     if token
