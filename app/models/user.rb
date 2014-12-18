@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-  require_relative '../core/usecases/events/get_events'
-  require_relative '../core/usecases/level/get_level'
-  require_relative '../core/usecases/level/points_level'
-  require_relative '../core/usecases/level/icon_level'
-  require_relative '../core/usecases/friends/get_friends'
-  require_relative '../core/usecases/friends/ranking_friends'
+  require_relative '../domain/usecases/events/get_events'
+  require_relative '../domain/usecases/level/get_level'
+  require_relative '../domain/usecases/level/points_level'
+  require_relative '../domain/usecases/level/icon_level'
+  require_relative '../domain/usecases/friends/get_friends'
+  require_relative '../domain/usecases/friends/ranking_friends'
 
 
   has_merit

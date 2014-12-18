@@ -117,13 +117,13 @@ describe Event, type: :model do
     end
   end
 
-  describe '#latitude' do
+  describe '#relative_latitude' do
     it 'should return the latitude from event' do
       expect(event.relative_latitude).to eq(42.6531078197085)
     end
   end
 
-  describe '#longitude' do
+  describe '#realongitude' do
     it 'should return the longitude from event' do
       expect(event.relative_longitude).to eq(-73.7729633802915)
     end
@@ -138,8 +138,16 @@ describe Event, type: :model do
     context 'when event DO NOT have a price' do
       it 'should return a string' do
         event = create(:event, cost: 0)
+
         expect(event.price).to eq('Gratuito')
       end
+    end
+  end
+
+  describe '#period_that_occurs' do
+    it 'should return a period that event occurs' do
+
+      expect(event.period_that_occurs).to eq('17/11 - 28/11')
     end
   end
 

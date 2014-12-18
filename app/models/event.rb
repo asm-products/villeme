@@ -1,8 +1,8 @@
 # encoding: utf-8
 class Event < ActiveRecord::Base
 
-	require_relative '../core/usecases/events/event_attributes'
-	require_relative '../core/usecases/geolocalization/geocoder_attributes'
+	require_relative '../domain/usecases/events/event_attributes'
+	require_relative '../domain/usecases/geolocalization/geocoder_attributes'
 
 	ratyrate_rateable "geral"
 
@@ -71,7 +71,6 @@ class Event < ActiveRecord::Base
 		Villeme::UseCases::EventAttributes.name_with_limit(self)
 	end
 
-
 	def description_with_limit
 		Villeme::UseCases::EventAttributes.description_with_limit(self)
 	end
@@ -102,8 +101,8 @@ class Event < ActiveRecord::Base
 	end
 
 
-	def period
-    "#{self.date_start.strftime("%d/%m")} - #{self.date_finish.strftime("%d/%m")}"
+	def period_that_occurs
+    Villeme::UseCases::EventAttributes.period_that_occurs(self)
 	end
 
 
@@ -117,16 +116,16 @@ class Event < ActiveRecord::Base
 
       if Date.current.between?(date_start, date_finish)
         if weeks.include?(today_in_week)
-          return ("<span title='#{period}' class='label day today has-tooltip #{options[:css]}'>Hoje</span>").html_safe
+          return ("<span title='#{period_that_occurs}' class='label day today has-tooltip #{options[:css]}'>Hoje</span>").html_safe
         elsif weeks.include?(tomorrow_in_week)
-          return ("<span title='#{period}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
+          return ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
         else
-          return ("<span title='#{period}' class='label day has-tooltip #{options[:css]}'>#{self.weeks.first.name}</span>").html_safe
+          return ("<span title='#{period_that_occurs}' class='label day has-tooltip #{options[:css]}'>#{self.weeks.first.name}</span>").html_safe
         end
       elsif date_start == Date.current.tomorrow
-        return ("<span title='#{period}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
+        return ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
       else
-        ("<span title='#{period}' class='label day tomorrow has-tooltip #{options[:css]}'>#{I18n.localize date_start, format: '%A'}</span>").html_safe
+        ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>#{I18n.localize date_start, format: '%A'}</span>").html_safe
       end
     else
       nil

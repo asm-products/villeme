@@ -43,7 +43,8 @@ FactoryGirl.define do
     latitude 42.6531078197085
     longitude -73.7729633802915
     cost 1200
-    date_start Faker::Date.between(30.days.ago, Date.today)
+    date_start Date.parse('2014-11-17')
+    date_finish Date.parse('2014-11-28')
     hour_start_first Faker::Time.between(Date.today, Date.tomorrow, :all)
     place
     persona
