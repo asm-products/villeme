@@ -7,6 +7,7 @@ module Villeme
           if entity.next_level
             next_level_points = entity.next_level.points.to_i
             current_level_points = entity.points.to_i
+
             next_level_points - current_level_points
           else
             0
