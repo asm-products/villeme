@@ -13,7 +13,7 @@ module Villeme
         end
 
         def percentage_of_current_level(entity)
-          if entity.level.nil?
+          if entity.level.nil? || entity.level.points.nil?
             0
           else
             ((entity.points - entity.level.points) * 100) / (entity.next_level.points - entity.level.points)
