@@ -13,8 +13,8 @@ module GeocodedByAddress
         if geocoder
           object.latitude = geocoder.latitude
           object.longitude = geocoder.longitude
-          object.route = geocoder.address_components_of_type(:route).first["short_name"]
-          object.neighborhood_name = geocoder.address_components_of_type(:neighborhood).first["long_name"]
+          object.route = geocoder.address_components_of_type(:route).first["short_name"] unless geocoder.address_components_of_type(:route).blank?
+          object.neighborhood_name = geocoder.address_components_of_type(:neighborhood).first["long_name"] unless geocoder.address_components_of_type(:neighborhood)
           object.city_name = geocoder.city
           object.state_name = geocoder.state
           object.state_code = geocoder.state_code
@@ -23,7 +23,7 @@ module GeocodedByAddress
           object.postal_code = geocoder.postal_code
           object.street_number = geocoder.street_number
           object.full_address = geocoder.address
-          object.formatted_address = "#{geocoder.address_components_of_type(:route).first["short_name"]}, #{geocoder.street_number} - #{geocoder.address_components_of_type(:neighborhood).first["long_name"]}"
+          object.formatted_address = "#{geocoder.address_components_of_type(:route).first["short_name"]}, #{geocoder.street_number} - #{geocoder.address_components_of_type(:neighborhood).first["long_name"]}" unless geocoder.address_components_of_type(:neighborhood).blank?
         end
       end
 

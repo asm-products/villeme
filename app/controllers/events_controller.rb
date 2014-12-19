@@ -86,12 +86,12 @@ class EventsController < ApplicationController
     @event = current_user.events.create(event_params)
 
 
-    if place_name_from_form?
+    if params[:event][:place_attributes][:name]
 
-      place = Place.find_by name: place_name_from_form
+      place = Place.find_by name: params[:event][:place_attributes][:name]
 
       if place.nil?
-        place = Place.new name: place_name_from_form
+        place = Place.new name: params[:event][:place_attributes][:name]
         @event.copy_attributes_to place
         @event.place = place
       else
@@ -247,15 +247,6 @@ class EventsController < ApplicationController
   end
 
 
-  def place_name_from_form?
-    place_name_from_form = params[:event][:place_attributes][:name]
-
-    if place_name_from_form.nil?
-      false
-    else
-      true
-    end
-  end
 
 
   def set_current_user_lat_long_in_gon

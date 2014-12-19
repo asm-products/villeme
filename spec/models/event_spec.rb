@@ -49,11 +49,13 @@ describe Event, type: :model do
   end
 
   describe '.geocoded_by_address' do
-    it('should geocoded country') { expect(event.country_code).to eq('US') }
-    it('should geocoded state') { expect(event.state_name).to eq('New York') }
-    it('should geocoded city') { expect(event.city_name).to eq('Albany') }
-    it('should geocoded latitude') { expect(event.latitude).to be_a_kind_of(Float) }
-    it('should geocoded longitude') { expect(event.longitude).to be_a_kind_of(Float) }
+    context 'when address is complete' do
+      it('should geocoded country') { expect(event.country_code).to eq('US') }
+      it('should geocoded state') { expect(event.state_name).to eq('New York') }
+      it('should geocoded city') { expect(event.city_name).to eq('Albany') }
+      it('should geocoded latitude') { expect(event.latitude).to be_a_kind_of(Float) }
+      it('should geocoded longitude') { expect(event.longitude).to be_a_kind_of(Float) }
+    end
   end
 
   describe '#country' do

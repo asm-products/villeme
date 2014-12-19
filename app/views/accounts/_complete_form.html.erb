@@ -12,7 +12,7 @@
     <%= f.input :name, required:true, autofocus: true, label: 'Nome completo', input_html:{ :'data-bv-notempty-message' => "O nome deve ser preechido.", pattern: "[a-zA-Z0-9]+", :'data-bv-regexp-message' => "O nome deve ter somente letras e números.",  :'data-bv-stringlength-max' => "60", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 60 e mais que 2 caracteres."} %>
 
     <% if Neighborhood.all.any? %>
-        <%= f.input :neighborhood_id, collection: @user.city.neighborhoods, label_method: :name, value_method: :id, label: "Meu bairro" , include_blank: "---------", input_html:{ class: "has-selectpicker show-tick", :'data-size' => "auto"}, required: true %>
+        <%= f.input :neighborhood_name, collection: @user.city.neighborhoods, label_method: :name, value_method: :name, label: "Meu bairro" , include_blank: "---------", input_html:{ class: "has-selectpicker show-tick", :'data-size' => "auto"}, required: true %>
     <% end %>
 
     <div class="input float optional user_latitude form-group">
