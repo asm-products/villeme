@@ -4,7 +4,7 @@ module Villeme
       class << self
 
         def next_level(entity)
-          if entity.nivel.nil?
+          if entity.level.nil?
             false
           else
             next_level_nivel = entity.level.nivel + 1
