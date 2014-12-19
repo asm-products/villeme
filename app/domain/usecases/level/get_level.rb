@@ -4,8 +4,12 @@ module Villeme
       class << self
 
         def next_level(intity)
-          next_level_nivel = intity.level.nivel + 1
-          Level.find_by(nivel: next_level_nivel)
+          if entity.nivel.nil?
+            false
+          else
+            next_level_nivel = intity.level.nivel + 1
+            Level.find_by(nivel: next_level_nivel)
+          end
         end
 
         def percentage_of_current_level(intity)
