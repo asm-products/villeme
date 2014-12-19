@@ -10,7 +10,7 @@
       </div>
       
       <span class="name dropdown">
-        <a href="#" class="has-dropdown" data-toggle="dropdown"> <%= current_user.first_name %> <span class="persona">(<%= current_user.persona.name %>)</span> <b class="caret"></b> </a>
+        <a href="#" class="has-dropdown" data-toggle="dropdown"> <%= current_user.first_name %> <span class="persona">(<%= current_user.persona_name %>)</span> <b class="caret"></b> </a>
        
         <div class="progress has-tooltip" data-placement="bottom" title="<%= "Faltam #{current_user.points_to_next_level} Pontos de Experiência para o próximo level." %>">
           <div class="progress-bar" role="progressbar" aria-valuenow="<%= current_user.percentage_of_current_level %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.percentage_of_current_level %>%;">
