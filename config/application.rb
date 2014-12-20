@@ -22,6 +22,7 @@ module CidadeVc
 
     # Carrega arquivos no /lib
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/domain)
 
     # Constantes do aplicativo
     HOME_URL = "http://www.villeme.com"

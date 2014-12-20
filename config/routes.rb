@@ -22,8 +22,6 @@ CidadeVc::Application.routes.draw do
   end
 
 
-  # URL BASE -------------------------
-
   scope "(:locale)", locale: /en|br/ do
 
     get '/newsfeed', to: 'newsfeed#index', via: :get, as: :root
@@ -35,28 +33,16 @@ CidadeVc::Application.routes.draw do
     end
 
     # Account
-    get ':id/account', to: 'accounts#edit', as: :user_account
+    get 'user/:id/account', to: 'accounts#edit', as: :user_account
     match 'account/update/:id', to: 'accounts#update', via: :put, as: :account_update
 
 
-    get ':id/events', to: 'profiles#events', as: :user_events
 
 
 
     get "bussola/city"
     get "bussola/neighborhood"
     post "bussola/selecionado"
-
-
-
-
-
-    # Profiles
-
-    # :id/events
-
-
-
 
 
 
@@ -117,9 +103,12 @@ CidadeVc::Application.routes.draw do
     resources :tips
 
 
+    get 'user/:id/events', to: 'profiles#events', as: :user_events
+    get 'user/:id/', to: 'users#show', as: :show_user
+
     # /city
-    get '/:city/:neighborhood', to: 'newsfeed#index'
-    get '/:city', to: 'newsfeed#index'
+    get 'city/:city/:neighborhood', to: 'newsfeed#index'
+    get 'city/:city', to: 'newsfeed#index'
 
 
   end
@@ -142,7 +131,6 @@ CidadeVc::Application.routes.draw do
     # Send invite to users
     get 'invites/send/:key', to: 'invites#send_invite', as: 'send_invite'
 
-    get ':id/', to: 'users#show', as: :show_user
 
     # Tips on events
     get "tips/create"

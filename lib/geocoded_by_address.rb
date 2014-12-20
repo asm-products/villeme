@@ -23,7 +23,7 @@ module GeocodedByAddress
           object.postal_code = geocoder.postal_code
           object.street_number = geocoder.street_number
           object.full_address = geocoder.address
-          object.formatted_address = "#{geocoder.address_components_of_type(:route).first["short_name"]}, #{geocoder.street_number} - #{geocoder.address_components_of_type(:neighborhood).first["long_name"]}" unless geocoder.address_components_of_type(:neighborhood).blank?
+          object.formatted_address = "#{geocoder.address_components_of_type(:route).first["short_name"]}, #{geocoder.street_number} - #{geocoder.address_components_of_type(:neighborhood).first["long_name"]}" unless geocoder.address_components_of_type(:neighborhood) && geocoder.address_components_of_type(:route)
         end
       end
 
