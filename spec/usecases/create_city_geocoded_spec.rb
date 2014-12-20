@@ -53,7 +53,7 @@ describe 'UseCases::CreateCityGeocoded' do
         @result = Villeme::UseCases::CreateCityGeocoded.new(address).create_city
       end
 
-      it 'should create a City object' do
+      it 'should DO NOT create a City object' do
         expect(@result).to be_falsey
       end
     end
