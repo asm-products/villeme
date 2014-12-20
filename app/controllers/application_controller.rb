@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
+
+  require_relative '../../app/domain/policies/user/account_complete'
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -74,10 +77,8 @@ class ApplicationController < ActionController::Base
 
 	# Verifica se a conta do user esta completa
 	def is_complete
-		if user_signed_in?
-			if current_user.latitude.blank? and current_user.longitude.blank?
-				redirect_to user_account_path(current_user.id), notice: "Agora só falta completar alguns dados e deu!"
-			end
+		unless user_signed_in? && Villeme::Policies::AccountComplete.is_complete?(current_user)
+			redirect_to user_account_path(current_user), notice: "Agora só falta completar sua conta"
 		end
 	end
 
@@ -88,11 +89,11 @@ class ApplicationController < ActionController::Base
 
 	
 	def is_invited
-		if current_user.invited == false
-			redirect_to welcome_path, notice: "#{current_user.name.split.first}, você precisa de um convite para acessar. Solicite abaixo!"
-		else
-			true
-		end
+    if current_user.invited
+      true
+    else
+      redirect_to welcome_path, notice: "#{current_user.name.split.first}, você precisa de um convite para acessar. Solicite abaixo!"
+    end
 	end
 
 

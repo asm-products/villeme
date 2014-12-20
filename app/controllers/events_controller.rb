@@ -50,7 +50,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
 
-    unless Villeme::Policies::AccountComplete.new(current_user)
+    unless Villeme::Policies::AccountComplete.is_complete?(current_user)
       redirect_to root_path, alert: 'Você precisa estar com o perfil completo para criar um evento!'
     end
 
