@@ -2,6 +2,8 @@
 
 class AccountsController < ApplicationController
 
+  require_relative '../domain/usecases/geolocalization/create_object_geocoded'
+
 	before_action :current_user_home
 
 	layout 'centralize'
@@ -17,7 +19,9 @@ class AccountsController < ApplicationController
 
   	@user = current_user
 
-  	account_completed @user 
+  	account_completed @user
+
+    Villeme::UseCases::CreateObjectGeocoded.new(@user.address).create_objects
 
     respond_to do |format|
       if @user.update(user_params)
