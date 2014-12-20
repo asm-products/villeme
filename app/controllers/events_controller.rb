@@ -1,5 +1,8 @@
 # encoding: utf-8
 class EventsController < ApplicationController
+
+  require_relative '../../app/domain/policies/user/account_complete'
+
   before_action :set_event, only: [:show, :edit, :update, :destroy, :schedule]
 
   # access for only logged users
@@ -47,14 +50,11 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
 
-    if current_user.city.blank?
-      return redirect_to :back, alert: 'Você precisa estar com o perfil completo para criar um evento!'
-    else
-      @city = City.find current_user.city
+    unless Villeme::Policies::AccountComplete.new(current_user)
+      redirect_to root_path, alert: 'Você precisa estar com o perfil completo para criar um evento!'
     end
 
     @event = current_user.events.build
-    place = @event.build_place
 
     set_current_user_lat_long_in_gon
     set_array_of_places_in_gon

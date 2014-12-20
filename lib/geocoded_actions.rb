@@ -26,7 +26,12 @@ module GeocodedActions
 
 
   def city
-    City.find_by(name: city_name)
+    city = City.find_by(name: city_name)
+    if city
+      city
+    else
+      false
+    end
   end
 
 

@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user do
     name "John Doe"
     email "user@gmail.com"
+    username "johndoe"
     locale "en"
     account_complete true
     invited true
