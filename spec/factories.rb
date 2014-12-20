@@ -9,6 +9,7 @@ FactoryGirl.define do
     admin false
     latitude 42.670443
     longitude -73.788397
+    address "544 Madison Ave, Albany, NY 12208, USA"
     password "password"
     password_confirmation "password"
     neighborhood_name "Park South"
