@@ -141,6 +141,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     netrc (0.10.0)
+    newrelic_rpm (3.9.8.273)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     nokogiri (1.6.5-x64-mingw32)
@@ -320,6 +321,7 @@ DEPENDENCIES
   koala (~> 1.10.0rc)
   lazyload-rails
   merit
+  newrelic_rpm
   omniauth-facebook
   paperclip (~> 3.5.3)
   pg

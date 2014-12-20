@@ -117,7 +117,11 @@ gem 'postmark-rails'
 # Koala - Manipulador da API do facebook
 gem 'koala', '~> 1.10.0rc'
 
+# System of rating
 gem 'ratyrate'
+
+# New relic web service
+gem 'newrelic_rpm'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
