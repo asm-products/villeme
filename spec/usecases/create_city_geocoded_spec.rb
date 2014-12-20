@@ -1,13 +1,13 @@
 require 'rails_helper'
-require_relative '../../app/domain/usecases/geolocalization/create_object_geocoded'
+require_relative '../../app/domain/usecases/geolocalization/create_city_geocoded'
 
-describe 'UseCases::CreateObjectGeocoded' do
+describe 'UseCases::CreateCityGeocoded' do
 
   describe '.create_objects' do
 
     before(:all) do
       address = '544 Madison Ave, Albany, NY 12208, USA'
-      @result = Villeme::UseCases::CreateObjectGeocoded.new(address).create_objects
+      @result = Villeme::UseCases::CreateCityGeocoded.new(address).create_city
     end
 
     context 'when a city DO NOT exist' do
@@ -49,8 +49,8 @@ describe 'UseCases::CreateObjectGeocoded' do
 
       before(:all) do
         address = '544 Madison Ave, Albany, NY 12208, USA'
-        Villeme::UseCases::CreateObjectGeocoded.new(address).create_objects
-        @result = Villeme::UseCases::CreateObjectGeocoded.new(address).create_objects
+        Villeme::UseCases::CreateCityGeocoded.new(address).create_city
+        @result = Villeme::UseCases::CreateCityGeocoded.new(address).create_city
       end
 
       it 'should create a City object' do
