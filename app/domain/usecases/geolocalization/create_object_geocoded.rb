@@ -3,6 +3,7 @@ module Villeme
     class CreateObjectGeocoded
 
       require_relative '../../../domain/usecases/geolocalization/create_city_geocoded'
+      require_relative '../../../domain/usecases/geolocalization/create_neighborhood_geocoded'
 
       def initialize(address)
         @address = address
@@ -10,6 +11,7 @@ module Villeme
 
       def create_objects
         create_city
+        create_neighborhood
       end
 
       private
@@ -18,6 +20,9 @@ module Villeme
         Villeme::UseCases::CreateCityGeocoded.new(@address).create_city
       end
 
+      def create_neighborhood
+        Villeme::UseCases::CreateNeighborhoodGeocoded.new(@address).create_neighborhood
+      end
 
 
     end
