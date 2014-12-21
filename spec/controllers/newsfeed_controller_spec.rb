@@ -6,9 +6,11 @@ describe NewsfeedController do
     context 'current_user logged in and invited' do
       before(:each) do
         set_user_logged_in
+        allow(@user).to receive(:city_slug).and_return(:albany)
+        create(:city, name: 'Albany')
       end
       it 'should be load the page with success' do
-        get :index, locale: :en
+        get :index, city: @user.city_slug, locale: :en
 
         expect(response.status).to eq(200)
       end
@@ -17,9 +19,10 @@ describe NewsfeedController do
     context 'current_user logged in and NOT invited' do
       before(:each) do
         set_current_user_nil
+        allow(@user).to receive(:city_slug).and_return(:albany)
       end
       it 'should be block access for user' do
-        get :index, locale: :en
+        get :index, city: @user.city_slug, locale: :en
 
         expect(response).to redirect_to(welcome_path)
       end
