@@ -13,8 +13,8 @@ module GeocodedByAddress
         if geocoder
           object.latitude = geocoder.latitude
           object.longitude = geocoder.longitude
-          object.route = get_geocoder_for_route(geocoder)
-          object.neighborhood_name = geocoder.address_components_of_type(:neighborhood).first["long_name"] if geocoder.address_components_of_type(:neighborhood)
+          object.route = get_geocoder_for_route(geocoder) unless route_or_bus_station_not_empty?(geocoder)
+          object.neighborhood_name = get_geocoder_for_neighborhood(geocoder) unless neighborhood_not_empty?(geocoder)
           object.city_name = geocoder.city
           object.state_name = geocoder.state
           object.state_code = geocoder.state_code
@@ -23,7 +23,7 @@ module GeocodedByAddress
           object.postal_code = geocoder.postal_code
           object.street_number = geocoder.street_number
           object.full_address = geocoder.address
-          object.formatted_address = "#{get_geocoder_for_route(geocoder)}, #{geocoder.street_number} - #{geocoder.address_components_of_type(:neighborhood).first["long_name"]}" if geocoder.address_components_of_type(:neighborhood) && geocoder.address_components_of_type(:route)
+          object.formatted_address = "#{get_geocoder_for_route(geocoder)}, #{geocoder.street_number} - #{get_geocoder_for_neighborhood(geocoder)}" unless neighborhood_not_empty?(geocoder) && route_or_bus_station_not_empty?(geocoder)
         end
       end
 
@@ -32,7 +32,16 @@ module GeocodedByAddress
   end
 
 
+
   private
+
+  def get_geocoder_for_neighborhood(geocoder)
+    geocoder.address_components_of_type(:neighborhood).first["long_name"]
+  end
+
+  def neighborhood_not_empty?(geocoder)
+    geocoder.address_components_of_type(:neighborhood).empty?
+  end
 
   def get_geocoder_for_route(geocoder)
     route_component = geocoder.address_components_of_type(:route)
@@ -43,7 +52,10 @@ module GeocodedByAddress
     else
       route_component.first["short_name"]
     end
+  end
 
+  def route_or_bus_station_not_empty?(geocoder)
+    geocoder.address_components_of_type(:bus_station).empty? && geocoder.address_components_of_type(:route).empty?
   end
 
 end
