@@ -3,16 +3,21 @@ class Event < ActiveRecord::Base
 
 	require_relative '../domain/usecases/events/event_attributes'
 	require_relative '../domain/usecases/geolocalization/get_geocoder_attributes'
+	require_relative '../domain/usecases/geolocalization/geocode_event'
 
 	ratyrate_rateable "geral"
 
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-	extend  GeocodedByAddress
+
 	include GeocodedActions
 
-	geocoder_by_address
+	after_validation :geocode_event, unless: 'address.nil?'
+
+	def geocode_event
+		Villeme::UseCases::GeocodeEvent.new(self).geocoded_by_address(self.address)
+	end
 
 
 	# Associações

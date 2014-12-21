@@ -1,4 +1,5 @@
 require 'rails_helper'
+require_relative '../../app/domain/policies/geocoder/entity_geocoded'
 
 describe User, type: :model do
 
@@ -147,6 +148,16 @@ describe User, type: :model do
     end
   end
 
+  describe '#geocode_event' do
+    it 'should geocode event' do
+      event = create(:event, latitude: nil, longitude: nil)
+      event_geocoded = Villeme::UseCases::GeocodeEvent.new(event).geocoded_by_address(event.address)
+
+      result = Villeme::Policies::EntityGeocoded.is_geocoded?(event_geocoded)
+
+      expect(result).to be_truthy
+    end
+  end
 
 
 end

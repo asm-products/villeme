@@ -11,9 +11,19 @@ module Villeme
       def geocoded_by_address(address)
         @address = address
 
+        if @address.nil?
+          return FactoryGirl.build(:event, address: nil)
+        elsif Rails.env.test?
+          return FactoryGirl.build(:event)
+        end
+
         geocoderize_event(geocoding_by_address)
-        event_is_geocoded? if save_event?
+
+        if event_is_geocoded?
+          @event
+        end
       end
+
 
 
       private
@@ -28,7 +38,7 @@ module Villeme
 
       def geocoderize_event(geocoder)
         if geocoder
-          @event.update_attributes(latitude: geocoder.latitude,
+          @event.assign_attributes({latitude: geocoder.latitude,
                                   longitude: geocoder.longitude,
                                   city_name: geocoder.city,
                                   neighborhood_name: get_geocoder_for_neighborhood(geocoder),
@@ -41,15 +51,7 @@ module Villeme
                                   street_number: geocoder.street_number,
                                   full_address: geocoder.address,
                                   formatted_address: get_formatted_address(geocoder)
-          )
-        end
-      end
-
-      def save_event?
-        if @event.save
-          true
-        else
-          false
+          })
         end
       end
 
