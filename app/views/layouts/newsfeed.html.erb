@@ -39,7 +39,7 @@
               <div class="dropdown descobrir-dependent text-to-right">
 
                 <a href="#" class="has-dropdown" data-toggle="dropdown">
-                  <span class="ativator">Categorias: <%= current_page?(root_path) ? "todas" : @category.name.downcase %> <b class="caret"></b></span>
+                  <span class="ativator">Categorias: <%= current_page?(root_path(current_user.city_slug)) ? "todas" : @category.name.downcase %> <b class="caret"></b></span>
                 </a>  
 
                 <ul class="dropdown-menu dropdown-right categories" role="menu" aria-labelledby="dLabel">

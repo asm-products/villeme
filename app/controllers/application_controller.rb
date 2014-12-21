@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
 
 			unless current_user.admin?
 				
-				redirect_to root_path, alert: "Ops! Você não tem permissão para acessar isto."
+				redirect_to root_path(current_user.city_slug), alert: "Ops! Você não tem permissão para acessar isto."
 			end
 		end
 	end

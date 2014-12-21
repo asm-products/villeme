@@ -10,7 +10,7 @@
 
 		<% if current_page?('/newsfeed') %>
 			<li class="active">
-				<%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
+				<%= link_to root_path(current_user.city_slug), id: "newsfeed-link", data: {push: true} do %>
 					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
 				<% end %>
 			</li>
