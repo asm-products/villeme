@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   require_relative '../domain/usecases/level/icon_level'
   require_relative '../domain/usecases/friends/get_friends'
   require_relative '../domain/usecases/friends/ranking_friends'
+  require_relative '../domain/usecases/cities/get_city_slug'
 
 
   # Gamification
@@ -20,6 +21,12 @@ class User < ActiveRecord::Base
   # Urls personalized
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [
+        :name,
+        [:name, :id]
+    ]
+  end
 
 
   # Facebook oauth
@@ -30,12 +37,6 @@ class User < ActiveRecord::Base
   extend  GeocodedByAddress
   include GeocodedActions
   geocoder_by_address
-  def slug_candidates
-    [
-      :name,
-      [:name, :id]
-    ]
-  end
 
 
   # Devise
@@ -88,6 +89,10 @@ class User < ActiveRecord::Base
 
   def first_name
     self.name.split.first
+  end
+
+  def city_slug
+    Villeme::UseCases::GetCitySlug.from_user(self)
   end
 
   def events_from_neighborhood
