@@ -3,6 +3,7 @@
 class AccountsController < ApplicationController
 
   require_relative '../domain/usecases/geolocalization/create_object_geocoded'
+  require_relative '../domain/usecases/users/set_account_completed'
 
 	before_action :current_user_home
 
@@ -17,11 +18,8 @@ class AccountsController < ApplicationController
 
   def update
 
-  	@user = current_user
-
-  	account_completed @user
-
-    Villeme::UseCases::CreateObjectGeocoded.new(@user.address).create_objects
+    Villeme::UseCases::SetAccountCompleted.set_completed(current_user)
+    Villeme::UseCases::CreateObjectGeocoded.new(current_user.address).create_objects
 
     respond_to do |format|
       if @user.update(user_params)
@@ -38,9 +36,6 @@ class AccountsController < ApplicationController
 
   private
 
-    def account_completed(user)
-      user.update_attributes(account_complete: true)
-    end
 
     def set_event
       @event = Event.find(params[:id])
