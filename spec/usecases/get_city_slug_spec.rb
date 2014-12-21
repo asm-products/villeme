@@ -10,7 +10,7 @@ describe 'UseCases::GetCitySlug' do
   context 'when user have a city' do
 
     before(:each) do
-      @user.stub_chain(:city, :slug).and_return('sao-paulo')
+      allow(@user).to receive_message_chain(:city, :slug).and_return('sao-paulo')
     end
 
     it 'should return the slug of city' do
@@ -38,7 +38,7 @@ describe 'UseCases::GetCitySlug' do
   context 'when user DO NOT have a city.slug' do
 
     before(:each) do
-      @user.stub_chain(:city, :slug).and_return(nil)
+      allow(@user).to receive_message_chain(:city, :slug).and_return(nil)
     end
 
     it 'should return false' do
