@@ -5,6 +5,8 @@ class AccountsController < ApplicationController
   require_relative '../domain/usecases/geolocalization/create_object_geocoded'
   require_relative '../domain/usecases/users/set_account_completed'
 
+  before_action :is_logged
+
 	before_action :current_user_home
 
 	layout 'centralize'
@@ -22,7 +24,7 @@ class AccountsController < ApplicationController
     Villeme::UseCases::CreateObjectGeocoded.new(current_user.address).create_objects
 
     respond_to do |format|
-      if @user.update(user_params)
+      if current_user.update(user_params)
         format.html { redirect_to newsfeed_path, notice: 'Você atualizou sua conta com sucesso!' }
         format.json { head :no_content }
       else
