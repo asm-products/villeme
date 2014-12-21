@@ -2,7 +2,7 @@
 class Event < ActiveRecord::Base
 
 	require_relative '../domain/usecases/events/event_attributes'
-	require_relative '../domain/usecases/geolocalization/geocoder_attributes'
+	require_relative '../domain/usecases/geolocalization/get_geocoder_attributes'
 
 	ratyrate_rateable "geral"
 
