@@ -8,10 +8,8 @@ class WelcomeController < ApplicationController
 
 	def index
 
-		if user_signed_in?
-			if current_user.invited && current_user.city
-				redirect_to "/#{current_user.city.slug}" and return
-			end
+		if user_signed_in? && current_user.invited
+			redirect_to root_path(current_user.city_slug) and return
 		end
 
 		if params[:key]
