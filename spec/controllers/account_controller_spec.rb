@@ -7,12 +7,13 @@ describe AccountsController, type: :controller do
 
       before(:each) do
         set_user_logged_in
+        allow(@user).to receive(:city_slug).and_return(:albany)
       end
 
       it 'should redirect to newsfeed' do
         put :update, id: @user.id, user: @user.attributes
 
-        expect(response).to redirect_to(newsfeed_path)
+        expect(response).to redirect_to(root_path(@user.city_slug))
       end
 
     end
