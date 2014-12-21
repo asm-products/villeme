@@ -24,8 +24,6 @@ CidadeVc::Application.routes.draw do
 
   scope "(:locale)", locale: /en|br/ do
 
-    get '/newsfeed', to: 'newsfeed#index', via: :get, as: :root
-
     root to: 'welcome#index', as: :welcome
 
     resources :events do
@@ -44,13 +42,6 @@ CidadeVc::Application.routes.draw do
     get "bussola/neighborhood"
     post "bussola/selecionado"
 
-
-
-
-    # Newsfeed
-
-    # /
-    get 'newsfeed',  to: 'newsfeed#index', as: :newsfeed
 
     # /mypersona -> filtra os eventos pela persona do current_user
     get 'mypersona/', to: 'newsfeed#mypersona', as: :my_persona_events
@@ -108,7 +99,7 @@ CidadeVc::Application.routes.draw do
 
     # /city
     get 'city/:city/:neighborhood', to: 'newsfeed#index'
-    get 'city/:city', to: 'newsfeed#index'
+    get 'city/:city', to: 'newsfeed#index', as: :root
 
 
   end
