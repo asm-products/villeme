@@ -10,8 +10,8 @@ module Villeme
       end
 
       def create_objects
-        create_city
         create_neighborhood
+        create_city
       end
 
       private

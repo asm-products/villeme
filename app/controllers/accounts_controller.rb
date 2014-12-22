@@ -21,7 +21,7 @@ class AccountsController < ApplicationController
   def update
 
     Villeme::UseCases::SetAccountCompleted.set_completed(current_user)
-    Villeme::UseCases::CreateObjectGeocoded.new(current_user.address).create_objects
+    Villeme::UseCases::CreateObjectGeocoded.new(user_params[:address]).create_objects
 
     respond_to do |format|
       if current_user.update(user_params)
