@@ -132,7 +132,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-	
+
 	# Retorna os dias da semana que o evento acontece
 
 	def days_of_week
