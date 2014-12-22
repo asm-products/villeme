@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
   require_relative '../domain/usecases/friends/get_friends'
   require_relative '../domain/usecases/friends/ranking_friends'
   require_relative '../domain/usecases/cities/get_city_slug'
+  require_relative '../domain/usecases/geolocalization/geocode_user'
 
+
+  after_validation :geocode_user, unless: 'address.nil?'
 
   # Gamification
   has_merit
@@ -32,11 +35,8 @@ class User < ActiveRecord::Base
   # Facebook oauth
   extend FacebookOauth
 
-
   # Geocoder
-  extend  GeocodedByAddress
   include GeocodedActions
-  geocoder_by_address
 
 
   # Devise
@@ -214,6 +214,10 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def geocode_user
+    Villeme::UseCases::GeocodeUser.new(self).geocoded_by_address(self.address)
+  end
 
 end
 
