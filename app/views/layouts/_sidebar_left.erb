@@ -113,19 +113,13 @@
 
 	<!-- Newsfeed -->
 
-		<% if current_page?('/newsfeed') %>
-			<li class="active">
-				<%= link_to root_path do %>
-					<span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
-				<% end %>
-			</li>
-		<% else %>
-			<li>
-				<%= link_to root_path do %>
-					<span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
-				<% end %>
-			</li>	
-		<% end %>
+
+        <li class="active">
+            <%= link_to root_path(current_user.city_slug) do %>
+                <span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
+            <% end %>
+        </li>
+
 
 
 
