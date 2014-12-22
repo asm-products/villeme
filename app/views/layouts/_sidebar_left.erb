@@ -8,19 +8,13 @@
 
 	<!-- Newsfeed -->
 
-		<% if current_page?('/newsfeed') %>
-			<li class="active">
-				<%= link_to root_path(current_user.city_slug), id: "newsfeed-link", data: {push: true} do %>
-					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
-				<% end %>
-			</li>
-		<% else %>
-			<li>
-				<%= link_to root_path do %>
-					<span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= Event.upcoming.where(moderate: 1).count %></span></a>
-				<% end %>
-			</li>	
-		<% end %>
+
+        <li class="active">
+            <%= link_to root_path(current_user.city_slug), id: "newsfeed-link", data: {push: true} do %>
+                <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
+            <% end %>
+        </li>
+
 
 
 
