@@ -5,19 +5,14 @@ class Event < ActiveRecord::Base
 	require_relative '../domain/usecases/geolocalization/get_geocoder_attributes'
 	require_relative '../domain/usecases/geolocalization/geocode_event'
 
-	ratyrate_rateable "geral"
-
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-
-
-	include GeocodedActions
-
 	after_validation :geocode_event, unless: 'address.nil?'
 
-	def geocode_event
-		Villeme::UseCases::GeocodeEvent.new(self).geocoded_by_address(self.address)
-	end
+	ratyrate_rateable "geral"
+
+	extend FriendlyId
+	friendly_id :name, use: :slugged
+
+	include GeocodedActions
 
 
 	# Associações
@@ -137,8 +132,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-
-
+	
 	# Retorna os dias da semana que o evento acontece
 
 	def days_of_week
@@ -163,8 +157,6 @@ class Event < ActiveRecord::Base
 	end
 
 
-
-
 	# Retorna a media da votação
 	def rate_media
 		# Pega as votações
@@ -176,8 +168,6 @@ class Event < ActiveRecord::Base
       rates.average(:stars).to_f
     end
 	end
-
-
 
 	# Numero de pessoas que votaram
 	def rates_count
@@ -191,8 +181,9 @@ class Event < ActiveRecord::Base
 		end
 	end
 
-
-
+	def geocode_event
+		Villeme::UseCases::GeocodeEvent.new(self).geocoded_by_address(self.address)
+	end
 
 
 
