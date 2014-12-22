@@ -27,6 +27,19 @@ describe NewsfeedController do
         expect(response).to redirect_to(welcome_path)
       end
     end
+
+    context 'current_user logged in, invited and DO NOT have a city_slug' do
+      before(:each) do
+        set_user_logged_in
+        allow(@user).to receive(:city_slug).and_return('newsfeed')
+      end
+      it 'should redirect to account edit' do
+        get :index, city: @user.city_slug, locale: :en
+
+        expect(response).to redirect_to(user_account_path(@user.id))
+      end
+    end
+
   end
 
   describe '#mypersona' do

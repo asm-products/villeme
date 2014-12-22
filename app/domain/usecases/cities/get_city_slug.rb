@@ -9,7 +9,7 @@ module Villeme
           if city_slug(user)
             city_slug(user)
           else
-            nil
+            'newsfeed'
           end
         end
 

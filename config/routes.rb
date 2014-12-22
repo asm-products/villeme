@@ -100,6 +100,7 @@ CidadeVc::Application.routes.draw do
     # /city
     get 'city/:city/:neighborhood', to: 'newsfeed#index'
     get 'city/:city', to: 'newsfeed#index', as: :root
+    get 'city/:city', to: 'newsfeed#default', as: :newsfeed_default
 
 
   end

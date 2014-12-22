@@ -28,6 +28,9 @@ class NewsfeedController < ApplicationController
       @neighborhood = Neighborhood.find_by(slug: params[:neighborhood])
       @events = Event.where(city_name: @city.name, neighborhood_name: @neighborhood.name).upcoming
 
+    elsif params[:city] == 'newsfeed'
+      redirect_to controller: :accounts, action: :edit, id: current_user.id and return
+
     elsif params[:city]
       @city = City.find_by(slug: params[:city])
       @events = Event.where(city_name: @city.name).upcoming
