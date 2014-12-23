@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :current_user_home, if: :devise_controller?
   before_filter :set_locale
+  before_filter :get_user_ip
  	before_filter :set_feedback_for_all
   layout :layout_devise_setting
 
@@ -246,7 +247,7 @@ class ApplicationController < ActionController::Base
       # Hard coded remote address
       '123.45.67.89'
     else
-      request.remote_ip
+      current_user.update_attributes(ip: request.remote_ip)
     end
   end
 
