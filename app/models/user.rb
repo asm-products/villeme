@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   require_relative '../domain/usecases/friends/ranking_friends'
   require_relative '../domain/usecases/cities/get_city_slug'
   require_relative '../domain/usecases/geolocalization/geocode_user'
+  require_relative '../domain/usecases/notifies/newsfeed_notify'
 
 
   after_validation :geocode_user, unless: 'address.nil?'
