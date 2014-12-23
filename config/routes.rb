@@ -97,7 +97,7 @@ CidadeVc::Application.routes.draw do
     # /city
     get 'city/:city/:neighborhood', to: 'newsfeed#neighborhood', as: :newsfeed_neighborhood
     get 'city/:city', to: 'newsfeed#city', as: :newsfeed_city
-    root 'newsfeed#index'
+    get 'newsfeed', to: 'newsfeed#index', as: :root
 
 
   end

@@ -56,11 +56,16 @@ class NewsfeedController < ApplicationController
   end
 
   def city
-    
+    @city = City.find_by(slug: params[:city])
+    @events = Event.where(city_name: @city.name).upcoming
+    render :index
   end
 
   def neighborhood
-    
+    @city = City.find_by(slug: params[:city])
+    @neighborhood = Neighborhood.find_by(slug: params[:neighborhood])
+    @events = Event.where(city_name: @city.name, neighborhood_name: @neighborhood.name).upcoming
+    render :index
   end
 
   def mypersona
