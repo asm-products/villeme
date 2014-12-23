@@ -30,7 +30,7 @@ describe 'UseCases::GetCitySlug' do
     it 'should return false' do
       result = Villeme::UseCases::GetCitySlug.from_user(@user)
 
-      expect(result).to  eq('newsfeed')
+      expect(result).to  eq(nil)
     end
 
   end
@@ -44,7 +44,7 @@ describe 'UseCases::GetCitySlug' do
     it 'should return false' do
       result = Villeme::UseCases::GetCitySlug.from_user(@user)
 
-      expect(result).to eq('newsfeed')
+      expect(result).to eq(nil)
     end
 
   end

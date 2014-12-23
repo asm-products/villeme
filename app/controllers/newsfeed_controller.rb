@@ -19,30 +19,14 @@ class NewsfeedController < ApplicationController
 
   def index
 
-    if params[:category]
-      @category = Category.friendly.find params[:category]
-      @events = @category.events.upcoming
-
-    # elsif params[:city] && params[:neighborhood]
-    #   @city = City.find_by(slug: params[:city])
-    #   @neighborhood = Neighborhood.find_by(slug: params[:neighborhood])
-    #   @events = Event.where(city_name: @city.name, neighborhood_name: @neighborhood.name).upcoming
-
-    # elsif params[:city] == 'newsfeed'
-    #   redirect_to controller: :accounts, action: :edit, id: current_user.id and return
-
-    # elsif params[:city]
-    #   @city = City.find_by(slug: params[:city])
-    #   @events = Event.where(city_name: @city.name).upcoming
-
+    if current_user.city_slug
+      redirect_to newsfeed_city_path(current_user.city_slug) and return
     else
       @city = City.find_by(name: current_user.city_name)
     	@events = Event.where(city_name: current_user.city_name).upcoming
-
     end
 
     @number_of_events = @events.count
-
     @feedback = Feedback.new
 
     # geolocalização do usuario
@@ -58,6 +42,7 @@ class NewsfeedController < ApplicationController
   def city
     @city = City.find_by(slug: params[:city])
     @events = Event.where(city_name: @city.name).upcoming
+    @number_of_events = @events.count
     render :index
   end
 
@@ -65,7 +50,14 @@ class NewsfeedController < ApplicationController
     @city = City.find_by(slug: params[:city])
     @neighborhood = Neighborhood.find_by(slug: params[:neighborhood])
     @events = Event.where(city_name: @city.name, neighborhood_name: @neighborhood.name).upcoming
+    @number_of_events = @events.count
     render :index
+  end
+
+  def category
+    @category = Category.friendly.find params[:category]
+    @events = @category.events.upcoming
+    @number_of_events = @events.count
   end
 
   def mypersona

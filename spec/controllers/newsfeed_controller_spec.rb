@@ -3,14 +3,26 @@ require 'rails_helper'
 describe NewsfeedController do
 
   describe '#index' do
-    context 'current_user logged in and invited' do
+    context 'when current_user logged in, invited and have a #city_slug' do
       before(:each) do
         set_user_logged_in
         allow(@user).to receive(:city_slug).and_return(:albany)
         create(:city, name: 'Albany')
       end
+      it 'should redirect to newsfeed#city' do
+        get :index, locale: :en
+
+        expect(response).to redirect_to(newsfeed_city_path(:albany))
+      end
+    end
+
+    context 'when current_user logged id, invited and DO NOT have a #city_slug' do
+      before(:each) do
+        set_user_logged_in
+        build(:city, name: 'Albany', slug: nil)
+      end
       it 'should be load the page with success' do
-        get :index, city: @user.city_slug, locale: :en
+        get :index, locale: :en
 
         expect(response.status).to eq(200)
       end
@@ -28,17 +40,7 @@ describe NewsfeedController do
       end
     end
 
-    context 'current_user logged in, invited and DO NOT have a city_slug' do
-      before(:each) do
-        set_user_logged_in
-        allow(@user).to receive(:city_slug).and_return('newsfeed')
-      end
-      it 'should redirect to account edit' do
-        get :index, locale: :en
 
-        expect(response.status).to eq(200)
-      end
-    end
 
   end
 
