@@ -34,9 +34,9 @@ describe NewsfeedController do
         allow(@user).to receive(:city_slug).and_return('newsfeed')
       end
       it 'should redirect to account edit' do
-        get :index, city: @user.city_slug, locale: :en
+        get :index, locale: :en
 
-        expect(response).to redirect_to(user_account_path(@user.id))
+        expect(response.status).to eq(200)
       end
     end
 

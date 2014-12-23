@@ -51,7 +51,7 @@ class EventsController < ApplicationController
   def new
 
     unless Villeme::Policies::AccountComplete.is_complete?(current_user)
-      redirect_to root_path(@user_city_slug), alert: 'Você precisa estar com o perfil completo para criar um evento!'
+      redirect_to root_path, alert: 'Você precisa estar com o perfil completo para criar um evento!'
     end
 
     @event = current_user.events.build

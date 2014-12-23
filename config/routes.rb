@@ -49,9 +49,6 @@ CidadeVc::Application.routes.draw do
     # /category/:category -> filtra os eventos por categoria
     get 'category/:category/', to: 'newsfeed#index', as: :newsfeed_category
 
-    # /neighborhood/events -> filtra os eventos por bairro
-    get 'neighborhood/:neighborhood/', to: 'newsfeed#index', as: :newsfeed_neighborhood
-
     # /myneighborhood -> filtra os eventos por bairro para o current_user
     get 'myneighborhood/', to: 'newsfeed#myneighborhood', as: :my_neighborhood_events
 
@@ -98,9 +95,9 @@ CidadeVc::Application.routes.draw do
     get 'user/:id/', to: 'users#show', as: :show_user
 
     # /city
-    get 'city/:city/:neighborhood', to: 'newsfeed#index'
-    get 'city/:city', to: 'newsfeed#index', as: :root
-    get 'city/:city', to: 'newsfeed#default', as: :newsfeed_default
+    get 'city/:city/:neighborhood', to: 'newsfeed#neighborhood', as: :newsfeed_neighborhood
+    get 'city/:city', to: 'newsfeed#city', as: :newsfeed_city
+    root 'newsfeed#index'
 
 
   end

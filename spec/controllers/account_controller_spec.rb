@@ -13,7 +13,7 @@ describe AccountsController, type: :controller do
       it 'should redirect to newsfeed' do
         put :update, id: @user.id, user: @user.attributes
 
-        expect(response).to redirect_to(root_path(@user.city_slug))
+        expect(response).to redirect_to(root_path)
       end
 
     end

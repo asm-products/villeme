@@ -13,7 +13,7 @@ describe WelcomeController, type: :controller do
       it 'should redirected to NewsfeedController#index' do
         get :index, locale: :en
 
-        expect(response).to redirect_to(root_path(@user.city_slug))
+        expect(response).to redirect_to(root_path)
       end
     end
 

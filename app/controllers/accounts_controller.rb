@@ -25,7 +25,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to root_path(@user_city_slug), notice: 'Você atualizou sua conta com sucesso!' }
+        format.html { redirect_to root_path, notice: 'Você atualizou sua conta com sucesso!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -8,7 +8,7 @@ describe '/city/:city' do
       allow(user).to receive(:city_slug).and_return('albany')
 
       expect(get: "city/#{user.city_slug}").to route_to(controller: 'newsfeed',
-                                                        action: 'index',
+                                                        action: 'city',
                                                         city: 'albany'
                                                )
     end
@@ -20,7 +20,7 @@ describe '/city/:city' do
       allow(user).to receive(:city_slug).and_return('newsfeed')
 
       expect(get: "city/#{user.city_slug}").to route_to(controller: 'newsfeed',
-                                                        action: 'index',
+                                                        action: 'city',
                                                         city: user.city_slug
                                                         )
     end
