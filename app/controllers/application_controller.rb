@@ -37,10 +37,8 @@ class ApplicationController < ActionController::Base
   end
 
   def get_user_city_slug
-    if current_user.city_slug
+    if current_user
       @user_city_slug = current_user.city_slug
-    else
-      @user_city_slug = 'newsfeed'
     end
   end
 
