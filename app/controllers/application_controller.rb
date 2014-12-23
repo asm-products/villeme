@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_filter :current_user_home, if: :devise_controller?
   before_filter :set_locale
-  before_filter :get_user_ip
   before_filter :get_user_city_slug
  	before_filter :set_feedback_for_all
   layout :layout_devise_setting
@@ -28,13 +27,13 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if current_user
-      if current_user.locale
-        I18n.locale = current_user.locale
-      end
-    else
-      I18n.locale = params[:locale] || I18n.default_locale
+      Villeme::UseCases::SetLocale.new(current_user).set_locale
     end
   end
+
+
+
+
 
   def get_user_city_slug
     if current_user
@@ -250,14 +249,7 @@ class ApplicationController < ActionController::Base
 	helper_method :cost
 
 
-  def get_user_ip
-    if request.remote_ip == '127.0.0.1'
-      # Hard coded remote address
-      '123.45.67.89'
-    else
-      current_user.update_attributes(ip: request.remote_ip) if current_user
-    end
-  end
+
 
 
 
