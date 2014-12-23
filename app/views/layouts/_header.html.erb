@@ -9,7 +9,7 @@
 
         <!-- Logo -->
         <div class="logo">
-          <%= link_to root_path(current_user.city_slug) do %>
+          <%= link_to root_path(@user_city_slug) do %>
             <%= image_tag "logo.png", title: "Vivêncie a Cidade", alt: "logo cidadevocê" %>
           <% end %>
           <!-- <i class="has-tooltip" title="<%# current_user.city.name %>" data-placement="right"><%# current_user.city.label.upcase %></i> -->
@@ -28,10 +28,10 @@
         <!-- Botões -->
         <ul class="links hidden-xs">
           <% if user_signed_in? %>
-            <li><%= link_to "Início", root_path(current_user.city_slug), class: "page-selected" %></li>
+            <li><%= link_to "Início", root_path(@user_city_slug), class: "page-selected" %></li>
             <li><%= link_to 'Criar evento', new_event_path %></li>
           <% else %>
-            <li><%= link_to "Início", root_path(current_user.city_slug), class: "page-selected" %></li>
+            <li><%= link_to "Início", root_path(@user_city_slug), class: "page-selected" %></li>
             <li><%= link_to "Criar evento", '#', class: 'unlogged' %></li>
           <% end %>
 

@@ -10,7 +10,7 @@
 
 
         <li class="active">
-            <%= link_to root_path(current_user.city_slug), id: "newsfeed-link", data: {push: true} do %>
+            <%= link_to root_path(@user_city_slug), id: "newsfeed-link", data: {push: true} do %>
                 <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
             <% end %>
         </li>
@@ -115,7 +115,7 @@
 
 
         <li class="active">
-            <%= link_to root_path(current_user.city_slug) do %>
+            <%= link_to root_path(@user_city_slug) do %>
                 <span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
             <% end %>
         </li>

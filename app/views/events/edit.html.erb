@@ -3,7 +3,7 @@
 <%= javascript_include_tag params[:controller] %>
 	
 <% content_for :header do %>
-	<%= link_to "Editar evento", root_path(current_user.city_slug) %>
+	<%= link_to "Editar evento", root_path(@user_city_slug) %>
 <% end %>
 
 <%= render :partial => 'form' %>

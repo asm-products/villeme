@@ -32,7 +32,7 @@
 	      <%= f.input :address %>
 		   
 	      <div class="footer">
-	        <%= link_to "Cancelar", root_path(current_user.city_slug) %>
+	        <%= link_to "Cancelar", root_path(@user_city_slug) %>
 	        <%= f.button :submit, "Criar evento", :class => 'btn-primary btn-lg' %>
 	      </div>
 

@@ -35,6 +35,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def get_user_city_slug
+    if @user_city_slug
+      @user_city_slug = @user_city_slug
+    else
+      @user_city_slug = 'newsfeed'
+    end
+  end
 
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
@@ -70,7 +77,7 @@ class ApplicationController < ActionController::Base
 
 			unless current_user.admin?
 				
-				redirect_to root_path(current_user.city_slug), alert: "Ops! Você não tem permissão para acessar isto."
+				redirect_to root_path(@user_city_slug), alert: "Ops! Você não tem permissão para acessar isto."
 			end
 		end
 	end
@@ -250,6 +257,7 @@ class ApplicationController < ActionController::Base
       current_user.update_attributes(ip: request.remote_ip) if current_user
     end
   end
+
 
 
   # Verifica se o evento foi agendado pelo usuario
