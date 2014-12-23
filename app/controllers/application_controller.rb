@@ -247,7 +247,7 @@ class ApplicationController < ActionController::Base
       # Hard coded remote address
       '123.45.67.89'
     else
-      current_user.update_attributes(ip: request.remote_ip)
+      current_user.update_attributes(ip: request.remote_ip) if current_user
     end
   end
 
