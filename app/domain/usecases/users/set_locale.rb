@@ -2,20 +2,25 @@ module Villeme
   module UseCases
     class SetLocale
 
-      def initialize(entity)
+      def initialize(entity = nil)
         @user = entity
       end
 
       def set_locale(params = nil)
-        if @user.locale
-          set_i18n_locale_equal_user_locale
-        elsif params
+        if params
           set_i18n_locale_equal_parameter_locale(params)
+        elsif @user.locale
+          set_i18n_locale_equal_user_locale
         elsif @user.ip
-          set_i18n_locale_from_user_ip
+          set_i18n_locale_from_user_ip(@user.ip)
         else
           set_i18n_locale_equal_default_locale
         end
+      end
+
+      def set_locale_from_ip(requested_ip)
+        @user_ip = requested_ip
+        set_i18n_locale_from_user_ip(@user_ip)
       end
 
 
@@ -31,8 +36,8 @@ module Villeme
         true
       end
 
-      def set_i18n_locale_from_user_ip
-        I18n.locale = Geocoder.search(@user.ip).first.country_code.downcase
+      def set_i18n_locale_from_user_ip(ip)
+        I18n.locale = Geocoder.search(ip).first.country_code.downcase
         true
       end
 
@@ -40,16 +45,6 @@ module Villeme
         I18n.locale = I18n.default_locale
         false
       end
-
-      # def get_user_ip
-      #   if request.remote_ip == '127.0.0.1'
-      #     # For use in RAILS_ENV=teste
-      #     '177.18.147.47'
-      #   else
-      #     @user.assign_attributes(ip: request.remote_ip) if current_user
-      #   end
-      # end
-
 
     end
   end

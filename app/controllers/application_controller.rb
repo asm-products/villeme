@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
 
   require_relative '../../app/domain/policies/user/account_complete'
+  require_relative '../../app/domain/usecases/users/set_locale'
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -22,17 +23,26 @@ class ApplicationController < ActionController::Base
  	helper Gamification
 
 
-
   protected
 
   def set_locale
-    if current_user
-      Villeme::UseCases::SetLocale.new(current_user).set_locale
+    if current_user || params
+      Villeme::UseCases::SetLocale.new(current_user).set_locale(params)
+    else
+      Villeme::UseCases::SetLocale.new(nil).set_locale_from_ip(get_user_ip)
     end
   end
 
 
-
+  def get_user_ip
+    if Rails.env.test?
+      '177.18.147.47'
+    elsif request.remote_ip == '127.0.0.1'
+      '177.18.147.47'
+    else
+      request.remote_ip
+    end
+  end
 
 
   def get_user_city_slug
