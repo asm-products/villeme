@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_locale
-    if current_user || params
+    if current_user || params[:locale]
       Villeme::UseCases::SetLocale.new(current_user).set_locale(params)
     else
       Villeme::UseCases::SetLocale.new(nil).set_locale_from_ip(get_user_ip)
