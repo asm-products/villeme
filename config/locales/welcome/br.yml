@@ -1,12 +1,12 @@
 br:
   welcome:
     head:
-      title: "Bem-vindo ao Villeme - Qualidade de vida e diversão!"
+      title: "Bem-vindo ao Villeme - Eventos e atividades na sua cidade!"
     first_screen:
-      slogan: "Qualidade de vida e diversão"
+      slogan: "Eventos e atividades"
       slogan_neighborhood: "no seu bairro"
-      slogan_city: "na cidade"
-      sub_slogan: "um jeito fácil de se divertir, de aprender e de cuidar da saúde perto de casa"
+      slogan_city: "na sua cidade"
+      sub_slogan: "O jeito mais fácil de encontrar eventos, atividades e serviços perto de casa"
       request_invite: "solicitar convite"
       request_invite_free: "É grátis e sempre será!"
       learn_more: "Saiba mais"
@@ -14,7 +14,7 @@ br:
     attributes:
       offers: "Villeme irá lhe oferecer"
       event:
-        title: "Eventos da vizinhança e bairro"
+        title: "Eventos da cidade e bairro"
         description: "Fique sabendo de tudo que está acontecendo a sua volta, como: cursos, festas, shows, filmes no cinema..."
       activity:
         title: "Atividades para você praticar perto de casa"

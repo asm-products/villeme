@@ -3,9 +3,9 @@
 en:
   welcome:
     head:
-      title: "Welcome to Villeme - Quality life and fun"
+      title: "Welcome to Villeme - Events and activities in your city"
     first_screen:
-      slogan: "Quality life and fun"
+      slogan: "Events and activities"
       slogan_neighborhood: "in your neighborhood"
       slogan_city: "in your city"
       sub_slogan: "The easiest way to find events, activities and services near your home."
