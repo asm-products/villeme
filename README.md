@@ -2,7 +2,7 @@
 
 # Villeme
 
-Web app helps you to knows everything that is happening and what you can do in your neighborhood
+The easiest way to find events, activities and services in your city.
 
 ### Show me something
 
@@ -27,7 +27,7 @@ To run this project in **development** you need to have:
 ### Tech Stacks
 
 * **Back-end:** Ruby / Rails / Postgresql
-* **Front-end:** HTML / CSS / SASS / jQuery / CoffeescriptOO
+* **Front-end:** HTML / CSS / SASS / jQuery / Coffeescript
 * **Tests:** RSpec / FactoryGirl / Faker
 
 ### Setup the project
