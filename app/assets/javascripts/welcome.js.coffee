@@ -12,7 +12,7 @@ $(document).ready ->
 	# mostra input de sugestão para persona
 	$(".invite_persona .hint a").click ->
 		$("#persona_sugest").fadeIn()
-		return		
+		return
 
 
 	$(".temporary-slogan").hide()
@@ -55,20 +55,20 @@ $(document).ready ->
 		$(".plataforms").css "top", (h / 9) + (st / 4)
 
 
-		return		
-	
+		return
+
 
 	#troca a fotografia de fundo
 	setTimeout( ->
-		$("#header-hide-on-scroll").animate 
+		$("#header-hide-on-scroll").animate
 			opacity: 1
 		, 1200
 
-		$(".plataforms").animate 
+		$(".plataforms").animate
 			top: (h / 9)
 		, 800
 
-		$("#header-hide-on-scroll-dark").animate 
+		$("#header-hide-on-scroll-dark").animate
 			opacity: 0
 		, 1200
 
@@ -83,7 +83,7 @@ $(document).ready ->
 
 	$(".gmail").mouseleave ->
 		$(this).find(".text").text("entrar com gmail")
-		return		
+		return
 
 
 	$(".goals .has-modal").click ->
@@ -91,12 +91,15 @@ $(document).ready ->
 		$(".has-selectpicker").selectpicker("val", city)
 		return
 
+	$("#address").focusin ->
+		Gmaps.new_map(-22.951916, -43.210487)
+		return
 
 	# Bootstrap Select
 	$(".has-selectpicker").selectpicker()
 
 
-	
+
 
 
 	# Facebook SKD Client popout login

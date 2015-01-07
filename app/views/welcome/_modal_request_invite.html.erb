@@ -9,21 +9,24 @@
 					<h4 class="modal-title" id="myModalLabel"><%= t('welcome.modal.i_want_invite') %></h4>
 				</div>
 
-				<%= simple_form_for(@invite, html:{ id:'new-invite', autocomplete: 'off'}, defaults:{input_html:{class: "form-control"}, label_html: {class: "control-label"}, wrapper_html:{class: "form-group"}}) do |f| %>
+				<%= simple_form_for(@invite, html:{ id:'new-invite', autocomplete: 'off'}, defaults:{input_html:{class: 'form-control'}, label_html: {class: 'control-label'}, wrapper_html:{class: 'form-group'}}) do |f| %>
 					<div class="modal-body">
 
-						<%= f.input :name, label: t('welcome.modal.name') %>
+                        <%= f.input :name, label: t('welcome.modal.name') %>
 
-						<%= f.input :email, label: "Email" %>
+                        <%= f.input :email, label: 'Email' %>
 
-						<%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: "Persona", input_html:{ class: "has-selectpicker"}, prompt: t('welcome.modal.persona_identify'), hint: link_to(t('welcome.modal.create_persona'), '#persona_sugest').html_safe %>
+                        <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: 'Persona', input_html:{ class: 'has-selectpicker'}, prompt: t('welcome.modal.persona_identify'), hint: link_to(t('welcome.modal.create_persona'), '#persona_sugest').html_safe %>
 
-						<%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: "persona_sugest" } %>
+                        <%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: 'persona_sugest'} %>
 
-                        <%= f.input :address, label: t('welcome.modal.address'), placeholder: t('welcome.modal.address_placeholder'), input_html:{class: "btn-geocoder-address-for-map form-control"} %>
+                        <%= f.input :address, label: t('welcome.modal.address'), placeholder: t('welcome.modal.address_placeholder'), input_html:{id: 'address', class: 'form-control'} %>
 
                         <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>
-					</div>
+
+                        <div id="map" style="height: 200px; display: none"></div>
+
+                    </div>
 
 					<div class="modal-footer">
 						<%= f.button :submit, t('welcome.modal.confirm'), :class => 'btn btn-primary' %>
