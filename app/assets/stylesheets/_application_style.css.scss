@@ -1,5 +1,11 @@
 /* FONT */
 
+.Credits{
+  color: #ffffff;
+  font-size: 12px;
+  font-style: italic;
+}
+
 .green-font{
 	color: $green;
 
@@ -169,8 +175,6 @@ border-color: scale_color($green, $lightness: -10%);
 .green-border{
 	border-color: $green !important;
 } 	
-
-
 
 
 
