@@ -3,7 +3,7 @@
 <!-- HEAD -->
 
 <%= stylesheet_link_tag params[:controller] %>
-<%= javascript 'gmaps-builder', 'autocomplete' %>
+<%= javascript 'gmaps-builder' %>
 
 
 
@@ -29,7 +29,7 @@
 	        <div class="form-group has-helper" helper="<b>Dica:</b> O nome do evento fica mais legal se for curto e com uma palavra descritiva. <br><br><b>Exemplo:</b><ul><li>Nome original: Hell.</li> <li>Nome legal: <i>Peça de Teatro</i> Hell.</li></ul><br><b>Obrigações:</b><ul><li>O nome deve ter mais de 6 caracteres.</li></ul>">
 	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Nome do evento</label>
 	          <div class="col-lg-9">
-	            <%= f.input :name, input_html:{class: "form-control"} %>
+	            <%= f.input :name, input_html:{class: "form-control has-focus-transition"} %>
 	          </div>
 	        </div>
 
@@ -39,7 +39,7 @@
 	        <div class="form-group has-helper" helper="<b>Dicas:</b> A descrição fica mais legal se for bem organizada, explicar o que acontece e o que é possível fazer no evento.<br><br>Use as opções de negrito e numeração para organizar melhor a descrição.<br><br><b>Obrigações:</b><ul><li>Ter mais de 140 caracteres.</li></ul>">
 	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Descrição</label>
 	          <div class="col-lg-9">
-	            <%= f.input :description, input_html: {class: "form-control", rows: "5"} %>
+	            <%= f.input :description, input_html: {class: "form-control has-focus-transition", rows: "5"} %>
 	          </div>
 	        </div>
 
@@ -105,7 +105,7 @@
 	              <%= f.input :hour_finish_first, input_html: {class: "form-control"}, as: :time, prompt: '--' %>
 	            </div>             
 	            <div class="col-lg-2 no-require">
-	              <span class="glyphicon glyphicon-plus has-tooltip" title="Adicionar mais um horario"></span>
+	              <span class="AddHour glyphicon glyphicon-plus has-tooltip" title="Adicionar mais um horario"></span>
 	            </div>
 	          </div>
 	        </div>
@@ -124,7 +124,7 @@
 	      <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Preço</label>
 	      <div class="col-lg-3">
 	        <input id="event_cost_fake" value="<%= @event.cost unless @event.cost.blank? %>" class="string optional has-tooltip form-control" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
-	        <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control"}  %>
+	        <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control has-focus-transition"}  %>
 	      </div>
 	      <label class="control-label col-lg-2">Detalhes</label>            
 	      <div class="col-lg-4 not-required">
@@ -165,12 +165,6 @@
 
 
 
-
-
-
-
-
-	        
 
 
 
