@@ -1,9 +1,12 @@
 class @Input
 
+  @count = 0
+
   constructor: (@input) ->
     @borderDefault = "rgb(204, 204, 204)"
     @borderGreen = "green"
-    console.log "Input Transition created!"
+    Input.count += 1
+    console.log "Input Transition created! We have" + Input.count
 
   addFocus: ->
     @input.css "border-color": @borderGreen

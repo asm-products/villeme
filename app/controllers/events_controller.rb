@@ -55,6 +55,7 @@ class EventsController < ApplicationController
     end
 
     @event = current_user.events.build
+    @place = @event.build_place
 
     set_current_user_lat_long_in_gon
     set_array_of_places_in_gon

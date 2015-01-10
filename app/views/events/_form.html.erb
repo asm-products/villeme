@@ -3,7 +3,7 @@
 <!-- HEAD -->
 
 <%= stylesheet_link_tag params[:controller] %>
-<%= javascript 'gmaps-builder' %>
+<%= javascript 'gmaps-builder', 'autocomplete' %>
 
 
 
@@ -22,7 +22,7 @@
 	  <div class="panel-body">
 
 	  <%= simple_form_for @event, defaults:{ label: false, wrapper_html: false}, :html => { multipart: true, class: "form-horizontal", id: "event-form" } do |f| %>
-	        
+
 
 	        <!-- NOME DO EVENTO -->
 
@@ -171,7 +171,7 @@
 
 	        <%= f.simple_fields_for :place, defaults: {input_html: false, label_html: false, wrapper_html: false, label: false} do |p| %>
 
-	        
+
 	          <!-- LOCALIZAÇÃO-->
 
 	          <div class="form-group place-form" style="margin-top: 30px;">
@@ -180,15 +180,15 @@
 
 	              <!-- <input id="place" class="string optional place-inputs has-tooltip col-lg-7 ui-autocomplete-input" type="text" title="" size="255" placeholder="Ex:. Parque Farroupilha" name="" maxlength="255" autocomplete="off" data-original-title="Busque pelo nome do lugar aqui"> -->
 	              <%= p.input :name, input_html: {id: "place", class: "place-inputs form-control has-tooltip col-lg-7 ui-autocomplete-input has-helper", placeholder: "Ex:. Parque Farroupilha", helper: "<b>Dica:</b> Escreva o nome do lugar completo, se ele ja existir você pode selecionar na lista que irá aparecer ou caso o lugar ainda não exista, você pode criá-lo.<br><br><b>Obrigações:</b><ul><li>O lugar deve ser selecionado ou criado.</li><li>O nome deve ter mais de 3 caracteres.</li>"} %>
-	            
+
 	            </div>
 
 	            <div class="col-lg-2">
 	              <div class="btn btn-default disabled has-tooltip" id="btn-criar-lugar" title="Verifique primeiro se o lugar não existe antes de criá-lo">Criar lugar</div>
-	            </div> 
+	            </div>
 
 	          </div>
-	   
+
 
 	        <% end %>
 
