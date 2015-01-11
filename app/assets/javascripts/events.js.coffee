@@ -20,15 +20,12 @@
 
     inputTransitions: ->
       $("#event-form .has-focus-transition").each ->
-        @input_web = $(this)
+        @input_assync = $(this)
         @input = new Input($(this))
 
-        @input_web.focus ->
-          @input.addFocus()
-          return
-
-        @input_web.focusout ->
-          @input.removeFocus()
+        @input_assync.keyup ->
+          console.log "Keyuped"
+          @input.validSize()
           return
 
         return

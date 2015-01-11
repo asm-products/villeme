@@ -29,8 +29,9 @@
 	        <div class="form-group has-helper" helper="<b>Dica:</b> O nome do evento fica mais legal se for curto e com uma palavra descritiva. <br><br><b>Exemplo:</b><ul><li>Nome original: Hell.</li> <li>Nome legal: <i>Peça de Teatro</i> Hell.</li></ul><br><b>Obrigações:</b><ul><li>O nome deve ter mais de 6 caracteres.</li></ul>">
 	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Nome do evento</label>
 	          <div class="col-lg-9">
-	            <%= f.input :name, input_html:{class: "form-control has-focus-transition"} %>
-	          </div>
+	            <%= f.input :name, input_html:{class: "form-control has-focus-transition", data:{"max-length" => 140, "min-length" => 2, "tip" => "Precisa ser maior que 2 caracteres."}} %>
+	            <div class="tip"></div>
+              </div>
 	        </div>
 
 
@@ -39,7 +40,7 @@
 	        <div class="form-group has-helper" helper="<b>Dicas:</b> A descrição fica mais legal se for bem organizada, explicar o que acontece e o que é possível fazer no evento.<br><br>Use as opções de negrito e numeração para organizar melhor a descrição.<br><br><b>Obrigações:</b><ul><li>Ter mais de 140 caracteres.</li></ul>">
 	          <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Descrição</label>
 	          <div class="col-lg-9">
-	            <%= f.input :description, input_html: {class: "form-control has-focus-transition", rows: "5"} %>
+	            <%= f.input :description, input_html: {class: "form-control has-focus-transition", rows: "5", data:{"max-length" => 25, "min-length" => 2}} %>
 	          </div>
 	        </div>
 
@@ -123,8 +124,8 @@
 	    <div class="form-group has-helper" helper="<b>Dica 1:</b> Insira o preço cobrado para poder participar do evento.<br/><br/><b>Dica 2:</b> Use o espaço de <i>Detalhes</i> para colocar mais informações sobre os preços e a tabela para cada segmento de preço cobrado.<br><br><b>Obrigações:</b><ul><li>O preço deve ser preenchido.</li></ul>">
 	      <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Preço</label>
 	      <div class="col-lg-3">
-	        <input id="event_cost_fake" value="<%= @event.cost unless @event.cost.blank? %>" class="string optional has-tooltip form-control" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
-	        <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control has-focus-transition"}  %>
+	        <input id="event_cost_fake" value="<%= @event.cost unless @event.cost.blank? %>" class="string optional has-tooltip form-control has-focus-transition" data-max-length="12" data-min-length="1" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
+	        <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control has-focus-transition", data:{"max-length" => 25, "min-length" => 2}}  %>
 	      </div>
 	      <label class="control-label col-lg-2">Detalhes</label>            
 	      <div class="col-lg-4 not-required">
@@ -257,14 +258,14 @@
 		        <div class="form-group has-helper" helper="<b>Dica:</b> Para deixar as informações mais confiaveis, insira os dados de contato do organizador ou local.">
 		          <label class="control-label col-lg-3">Contato e informações</label>
 		          <div class="col-lg-4">
-		            <%= f.input :email, input_html:{class: "form-control"}, placeholder: "email" %>
+		            <%= f.input :email, input_html:{class: "form-control has-focus-transition"}, placeholder: "email" %>
 		          </div>
 		          <div class="col-lg-5">
-		            <%= f.input :phone, as: :string, input_html:{class: "form-control"}, placeholder: "telefone" %>
+		            <%= f.input :phone, as: :string, input_html:{class: "form-control has-focus-transition"}, placeholder: "telefone" %>
 		          </div>
 		          <div class="control-label col-lg-3" style="margin-top:15px"></div>
 		          <div class="col-lg-9" style="margin-top:15px">
-		            <%= f.input :link, input_html:{class: "form-control"}, placeholder: "link ou site" %>
+		            <%= f.input :link, input_html:{class: "form-control has-focus-transition", data:{"max-length" => 500, "min-length" => 0}}, placeholder: "link ou site" %>
 		          </div>	          
 		        </div>	
 
