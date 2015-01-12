@@ -1,78 +1,75 @@
 (($) ->
 
-	# array que guardará todos os timeouts
-	timeouts = []
+  # array que guardará todos os timeouts
+  timeouts = []
 
 
 
-	Newsfeed =
+  Newsfeed =
 
 
-		###
-		Inicia as funções
-		###
-		init: ->
-			Newsfeed.EventEvents()
-			Newsfeed.UserEvent()
-			return
+    ###
+    Inicia as funções
+    ###
+    init: ->
+      Newsfeed.EventEvents()
+      Newsfeed.UserEvent()
+      Newsfeed.createMap()
+      return
 
 
 
+    createMap: ->
+      newMap = ->
+        new Gmaps(gon.latitude, gon.longitude)
+        return
 
-		
-		###
-		Eventos que ocorrem com a interação nos eventos em grid
-		###
-		EventEvents: ->
+      setTimeout(newMap, 650)
+      return
 
-			# event mouseenter
-			$(".event .panel").mouseenter ->
-				# limpa o timeout
-				i = 0
-				while i < timeouts.length
-					clearTimeout timeouts[i]
-					i++
 
-				timeouts = []
-			
-				# mostra a legenda
-				$(this).find(".letter").fadeIn("fast")
 
-				# pega a letra
-				letra = $(this).find(".letter").text()
+    EventEvents: ->
 
-				$("#neighborhood-count").hide()
+      # event mouseenter
+      $(".event .panel").mouseenter ->
+        # limpa o timeout
+        i = 0
+        while i < timeouts.length
+          clearTimeout timeouts[i]
+          i++
 
-				# mostra as infos
-				$("#sidebar-map .infos").filter(":not(:animated)").fadeIn 200
-					
-				# mostra o nome do evento no mapa
-				$(".address").fadeIn("fast").text($(this).attr("address"))
+        timeouts = []
 
-				# mostra o a distância de ônibus
-				$(".walk .data").fadeIn("fast").text($(this).attr("walk"))
+        # mostra a legenda
+        $(this).find(".letter").fadeIn("fast")
 
-				# mostra o a distância de ônibus
-				$(".bike .data").fadeIn("fast").text($(this).attr("bike"))
+        # pega a letra
+        letra = $(this).find(".letter").text()
 
-				# mostra o a distância de ônibus
-				$(".bus .data").fadeIn("fast").text($(this).attr("bus"))
+        $("#neighborhood-count").hide()
 
-				# mostra o a distância de ônibus
-				$(".car .data").fadeIn("fast").text($(this).attr("car"))								
+        # mostra as infos
+        $("#sidebar-map .infos").filter(":not(:animated)").fadeIn 200
 
-				latLng = new google.maps.LatLng($(this).attr("latitude"), $(this).attr("longitude"))
-				marker = $("#user-map").gmap3(get:
-					id: $(this).attr "letter"
-				)
+        # mostra o nome do evento no mapa
+        $(".address").fadeIn("fast").text($(this).attr("address"))
 
-				map = $("#user-map").gmap3("get")
-				map.panTo latLng
+        # mostra o a distância de ônibus
+        $(".walk .data").fadeIn("fast").text($(this).attr("walk"))
 
-				marker.setZIndex(10)
-				# marker.setIcon("images/marker-red-a.png")
+        # mostra o a distância de ônibus
+        $(".bike .data").fadeIn("fast").text($(this).attr("bike"))
 
-				return
+        # mostra o a distância de ônibus
+        $(".bus .data").fadeIn("fast").text($(this).attr("bus"))
+
+        # mostra o a distância de ônibus
+        $(".car .data").fadeIn("fast").text($(this).attr("car"))
+
+        Gmaps.panTo($(this).attr("latitude"), $(this).attr("longitude"))
+
+        return
 
 
 
@@ -81,73 +78,71 @@
 
 
 
-			# event mouseleave
-			$(".event .panel").mouseleave ->
-				$(".infobox").hide().text("")
-			
-
-				# esconde a legenda
-				$(this).find(".letter").fadeOut("fast")
-
-				latLng = new google.maps.LatLng(gon.latitude, gon.longitude)
-				marker = $("#user-map").gmap3(get:
-					id: $(this).attr "letter"
-				)
-
-				map = $("#user-map").gmap3("get")
-
-				mostraNeighborhoodCount = ->
-					$("#neighborhood-count").show()
-					return
-
-				# delay para ajustar o centro do mapa
-				pan = ->
-					map.panTo(latLng)
-					return
-
-				escondeInfos = ->
-					$("#sidebar-map .infos").hide()	
-					return
-
-				timeouts.push(setTimeout(pan, 6500))
-				timeouts.push(setTimeout(escondeInfos, 450))
-				timeouts.push(setTimeout(mostraNeighborhoodCount, 460))
-			
-				marker.setZIndex(1)
-			
-				return
-
-			return
+      # event mouseleave
+      $(".event .panel").mouseleave ->
+        $(".infobox").hide().text("")
 
 
+        # esconde a legenda
+        $(this).find(".letter").fadeOut("fast")
 
-		###
-		Eventos que ocorrem com a interação com o mapa
-		###
-		UserEvent: ->
-			# map mouseenter
-			$("#user-map").mouseenter ->
-				# limpa o timeout
-				i = 0
-				while i < timeouts.length
-					clearTimeout timeouts[i]
-					i++
+        latLng = new google.maps.LatLng(gon.latitude, gon.longitude)
+        marker = $("#map").gmap3(get:
+          id: $(this).attr "letter"
+        )
 
-				timeouts = []
-				# ---
-				return
+        map = $("#map").gmap3("get")
 
-			return
+        mostraNeighborhoodCount = ->
+          $("#neighborhood-count").show()
+          return
+
+        # delay para ajustar o centro do mapa
+        pan = ->
+          map.panTo(latLng)
+          return
+
+        escondeInfos = ->
+          $("#sidebar-map .infos").hide()
+          return
+
+        timeouts.push(setTimeout(pan, 6500))
+        timeouts.push(setTimeout(escondeInfos, 450))
+        timeouts.push(setTimeout(mostraNeighborhoodCount, 460))
+
+
+        return
+
+      return
 
 
 
 
-	$ ->
-		Newsfeed.init()
-		return
 
-	return
-			
+    UserEvent: ->
+      # map mouseenter
+      $("#map").mouseenter ->
+        # limpa o timeout
+        i = 0
+        while i < timeouts.length
+          clearTimeout timeouts[i]
+          i++
+
+        timeouts = []
+        # ---
+        return
+
+      return
+
+
+
+
+  $ ->
+    Newsfeed.init()
+    return
+
+  return
+
 ) jQuery
 
 

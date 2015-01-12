@@ -43,6 +43,17 @@ class NewsfeedController < ApplicationController
     @city = City.find_by(slug: params[:city])
     @events = Event.where(city_name: @city.name).upcoming
     @number_of_events = @events.count
+
+    @number_of_events = @events.count
+    @feedback = Feedback.new
+
+    # geolocalização do usuario
+    gon.latitude = current_user.latitude
+    gon.longitude = current_user.longitude
+
+    # array com os lugares para o mapa
+    gon.events_local_formatted = format_for_map_this(@events)
+
     render :index
   end
 

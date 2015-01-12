@@ -16,7 +16,7 @@
 				if ui.content.length is 0
 					$("#place").css("border-color","#5fcf80")
 					$(".criar-lugar").show()
-					Gmaps.new_map(gon.current_user_latitude, gon.current_user_longitude)
+					Gmaps.newMap(gon.current_user_latitude, gon.current_user_longitude)
 					map = $(this).gmap3("get")
 
 				else

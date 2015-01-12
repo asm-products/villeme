@@ -1,15 +1,15 @@
 @Gmaps =
 
   init: ->
-    Gmaps.button_to_get_location()
-    Gmaps.input_to_get_location_on_keyup()
+    Gmaps.buttonToGetLocation()
+    Gmaps.inputToGetLocationOnKeyup()
     return
 
   new_map: (latitude, longitude) ->
 
     style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
 
-    Gmaps.show_map_canvas_if_hidden()
+    Gmaps.showMapCanvasIfHidden()
 
     $("#map, #single-map, #place-map").gmap3
       map:
@@ -144,20 +144,20 @@
 
 
 
-  button_to_get_location: ->
+  buttonToGetLocation: ->
     $('.btn-geocoder-address-for-map').click ->
       address = $('.input-address-search').val()
-      Gmaps.get_location_from(address)
+      Gmaps.getLocationFrom(address)
       return
     return
 
 
-  input_to_get_location_on_keyup: ->
+  inputToGetLocationOnKeyup: ->
     $('#address').keyup ->
       address = this.value
       if address.length > 5
         delay( ->
-          Gmaps.get_location_from(address)
+          Gmaps.getLocationFrom(address)
           return
         , 900)
 
@@ -174,7 +174,7 @@
     return
 
 
-  show_map_canvas_if_hidden: ->
+  showMapCanvasIfHidden: ->
     if $('#map').css('display') is 'none'
       $('#map').show()
 

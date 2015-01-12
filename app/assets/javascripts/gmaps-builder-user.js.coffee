@@ -1,91 +1,198 @@
+class @Gmaps
 
-gmaps_builder_user = ->
-
-  style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
-
-
-  $("#user-map").gmap3
-    map:
-      options:
-        center: [
-          gon.latitude
-          gon.longitude
-        ]
-        zoom: 13
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-        mapTypeControl: false
-        mapTypeControlOptions:
-          style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-
-        navigationControl: false
-        scrollwheel: true
-        streetViewControl: false
-        zoomControl: false
-        styles: style 
+  constructor: (latitude, longitude) ->
+    @newMap(latitude, longitude)
+    @init()
+    return
 
 
-    marker:
-      values:
-        gon.events_local_formatted
-        
 
-      options: 
-        draggable: false
+  init: ->
+    Gmaps.buttonToGetLocation()
+    Gmaps.inputToGetLocationOnKeyup()
+    return
 
-      events:
-        mouseover: (marker, event, context) ->
-          $(".infobox").fadeIn("fast").text(context.data.address)
-          return
 
-        mouseout: ->
-          $(".infobox").fadeOut("fast")
-          return
 
-        click: (marker, event, context) ->
-          $.ajax(
-            url: context.data.link + ".json"
-          ).done (data) ->
-            $("#load-event .clear").html("")
-            $("#load-event .load-title").html data.event.name
-            $("#load-event .load-image img").attr("src", data.image)
-            $("#load-event .load-body > p").html data.event.description
-            jQuery.each data.event_categories, (i, val) ->
-              $("#load-event .load-categories").append("<div class='item " + val.name.toLowerCase() + "'>" + val.name + "</div>")
-              return
+  newMap: (latitude, longitude) ->
 
-            $("#load-event").fadeIn()
-            
+    style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
+
+    Gmaps.showMapCanvasIfHidden()
+
+    $("#map").gmap3
+      map:
+        options:
+          center: [
+            latitude
+            longitude
+          ]
+          zoom: 13
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeControl: false
+          mapTypeControlOptions:
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+
+          navigationControl: false
+          scrollwheel: true
+          streetViewControl: false
+          zoomControl: true
+          zoomControlOptions:
+            style: google.maps.ZoomControlStyle.SMALL,
+            position: google.maps.ControlPosition.RIGHT_TOP
+          styles: style
+
+      marker:
+        values:
+          gon.events_local_formatted
+
+        options:
+          draggable: false
+
+        events:
+          dragend: (marker) ->
+            $(this).gmap3 getaddress:
+              latLng: marker.getPosition()
+              callback: (results) ->
+                map = $(this).gmap3("get")
+                infowindow = $(this).gmap3(get: "infowindow")
+
+                $.each results[0].address_components, (x, y) ->
+                  $.each this, (name, value) ->
+                    if value[0] is "route"
+                      address = y.long_name
+                      $("#event_address, #event_place_attributes_address, #address").val address
+
+                    else if value[0] is "street_number"
+                      @number = y.long_name
+                      $("#number, #place-number").val @number
+
+                    else if value[0] is "neighborhood"
+                      @neighborhood = y.long_name
+                      $("#neighborhood, #neighborhood-place, #neighborhood-name").val @neighborhood
+                    return
+
+                  return
+
+                content = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
+
+                if infowindow
+                  infowindow.open map, marker
+                  infowindow.setContent content
+                else
+                  $(this).gmap3 infowindow:
+                    anchor: marker
+                    options:
+                      content: content
+
+                map = $(this).gmap3("get")
+                latLng = results[0].geometry.location
+                map.panTo latLng
+
+                return
+
             return
+    return
+
+
+  @panTo: (latitude, longitude) ->
+    latLng = new google.maps.LatLng(latitude, longitude)
+
+    map = $("#map").gmap3("get")
+    map.panTo latLng
+
+
+  @getLocationFrom: (address) ->
+    $("#map").gmap3
+      clear:
+        name: "marker"
+
+      getlatlng:
+        address: address
+        callback: (results) ->
+          unless results
+            $(".address-place-inputs").css("border-color", "#A94442")
+            alert "Endereço não encontrado. Tente buscar outro."
+          else
+            $(".address-place-inputs").css("border-color", "#5fcf80")
+            $(this).gmap3 marker:
+              latLng: results[0].geometry.location
+              options:
+                draggable: true
+                icon: "/images/marker-default.png"
+
+              events:
+                dragend: (marker) ->
+                  $(this).gmap3 getaddress:
+                    latLng: marker.getPosition()
+                    callback: (results) ->
+                      map = $(this).gmap3("get")
+                      infowindow = $(this).gmap3(get: "infowindow")
+                      content = (if results and results[0] then results and results[0].formatted_address else "no address")
+                      if infowindow
+                        $('#address').val(content)
+                        infowindow.open map, marker
+                        infowindow.setContent content
+                      else
+                        $('#address').val(content)
+                        $(this).gmap3 infowindow:
+                          anchor: marker
+                          options:
+                            content: content
+
+
+                      map = $(this).gmap3("get")
+                      latLng = results[0].geometry.location
+                      map.panTo latLng
+                      return
+
+                  return
+
+            map = $(this).gmap3("get")
+            latLng = results[0].geometry.location
+            map.panTo latLng
 
           return
 
-
-  return
-
+    return
 
 
-$(document).on 'ready page:done', ->
 
 
-  setTimeout gmaps_builder_user 850
+  @buttonToGetLocation: ->
+    $('.btn-geocoder-address-for-map').click ->
+      address = $('.input-address-search').val()
+      @getLocationFrom(address)
+      return
+    return
 
-  map = $(this).gmap3("get")
 
-  $("#infobox-wrapper").append("<div class='infobox'></div>")
 
-  # função para limpar infoboxes do mapa
-  gmap_clear_markers = ->
-    $(".infobox").each ->
-      $(this).remove()
+  @inputToGetLocationOnKeyup: ->
+    $('#address').keyup ->
+      address = this.value
+      if address.length > 5
+        delay( ->
+          @getLocationFrom(address)
+          return
+        , 900)
+
       return
 
-    return
-  
-  # Botao para chamar o endereço no mapa
-  $("#botao").click ->
-    endereco = $("#endereco").val()
-    buscaLatlong endereco
+    delay = (->
+      timer = 0
+      (callback, ms) ->
+        clearTimeout timer
+        timer = setTimeout(callback, ms)
+        return
+    )()
+
     return
 
 
-  return
+  @showMapCanvasIfHidden: ->
+    if $('#map').css('display') is 'none'
+      $('#map').show()
+
+    return
+

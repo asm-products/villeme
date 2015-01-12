@@ -92,7 +92,7 @@ $(document).ready ->
 		return
 
 	$("#address").focusin ->
-		Gmaps.new_map(-22.951916, -43.210487)
+		Gmaps.newMap(-22.951916, -43.210487)
 		return
 
 	# Bootstrap Select
