@@ -21,3 +21,6 @@ coverage/
 
 /public/system/*
 /public/assets/*
+
+.rake_tasks
+npm-debug.log
