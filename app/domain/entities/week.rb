@@ -8,13 +8,13 @@ module Villeme
 
       def get_day_of_week
         case @id
-        when 1 then 'Domingo'
-        when 2 then 'Segunda'
-        when 3 then 'Terça'
-        when 4 then 'Quarta'
-        when 5 then 'Quinta'
-        when 6 then 'Sexta'
-        when 7 then 'Sábado'
+        when 1 then I18n.t('week.sunday')
+        when 2 then I18n.t('week.monday')
+        when 3 then I18n.t('week.tuesday')
+        when 4 then I18n.t('week.wednesday')
+        when 5 then I18n.t('week.thursday')
+        when 6 then I18n.t('week.friday')
+        when 7 then I18n.t('week.saturday')
         end
       end
 
