@@ -2,9 +2,9 @@ require 'rails_helper'
 require_relative '../../app/domain/entities/week'
 require_relative '../../app/domain/usecases/weeks/get_day_of_week'
 
-describe 'Entities::Week' do
+describe 'UseCases::GetDayOfWeek' do
 
-  describe '.get_day_of_week' do
+  describe '.get_day_by_id' do
     before(:all) do
       I18n.locale = 'pt-BR'
     end
