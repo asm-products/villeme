@@ -8,7 +8,7 @@ describe 'UseCases::SetLocale' do
     context 'when user is logged in' do
       context 'when current_user have a :locale' do
         before(:each) do
-          @user = double('User', locale: :br)
+          @user = double('User', locale: :'pt-BR')
           I18n.locale = :en
         end
 
@@ -52,7 +52,7 @@ describe 'UseCases::SetLocale' do
 
         it 'should return country_code from Geocoder using @user ip' do
           Villeme::UseCases::SetLocale.new(@user).set_locale(@params)
-          expect(I18n.locale).to eq(:br)
+          expect(I18n.locale).to eq(:'pt-BR')
         end
       end
     end
@@ -66,7 +66,7 @@ describe 'UseCases::SetLocale' do
 
       it 'should settable I18n.locale from your ip' do
         Villeme::UseCases::SetLocale.new(@user).set_locale_from_ip(@user_ip)
-        expect(I18n.locale).to eq(:br)
+        expect(I18n.locale).to eq(:'pt-BR')
       end
     end
 
