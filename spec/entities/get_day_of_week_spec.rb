@@ -1,5 +1,6 @@
 require 'rails_helper'
 require_relative '../../app/domain/entities/week'
+require_relative '../../app/domain/usecases/weeks/get_day_of_week'
 
 describe 'Entities::Week' do
 
@@ -9,13 +10,17 @@ describe 'Entities::Week' do
     end
 
     it 'should return a first day of week' do
-      result = Villeme::Entities::Week.get_day_by_id(1)
+      week = Villeme::Entities::Week.new
+
+      result = Villeme::UseCases::GetDayOfWeek.get_day_by_id(week.id)
 
       expect(result).to eq('Domingo')
     end
 
     it 'should return a last day of week' do
-      result = Villeme::Entities::Week.get_day_by_id(7)
+      week = Villeme::Entities::Week.new(7)
+
+      result = Villeme::UseCases::GetDayOfWeek.get_day_by_id(week.id)
 
       expect(result).to eq('Sábado')
     end
