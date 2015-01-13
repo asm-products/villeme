@@ -15,7 +15,7 @@
       <label class="float optional" for="latitude">Endereço</label>
       <div class="row">
         <div class="col-sm-9 no-left-padding">
-          <%= f.input :address, required:true, label: 'Endereço', input_html:{ :'data-bv-notempty-message' => "O endereço deve ser preenchido.", :'data-bv-stringlength-max' => "140", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 140 e mais que 2 caracteres."} %>
+          <%= f.input :address, required:true, label: false, input_html:{ :'data-bv-notempty-message' => "O endereço deve ser preenchido.", :'data-bv-stringlength-max' => "140", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 140 e mais que 2 caracteres."} %>
         </div>
 
         <div class="col-sm-3 btn btn-default" id="btn-buscar-endereco">Buscar</div>
