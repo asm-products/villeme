@@ -279,6 +279,7 @@ faker_address = Faker::Address
 admin = User.create(
     name: 'John Doe',
     email: 'admin@gmail.com',
+    username: 'john-doe',
     password: 'password',
     password_confirmation: 'password',
     latitude: faker_address.latitude,
