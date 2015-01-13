@@ -23,7 +23,7 @@ CidadeVc::Application.routes.draw do
   end
 
 
-  scope "(:locale)", locale: /en|br/ do
+  scope "(:locale)", locale: /en|pt-BR/ do
 
     root to: 'welcome#index', as: :welcome
 
@@ -101,18 +101,14 @@ CidadeVc::Application.routes.draw do
     get 'newsfeed', to: 'newsfeed#index', as: :root
 
 
-  end
+    # AJAX ------------------------------------------
 
-
-
-  # AJAX ------------------------------------------
-  
     # Complete description of event on show
     get 'events/:event/fulldescription', to: 'events#full_description', as: 'full_description'
 
     # Aprove event to newsfeed
     match 'events/aprove/:id', to: 'events#aprove', via: :put, as: 'event_aprove'
-  
+
     # Friendship routes
     get "friendships/request", to: "friendships#request_friendship", as: :friend_request
     get "friendships/accept", to: "friendships#accept_friendship", as: :friend_accept
@@ -125,6 +121,11 @@ CidadeVc::Application.routes.draw do
     # Tips on events
     get "tips/create"
     get "tips/destroy"
+
+  end
+
+
+
 
 
 

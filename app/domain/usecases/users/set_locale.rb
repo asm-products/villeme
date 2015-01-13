@@ -49,9 +49,16 @@ module Villeme
 
       def set_i18n_locale_if_exist_traductions(country_code)
         if /\ben|br\b/.match(country_code)
-          I18n.locale = country_code
+          I18n.locale = converter_to_locale(country_code)
         else
           I18n.locale = :en
+        end
+      end
+
+      def converter_to_locale(country_code)
+        case country_code
+        when 'br' then 'pt-BR'
+        else 'en'
         end
       end
 
