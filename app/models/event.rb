@@ -122,7 +122,7 @@ class Event < ActiveRecord::Base
         elsif weeks.include?(tomorrow_in_week)
           return ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
         else
-          return ("<span title='#{period_that_occurs}' class='label day has-tooltip #{options[:css]}'>#{Villeme::Entities::Week.new(self.weeks.first.id).get_day_of_week}</span>").html_safe
+          return ("<span title='#{period_that_occurs}' class='label day has-tooltip #{options[:css]}'>#{Villeme::Entities::Week.get_day_by_id(self.weeks.first.id)}</span>").html_safe
         end
       elsif date_start == Date.current.tomorrow
         return ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe

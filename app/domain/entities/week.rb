@@ -2,12 +2,14 @@ module Villeme
   module Entities
     class Week
 
-      def initialize(id)
+      attr_accessor :id
+
+      def initialize(id = 1)
         @id = id
       end
 
-      def get_day_of_week
-        case @id
+      def self.get_day_by_id(id)
+        case id
         when 1 then I18n.t('week.sunday')
         when 2 then I18n.t('week.monday')
         when 3 then I18n.t('week.tuesday')
