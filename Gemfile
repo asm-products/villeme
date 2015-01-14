@@ -120,6 +120,10 @@ gem 'ratyrate'
 # New relic web service
 gem 'newrelic_rpm'
 
+
+# Globalize
+gem 'globalize', '~> 4.0.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

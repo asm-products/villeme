@@ -1,5 +1,8 @@
 class Category < ActiveRecord::Base
 
+	# Globalize
+	translates :name
+
 	# Urls bonitas
   extend FriendlyId
   friendly_id :name, use: :slugged
