@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114205704) do
+ActiveRecord::Schema.define(version: 20150114212445) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -326,6 +326,17 @@ ActiveRecord::Schema.define(version: 20150114205704) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "persona_translations", force: true do |t|
+    t.integer  "persona_id", null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "persona_translations", ["locale"], name: "index_persona_translations_on_locale"
+  add_index "persona_translations", ["persona_id"], name: "index_persona_translations_on_persona_id"
 
   create_table "personas", force: true do |t|
     t.string   "name"
