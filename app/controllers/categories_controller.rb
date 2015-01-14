@@ -4,6 +4,8 @@ class CategoriesController < ApplicationController
   # acesso somente para admin
   before_action :is_admin  
 
+  layout 'centralize-lg'
+
   # GET /categories
   # GET /categories.json
   def index
