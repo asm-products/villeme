@@ -105,7 +105,7 @@ end
 
 def save_and_redirect_to_welcome(values)
   if @invite.save
-    InviteMailer.welcome_email(@invite).deliver
+    InviteMailer.welcome_email(@invite).deliver unless Rails.env.test?
     redirect_to welcome_path, notice: values[:name].split.first + ', seu convite foi solicitado com sucesso. Enviaremos por email em breve.'
   else
     redirect_to welcome_path, alert: 'Ops! Não foi possível criar seu convite, você preencheu todas as informações?'
