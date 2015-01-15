@@ -7,7 +7,7 @@ class InvitesController < ApplicationController
   before_action :is_admin, except: :create
   
 
- 
+  layout 'full-width'
 
   # GET /invites
   # GET /invites.json
