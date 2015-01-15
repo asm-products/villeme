@@ -8,7 +8,6 @@ module Gamification
 	def level_up(user)
 
 		user_points = user.points
-		user_level = user.level
 
 		case user_points
 
