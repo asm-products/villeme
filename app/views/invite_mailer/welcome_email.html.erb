@@ -9,18 +9,7 @@
     </p>
 
 
-    <%  
-    goal = @city.goal
-    
-    if goal.to_i <= Invite.where(city: @city.id).count
-      contador = "versão Beta lançada!" 
-      ativado = true
-    else
-      contador = "<b>#{(goal.to_i - Invite.where(city: @city.id).count)}</b> pessoas para ativar o Beta em <b>#{@city.name}</b>".html_safe
-    end  
-    %>
-
-    <% if ativado %>
+    <% if @city_beta_actived %>
       <p>
         Ficamos muito felizes em receber sua solicitação de convite para o <b>Villeme</b>.<br/>
         Estamos em versão de testes para um número reduzido de pessoas e em breve lhe enviaremos o convite.<br/>
@@ -28,13 +17,13 @@
     <% else %>
       <p>
         Ficamos muito felizes em receber sua solicitação de convite para o <b>Villeme</b>.<br/>
-        Ainda faltam <%= contador %>.<br/>
+        Ainda faltam <%= @message %>.<br/>
         Você pode convidar seus amigos compartilhando o link: http://www.villeme.com.        
       </p>
     <% end %>
 
     <p>
-      Qualquer coisa estou aberto para dúvidas e sugestões para tornar <%= @city.name == nil ? "nossa cidade" : @city.name  %> mais legal!
+      Qualquer coisa estou aberto para dúvidas e sugestões para tornar <%= @city_name == nil ? "nossa cidade" : @city_name  %> mais legal!
     </p>
 
 
