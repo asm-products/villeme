@@ -36,7 +36,7 @@ describe WelcomeController, type: :controller do
 
           get :index, key: invite.key
 
-          expect(response).to redirect_to('http://www.villeme.com/users/auth/facebook')
+          expect(response).to redirect_to('http://villeme.com/users/auth/facebook')
         end
       end
 
