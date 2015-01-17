@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
 
+  require 'gon'
   require_relative '../../app/domain/policies/user/account_complete'
   require_relative '../../app/domain/usecases/users/set_locale'
 
