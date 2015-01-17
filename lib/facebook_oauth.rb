@@ -11,6 +11,8 @@ module FacebookOauth
 
   end
 
+  private
+
   def associate_user_with_auth(auth, userauth)
     email, user = find_user_with_auth_email(auth)
 
@@ -21,7 +23,7 @@ module FacebookOauth
     end
 
     unless user_associated?(user, userauth)
-      associate_user(auth, user)
+      associate_user(user, auth)
     end
 
     user
@@ -33,14 +35,16 @@ module FacebookOauth
     return email, user
   end
 
-  def associate_user(auth, user)
+  def associate_user(user, auth)
     user.provider = auth.provider
     user.uid = auth.uid
     user.save!
   end
 
   def user_associated?(user, userauth)
-    if userauth != user
+    if userauth == user
+      true
+    else
       false
     end
   end
