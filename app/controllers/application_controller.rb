@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :current_user_home, if: :devise_controller?
+  # before_filter :current_user_home, if: :devise_controller?
   before_filter :set_locale
   before_filter :get_user_city_slug
  	before_filter :set_feedback_for_all
