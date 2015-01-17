@@ -8,10 +8,10 @@ module InviteModule
 
     if user_not_exist?(user)
       user_create(invite)
-      redirect_to "http://villeme.com/users/auth/facebook" and return
+      redirect_to 'http://villeme.com/users/auth/facebook' and return
     else
       user_update(invite, user)
-      redirect_to "http://villeme.com/users/auth/facebook" and return
+      redirect_to 'http://villeme.com/users/auth/facebook' and return
     end
   end
 
@@ -23,20 +23,20 @@ module InviteModule
   end
 
   def user_create(invite)
-    user = User.create(name: invite.name,
+    User.create(name: invite.name,
                 email: invite.email,
                 password: Devise.friendly_token[0, 8],
                 persona_id: invite.persona,
-                invited: true)
+                invited: true,
+                address: invite.address)
 
-    invite.copy_attributes_to(user)
   end
 
   def user_update(invite, user)
     user.update_attributes(persona_id: invite.persona,
-                           invited: true)
+                           invited: true,
+                           address: invite.address)
 
-    invite.copy_attributes_to(user)
   end
 
 end
