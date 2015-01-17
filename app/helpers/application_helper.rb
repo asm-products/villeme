@@ -80,7 +80,7 @@ module ApplicationHelper
 			if user.avatar_file_name != nil
 				return image_tag user.avatar.url(:thumb), class: "avatar-upload img-circle image", size: size, alt: user.name
 			elsif user.facebook_avatar
-				return image_tag "#{user.facebook_avatar}?width=#{w}&height=#{h}", class: "avatar-upload img-circle image", size: size, alt: user.name
+				return image_tag "#{user.facebook_avatar}&width=#{w}&height=#{h}", class: "avatar-upload img-circle image", size: size, alt: user.name
 			else
 				return image_tag "thumb/missing.png", class: "avatar-upload img-circle image", size: size
 			end
