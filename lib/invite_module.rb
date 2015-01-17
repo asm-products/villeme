@@ -8,10 +8,10 @@ module InviteModule
 
     if user_not_exist?(user)
       user_create(invite)
-      redirect_to "http://www.villeme.com/users/auth/facebook" and return
+      redirect_to "http://villeme.com/users/auth/facebook" and return
     else
       user_update(invite, user)
-      redirect_to "http://www.villeme.com/users/auth/facebook" and return
+      redirect_to "http://villeme.com/users/auth/facebook" and return
     end
   end
 
