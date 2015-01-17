@@ -50,6 +50,12 @@ module FacebookOauth
   end
 
   def update_user(auth, user)
+    if user_updated?(auth, user)
+      user
+    end
+  end
+
+  def user_updated?(auth, user)
     user.update_attributes(facebook_avatar: auth.info.image, username: auth.info.nickname.gsub('.', ''), token: auth.credentials.token)
   end
 
