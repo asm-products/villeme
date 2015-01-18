@@ -1,16 +1,10 @@
 class @Gmaps
 
-  constructor: (@latitude, @longitude) ->
-    @newMap()
-    @buttonToGetLocation()
-    @inputToGetLocationOnKeyup()
-    return
+  @newMap: (@latitude, @longitude, options) ->
 
-  newMap: ->
+    Gmaps.setInitialAttributes(options)
 
     style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
-
-    @showMapCanvasIfHidden()
 
     $("#map").gmap3
       map:
@@ -19,14 +13,14 @@ class @Gmaps
             @latitude
             @longitude
           ]
-          zoom: 13
+          zoom: options.zoom or 13
           mapTypeId: google.maps.MapTypeId.ROADMAP
           mapTypeControl: false
           mapTypeControlOptions:
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
 
           navigationControl: false
-          scrollwheel: true
+          scrollwheel: options.scrollwheel or true
           streetViewControl: false
           zoomControl: true
           zoomControlOptions:
@@ -40,56 +34,17 @@ class @Gmaps
           @longitude
         ]
         options:
-          draggable: true
+          draggable: options.draggable or false
 
         events:
           dragend: (marker) ->
-            $(this).gmap3 getaddress:
-              latLng: marker.getPosition()
-              callback: (results) ->
-                map = $(this).gmap3("get")
-                infowindow = $(this).gmap3(get: "infowindow")
-
-                $.each results[0].address_components, (x, y) ->
-                  $.each this, (name, value) ->
-                    if value[0] is "route"
-                      address = y.long_name
-                      $("#event_address, #event_place_attributes_address, #address").val address
-
-                    else if value[0] is "street_number"
-                      @number = y.long_name
-                      $("#number, #place-number").val @number
-
-                    else if value[0] is "neighborhood"
-                      @neighborhood = y.long_name
-                      $("#neighborhood, #neighborhood-place, #neighborhood-name").val @neighborhood
-                    return
-
-                  return
-
-                content = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
-
-                if infowindow
-                  infowindow.open map, marker
-                  infowindow.setContent content
-                else
-                  $(this).gmap3 infowindow:
-                    anchor: marker
-                    options:
-                      content: content
-
-                map = $(this).gmap3("get")
-                latLng = results[0].geometry.location
-                map.panTo latLng
-
-                return
-
+            Gmaps.getAddressOfMarker(this, marker)
             return
     return
 
 
-  @getLocationFrom: (address) ->
-    $("#map, #single-map, #place-map").gmap3
+  @getLocationFrom: (address, options) ->
+    $("#map").gmap3
       clear:
         name: "marker"
 
@@ -97,41 +52,19 @@ class @Gmaps
         address: address
         callback: (results) ->
           unless results
-            $(".address-place-inputs").css("border-color", "#A94442")
+            $("#address").css("border-color", "#A94442")
             alert "Endereço não encontrado. Tente buscar outro."
           else
-            $(".address-place-inputs").css("border-color", "#5fcf80")
+            $("#address").css("border-color", "#5fcf80")
             $(this).gmap3 marker:
               latLng: results[0].geometry.location
               options:
-                draggable: true
+                draggable: options.draggable or false
                 icon: "/images/marker-default.png"
 
               events:
                 dragend: (marker) ->
-                  $(this).gmap3 getaddress:
-                    latLng: marker.getPosition()
-                    callback: (results) ->
-                      map = $(this).gmap3("get")
-                      infowindow = $(this).gmap3(get: "infowindow")
-                      content = (if results and results[0] then results and results[0].formatted_address else "no address")
-                      if infowindow
-                        $('#address').val(content)
-                        infowindow.open map, marker
-                        infowindow.setContent content
-                      else
-                        $('#address').val(content)
-                        $(this).gmap3 infowindow:
-                          anchor: marker
-                          options:
-                            content: content
-
-
-                      map = $(this).gmap3("get")
-                      latLng = results[0].geometry.location
-                      map.panTo latLng
-                      return
-
+                  Gmaps.getAddressOfMarker(this, marker)
                   return
 
             map = $(this).gmap3("get")
@@ -144,21 +77,51 @@ class @Gmaps
 
 
 
+  @showMapCanvasIfHidden: ->
+    if $('#map').css('display') is 'none'
+      $('#map').show()
 
-  buttonToGetLocation: ->
-    $('.btn-geocoder-address-for-map').click ->
-      address = $('.input-address-search').val()
-      Gmaps.getLocationFrom(address)
+    return
+
+
+
+  @setCanvasSize: (width, height) ->
+    if width is undefined  and height is undefined
+      $('#map').width('100%').height(350)
+    else if width is undefined
+      $('#map').width('100%').height(height)
+    else if height is undefined
+      $('#map').width(width).height(350)
+    else
+      $('#map').width(width).height(height)
+
+
+
+  @activeSearch: ->
+    Gmaps.buttonToGetLocation()
+    Gmaps.inputToGetLocationOnKeyup()
+    return
+
+
+
+  @buttonToGetLocation: ->
+    $('.js-btn-geocoder-address-for-map').click ->
+      address = $('#address').val()
+      Gmaps.getLocationFrom(address,
+        draggable: true
+      )
       return
     return
 
 
-  inputToGetLocationOnKeyup: ->
+  @inputToGetLocationOnKeyup: ->
     $('#address').keyup ->
       address = this.value
       if address.length > 5
         delay( ->
-          Gmaps.getLocationFrom(address)
+          Gmaps.getLocationFrom(address,
+            draggable: true
+          )
           return
         , 900)
 
@@ -170,16 +133,41 @@ class @Gmaps
         clearTimeout timer
         timer = setTimeout(callback, ms)
         return
-      )()
-
-    return
-
-
-  showMapCanvasIfHidden: ->
-    if $('#map').css('display') is 'none'
-      $('#map').show()
+    )()
 
     return
 
 
 
+  @getAddressOfMarker: (map, marker) ->
+    $(map).gmap3 getaddress:
+      latLng: marker.getPosition()
+      callback: (results) ->
+
+        $map              = $(this).gmap3("get")
+        infowindow        = $(this).gmap3(get: "infowindow")
+        latLng            = results[0].geometry.location
+        infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
+        address           = (if results and results[0] then results and results[0].formatted_address else "no address")
+
+        $("#address").val address
+
+        if infowindow
+          infowindow.open $map, marker
+          infowindow.setContent infowindowMessage
+        else
+          $(map).gmap3 infowindow:
+            anchor: marker
+            options:
+              content: infowindowMessage
+
+        $map.panTo latLng
+
+        return
+    return
+
+
+
+  @setInitialAttributes: (options) ->
+    Gmaps.activeSearch() if options.activeSearch is true
+    Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
