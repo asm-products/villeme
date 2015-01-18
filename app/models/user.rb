@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   require_relative '../domain/usecases/cities/get_city_slug'
   require_relative '../domain/usecases/geolocalization/geocode_user'
   require_relative '../domain/usecases/notifies/newsfeed_notify'
+  require_relative '../domain/policies/user/account_complete'
 
 
   after_validation :geocode_user, unless: 'address.nil?'
@@ -130,6 +131,10 @@ class User < ActiveRecord::Base
 
   def percentage_of_current_level
     Villeme::UseCases::GetLevel.percentage_of_current_level(self)
+  end
+
+  def account_complete?
+    Villeme::Policies::AccountComplete.is_complete?(self)
   end
 
   def agended?(event)

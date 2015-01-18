@@ -28,7 +28,7 @@
 
   
 
-<% if current_user.account_complete %>
+<% if current_user.account_complete? %>
   <%= render "edit_form" %>
 <% else %>
   <%= render "complete_form" %>
