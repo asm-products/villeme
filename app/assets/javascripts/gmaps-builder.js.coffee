@@ -1,5 +1,8 @@
 class @Gmaps
 
+  @markerUser = "/images/marker-user.png"
+  @markerPlace = "/images/marker-place.png"
+
   @newMap: (@latitude, @longitude, options) ->
 
     Gmaps.setInitialAttributes(options)
@@ -20,9 +23,10 @@ class @Gmaps
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
 
           navigationControl: false
-          scrollwheel: options.scrollwheel or true
           streetViewControl: false
-          zoomControl: true
+          scrollwheel: options.scrollwheel or false
+          scaleControl: options.scaleControl or false
+          zoomControl: options.zoomControl or false
           zoomControlOptions:
             style: google.maps.ZoomControlStyle.SMALL,
             position: google.maps.ControlPosition.RIGHT_TOP
@@ -35,6 +39,7 @@ class @Gmaps
         ]
         options:
           draggable: options.draggable or false
+          icon: options.marker or Gmaps.markerUser
 
         events:
           dragend: (marker) ->
@@ -60,7 +65,7 @@ class @Gmaps
               latLng: results[0].geometry.location
               options:
                 draggable: options.draggable or false
-                icon: "/images/marker-default.png"
+                icon: options.marker or Gmaps.markerUser
 
               events:
                 dragend: (marker) ->
@@ -171,3 +176,5 @@ class @Gmaps
   @setInitialAttributes: (options) ->
     Gmaps.activeSearch() if options.activeSearch is true
     Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
+    Gmaps.showMapCanvasIfHidden()
+    return

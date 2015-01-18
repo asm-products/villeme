@@ -46,7 +46,7 @@ module Gmaps
     {latLng: current_user.coordinates,
      data: current_user.name.to_s,
      options: {
-         icon: "/images/marker-default-home.png"
+         icon: "/images/marker-user.png"
      }
     }
   end
