@@ -66,7 +66,6 @@ class @Gmaps
               options:
                 draggable: options.draggable or false
                 icon: options.marker or Gmaps.markerUser
-
               events:
                 dragend: (marker) ->
                   Gmaps.getAddressOfMarker(this, marker)
