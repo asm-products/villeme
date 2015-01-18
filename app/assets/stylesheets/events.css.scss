@@ -25,6 +25,12 @@ select > option {
 	transition-duration: 1.5s;
 }
 
+#map{
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  margin: 15px 0 35px;
+}
+
 #helper{
   display: none;
 }

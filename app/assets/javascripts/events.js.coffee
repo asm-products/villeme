@@ -6,7 +6,7 @@
   EventForm =
 
     init: ->
-      EventForm.inputTransitions()
+      # EventForm.inputTransitions()
       EventForm.opacityOnInputsNotRequireds()
       EventForm.removeImageFromUpload()
       EventForm.activeHelper()
