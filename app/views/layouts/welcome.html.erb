@@ -306,14 +306,12 @@
 
               <% number = 0 %>
               <% @cities.each do |city| %>
-              <% 
-              goal = city.goal
-              
-              if goal.to_i <= Invite.where(city_name: city.name).count
+              <%
+              if city.goal > 1
                 contador = t('welcome.want_invite.beta_launched')
                 ativado = true
               else
-                contador = "#{(goal.to_i - Invite.where(city_name: city.name).count) } " + t('welcome.want_invite.people')
+                contador = "#{t('welcome.want_invite.need')} #{(city.goal - Invite.where(city_name: city.name).count) } #{t('welcome.want_invite.people_to_launch')}"
               end 
               %>
 

@@ -41,10 +41,11 @@ en:
       title: "I want an invite!"
       description: "Request an invitation to test the application in your city, or create a city"
       beta_launched: "Beta version released!"
-      i_want: "I want!"
+      i_want: "I want an invitation"
       i_want_to: "I want to test!"
       new_city: "+ Create city"
-      people: "people"
+      people_to_launch: "people to launch"
+      need: "Need"
     footer:
       title: "Tell your friends who like to have fun in the city, share!"
       terms: "Terms"

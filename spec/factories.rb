@@ -69,6 +69,7 @@ FactoryGirl.define do
 
   factory :city do
     name "Albany"
+    goal 250
   end
 
   factory :neighborhood do
