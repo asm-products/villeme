@@ -307,7 +307,7 @@
               <% number = 0 %>
               <% @cities.each do |city| %>
               <%
-              if city.goal > 1
+              if city.goal < 1
                 contador = t('welcome.want_invite.beta_launched')
                 ativado = true
               else
