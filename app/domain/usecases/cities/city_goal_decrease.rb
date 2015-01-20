@@ -8,6 +8,7 @@ module Villeme
 
       def decrease
         @city.goal -= 1
+        @city.save
       end
 
     end
