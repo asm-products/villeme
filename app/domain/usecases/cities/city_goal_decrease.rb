@@ -7,8 +7,8 @@ module Villeme
       end
 
       def decrease
-        @city.goal -= 1
-        @city.save
+        @city.update_attributes(goal: @city.goal - 1)
+        @city.goal
       end
 
     end

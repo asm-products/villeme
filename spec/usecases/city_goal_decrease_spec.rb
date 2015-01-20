@@ -12,7 +12,7 @@ describe 'UseCases::CityGoalDecrease' do
       expect(@result).to eq(249)
     end
     it 'should save new goal in the city' do
-      expect(@city.goal).to eq(249)
+      expect(City.last.goal).to eq(249)
     end
   end
 
