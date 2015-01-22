@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119231846) do
+ActiveRecord::Schema.define(version: 20150122222717) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -497,6 +497,17 @@ ActiveRecord::Schema.define(version: 20150119231846) do
   add_index "users", ["persona_id"], name: "index_users_on_persona_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true
+
+  create_table "week_translations", force: true do |t|
+    t.integer  "week_id",    null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "week_translations", ["locale"], name: "index_week_translations_on_locale"
+  add_index "week_translations", ["week_id"], name: "index_week_translations_on_week_id"
 
   create_table "weeks", force: true do |t|
     t.string   "name"
