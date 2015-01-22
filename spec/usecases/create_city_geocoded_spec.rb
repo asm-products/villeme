@@ -6,6 +6,7 @@ describe 'UseCases::CreateCityGeocoded' do
   describe '.create_objects' do
 
     before(:all) do
+      City.destroy_all
       address = '544 Madison Ave, Albany, NY 12208, USA'
       @result = Villeme::UseCases::CreateCityGeocoded.new(address).create_city
     end
