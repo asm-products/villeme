@@ -3,14 +3,14 @@
   <% if user_signed_in? %>
     <div class="avatar">
       
-      <%= get_avatar current_user, "38", "38" %>
+      <%= get_avatar current_user, '38', '38' %>
       
       <div class="level-image">
-        <%= image_tag current_user.level_icon_url, class: "has-tooltip", data: {placement: "bottom"}, title: "#{current_user.level_name} - Lvl.#{current_user.level_nivel}" if current_user.level %>
+        <%= image_tag current_user.level_icon_url, class: 'has-tooltip', data: {placement: "bottom"}, title: "#{current_user.level_name}" if current_user.level %>
       </div>
       
       <span class="name dropdown">
-        <a href="#" class="has-dropdown" data-toggle="dropdown"> <%= current_user.first_name %> <span class="persona">(<%= current_user.persona_name %>)</span> <b class="caret"></b> </a>
+        <a href="#" class="has-dropdown" data-toggle="dropdown"> <%= current_user.first_name %> <span class="badge">Nível <%= current_user.level.nivel %></span> <b class="caret"></b> </a>
        
         <div class="progress has-tooltip" data-placement="bottom" title="<%= "Faltam #{current_user.points_to_next_level} Pontos de Experiência para o próximo level." %>">
           <div class="progress-bar" role="progressbar" aria-valuenow="<%= current_user.percentage_of_current_level %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.percentage_of_current_level %>%;">
@@ -20,12 +20,16 @@
         
        
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          <li role="presentation"><%= link_to "Meus eventos", user_events_path(current_user) %></li>            
-          <li role="presentation"><%= link_to "Configurações", user_account_path(current_user) %></li>
+          <li role="presentation"><%= link_to 'Meus eventos', user_events_path(current_user) %></li>
+          <li role="presentation"><%= link_to 'Configurações', user_account_path(current_user) %></li>
+          <% if current_user.admin? %>
+              <li class="divider" role="presentation"></li>
+              <li role="presentation">
+                <%= link_to 'Aprovar eventos', events_path, class: 'inline' %>
+              </li>
+          <% end %>
           <li class="divider" role="presentation"></li>
-          <% if current_user.admin? %><li role="presentation"><%= link_to "Aprovar eventos", events_path, class: "inline" %></li><% end %>
-          <li class="divider" role="presentation"></li>
-          <li role="presentation"><%= link_to "Sair", sair_path %></li>
+          <li role="presentation"><%= link_to 'Sair', sair_path %></li>
         </ul>
 
       </span>

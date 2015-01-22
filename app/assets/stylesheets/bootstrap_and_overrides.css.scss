@@ -139,20 +139,6 @@
 		}	
 	}
 
-	#contato{
-
-		&:hover{
-
-			& a{
-				display:none;
-			}
-			&:after{
-				font-family: $font-family-default;
-				content: 'contato@villeme.com'
-			}
-		}
-	}
-
 	.form-control:focus,
 	{
 	    outline:0px !important;
