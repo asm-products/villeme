@@ -76,3 +76,5 @@ en:
     have_events: "have %{neighborhood_count} events"
     no_have_events: "no have events"
     show_events_number_in_neighborhood: "You %{count} near you or in your neighborhood."
+  footer:
+    contact_email: "support@villeme.com"
