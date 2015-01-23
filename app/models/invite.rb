@@ -1,7 +1,6 @@
 class Invite < ActiveRecord::Base
 
-  require_relative '../../app/domain/usecases/geolocalization/geocode_invite'
-  require_relative '../../app/domain/usecases/cities/city_goal_decrease'
+  require_relative '../../app/domain/usecases/geolocalization/geocode_invite'  
 
   after_validation :geocode_invite, unless: 'address.nil?'
 
@@ -18,7 +17,6 @@ class Invite < ActiveRecord::Base
 
   def geocode_invite
     Villeme::UseCases::GeocodeInvite.new(self).geocoded_by_address(self.address)
-    Villeme::UseCases::CityGoalDecrease.new(self.city).decrease unless Rails.env.test?
   end
 
 

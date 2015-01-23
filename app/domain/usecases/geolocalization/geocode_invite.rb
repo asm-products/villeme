@@ -3,6 +3,7 @@ module Villeme
     class GeocodeInvite
 
       require_relative '../../policies/geocoder/entity_geocoded'
+      require_relative '../../usecases/cities/city_goal_decrease'
 
       def initialize(entity)
         @invite = entity
@@ -22,6 +23,7 @@ module Villeme
         geocoderize_invite(geocoding_by_address)
 
         if invite_is_geocoded?
+          Villeme::UseCases::CityGoalDecrease.new(self.city).decrease unless Rails.env.test?
           @invite
         end
       end
