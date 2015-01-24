@@ -17,6 +17,7 @@ FactoryGirl.define do
     state_name "New York"
     country_name "United States"
     persona
+    level
   end
 
   # This will use the User class (Admin would have been guessed)
@@ -110,7 +111,7 @@ FactoryGirl.define do
 
   factory :level do
     name "Ovo"
-    points 30
+    points 0
     nivel 1
   end
 
