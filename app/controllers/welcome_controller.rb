@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
   		@invite = Invite.new
   	end
 
-    @cities = City.limit(5).order(:name)
+    @cities = City.limit(5).order(:goal)
 
     @invites = Invite.all
 
