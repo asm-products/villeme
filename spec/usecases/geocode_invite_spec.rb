@@ -6,22 +6,26 @@ describe 'UseCases::GeocodeInvite' do
 
   describe '.geocoded_by_address' do
     context 'when geocoded of invite is realized with success' do
-      it 'should return true' do
-        invite = build(:event, latitude: nil, longitude: nil, address: '544 Madison Ave, Albany, NY 12208, USA')
-        invite_geocoded = Villeme::UseCases::GeocodeInvite.new(invite).geocoded_by_address(invite.address)
+      before(:each) do
+        @invite = create(:invite, name: 'John Doe', email: 'teste@gmail.com', address: 'Rua Carazinho, 456 - Canoas', persona: 'Entrepreuner', latitude: nil, longitude: nil)
+      end
 
-        result = Villeme::Policies::EntityGeocoded.is_geocoded?(invite_geocoded)
+      it 'should return true if invites is geocoded' do
+        result = Villeme::Policies::EntityGeocoded.is_geocoded?(@invite)
 
         expect(result).to be_truthy
+      end
+
+      it 'should create a city from invite address' do
+        expect(@invite.city.name).to eq('Canoas')
       end
     end
 
     context 'when event DO NOT have a address' do
       it 'should return false' do
-        invite = build(:event, latitude: nil, longitude: nil, address: nil)
-        invite_geocoded = Villeme::UseCases::GeocodeInvite.new(invite).geocoded_by_address(invite.address)
+        invite = build(:invite, latitude: nil, longitude: nil, address: nil)
 
-        result = Villeme::Policies::EntityGeocoded.is_geocoded?(invite_geocoded)
+        result = Villeme::Policies::EntityGeocoded.is_geocoded?(invite)
 
         expect(result).to be_falsey
       end

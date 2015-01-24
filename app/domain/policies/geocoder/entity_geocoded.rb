@@ -14,7 +14,7 @@ module Villeme
         private
 
         def geocoded?(entity)
-          entity.latitude && entity.longitude && entity.address
+          entity.latitude && entity.longitude && entity.address && entity.country_name
         end
 
       end

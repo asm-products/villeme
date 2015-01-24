@@ -10,11 +10,19 @@ module Villeme
       end
 
       def create_objects
-        create_neighborhood
-        create_city
+        if create_city_or_neighborhood
+          true
+        else
+          false
+        end
       end
 
+
       private
+
+      def create_city_or_neighborhood
+        create_city or create_neighborhood
+      end
 
       def create_city
         Villeme::UseCases::CreateCityGeocoded.new(@address).create_city
