@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <% @invites.each do |invite| %>
-              <tr>
+              <tr class="<%= 'success' if invite.invited %>">
                 <td><%= link_to invite.id, invite_path(invite) %></td>
                 <td><%= invite.email %></td>
                 <td><%= invite.name %></td>

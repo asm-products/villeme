@@ -73,8 +73,8 @@ class InvitesController < ApplicationController
   # Envia o convite para o usuario
   def send_invite
     @invite = Invite.find_by(key: params[:key])
-    # Envia email de boas vindas
     InviteMailer.send_key(@invite).deliver
+    @invite.update_attributes(invited: true)
     render js: "alert('Convite enviado!');"
   end
 

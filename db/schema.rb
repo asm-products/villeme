@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122222717) do
+ActiveRecord::Schema.define(version: 20150124201528) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -236,6 +236,7 @@ ActiveRecord::Schema.define(version: 20150122222717) do
     t.string   "street_number"
     t.string   "full_address"
     t.string   "formatted_address"
+    t.boolean  "invited",           default: false
   end
 
   add_index "invites", ["user_id"], name: "index_invites_on_user_id"

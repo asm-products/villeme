@@ -18,10 +18,10 @@
           </thead>
           <tbody>
             <% @users.each do |user| %>
-              <tr>
+              <tr class="<%= 'success' if user.invited %>">
                 <td><%= link_to user.name, show_user_path(user) %></td>
                 <td><%= user.username %></td>
-                <td><%= link_to user.id, user_path(user) %></td>
+                <td><%= user.id %></td>
                 <td><%= user.email %></td>
                 <td><%= user.city.name %></td>
                 <td><%= time_ago_in_words user.created_at %></td>
