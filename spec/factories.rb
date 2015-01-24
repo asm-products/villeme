@@ -70,6 +70,7 @@ FactoryGirl.define do
   factory :city do
     name "Albany"
     goal 250
+    address "544 Madison Ave, Albany, NY 12208, USA"
   end
 
   factory :neighborhood do

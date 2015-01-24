@@ -6,7 +6,7 @@ describe 'Policies::AccountGeocoded' do
 
     context 'when entity have address, latitude and longitude' do
       it 'should return true' do
-        entity = double('Entity', address: 'Address', latitude: 10.0000, longitude: 10.0000)
+        entity = double('Entity', address: 'Address', latitude: 10.0000, longitude: 10.0000, country_name: 'United States')
 
         result = Villeme::Policies::EntityGeocoded.is_geocoded?(entity)
 
@@ -16,7 +16,7 @@ describe 'Policies::AccountGeocoded' do
 
     context 'when entity DO NOT have longitude' do
       it 'should return false' do
-        entity = double('Entity', address: 'Address', latitude: 10.0000, longitude: nil)
+        entity = double('Entity', address: 'Address', latitude: 10.0000, longitude: nil, country_name: 'United States')
 
         result = Villeme::Policies::EntityGeocoded.is_geocoded?(entity)
 
