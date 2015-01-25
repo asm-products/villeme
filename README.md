@@ -27,34 +27,20 @@ To run this project in **development** you need to have:
 ### Tech Stacks
 
 * **Back-end:** Ruby / Rails / Postgresql
-* **Front-end:** HTML / CSS / SASS / jQuery / Coffeescript
+* **Front-end:** HTML5 / CSS / SASS / jQuery / Coffeescript
 * **Tests:** RSpec / FactoryGirl / Faker
+* **Technical:** SuitCSS / JavascriptOO / Clean Architecture in Rails way / DDD in Rails way / JSON
+* **DevOps:** SnapCI / TravisCI / Codeclimate
+* **Important Modules:** Devise / Gon / Paperclip / Merit / Bootstrap
 
 ### Setup the project
 
-* Clone the project
-
-	`$ git clone https://github.com/asm-products/villeme.git`
-
-* Enter project folder
-	
-	`$ cd villeme`
-
-* Install the gems (dependencies)
-
-	`$ bundle install`
-
-* Compile assets (js, css, images)
-
-	`$ bundle exec rake assets:precompile`
-
-* Create the database
-
-	`$ bundle exec rake db:schema:load`
-	
-* Create faker data with seed
-
-    `$ bundle exec rake db:seed`
+* Clone the project: `$ git clone https://github.com/asm-products/villeme.git`
+* Enter project folder: `$ cd villeme`
+* Install the gems (dependencies): `$ bundle install`
+* Compile assets (js, css, images): `$ bundle exec rake assets:precompile`
+* Create the database: `$ bundle exec rake db:schema:load`
+* Create faker data with seed: `$ bundle exec rake db:seed`
 
 If everything goes OK, you can now run the project!
 
