@@ -28,7 +28,7 @@
 
 		</div>
 
-		<div class="panel panel-default h-325 shadow-animation" address="<%= event.full_address %>" latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" bus="<%= distance[:bus] %>min." car="<%= distance[:car] %>min." walk="<%= distance[:walk] %>min." bike="<%= distance[:bike] %>min." letter="<%= letter[i] %>">
+		<div class="panel panel-default min-height-325 shadow-animation" address="<%= event.full_address %>" latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" bus="<%= distance[:bus] %>min." car="<%= distance[:car] %>min." walk="<%= distance[:walk] %>min." bike="<%= distance[:bike] %>min." letter="<%= letter[i] %>">
 			<div class="row">
 				<div class="col-sm-12">
 
@@ -83,7 +83,7 @@
 
 	<% if i == 2 and current_user.friends_from_facebook %>
 
-		<div class="col-lg-4 col-md-4 col-sm-6 hidden-xs h-325 grid" >
+		<div class="col-lg-4 col-md-4 col-sm-6 hidden-xs height-325 grid" >
 			
 			<%# render "newsfeed/friends_requests" %>
 			<% cache [current_user, "friends_ranking"], skip_digest: true do %>
