@@ -35,12 +35,12 @@ To run this project in **development** you need to have:
 
 ### Setup the project
 
-* Clone the project: `$ git clone https://github.com/asm-products/villeme.git`
-* Enter project folder: `$ cd villeme`
-* Install the gems (dependencies): `$ bundle install`
-* Compile assets (js, css, images): `$ bundle exec rake assets:precompile`
-* Create the database: `$ bundle exec rake db:schema:load`
-* Create faker data with seed: `$ bundle exec rake db:seed`
+1. Clone the project: `$ git clone https://github.com/asm-products/villeme.git`
+2. Enter project folder: `$ cd villeme`
+3. Install the gems (dependencies): `$ bundle install`
+4. Compile assets (js, css, images): `$ bundle exec rake assets:precompile`
+5. Create the database: `$ bundle exec rake db:schema:load`
+6. Create faker data with seed: `$ bundle exec rake db:seed`
 
 If everything goes OK, you can now run the project!
 
