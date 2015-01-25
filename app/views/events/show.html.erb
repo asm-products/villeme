@@ -27,33 +27,32 @@
       <div class="panel panel-default">
 
 
-        <!-- Imagem -->
+        <!-- =Image -->
         <div class="image" style="background-image: url(<%= @event.image.url(:medium) %>)"></div>
 
 
         <div class="panel-body">
 
 
-          <!-- Titulo -->
+          <!-- =Title -->
           <% cache [@event, 'title'] do %>
           <span class="font-9 opacity-50 uppercase"><%= @event.subcategory.name unless @event.subcategory.nil? %></span>
           <h1 class="title"><%= @event.name %></h1>
           <% end %>
 
-          <!-- Descrição -->
+          <!-- =Description -->
           <div class="panel-body-item p-0-0-15">
             <%= render 'events/show/description' %>
           </div>
 
         </div>
 
-        <ul class="list-group">
-
+        <ul class="list-group font-12">
 
           <li class="list-group-item categories centralize p-15-0">
             <div class="row">
 
-              <!-- Categorias -->
+              <!-- =Categories -->
               <div class="col-lg-5 col-md-5 p-6-0">
                 <% @event.category_ids.each do |id| %>
                   <% # noinspection RailsChecklist05
@@ -64,7 +63,7 @@
                 <% end %>
               </div>
 
-              <!-- Votação -->
+              <!-- =Rating -->
               <div class="col-lg-7 col-md-7 p-15-0-0-0">
                 <%= rating_for @event, "geral", disable_after_rate: true, half_show: false %>
                 <span class="block p-10-0-0-0 font-10"><span class="glyphicon glyphicon-user"></span> <%= @event.rates_count %></span>
@@ -73,7 +72,7 @@
             </div>
           </li>
 
-          <!-- Infos -->
+          <!-- =Infos -->
           <li class="list-group-item">
             <% cache [@event, 'infos'] do %>
               <%= render 'events/show/infos' %>
@@ -81,7 +80,7 @@
           </li>
 
 
-          <!-- Contatos -->
+          <!-- =Contacts -->
           <% if @event.email.blank? == false or @event.phone.blank? == false or @event.link.blank? == false %>
             <li class="list-group-item">
               <% cache [@event, 'contacts'] do %>
@@ -90,15 +89,11 @@
             </li>
           <% end %>
 
-
-
-
-
         </ul>
       </div>
 
 
-      <!-- Dicas -->
+      <!-- =Tip -->
       <div class="panel panel-default">
         <%= render 'events/show/tips' %>
       </div>
@@ -110,7 +105,7 @@
 
 
 
-    <!-- SIDEBAR -->
+    <!-- =SIDEBAR -->
 
     <%= render 'events/show/sidebar' %>
 
