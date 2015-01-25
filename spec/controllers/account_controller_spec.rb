@@ -24,7 +24,7 @@ describe AccountsController, type: :controller do
         set_current_user_nil
       end
 
-      it 'should do something' do
+      it 'should redirect user to welcome page without login' do
         put :update, id: 1, user: nil
 
         expect(response).to redirect_to(welcome_path)

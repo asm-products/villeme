@@ -37,11 +37,15 @@ class ApplicationController < ActionController::Base
   def get_user_ip
     if Rails.env.test?
       '177.18.147.47'
-    elsif request.remote_ip == '127.0.0.1'
+    elsif get_remote_ip == '127.0.0.1'
       '177.18.147.47'
-    else
-      request.remote_ip
+    elsif get_remote_ip
+      get_remote_ip
     end
+  end
+
+  def get_remote_ip
+    request.remote_ip
   end
 
 
