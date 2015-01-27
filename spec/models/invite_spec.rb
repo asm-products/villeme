@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Invite, type: :model do
 
-  let(:invite){ create(:invite) }
+  let(:invite){ build(:invite) }
 
   describe '#save' do
     subject { invite }
