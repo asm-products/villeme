@@ -2,7 +2,7 @@
 <div class="p-15-0">
   
   <div class="row">
-    <%= simple_form_for @tip, action: :create, remote: true, html: {id: "new-tip"}, defaults: { input_html: {class: "form-control"}, wrapper_html: {class: 'form-group'}} do |f| %>
+    <%= simple_form_for @tip, action: :create, remote: true, authenticity_token: true, html: {id: "new-tip"}, defaults: { input_html: {class: "form-control"}, wrapper_html: {class: 'form-group'}} do |f| %>
       <%= f.input :description, label: false, as: :text, input_html: { rows: "1", class: "tip form-control transition"}, wrapper_html:{class: "form-group col-lg-9 col-md-9 col-sm-12 col-xs-12"}, placeholder: "Escreva uma dica sobre o evento..." %>
       <%= f.input :event_id, as: :hidden, input_html: {value: @event.id} %>
       <%= f.input :user_id, as: :hidden %>
