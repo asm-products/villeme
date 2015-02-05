@@ -15,12 +15,16 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require File.expand_path("../../config/environment", __FILE__)
 require 'devise'
 require 'factory_girl'
 require 'supports/controller_macros'
+require 'capybara/rspec'
+require 'capybara/rails'
 require 'database_cleaner'
 require 'simplecov'
 require 'coveralls'
+
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
@@ -29,8 +33,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start
 RSpec.configure do |config|
 
-  config.include Devise::TestHelpers, :type => :controller
-  config.include ControllerMacros, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerMacros, type: :controller
   config.include FactoryGirl::Syntax::Methods
 
   # rspec-expectations config goes here. You can use an alternate

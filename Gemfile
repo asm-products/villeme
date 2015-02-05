@@ -13,10 +13,10 @@ group :development, :test do
 	gem 'binding_of_caller'
 	gem 'rspec'
 	gem 'rspec-rails'
+	gem 'capybara'
 	gem 'shoulda-matchers'
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'database_cleaner'
-	gem 'jasmine-rails'
 	gem 'coveralls', require: false
 	gem 'simplecov', require: false
 end
