@@ -3,7 +3,7 @@ require_relative '../../app/domain/policies/geocoder/entity_geocoded'
 
 describe User, type: :model do
 
-  let(:user){ create(:user) }
+  let(:user){ build(:user) }
 
   describe 'associations' do
     it{ is_expected.to belong_to :level }
@@ -52,16 +52,6 @@ describe User, type: :model do
       country = create(:country, name: 'United States')
 
       expect(user.country).to eq(country)
-    end
-  end
-
-  describe '#events' do
-    it 'should return events belongs to user' do
-      create(:event, name: 'Campus Party', user_id: 1)
-      create(:event, name: 'Hackaton', user_id: 1)
-      create(:event, name:'Octoberfest')
-
-      expect(user.events.size).to eq(2)
     end
   end
 
