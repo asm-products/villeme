@@ -42,9 +42,14 @@ module Villeme
       end
 
       def set_i18n_locale_from_user_ip(ip)
-        country_code = Geocoder.search(ip).first.country_code.downcase
-        set_i18n_locale_if_exist_traductions(country_code)
-        true
+        country_code = Geocoder.search(ip).try(:first).try(:country_code).try(:downcase)
+        if country_code
+          set_i18n_locale_if_exist_traductions(country_code)
+          true
+        else
+          I18n.locale = :en
+          false
+        end
       end
 
       def set_i18n_locale_if_exist_traductions(country_code)

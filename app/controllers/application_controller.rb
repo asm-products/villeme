@@ -28,8 +28,6 @@ class ApplicationController < ActionController::Base
   def set_locale
     if current_user || params[:locale]
       Villeme::UseCases::SetLocale.new(current_user).set_locale(params)
-    elsif Rails.env.test?
-      I18n.locale = :en
     else
       Villeme::UseCases::SetLocale.new(nil).set_locale_from_ip(get_user_ip)
     end
