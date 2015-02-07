@@ -2,10 +2,6 @@ require 'rails_helper'
 
 describe City, type: :model do
 
-  before(:each) do
-    DatabaseCleaner.clean
-  end
-
   let(:city){ build(:city) }
 
   describe '#users' do
