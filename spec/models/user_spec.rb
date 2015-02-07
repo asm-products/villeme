@@ -3,7 +3,7 @@ require_relative '../../app/domain/policies/geocoder/entity_geocoded'
 
 describe User, type: :model do
 
-  let(:user){ build(:user) }
+  let(:user){ create(:user) }
 
   describe 'associations' do
     it{ is_expected.to belong_to :level }
@@ -57,7 +57,6 @@ describe User, type: :model do
 
   describe '#distance_until' do
     it 'should return a distance from user to event' do
-      user = create(:user)
       event = double('Event', attributes_for(:event))
       distance_result = {bus: "16", car: "8", walk: "8", bike: "9"}
 
