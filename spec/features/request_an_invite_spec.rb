@@ -14,12 +14,12 @@ describe 'Request an invite' do
 
       fill_in 'Name', with: 'John Doe'
       fill_in 'Email', with: 'johndoe@gmail.com'
-      select 'Entrepreuner', from: 'invite_persona'
+      select 'Entrepreneur', from: 'invite_persona'
       fill_in 'Address', with: '544 Madison Ave, Albany, NY 12208, USA'
 
       click_button 'Confirm'
 
-      expect(page).to have_content('sucesso')
+      expect(page).to have_content(I18n.t('invite_create.valid', user_name: 'John'))
     end
   end
 
@@ -30,13 +30,13 @@ describe 'Request an invite' do
       find('.invite.hidden-xs').click
 
       fill_in 'Name', with: 'John Doe'
-      # fill_in 'email', with: 'johndoe@gmail.com'
-      select 'Entrepreuner', from: 'invite_persona'
+      # fill_in 'Email', with: 'johndoe@gmail.com'
+      select 'Entrepreneur', from: 'invite_persona'
       fill_in 'Address', with: '544 Madison Ave, Albany, NY 12208, USA'
 
       click_button 'Confirm'
 
-      expect(page).to have_content('Ops')
+      expect(page).to have_content(I18n.t('invite_create.invalid'))
     end
   end
 

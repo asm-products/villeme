@@ -1,0 +1,5 @@
+en:
+  invite_create:
+    invalid: "Oops! Could not create your invitation, you filled all the information?"
+    valid: "%{user_name}, your invitation has been successfully requested. Send by email soon."
+    repeated: "%{user_name}, you've requested an invitation. As soon as possible, send by email."

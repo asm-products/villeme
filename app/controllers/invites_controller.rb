@@ -38,7 +38,7 @@ class InvitesController < ApplicationController
       @invite = Invite.new(invite_attributes)
       save_and_redirect_to_welcome(invite_attributes)
     else
-      redirect_to welcome_path, notice: invite_params[:name].split.first + ', você já solicitou um convite. Assim que possível, lhe enviaremos por email.'
+      redirect_to welcome_path, notice: I18n.t('invite_create.repeated', user_name: invite_params[:name].split.first)
     end
 
   end
@@ -106,9 +106,9 @@ end
 def save_and_redirect_to_welcome(values)
   if @invite.save
     InviteMailer.welcome_email(@invite).deliver unless Rails.env.test?
-    redirect_to welcome_path, notice: values[:name].split.first + ', seu convite foi solicitado com sucesso. Enviaremos por email em breve.'
+    redirect_to welcome_path, notice: I18n.t('invite_create.valid', user_name: values[:name].split.first)
   else
-    redirect_to welcome_path, alert: 'Ops! Não foi possível criar seu convite, você preencheu todas as informações?'
+    redirect_to welcome_path, alert: I18n.t('invite_create.invalid')
   end
 end
 
