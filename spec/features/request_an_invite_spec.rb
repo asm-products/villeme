@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Request an invite' do
 
-  before do
+  before(:all) do
+    DatabaseCleaner.clean
     create(:persona)
   end
 
@@ -38,6 +39,10 @@ describe 'Request an invite' do
 
       expect(page).to have_content(I18n.t('invite_create.invalid'))
     end
+  end
+
+  after(:all) do
+    DatabaseCleaner.clean
   end
 
 end
