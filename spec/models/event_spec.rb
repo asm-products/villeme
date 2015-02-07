@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Event, type: :model do
 
-  let(:event){ create(:event) }
+  let(:event){ build(:event) }
 
   describe 'associations' do
     it { is_expected.to belong_to :place }
