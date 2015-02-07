@@ -7,7 +7,7 @@ describe 'UseCases::GeocodeInvite' do
   describe '.geocoded_by_address' do
     context 'when geocoded of invite is realized with success' do
       before(:each) do
-        @invite = create(:invite, name: 'John Doe', email: 'teste@gmail.com', address: 'Rua Carazinho, 456 - Canoas', persona: 'Entrepreuner', latitude: nil, longitude: nil)
+        @invite = create(:invite, name: 'John Doe', email: 'teste@gmail.com', address: 'Rua Carazinho, 456 - Canoas', persona: 'Entrepreneur', latitude: nil, longitude: nil)
       end
 
       it 'should return true if invites is geocoded' do
