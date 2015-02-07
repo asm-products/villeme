@@ -90,6 +90,7 @@ FactoryGirl.define do
   end
 
   factory :persona do
+    id 1
     name "Entrepreuner"
   end
 

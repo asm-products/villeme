@@ -14,6 +14,7 @@ group :development, :test do
 	gem 'rspec'
 	gem 'rspec-rails'
 	gem 'capybara'
+	gem 'selenium-webdriver', '~> 2.45.0.dev3'
 	gem 'shoulda-matchers'
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'database_cleaner'
