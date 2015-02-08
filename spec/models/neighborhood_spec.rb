@@ -20,7 +20,7 @@ describe Neighborhood, type: :model do
 
       create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
       create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
-      create(:event, name: 'Oktoberfest', neighborhood_name: 'Partenon', address: 'Rua Rivadavia Correia, 08 - Partenon Brasil')
+      create(:event, name: 'Oktoberfest', neighborhood_name: 'Mathias Velho', address: 'Rua Carazinho, 456 - Canoas')
 
       expect(neighborhood.events.count).to eq(2)
     end
