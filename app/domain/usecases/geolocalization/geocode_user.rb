@@ -11,13 +11,12 @@ module Villeme
       def geocoded_by_address(address)
         @address = address
 
-        if Rails.env.test?
-          if @address.nil?
-            return FactoryGirl.build(:user, address: nil)
-          else
-            return FactoryGirl.build(:user)
-          end
+        if @address.nil?
+          return @user
+        elsif Rails.env.test?
+          return FactoryGirl.build(:user)
         end
+
 
         geocoderize_user(geocoding_by_address)
 
