@@ -21,7 +21,7 @@ module Villeme
       private
 
       def create_city_or_neighborhood
-        create_city or create_neighborhood
+        create_city and create_neighborhood
       end
 
       def create_city

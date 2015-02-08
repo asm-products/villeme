@@ -23,7 +23,7 @@ module Villeme
       private
 
       def address_or_geocoder_is_nil?
-        @address.nil? or @geocoder.nil?
+        @address.nil? || @geocoder.nil?
       end
 
       def city_exist?
