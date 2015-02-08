@@ -58,9 +58,12 @@ describe User, type: :model do
   describe '#distance_until' do
     it 'should return a distance from user to event' do
       event = double('Event', attributes_for(:event))
-      distance_result = {bus: "16", car: "8", walk: "8", bike: "9"}
+      result = user.distance_until(event, :minutes)
 
-      expect(user.distance_until(event, :minutes)).to eq(distance_result)
+      expect(result[:bus].to_i).to be_between(12, 14)
+      expect(result[:car].to_i).to be_between(4, 6)
+      expect(result[:walk].to_i).to be_between(4, 6)
+      expect(result[:bike].to_i).to be_between(3, 6)
     end
   end
 

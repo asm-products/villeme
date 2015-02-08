@@ -86,10 +86,10 @@ describe Event, type: :model do
 
   describe '#neighborhood' do
     it 'should return neighborhood of event' do
-      create(:neighborhood, name: 'Park South')
+      create(:neighborhood, name: 'Pine Hills')
       create(:neighborhood, name: 'Bronx')
 
-      expect(event.neighborhood.name).to eq('Park South')
+      expect(event.neighborhood.name).to eq('Pine Hills')
     end
   end
 
@@ -120,13 +120,13 @@ describe Event, type: :model do
 
   describe '#relative_latitude' do
     it 'should return the latitude from event' do
-      expect(event.relative_latitude).to eq(42.6531078197085)
+      expect(event.relative_latitude.to_s).to start_with('42.663')
     end
   end
 
-  describe '#realongitude' do
+  describe '#relative_longitude' do
     it 'should return the longitude from event' do
-      expect(event.relative_longitude).to eq(-73.7729633802915)
+      expect(event.relative_longitude.to_s).to start_with('-73.774')
     end
   end
 

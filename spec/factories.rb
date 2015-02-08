@@ -37,14 +37,14 @@ FactoryGirl.define do
 
   factory :event do
     name "Campus Party"
-    neighborhood_name "Park South"
+    neighborhood_name "Pine Hills"
     city_name "Albany"
     state_name "New York"
     country_name "United States"
     country_code "US"
-    address "544 Madison Ave, Albany, NY 12208, USA"
-    latitude 42.6531078197085
-    longitude -73.7729633802915
+    address "502 Washington Avenue, Albany, NY 12203, USA"
+    latitude 42.663
+    longitude -73.774
     cost 1200
     date_start Date.parse('2014-11-17')
     date_finish Date.parse('2014-11-28')
