@@ -80,7 +80,7 @@ gem 'certified'
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 
 # Geocoder
-gem 'geocoder'
+gem 'geocoder', github: 'jonatassalgado/geocoder'
 
 # Paperclip
 gem 'paperclip', '~> 3.5.3'

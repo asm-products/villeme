@@ -19,6 +19,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'devise'
 require 'factory_girl'
 require 'supports/controller_macros'
+require 'supports/geocoder_stubs'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'database_cleaner'

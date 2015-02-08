@@ -78,7 +78,11 @@ FactoryGirl.define do
     name "Park South"
     city_name "Albany"
     state_name "New York"
+    state_code "NY"
     country_name "United States"
+    country_code "US"
+    latitude 42.6531078197085
+    longitude -73.7729633802915
   end
 
   factory :state do
