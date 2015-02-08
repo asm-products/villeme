@@ -11,7 +11,7 @@ module Villeme
         @city = City.new(address: @address)
         @geocoder = geocoder_by_address
 
-        if address_or_geocoder_is_nil? || city_exist?
+        if address_or_geocoder_is_nil? or city_exist?
           false
         else
           geocoderize_city
@@ -23,7 +23,7 @@ module Villeme
       private
 
       def address_or_geocoder_is_nil?
-        @address.nil? || @geocoder.nil?
+        @address.nil? or @geocoder.nil?
       end
 
       def city_exist?
