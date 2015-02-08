@@ -69,19 +69,18 @@ describe User, type: :model do
 
   describe '#events_from_neighborhood' do
     it 'should return events going in neighborhood of user' do
-      events = []
-      events << create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
-      events << create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
+      create(:event, name: 'Campus Party', neighborhood_name: 'Park South', address: '544 Madison Ave, Albany, NY 12208, USA')
+      create(:event, name: 'Hackathon', neighborhood_name: 'Park South', address: '544 Madison Ave, Albany, NY 12208, USA')
       create(:neighborhood)
 
-      expect(user.events_from_neighborhood).to eq(events)
+      expect(user.events_from_neighborhood.count).to eq(2)
     end
   end
 
   describe '#quantity_of_events_from_neighborhood' do
     it 'should return a number of events going in neighborhood of user' do
-      create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
-      create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
+      create(:event, name: 'Campus Party', neighborhood_name: 'Park South', address: '544 Madison Ave, Albany, NY 12208, USA')
+      create(:event, name: 'Hackathon', neighborhood_name: 'Park South', address: '544 Madison Ave, Albany, NY 12208, USA')
       create(:neighborhood)
 
       expect(user.quantity_of_events_from_neighborhood).to eq(2)
