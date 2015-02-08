@@ -6,11 +6,9 @@ describe City, type: :model do
 
   describe '#users' do
     it 'should return all users from this city' do
-      User.destroy_all
-
-      create(:user, name: 'foo', email: 'foo@gmail.com', city_name: 'Albany')
-      create(:user, name: 'bar', email: 'bar@gmail.com', city_name: 'Albany')
-      create(:user, name: 'bar', email: 'fuu@gmail.com', city_name: 'Atlanta')
+      create(:user, name: 'foo', email: 'foo@gmail.com', city_name: 'Albany', address: nil)
+      create(:user, name: 'bar', email: 'bar@gmail.com', city_name: 'Albany', address: nil)
+      create(:user, name: 'zaz', email: 'fuu@gmail.com', city_name: 'Atlanta', address: nil)
 
       expect(city.users.count).to eq(2)
     end
