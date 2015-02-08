@@ -13,8 +13,8 @@ module Villeme
       def geocoded_by_address(address)
         @address = address
 
-        if Rails.env.test?
-          return_factory_object
+        if @address.nil?
+          return @invite
         end
 
         geocoderize_invite(geocoding_by_address)
@@ -23,20 +23,13 @@ module Villeme
           if create_city_or_neighborhood
             decrease_city_goal
           end
+
           @invite
         end
       end
 
 
       private
-
-      def return_factory_object
-        if @address.nil?
-          return FactoryGirl.build(:invite, address: nil)
-        else
-          return FactoryGirl.build(:invite)
-        end
-      end
 
       def decrease_city_goal
         Villeme::UseCases::CityGoalDecrease.new(get_city_from_invite).decrease
