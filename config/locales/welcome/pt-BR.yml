@@ -42,7 +42,7 @@ pt-BR:
       i_want: "Quero um convite"
       i_want_to: "Quero testar tbm!"
       new_city: "+ Criar cidade"
-      people_to_launch: "pessoas para o lançamento"
+      people_to_launch: "pessoas para o lançamento do Beta"
       need: "Faltam"
     footer:
       title: "Avise seus amigos que curtem se divertir na cidade, compartilhe!"
@@ -65,7 +65,7 @@ pt-BR:
       i_want_invite: "Quero um convite!"
       name: "Nome"
       address: "Endereço"
-      address_hint: "Não sera armazenado"
+      address_hint: "O endereço não será armazenado"
     tooltip:
       have_an_invitation: "Se já tiver um convite"
       i_want_invite_for: "Quero um convite para"
