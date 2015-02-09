@@ -49,35 +49,38 @@ class @Gmaps
 
 
   @getLocationFrom: (address, options) ->
-    $("#map").gmap3
-      clear:
-        name: "marker"
 
-      getlatlng:
-        address: address
-        callback: (results) ->
-          unless results
-            $("#address").css("border-color", "#A94442")
-            $("#address").next(".hint").text("Address not found")
-            Gmaps.shakeInput()
-          else
-            $("#address").css("border-color", "#5fcf80")
-            $("#address").next(".hint").text("")
-            $(this).gmap3 marker:
-              latLng: results[0].geometry.location
-              options:
-                draggable: options.draggable or false
-                icon: options.marker or Gmaps.markerUser
-              events:
-                dragend: (marker) ->
-                  Gmaps.getAddressOfMarker(this, marker)
-                  return
+    ( ->
+      $("#map").gmap3
+        clear:
+          name: "marker"
 
-            map = $(this).gmap3("get")
-            latLng = results[0].geometry.location
-            map.panTo latLng
+        getlatlng:
+          address: address
+          callback: (results) ->
+            unless results
+              Gmaps.validInputToGetLocation.invalid()
+              Gmaps.buttonToSearchAddress.disable()
+            else
+              Gmaps.validInputToGetLocation.valid()
+              Gmaps.buttonToSearchAddress.enable()
+              $(this).gmap3 marker:
+                latLng: results[0].geometry.location
+                options:
+                  draggable: options.draggable or false
+                  icon: options.marker or Gmaps.markerUser
+                events:
+                  dragend: (marker) ->
+                    Gmaps.getAddressOfMarker(this, marker)
+                    return
 
-          return
+              map = $(this).gmap3("get")
+              latLng = results[0].geometry.location
+              map.panTo latLng
+
+            return
+
+    )()
 
     return
 
@@ -106,6 +109,7 @@ class @Gmaps
   @activeSearch: ->
     Gmaps.buttonToGetLocation()
     Gmaps.inputToGetLocationOnKeyup()
+    Gmaps.validInputToGetLocation.init()
     return
 
 
@@ -124,12 +128,14 @@ class @Gmaps
     $('#address').keyup ->
       address = this.value
       if address.length > 5
+        Gmaps.validInputToGetLocation.searching()
+        
         delay( ->
           Gmaps.getLocationFrom(address,
             draggable: true
           )
           return
-        , 900)
+        , 1100)
 
       return
 
@@ -142,6 +148,41 @@ class @Gmaps
     )()
 
     return
+
+
+
+  @validInputToGetLocation:
+    init: ->
+      $("#address").focusout ->
+        address = this.value.length
+        if address <= 5
+          Gmaps.buttonToSearchAddress.disable()
+          Gmaps.validInputToGetLocation.invalid()
+
+        return
+      return
+
+    searching: ->
+      $("#address").css("border-color", "#5fcf80").next(".hint").text("Searching...")
+      return
+
+    invalid: ->
+      $("#address").css("border-color", "#A94442").next(".hint").text("Address not found")
+
+      shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
+        $("#address").css 'position', 'relative'
+        x = 1
+        while x <= intShakes
+          $("#address").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
+          x++
+      )()
+
+      return
+
+    valid: ->
+      $("#address").css("border-color", "#5fcf80").next(".hint").text("")
+      return
+
 
 
 
@@ -173,18 +214,22 @@ class @Gmaps
     return
 
 
-  @shakeInput: (intShakes=3, intDistance=10, intDuration=500) ->
-    $("#address").css 'position', 'relative'
-    x = 1
-    while x <= intShakes
-      $("#address").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
-      x++
 
-    return
+
+
+  @buttonToSearchAddress:
+    disable: ->
+      $(".js-btn-to-search-address").prop("disabled", true).addClass("disabled")
+      return
+
+    enable: ->
+      $(".js-btn-to-search-address").prop("disabled", false).removeClass("disabled")
+      return
 
 
   @setInitialAttributes: (options) ->
     Gmaps.activeSearch() if options.activeSearch is true
     Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
+    Gmaps.buttonToSearchAddress.disable()
     Gmaps.showMapCanvasIfHidden()
     return
