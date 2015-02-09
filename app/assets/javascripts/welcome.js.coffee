@@ -88,7 +88,6 @@ $(document).ready ->
 
   $(".goals .has-modal").click ->
     city = $(this).attr('data-city')
-    $(".has-selectpicker").selectpicker("val", city)
     return
 
   $("#address").one 'focus', ->
@@ -98,12 +97,6 @@ $(document).ready ->
       zoomControl: true
     )
     return
-
-
-
-  # Bootstrap Select
-  $(".has-selectpicker").selectpicker()
-
 
 
 

@@ -65,6 +65,7 @@ pt-BR:
       i_want_invite: "Quero um convite!"
       name: "Nome"
       address: "Endereço"
+      address_hint: "Não sera armazenado"
     tooltip:
       have_an_invitation: "Se já tiver um convite"
       i_want_invite_for: "Quero um convite para"

@@ -58,9 +58,11 @@ class @Gmaps
         callback: (results) ->
           unless results
             $("#address").css("border-color", "#A94442")
-            alert "Endereço não encontrado. Tente buscar outro."
+            $("#address").next(".hint").text("Address not found")
+            Gmaps.shakeInput()
           else
             $("#address").css("border-color", "#5fcf80")
+            $("#address").next(".hint").text("")
             $(this).gmap3 marker:
               latLng: results[0].geometry.location
               options:
@@ -170,6 +172,15 @@ class @Gmaps
         return
     return
 
+
+  @shakeInput: (intShakes=3, intDistance=10, intDuration=500) ->
+    $("#address").css 'position', 'relative'
+    x = 1
+    while x <= intShakes
+      $("#address").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
+      x++
+
+    return
 
 
   @setInitialAttributes: (options) ->
