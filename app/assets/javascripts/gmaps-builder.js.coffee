@@ -2,6 +2,7 @@ class @Gmaps
 
   @markerUser = "/images/marker-user.png"
   @markerPlace = "/images/marker-place.png"
+  @addressArray = []
 
   @newMap: (@latitude, @longitude, options) ->
 
@@ -64,6 +65,7 @@ class @Gmaps
             else
               Gmaps.validInputToGetLocation.valid()
               Gmaps.buttonToSearchAddress.enable()
+
               $(this).gmap3 marker:
                 latLng: results[0].geometry.location
                 options:
@@ -129,7 +131,7 @@ class @Gmaps
       address = this.value
       if address.length > 5
         Gmaps.validInputToGetLocation.searching()
-        
+        Gmaps.autocompleteToSearchAddress.update(address)
         delay( ->
           Gmaps.getLocationFrom(address,
             draggable: true
@@ -227,9 +229,53 @@ class @Gmaps
       return
 
 
+
+  @autocompleteToSearchAddress:
+    active: ->
+      $('#address').autocomplete
+        source: Gmaps.addressArray
+        minLength: 3
+        delay: 500
+        appendTo: "#modal"
+
+      return
+
+    update: (address) ->
+      $("#address").gmap3
+        getlatlng:
+          address: address
+          callback: (results) ->
+
+            formatResults = (_results, callback) ->
+              if _results.length > 0
+                Gmaps.addressArray = []
+
+                _results = _results.slice(0,5)
+
+                _results.forEach((item) ->
+                  Gmaps.addressArray.push(item.formatted_address)
+                  return
+                )
+                callback()
+
+              return
+
+            formatResults(results, ->
+              $("#address").autocomplete "option", source: Gmaps.addressArray
+              return
+            )
+
+            console.log(Gmaps.addressArray)
+            return
+
+      return
+
+
+
   @setInitialAttributes: (options) ->
     Gmaps.activeSearch() if options.activeSearch is true
     Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
     Gmaps.buttonToSearchAddress.disable()
     Gmaps.showMapCanvasIfHidden()
+    Gmaps.autocompleteToSearchAddress.active()
     return
