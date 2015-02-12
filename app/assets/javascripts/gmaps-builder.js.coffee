@@ -165,11 +165,11 @@ class @Gmaps
       return
 
     searching: ->
-      $("#address").css("border-color", "#5fcf80").next(".hint").text("Searching...")
+      $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("Searching...")
       return
 
     invalid: ->
-      $("#address").css("border-color", "#A94442").next(".hint").text("Address not found")
+      $("#address").css("border-color", "#A94442").parent().find(".Gmaps-loadingResponse").text("Address not found")
 
       shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
         $("#address").css 'position', 'relative'
@@ -182,7 +182,7 @@ class @Gmaps
       return
 
     valid: ->
-      $("#address").css("border-color", "#5fcf80").next(".hint").text("")
+      $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("")
       return
 
 
@@ -193,11 +193,11 @@ class @Gmaps
       latLng: marker.getPosition()
       callback: (results) ->
 
-        $map              = $(this).gmap3("get")
-        infowindow        = $(this).gmap3(get: "infowindow")
-        latLng            = results[0].geometry.location
+        $map = $(this).gmap3("get")
+        infowindow = $(this).gmap3(get: "infowindow")
+        latLng = results[0].geometry.location
         infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
-        address           = (if results and results[0] then results and results[0].formatted_address else "no address")
+        address = (if results and results[0] then results and results[0].formatted_address else "no address")
 
         $("#address").val address
 
@@ -232,11 +232,18 @@ class @Gmaps
 
   @autocompleteToSearchAddress:
     active: ->
-      $('#address').autocomplete
+      $("#address").autocomplete
         source: Gmaps.addressArray
         minLength: 3
         delay: 500
-        appendTo: "#modal"
+        appendTo: "#modal .modal-body"
+        open: ->
+          $(".ui-autocomplete").css
+            "display": "absolute"
+            "max-width": "300px"
+            "width": $("#address").outerWidth()
+
+          return
 
       return
 
