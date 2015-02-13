@@ -1,293 +1,290 @@
-require('accents-maps')
+modulejs.define('class-gmap', ['_accents-maps'], (Gmap) ->
 
-class @Gmap
+  class @Gmap
 
-  @markerUser = "/images/marker-user.png"
-  @markerPlace = "/images/marker-place.png"
-  @addressArray = []
+    @markerUser = "/images/marker-user.png"
+    @markerPlace = "/images/marker-place.png"
+    @addressArray = []
 
-  @newMap: (@latitude, @longitude, options) ->
+    @newMap: (@latitude, @longitude, options) ->
 
-    Gmaps.setInitialAttributes(options)
+      Gmaps.setInitialAttributes(options)
 
-    style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
+      style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
 
-    $("#map").gmap3
-      map:
-        options:
-          center: [
+      $("#map").gmap3
+        map:
+          options:
+            center: [
+              @latitude
+              @longitude
+            ]
+            zoom: options.zoom or 13
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeControl: false
+            mapTypeControlOptions:
+              style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+
+            navigationControl: false
+            streetViewControl: false
+            scrollwheel: options.scrollwheel or false
+            scaleControl: options.scaleControl or false
+            zoomControl: options.zoomControl or false
+            zoomControlOptions:
+              style: google.maps.ZoomControlStyle.SMALL,
+              position: google.maps.ControlPosition.RIGHT_TOP
+            styles: style
+
+        marker:
+          latLng: [
             @latitude
             @longitude
           ]
-          zoom: options.zoom or 13
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-          mapTypeControl: false
-          mapTypeControlOptions:
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+          options:
+            draggable: options.draggable or false
+            icon: options.marker or Gmaps.markerUser
 
-          navigationControl: false
-          streetViewControl: false
-          scrollwheel: options.scrollwheel or false
-          scaleControl: options.scaleControl or false
-          zoomControl: options.zoomControl or false
-          zoomControlOptions:
-            style: google.maps.ZoomControlStyle.SMALL,
-            position: google.maps.ControlPosition.RIGHT_TOP
-          styles: style
-
-      marker:
-        latLng: [
-          @latitude
-          @longitude
-        ]
-        options:
-          draggable: options.draggable or false
-          icon: options.marker or Gmaps.markerUser
-
-        events:
-          dragend: (marker) ->
-            Gmaps.getAddressOfMarker(this, marker)
-            return
-    return
-
-
-  @getLocationFrom: (address, options) ->
-
-    ( ->
-      $("#map").gmap3
-        clear:
-          name: "marker"
-
-        getlatlng:
-          address: address
-          callback: (results) ->
-            unless results
-              Gmaps.validInputToGetLocation.invalid()
-              Gmaps.buttonToSearchAddress.disable()
-            else
-              Gmaps.validInputToGetLocation.valid()
-              Gmaps.buttonToSearchAddress.enable()
-
-              $(this).gmap3 marker:
-                latLng: results[0].geometry.location
-                options:
-                  draggable: options.draggable or false
-                  icon: options.marker or Gmaps.markerUser
-                events:
-                  dragend: (marker) ->
-                    Gmaps.getAddressOfMarker(this, marker)
-                    return
-
-              map = $(this).gmap3("get")
-              latLng = results[0].geometry.location
-              map.panTo latLng
-
-            return
-
-    )()
-
-    return
-
-
-
-  @showMapCanvasIfHidden: ->
-    if $('#map').css('display') is 'none'
-      $('#map').show()
-
-    return
-
-
-
-  @setCanvasSize: (width, height) ->
-    if width is undefined  and height is undefined
-      $('#map').width('100%').height(350)
-    else if width is undefined
-      $('#map').width('100%').height(height)
-    else if height is undefined
-      $('#map').width(width).height(350)
-    else
-      $('#map').width(width).height(height)
-
-
-
-  @activeSearch: ->
-    Gmaps.buttonToGetLocation()
-    Gmaps.inputToGetLocationOnKeyup()
-    Gmaps.validInputToGetLocation.init()
-    return
-
-
-
-  @buttonToGetLocation: ->
-    $('.js-btn-geocoder-address-for-map').click ->
-      address = $('#address').val()
-      Gmaps.getLocationFrom(address,
-        draggable: true
-      )
-      return
-    return
-
-
-  @inputToGetLocationOnKeyup: ->
-    $('#address').keyup ->
-      address = this.value
-      if address.length > 5
-        Gmaps.validInputToGetLocation.searching()
-        Gmaps.autocompleteToSearchAddress.update(address)
-        delay( ->
-          Gmaps.getLocationFrom(address,
-            draggable: true
-          )
-          return
-        , 1100)
-
+          events:
+            dragend: (marker) ->
+              Gmaps.getAddressOfMarker(this, marker)
+              return
       return
 
-    delay = (->
-      timer = 0
-      (callback, ms) ->
-        clearTimeout timer
-        timer = setTimeout(callback, ms)
-        return
-    )()
 
-    return
+    @getLocationFrom: (address, options) ->
 
+      ( ->
+        $("#map").gmap3
+          clear:
+            name: "marker"
 
+          getlatlng:
+            address: address
+            callback: (results) ->
+              unless results
+                Gmaps.validInputToGetLocation.invalid()
+                Gmaps.buttonToSearchAddress.disable()
+              else
+                Gmaps.validInputToGetLocation.valid()
+                Gmaps.buttonToSearchAddress.enable()
 
-  @validInputToGetLocation:
-    init: ->
-      $("#address").focusout ->
-        address = this.value.length
-        if address <= 5
-          Gmaps.buttonToSearchAddress.disable()
-          Gmaps.validInputToGetLocation.invalid()
+                $(this).gmap3 marker:
+                  latLng: results[0].geometry.location
+                  options:
+                    draggable: options.draggable or false
+                    icon: options.marker or Gmaps.markerUser
+                  events:
+                    dragend: (marker) ->
+                      Gmaps.getAddressOfMarker(this, marker)
+                      return
 
-        return
-      return
+                map = $(this).gmap3("get")
+                latLng = results[0].geometry.location
+                map.panTo latLng
 
-    searching: ->
-      $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("Searching...")
-      return
+              return
 
-    invalid: ->
-      $("#address").css("border-color", "#A94442").parent().find(".Gmaps-loadingResponse").text("Address not found")
-
-      shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
-        $("#address").css 'position', 'relative'
-        x = 1
-        while x <= intShakes
-          $("#address").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
-          x++
       )()
 
       return
 
-    valid: ->
-      $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("")
+
+
+    @showMapCanvasIfHidden: ->
+      if $('#map').css('display') is 'none'
+        $('#map').show()
+
       return
 
 
 
+    @setCanvasSize: (width, height) ->
+      if width is undefined  and height is undefined
+        $('#map').width('100%').height(350)
+      else if width is undefined
+        $('#map').width('100%').height(height)
+      else if height is undefined
+        $('#map').width(width).height(350)
+      else
+        $('#map').width(width).height(height)
 
-  @getAddressOfMarker: (map, marker) ->
-    $(map).gmap3 getaddress:
-      latLng: marker.getPosition()
-      callback: (results) ->
 
-        $map = $(this).gmap3("get")
-        infowindow = $(this).gmap3(get: "infowindow")
-        latLng = results[0].geometry.location
-        infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
-        address = (if results and results[0] then results and results[0].formatted_address else "no address")
 
-        $("#address").val address
+    @activeSearch: ->
+      Gmaps.buttonToGetLocation()
+      Gmaps.inputToGetLocationOnKeyup()
+      Gmaps.validInputToGetLocation.init()
+      return
 
-        if infowindow
-          infowindow.open $map, marker
-          infowindow.setContent infowindowMessage
-        else
-          $(map).gmap3 infowindow:
-            anchor: marker
-            options:
-              content: infowindowMessage
 
-        $map.panTo latLng
+
+    @buttonToGetLocation: ->
+      $('.js-btn-geocoder-address-for-map').click ->
+        address = $('#address').val()
+        Gmaps.getLocationFrom(address,
+          draggable: true
+        )
+        return
+      return
+
+
+    @inputToGetLocationOnKeyup: ->
+      $('#address').keyup ->
+        address = this.value
+        if address.length > 5
+          Gmaps.validInputToGetLocation.searching()
+          Gmaps.autocompleteToSearchAddress.update(address)
+          delay( ->
+            Gmaps.getLocationFrom(address,
+              draggable: true
+            )
+            return
+          , 1100)
 
         return
-    return
 
-
-
-
-
-  @buttonToSearchAddress:
-    disable: ->
-      $(".js-btn-to-search-address").prop("disabled", true).addClass("disabled")
-      return
-
-    enable: ->
-      $(".js-btn-to-search-address").prop("disabled", false).removeClass("disabled")
-      return
-
-
-
-  @autocompleteToSearchAddress:
-    active: ->
-      accentMap =
-        'á': 'a'
-        'é': 'e'
-        'í': 'i'
-        'ó': 'o'
-        'ú': 'u'
-
-      normalize = (term) ->
-        ret = ''
-        i = 0
-        while i < term.length
-          ret += accentMap[term.charAt(i)] or term.charAt(i)
-          i++
-        ret
-
-      $("#address").autocomplete
-        source: (request, response) ->
-          matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), 'i')
-          response $.grep(Gmaps.addressArray, (value) ->
-            value = value.label or value.value or value
-            matcher.test(value) or matcher.test(normalize(value))
-          )
+      delay = (->
+        timer = 0
+        (callback, ms) ->
+          clearTimeout timer
+          timer = setTimeout(callback, ms)
           return
-        minLength: 3
-        delay: 500
-        appendTo: "#modal .modal-body"
-        open: ->
-          $(".ui-autocomplete").css
-            "display": "absolute"
-            "max-width": "300px"
-            "width": $("#address").outerWidth()
+      )()
+
+      return
+
+
+
+    @validInputToGetLocation:
+      init: ->
+        $("#address").focusout ->
+          address = this.value.length
+          if address <= 5
+            Gmaps.buttonToSearchAddress.disable()
+            Gmaps.validInputToGetLocation.invalid()
 
           return
+        return
+
+      searching: ->
+        $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("Searching...")
+        return
+
+      invalid: ->
+        $("#address").css("border-color", "#A94442").parent().find(".Gmaps-loadingResponse").text("Address not found")
+
+        shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
+          $("#address").css 'position', 'relative'
+          x = 1
+          while x <= intShakes
+            $("#address").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
+            x++
+        )()
+
+        return
+
+      valid: ->
+        $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("")
+        return
+
+
+
+
+    @getAddressOfMarker: (map, marker) ->
+      $(map).gmap3 getaddress:
+        latLng: marker.getPosition()
+        callback: (results) ->
+
+          $map = $(this).gmap3("get")
+          infowindow = $(this).gmap3(get: "infowindow")
+          latLng = results[0].geometry.location
+          infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
+          address = (if results and results[0] then results and results[0].formatted_address else "no address")
+
+          $("#address").val address
+
+          if infowindow
+            infowindow.open $map, marker
+            infowindow.setContent infowindowMessage
+          else
+            $(map).gmap3 infowindow:
+              anchor: marker
+              options:
+                content: infowindowMessage
+
+          $map.panTo latLng
+
+          return
       return
 
-    update: (address) ->
-      $("#address").gmap3
-        getlatlng:
-          address: address
-          callback: (results) ->
-            if results.length > 0
-              results = results.slice(0,5)
-              Gmaps.addressArray = (item.formatted_address for item in results)
+
+
+
+
+    @buttonToSearchAddress:
+      disable: ->
+        $(".js-btn-to-search-address").prop("disabled", true).addClass("disabled")
+        return
+
+      enable: ->
+        $(".js-btn-to-search-address").prop("disabled", false).removeClass("disabled")
+        return
+
+
+
+    @autocompleteToSearchAddress:
+      active: ->
+
+        normalize = (term) ->
+          ret = ''
+          i = 0
+          while i < term.length
+            ret += accentMap[term.charAt(i)] or term.charAt(i)
+            i++
+          ret
+
+        $("#address").autocomplete
+          source: (request, response) ->
+            matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), 'i')
+            response $.grep(Gmaps.addressArray, (value) ->
+              value = value.label or value.value or value
+              matcher.test(value) or matcher.test(normalize(value))
+            )
+            return
+          minLength: 3
+          delay: 500
+          appendTo: "#modal .modal-body"
+          open: ->
+            $(".ui-autocomplete").css
+              "display": "absolute"
+              "max-width": "300px"
+              "width": $("#address").outerWidth()
 
             return
+        return
 
+      update: (address) ->
+        $("#address").gmap3
+          getlatlng:
+            address: address
+            callback: (results) ->
+              if results.length > 0
+                results = results.slice(0,5)
+                Gmaps.addressArray = (item.formatted_address for item in results)
+
+              return
+
+        return
+
+
+
+    @setInitialAttributes: (options) ->
+      Gmaps.activeSearch() if options.activeSearch is true
+      Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
+      Gmaps.buttonToSearchAddress.disable()
+      Gmaps.showMapCanvasIfHidden()
+      Gmaps.autocompleteToSearchAddress.active()
       return
 
 
-
-  @setInitialAttributes: (options) ->
-    Gmaps.activeSearch() if options.activeSearch is true
-    Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
-    Gmaps.buttonToSearchAddress.disable()
-    Gmaps.showMapCanvasIfHidden()
-    Gmaps.autocompleteToSearchAddress.active()
-    return
+)
