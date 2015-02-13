@@ -2,6 +2,7 @@ class @Gmaps
 
   @markerUser = "/images/marker-user.png"
   @markerPlace = "/images/marker-place.png"
+  @addressArray = []
 
   @newMap: (@latitude, @longitude, options) ->
 
@@ -64,6 +65,7 @@ class @Gmaps
             else
               Gmaps.validInputToGetLocation.valid()
               Gmaps.buttonToSearchAddress.enable()
+
               $(this).gmap3 marker:
                 latLng: results[0].geometry.location
                 options:
@@ -129,7 +131,7 @@ class @Gmaps
       address = this.value
       if address.length > 5
         Gmaps.validInputToGetLocation.searching()
-        
+        Gmaps.autocompleteToSearchAddress.update(address)
         delay( ->
           Gmaps.getLocationFrom(address,
             draggable: true
@@ -163,11 +165,11 @@ class @Gmaps
       return
 
     searching: ->
-      $("#address").css("border-color", "#5fcf80").next(".hint").text("Searching...")
+      $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("Searching...")
       return
 
     invalid: ->
-      $("#address").css("border-color", "#A94442").next(".hint").text("Address not found")
+      $("#address").css("border-color", "#A94442").parent().find(".Gmaps-loadingResponse").text("Address not found")
 
       shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
         $("#address").css 'position', 'relative'
@@ -180,7 +182,7 @@ class @Gmaps
       return
 
     valid: ->
-      $("#address").css("border-color", "#5fcf80").next(".hint").text("")
+      $("#address").css("border-color", "#5fcf80").parent().find(".Gmaps-loadingResponse").text("")
       return
 
 
@@ -191,11 +193,11 @@ class @Gmaps
       latLng: marker.getPosition()
       callback: (results) ->
 
-        $map              = $(this).gmap3("get")
-        infowindow        = $(this).gmap3(get: "infowindow")
-        latLng            = results[0].geometry.location
+        $map = $(this).gmap3("get")
+        infowindow = $(this).gmap3(get: "infowindow")
+        latLng = results[0].geometry.location
         infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
-        address           = (if results and results[0] then results and results[0].formatted_address else "no address")
+        address = (if results and results[0] then results and results[0].formatted_address else "no address")
 
         $("#address").val address
 
@@ -227,9 +229,63 @@ class @Gmaps
       return
 
 
+
+  @autocompleteToSearchAddress:
+    active: ->
+      accentMap =
+        'á': 'a'
+        'é': 'e'
+        'í': 'i'
+        'ó': 'o'
+        'ú': 'u'
+
+      normalize = (term) ->
+        ret = ''
+        i = 0
+        while i < term.length
+          ret += accentMap[term.charAt(i)] or term.charAt(i)
+          i++
+        ret
+
+      $("#address").autocomplete
+        source: (request, response) ->
+          matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), 'i')
+          response $.grep(Gmaps.addressArray, (value) ->
+            value = value.label or value.value or value
+            matcher.test(value) or matcher.test(normalize(value))
+          )
+          return
+        minLength: 3
+        delay: 500
+        appendTo: "#modal .modal-body"
+        open: ->
+          $(".ui-autocomplete").css
+            "display": "absolute"
+            "max-width": "300px"
+            "width": $("#address").outerWidth()
+
+          return
+      return
+
+    update: (address) ->
+      $("#address").gmap3
+        getlatlng:
+          address: address
+          callback: (results) ->
+            if results.length > 0
+              results = results.slice(0,5)
+              Gmaps.addressArray = (item.formatted_address for item in results)
+
+            return
+
+      return
+
+
+
   @setInitialAttributes: (options) ->
     Gmaps.activeSearch() if options.activeSearch is true
     Gmaps.setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
     Gmaps.buttonToSearchAddress.disable()
     Gmaps.showMapCanvasIfHidden()
+    Gmaps.autocompleteToSearchAddress.active()
     return
