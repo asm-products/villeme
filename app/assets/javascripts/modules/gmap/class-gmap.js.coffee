@@ -1,4 +1,6 @@
-class @Gmaps
+require('accents-maps')
+
+class @Gmap
 
   @markerUser = "/images/marker-user.png"
   @markerPlace = "/images/marker-place.png"
