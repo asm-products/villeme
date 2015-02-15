@@ -18,14 +18,14 @@
               </div>
             </div>
 
-            <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: 'Persona', input_html:{ class: 'has-selectpicker'}, prompt: t('welcome.modal.persona_identify'), hint: link_to(t('welcome.modal.create_persona'), '#persona_sugest').html_safe %>
+            <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: 'Persona',  prompt: t('welcome.modal.persona_identify'), hint: link_to(t('welcome.modal.create_persona'), '#persona_sugest').html_safe %>
 
             <%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: 'persona_sugest'} %>
 
             <!-- TODO: Need to implement a custom simple field to this input -->
             <div class="input string optional invite_address form-group">
               <label for="address" class="string optional control-label"><%= t('welcome.modal.address') %></label>
-              <span class="Gmaps-loadingResponse pull-right"></span>
+              <span class="Gmap-loadingResponse pull-right"></span>
               <input type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" id="address" class="string optional form-control ui-autocomplete-input" autocomplete="off" style="border-color: rgb(169, 68, 66); position: relative; left: 0px;">
             </div>
 
@@ -36,7 +36,7 @@
           </div>
 
           <div class="modal-footer">
-            <%= f.button :submit, t('welcome.modal.confirm'), :class => 'btn btn-primary js-btn-to-search-address' %>
+            <%= f.button :submit, t('welcome.modal.confirm'), :class => 'btn btn-lg btn-primary js-btn-to-search-address' %>
           </div>
 
       <% end %>

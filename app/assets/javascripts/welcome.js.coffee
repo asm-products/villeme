@@ -91,7 +91,7 @@ $(document).ready ->
     return
 
   $("#address").one 'focus', ->
-    Gmaps.newMap(-22.951916, -43.210487,
+    Villeme.Gmap.newMap(-22.951916, -43.210487,
       draggable: true
       activeSearch: true
       zoomControl: true
