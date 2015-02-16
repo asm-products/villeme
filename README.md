@@ -31,7 +31,7 @@ To run this project in **development** you need to have:
 * **Tests:** RSpec / FactoryGirl / Faker
 * **Technical:** SuitCSS / JavascriptOO / Clean Architecture in Rails way / DDD in Rails way / JSON
 * **DevOps:** SnapCI / TravisCI / Codeclimate
-* **Important Modules:** Devise / Gon / Paperclip / Merit / Bootstrap
+* **Important Modules:** Devise / Gon / Paperclip / Merit / Geocoder
 
 ### Setup the project
 
@@ -173,9 +173,10 @@ It usually helps them address the problem more quickly, so everyone wins!
 
 ## Best practices 
 
-* Make part of Assembly community in [assembly.com/villeme](https://assembly.com/villeme)
-* Follow this style guide: https://github.com/bbatsov/ruby-style-guide
-* Create one acceptance tests in **RSpec** (not obrigatory if you don't know to do) for each scenario of the feature you are trying to implement.
+* **Make part of Assembly community:** [assembly.com/villeme](https://assembly.com/villeme)
+* **Style guide for Ruby:** https://github.com/bbatsov/ruby-style-guide
+* **Tests for Ruby in RSpec** (not obrigatory if you don't know to do) for each scenario of the feature you are trying to implement.
+* **Pattern for Javascript:** [thoughtbot.com/module-pattern](http://robots.thoughtbot.com/module-pattern-in-javascript-and-coffeescript)
 
 
 
