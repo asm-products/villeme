@@ -102,7 +102,7 @@ class @Gmaps
     map.panTo latLng
 
 
-  @getLocationFrom: (address) ->
+  @getLocationFromAddress: (address) ->
     $("#map").gmap3
       clear:
         name: "marker"
@@ -162,7 +162,7 @@ class @Gmaps
   @buttonToGetLocation: ->
     $('.btn-geocoder-address-for-map').click ->
       address = $('.input-address-search').val()
-      @getLocationFrom(address)
+      @getLocationFromAddress(address)
       return
     return
 
@@ -173,7 +173,7 @@ class @Gmaps
       address = this.value
       if address.length > 5
         delay( ->
-          @getLocationFrom(address)
+          @getLocationFromAddress(address)
           return
         , 900)
 

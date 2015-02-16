@@ -1,6 +1,6 @@
 class @Gmaps
 
-  @markerUser = "/images/marker-user.png"
+
   @markerPlace = "/images/marker-place.png"
   @addressArray = []
 
@@ -49,7 +49,7 @@ class @Gmaps
     return
 
 
-  @getLocationFrom: (address, options) ->
+  @getLocationFromAddress: (address, options) ->
 
     ( ->
       $("#map").gmap3
@@ -119,7 +119,7 @@ class @Gmaps
   @buttonToGetLocation: ->
     $('.js-btn-geocoder-address-for-map').click ->
       address = $('#address').val()
-      Gmaps.getLocationFrom(address,
+      Gmaps.getLocationFromAddress(address,
         draggable: true
       )
       return
@@ -133,7 +133,7 @@ class @Gmaps
         Gmaps.validInputToGetLocation.searching()
         Gmaps.autocompleteToSearchAddress.update(address)
         delay( ->
-          Gmaps.getLocationFrom(address,
+          Gmaps.getLocationFromAddress(address,
             draggable: true
           )
           return

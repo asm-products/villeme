@@ -1,25 +1,38 @@
 #= require modules/gmap/Gmap__accents-map
+#= require modules/gmap/Gmap__mount-gmap3
 
 @Villeme = @Villeme or {}
 
-Villeme.Gmap = do ->
+Villeme.Gmap = ( ->
 
+
+  # attributes
   _addressArray = []
+  _markerUser = "/images/marker-user.png"
+  _markerPlace = "/images/marker-place.png"
+  _marker = "/images/marker-user.png"
+
 
   _config =
     autocompleteWidth: $("#address").outerWidth()
-    markerUser: "/images/marker-user.png"
-    markerPlace: "/images/marker-place.png"
+
 
 
   _initialize = (options) ->
     activeSearch: _activeSearch() if options.activeSearch is true
-    canvasSize: _setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
-    buttonToSearchAddress: _buttonToSearchAddress.disable()
+    setCanvasSize: _setCanvasSize(options.canvasSize.width, options.canvasSize.height) if options.canvasSize isnt undefined
+    unableButtonToSearchAddress: _buttonToSearchAddress.disable()
     showMapCanvasIfHidden: _showMapCanvasIfHidden()
-    autocompleteToSearchAddress: _autocompleteToSearchAddress.active()
-    autocompleteWidth: _config.autocompleteWidth = options.autocompleteWidth or $("#address").outerWidth()
+    activeAutocompleteToSearchAddress: _autocompleteToSearchAddress.active()
+    setAutocompleteWidth: _setAutocompleteWidth(options.autocompleteWidth)
+    setMarker: _setMarker(options.markerType)
     return
+
+
+
+  _setAutocompleteWidth = (width) ->
+    _config.autocompleteWidth = width or $("#address").outerWidth()
+
 
 
   _showMapCanvasIfHidden = ->
@@ -42,6 +55,16 @@ Villeme.Gmap = do ->
 
     return
 
+
+
+  _setMarker = (type) ->
+    switch type
+      when 'user' then _marker = _markerUser
+      when 'place'then _marker = _markerPlace
+
+    return
+
+
   _activeSearch = ->
     _buttonToGetLocation()
     _inputToGetLocationOnKeyup()
@@ -53,7 +76,7 @@ Villeme.Gmap = do ->
   _buttonToGetLocation = ->
     $('.js-btn-geocoder-address-for-map').click ->
       address = $('#address').val()
-      @getLocationFrom(address,
+      @getLocationFromAddress(address,
         draggable: true
       )
       return
@@ -67,7 +90,7 @@ Villeme.Gmap = do ->
         _validInputToGetLocation.searching()
         _autocompleteToSearchAddress.update(address)
         delay( ->
-          Villeme.Gmap.getLocationFrom(address,
+          Villeme.Gmap.getLocationFromAddress(address,
             draggable: true
           )
           return
@@ -118,35 +141,6 @@ Villeme.Gmap = do ->
       $("#address").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").text("")
       return
 
-
-
-
-  _getAddressOfMarker = (map, marker) ->
-    $(map).gmap3 getaddress:
-      latLng: marker.getPosition()
-      callback: (results) ->
-
-        $map = $(this).gmap3("get")
-        infowindow = $(this).gmap3(get: "infowindow")
-        latLng = results[0].geometry.location
-        infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
-        address = (if results and results[0] then results and results[0].formatted_address else "no address")
-
-        $("#address").val address
-
-        if infowindow
-          infowindow.open $map, marker
-          infowindow.setContent infowindowMessage
-        else
-          $(map).gmap3 infowindow:
-            anchor: marker
-            options:
-              content: infowindowMessage
-
-        $map.panTo latLng
-
-        return
-    return
 
 
 
@@ -208,84 +202,63 @@ Villeme.Gmap = do ->
 
 
   return {
+
     newMap: (latitude, longitude, options) ->
-
       _initialize(options)
-
-      style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
-
-      $("#map").gmap3
-        map:
-          options:
-            center: [
-              latitude
-              longitude
-            ]
-            zoom: options.zoom or 13
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-            mapTypeControl: false
-            mapTypeControlOptions:
-              style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-
-            navigationControl: false
-            streetViewControl: false
-            scrollwheel: options.scrollwheel or false
-            scaleControl: options.scaleControl or false
-            zoomControl: options.zoomControl or false
-            zoomControlOptions:
-              style: google.maps.ZoomControlStyle.SMALL,
-              position: google.maps.ControlPosition.RIGHT_TOP
-            styles: style
-
-        marker:
-          latLng: [
-            latitude
-            longitude
-          ]
-          options:
-            draggable: options.draggable or false
-            icon: options.marker or _config.markerUser
-
-          events:
-            dragend: (marker) ->
-              _getAddressOfMarker(this, marker)
-              return
+      Villeme.Gmap__mountGmap3.mountMapFromLatLong(latitude, longitude, options)
       return
 
 
 
-    getLocationFrom: (address, options) ->
-      $("#map").gmap3
-        clear:
-          name: "marker"
-
-        getlatlng:
-          address: address
-          callback: (results) ->
-            unless results
-              _validInputToGetLocation.invalid()
-              _buttonToSearchAddress.disable()
-            else
-              _validInputToGetLocation.valid()
-              _buttonToSearchAddress.enable()
-
-              $(this).gmap3 marker:
-                latLng: results[0].geometry.location
-                options:
-                  draggable: options.draggable or false
-                  icon: options.marker or _config.markerUser
-                events:
-                  dragend: (marker) ->
-                    _getAddressOfMarker(this, marker)
-                    return
-
-              map = $(this).gmap3("get")
-              latLng = results[0].geometry.location
-              map.panTo latLng
-
-            return
-
+    getLocationFromAddress: (address, options) ->
+      Villeme.Gmap__mountGmap3.mountMapFromAddress(address, options)
       return
+
+
+    getAddressOfMarker: (map, markerDragged) ->
+      $(map).gmap3 getaddress:
+        latLng: markerDragged.getPosition()
+        callback: (results) ->
+
+          infowindow = $(this).gmap3(get: "infowindow")
+          latLng = results[0].geometry.location
+          infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
+          address = (if results and results[0] then results and results[0].formatted_address else "no address")
+          $map = $("#map").gmap3("get")
+
+          $("#address").val address
+
+          if infowindow
+            infowindow.open map, markerDragged
+            infowindow.setContent infowindowMessage
+          else
+            $("#map").gmap3 infowindow:
+              anchor: markerDragged
+              options:
+                content: infowindowMessage
+
+          $map.panTo latLng
+
+          return
+      return
+
+
+    getMarker: ->
+      return _marker
+
+
+    setAddressInputValid: ->
+      _validInputToGetLocation.valid()
+      _buttonToSearchAddress.enable()
+      return
+
+
+    setAddressInputInvalid: ->
+      _validInputToGetLocation.invalid()
+      _buttonToSearchAddress.disable()
+      return
+
+
   }
 
-  return
+)()
