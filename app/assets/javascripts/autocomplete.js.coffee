@@ -56,7 +56,7 @@
         # Ajusta o tamanho do mapa - hide to show bug
         map = $("#place-map").gmap3("get")
         google.maps.event.trigger(map, "resize")
-        map.panTo latLng
+        map.centralizeMapTo latLng
 
         # Faz o scroll até o mapa
         $('html, body').animate

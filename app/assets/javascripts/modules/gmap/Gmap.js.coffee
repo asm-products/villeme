@@ -61,6 +61,7 @@ Villeme.Gmap = ( ->
     switch type
       when 'user' then _marker = _markerUser
       when 'place'then _marker = _markerPlace
+      else             _marker = _markerUser
 
     return
 
@@ -68,7 +69,7 @@ Villeme.Gmap = ( ->
   _activeSearch = ->
     _buttonToGetLocation()
     _inputToGetLocationOnKeyup()
-    _validInputToGetLocation.init()
+    _inputToGetLocation.init()
     return
 
 
@@ -87,7 +88,7 @@ Villeme.Gmap = ( ->
     $('#address').keyup ->
       address = this.value
       if address.length > 5
-        _validInputToGetLocation.searching()
+        _inputToGetLocation.searching()
         _autocompleteToSearchAddress.update(address)
         delay( ->
           Villeme.Gmap.getLocationFromAddress(address,
@@ -109,23 +110,28 @@ Villeme.Gmap = ( ->
 
 
 
-  _validInputToGetLocation =
+  _inputToGetLocation =
     init: ->
+      _inputToGetLocation.normal()
       $("#address").focusout ->
         address = this.value.length
         if address <= 5
           _buttonToSearchAddress.disable()
-          _validInputToGetLocation.invalid()
+          _inputToGetLocation.invalid()
 
         return
       return
 
+    normal: ->
+      $("#address").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("").show()
+      return
+
     searching: ->
-      $("#address").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").text("Searching...")
+      $("#address").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("Searching...").show()
       return
 
     invalid: ->
-      $("#address").css("border-color", "#A94442").parent().find(".Gmap-loadingResponse").text("Address not found")
+      $("#address").css("border-color", "#A94442").parent().find(".Gmap-loadingResponse").text("Address not found").show()
 
       shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
         $("#address").css 'position', 'relative'
@@ -138,7 +144,7 @@ Villeme.Gmap = ( ->
       return
 
     valid: ->
-      $("#address").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").text("")
+      $("#address").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").show().text("Found address!").fadeOut(1000)
       return
 
 
@@ -224,7 +230,6 @@ Villeme.Gmap = ( ->
           latLng = results[0].geometry.location
           infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
           address = (if results and results[0] then results and results[0].formatted_address else "no address")
-          $map = $("#map").gmap3("get")
 
           $("#address").val address
 
@@ -237,7 +242,7 @@ Villeme.Gmap = ( ->
               options:
                 content: infowindowMessage
 
-          $map.panTo latLng
+          Villeme.Gmap.centralizeMapTo(latLng)
 
           return
       return
@@ -248,16 +253,20 @@ Villeme.Gmap = ( ->
 
 
     setAddressInputValid: ->
-      _validInputToGetLocation.valid()
+      _inputToGetLocation.valid()
       _buttonToSearchAddress.enable()
       return
 
 
     setAddressInputInvalid: ->
-      _validInputToGetLocation.invalid()
+      _inputToGetLocation.invalid()
       _buttonToSearchAddress.disable()
       return
 
+
+    centralizeMapTo: (latLng) ->
+      $("#map").gmap3("get").panTo latLng
+      return
 
   }
 

@@ -64,9 +64,10 @@ Villeme.Gmap__mountGmap3 = ( ->
               Villeme.Gmap.setAddressInputValid()
 
               $map = $(this).gmap3("get")
+              latitudeLongitude = results[0].geometry.location
 
               $(this).gmap3 marker:
-                latLng: results[0].geometry.location
+                latLng: latitudeLongitude
                 options:
                   draggable: options.draggable or false
                   icon: options.marker or Villeme.Gmap.getMarker()
@@ -75,8 +76,7 @@ Villeme.Gmap__mountGmap3 = ( ->
                     Villeme.Gmap.getAddressOfMarker($map, marker)
                     return
 
-              latLng = results[0].geometry.location
-              $map.panTo latLng
+              Villeme.Gmap.centralizeMapTo(latitudeLongitude)
 
             return
 

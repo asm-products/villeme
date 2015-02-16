@@ -26,7 +26,7 @@
             <div class="input string optional invite_address form-group">
               <label for="address" class="string optional control-label"><%= t('welcome.modal.address') %></label>
               <span class="Gmap-loadingResponse pull-right"></span>
-              <input type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" id="address" class="string optional form-control ui-autocomplete-input" autocomplete="off" style="border-color: rgb(169, 68, 66); position: relative; left: 0px;">
+              <input type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" id="address" class="string optional form-control ui-autocomplete-input" autocomplete="off">
             </div>
 
             <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>

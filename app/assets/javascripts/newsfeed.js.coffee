@@ -67,7 +67,7 @@
         # mostra o a distância de ônibus
         $(".car .data").fadeIn("fast").text($(this).attr("car"))
 
-        Gmaps.panTo($(this).attr("latitude"), $(this).attr("longitude"))
+        Gmaps.centralizeMapTo($(this).attr("latitude"), $(this).attr("longitude"))
 
         return
 
@@ -99,7 +99,7 @@
 
         # delay para ajustar o centro do mapa
         pan = ->
-          map.panTo(latLng)
+          map.centralizeMapTo(latLng)
           return
 
         escondeInfos = ->

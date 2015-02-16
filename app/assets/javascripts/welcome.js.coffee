@@ -95,6 +95,7 @@ $(document).ready ->
       draggable: true
       activeSearch: true
       zoomControl: true
+      zoom: 15
     )
     return
 
