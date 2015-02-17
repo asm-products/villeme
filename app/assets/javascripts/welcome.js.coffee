@@ -90,7 +90,7 @@ $(document).ready ->
     city = $(this).attr('data-city')
     return
 
-  $("#address").one 'focus', ->
+  $(".Gmap-inputAddress").one 'focus', ->
     Villeme.Gmap.newMap(-22.951916, -43.210487,
       draggable: true
       activeSearch: true

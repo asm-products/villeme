@@ -1,0 +1,32 @@
+.Button{
+  border: 0;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 12px;
+  font-family: $font-family-default;
+  color: $font-color-default
+
+  &--small{
+    font-size: 10px;
+    padding: 8px;
+    font-weight: 200;
+  }
+
+  &--large{
+    font-size: 16px;
+    padding: 12px;
+    font-weight: 400;
+  }
+
+  &--primary{
+    background: $green;
+    color: $white;
+  }
+
+  &:disabled{
+    background: scale_color($grey, $lightness: 90%);
+    color: $white;
+    cursor: not-allowed;
+  }
+
+}

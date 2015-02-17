@@ -9,7 +9,7 @@ Villeme.Gmap__mountGmap3 = ( ->
 
       style = [{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d6defa"}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dff5e6"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"color":"#D1D1B8"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]}]
 
-      $("#map").gmap3
+      $(".Gmap-map").gmap3
         map:
           options:
             center: [
@@ -51,7 +51,7 @@ Villeme.Gmap__mountGmap3 = ( ->
 
 
     mountMapFromAddress: (address, options) ->
-      $("#map").gmap3
+      $(".Gmap-map").gmap3
         clear:
           name: "marker"
 

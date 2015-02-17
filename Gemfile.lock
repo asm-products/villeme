@@ -45,15 +45,15 @@ GEM
     addressable (2.3.7)
     ambry (0.3.1)
     arel (4.0.2)
-    aws-sdk (2.0.22)
-      aws-sdk-resources (= 2.0.22)
-    aws-sdk-core (2.0.22)
+    aws-sdk (2.0.24)
+      aws-sdk-resources (= 2.0.24)
+    aws-sdk-core (2.0.24)
       builder (~> 3.0)
       jmespath (~> 1.0)
       multi_json (~> 1.0)
       multi_xml (~> 0.5)
-    aws-sdk-resources (2.0.22)
-      aws-sdk-core (= 2.0.22)
+    aws-sdk-resources (2.0.24)
+      aws-sdk-core (= 2.0.24)
     bcrypt (3.1.10)
     bcrypt (3.1.10-x64-mingw32)
     bcrypt (3.1.10-x86-mingw32)
@@ -269,12 +269,13 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.1)
     rubyzip (1.1.7)
-    sass (3.2.19)
-    sass-rails (4.0.5)
+    sass (3.4.12)
+    sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.2)
-      sprockets (~> 2.8, < 3.0)
-      sprockets-rails (~> 2.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (~> 1.1)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -338,7 +339,7 @@ DEPENDENCIES
   binding_of_caller
   capybara
   certified
-  coffee-rails (~> 4.0.0)
+  coffee-rails
   coveralls
   database_cleaner
   devise
@@ -368,7 +369,7 @@ DEPENDENCIES
   ratyrate
   rspec
   rspec-rails
-  sass-rails (~> 4.0.0)
+  sass-rails
   sdoc
   selenium-webdriver (~> 2.45.0.dev3)
   shoulda-matchers

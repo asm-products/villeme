@@ -1,0 +1,14 @@
+@import '../variables.css.scss';
+
+.Gmap{
+
+  &-map{
+    border-radius: $radius-panel;
+    border: 1px solid $border-color;
+  }
+
+  &-inputAddress{
+
+  }
+
+}

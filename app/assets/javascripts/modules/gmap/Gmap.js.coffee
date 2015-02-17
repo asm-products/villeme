@@ -31,13 +31,13 @@ Villeme.Gmap = ( ->
 
 
   _setAutocompleteWidth = (width) ->
-    _config.autocompleteWidth = width or $("#address").outerWidth()
+    _config.autocompleteWidth = width or $(".Gmap-inputAddress").outerWidth()
 
 
 
   _showMapCanvasIfHidden = ->
-    if $('#map').css('display') is 'none'
-      $('#map').show()
+    if $('.Gmap-map').css('display') is 'none'
+      $('.Gmap-map').show()
 
     return
 
@@ -45,13 +45,13 @@ Villeme.Gmap = ( ->
 
   _setCanvasSize = (width, height) ->
     if width is undefined  and height is undefined
-      $('#map').width('100%').height(350)
+      $('.Gmap-map').width('100%').height(350)
     else if width is undefined
-      $('#map').width('100%').height(height)
+      $('.Gmap-map').width('100%').height(height)
     else if height is undefined
-      $('#map').width(width).height(350)
+      $('.Gmap-map').width(width).height(350)
     else
-      $('#map').width(width).height(height)
+      $('.Gmap-map').width(width).height(height)
 
     return
 
@@ -76,7 +76,7 @@ Villeme.Gmap = ( ->
 
   _buttonToGetLocation = ->
     $('.js-btn-geocoder-address-for-map').click ->
-      address = $('#address').val()
+      address = $('.Gmap-inputAddress').val()
       @getLocationFromAddress(address,
         draggable: true
       )
@@ -85,7 +85,7 @@ Villeme.Gmap = ( ->
 
 
   _inputToGetLocationOnKeyup = ->
-    $('#address').keyup ->
+    $('.Gmap-inputAddress').keyup ->
       address = this.value
       if address.length > 5
         _inputToGetLocation.searching()
@@ -113,7 +113,7 @@ Villeme.Gmap = ( ->
   _inputToGetLocation =
     init: ->
       _inputToGetLocation.normal()
-      $("#address").focusout ->
+      $(".Gmap-inputAddress").focusout ->
         address = this.value.length
         if address <= 5
           _buttonToSearchAddress.disable()
@@ -123,28 +123,28 @@ Villeme.Gmap = ( ->
       return
 
     normal: ->
-      $("#address").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("").show()
+      $(".Gmap-inputAddress").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("").show()
       return
 
     searching: ->
-      $("#address").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("Searching...").show()
+      $(".Gmap-inputAddress").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("Searching...").show()
       return
 
     invalid: ->
-      $("#address").css("border-color", "#A94442").parent().find(".Gmap-loadingResponse").text("Address not found").show()
+      $(".Gmap-inputAddress").css("border-color", "#A94442").parent().find(".Gmap-loadingResponse").text("Address not found").show()
 
       shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
-        $("#address").css 'position', 'relative'
+        $(".Gmap-inputAddress").css 'position', 'relative'
         x = 1
         while x <= intShakes
-          $("#address").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
+          $(".Gmap-inputAddress").animate({ left: intDistance * -1 }, intDuration / intShakes / 4).animate({ left: intDistance }, intDuration / intShakes / 2).animate { left: 0 }, intDuration / intShakes / 4
           x++
       )()
 
       return
 
     valid: ->
-      $("#address").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").show().text("Found address!").fadeOut(1000)
+      $(".Gmap-inputAddress").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").show().text("Found address!").fadeOut(1000)
       return
 
 
@@ -171,7 +171,7 @@ Villeme.Gmap = ( ->
           i++
         ret
 
-      $("#address").autocomplete
+      $(".Gmap-inputAddress").autocomplete
         source: (request, response) ->
           matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), 'i')
           response $.grep(_addressArray, (value) ->
@@ -192,7 +192,7 @@ Villeme.Gmap = ( ->
       return
 
     update: (address) ->
-      $("#address").gmap3
+      $(".Gmap-inputAddress").gmap3
         getlatlng:
           address: address
           callback: (results) ->
@@ -231,18 +231,19 @@ Villeme.Gmap = ( ->
           infowindowMessage = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
           address = (if results and results[0] then results and results[0].formatted_address else "no address")
 
-          $("#address").val address
+          $(".Gmap-inputAddress").val address
 
           if infowindow
             infowindow.open map, markerDragged
             infowindow.setContent infowindowMessage
           else
-            $("#map").gmap3 infowindow:
+            $(".Gmap-map").gmap3 infowindow:
               anchor: markerDragged
               options:
                 content: infowindowMessage
 
           Villeme.Gmap.centralizeMapTo(latLng)
+          Villeme.Gmap.setAddressInputValid()
 
           return
       return
@@ -265,7 +266,7 @@ Villeme.Gmap = ( ->
 
 
     centralizeMapTo: (latLng) ->
-      $("#map").gmap3("get").panTo latLng
+      $(".Gmap-map").gmap3("get").panTo latLng
       return
 
   }

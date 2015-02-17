@@ -22,21 +22,25 @@
 
             <%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: 'persona_sugest'} %>
 
-            <!-- TODO: Need to implement a custom simple field to this input -->
-            <div class="input string optional invite_address form-group">
-              <label for="address" class="string optional control-label"><%= t('welcome.modal.address') %></label>
-              <span class="Gmap-loadingResponse pull-right"></span>
-              <input type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" id="address" class="string optional form-control ui-autocomplete-input" autocomplete="off">
+            <div class="Gmap">
+
+                <!-- TODO: Need to implement a custom simple field to this input -->
+                <div class="input string optional invite_address form-group">
+                  <label for="address" class="string optional control-label"><%= t('welcome.modal.address') %></label>
+                  <span class="Gmap-loadingResponse pull-right"></span>
+                  <input type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" class="Gmap-inputAddress form-control ui-autocomplete-input" autocomplete="off">
+                </div>
+
+                <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>
+
+                <div class="Gmap-map" style="height: 200px; display: none"></div>
+
             </div>
-
-            <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>
-
-            <div id="map" style="height: 200px; display: none"></div>
 
           </div>
 
           <div class="modal-footer">
-            <%= f.button :submit, t('welcome.modal.confirm'), :class => 'btn btn-lg btn-primary js-btn-to-search-address' %>
+            <%= f.button :submit, t('welcome.modal.confirm'), :class => 'Button Button--primary Button--large js-btn-to-search-address', disabled: true %>
           </div>
 
       <% end %>
