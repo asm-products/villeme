@@ -22,6 +22,7 @@ require 'supports/controller_macros'
 require 'supports/geocoder_stubs'
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'capybara/poltergeist'
 require 'database_cleaner'
 require 'simplecov'
 require 'coveralls'
@@ -32,6 +33,10 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 ]
 SimpleCov.start
 
+Capybara.javascript_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+end
 
 RSpec.configure do |config|
 

@@ -14,8 +14,6 @@ describe 'Request an invite', js: true do
       find('.invite.hidden-xs').click
 
       within '#new-invite' do
-        # HACK: I do not know but the first input is only filled when it the command is execute twice
-        fill_in 'invite[name]', with: 'John Doe'
         fill_in 'invite[name]', with: 'John Doe'
         fill_in 'invite[email]', with: 'johndoe@gmail.com'
         select 'Entrepreneur', from: 'invite_persona'
