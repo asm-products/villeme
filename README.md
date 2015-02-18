@@ -4,9 +4,7 @@
 
 The easiest way to find events, activities and services in your city.
 
-### Show me something
-
-You can see the software in action in [villeme.com](http://www.villeme.com).
+You can see the app in action in [villeme.com](http://www.villeme.com).
 
 The official repo is https://github.com/asm-products/villeme
 
@@ -14,26 +12,22 @@ The official repo is https://github.com/asm-products/villeme
 
 [![Build Status](https://travis-ci.org/jonatassalgado/villeme.svg)](https://travis-ci.org/jonatassalgado/villeme) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Coverage Status](https://img.shields.io/coveralls/jonatassalgado/villeme.svg)](https://coveralls.io/r/jonatassalgado/villeme?branch=master) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme)
 
+## Dependencies
+
+To run app in **development** you need to have:
+
+* [Git](http://git-scm.com/)
+* [Ruby](https://www.ruby-lang.org) 2.0.0 with Rbenv ([Ubuntu](http://goo.gl/GV3jz9)/[Mac](http://goo.gl/iopwFk))
+* Rails 4.0.3 ([Ubuntu](http://goo.gl/85rKbk)/[Mac](http://goo.gl/Zq6Rgv))
+
+To run app **test** locale you need to have (not necessary, but recommended):
+
+* [Poltergeist](https://github.com/teampoltergeist/poltergeist) with [PhantomJS](http://goo.gl/3DpHeO)
+
+
 ## Getting started
 
-### Dependencies
-
-To run this project in **development** you need to have:
-
-* Git
-* Ruby 2.0.0
-* Rails 4.0.3
-
-### Tech Stacks
-
-* **Back-end:** Ruby / Rails / Postgresql
-* **Front-end:** HTML5 / CSS / SASS / jQuery / Coffeescript
-* **Tests:** RSpec / FactoryGirl / Faker
-* **Technical:** SuitCSS / JavascriptOO / Clean Architecture in Rails way / DDD in Rails way / JSON
-* **DevOps:** SnapCI / TravisCI / Codeclimate
-* **Important Modules:** Devise / Gon / Paperclip / Merit / Geocoder
-
-### Setup the project
+#### Setup the project
 
 1. Clone the project: `$ git clone https://github.com/asm-products/villeme.git`
 2. Enter project folder: `$ cd villeme`
@@ -45,7 +39,7 @@ To run this project in **development** you need to have:
 If everything goes OK, you can now run the project!
 
 
-### Running the project
+#### Running the project
 
 	$ rails server
 
@@ -58,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000)
 * Complete the form with
 
     **email:** admin@gmail.com
-    
+
     **password:** password
 
 #### If some errors occur try:
@@ -88,7 +82,7 @@ Visit [assembly.com](https://assembly.com) to learn more.
 
 
 
-## Collaborate with the Villeme community
+## Collaborate
 
 
 ##### Know the current tasks
@@ -104,14 +98,14 @@ Before you set out to improve the code, you should have a focused idea in mind o
 
 Each commit should do one thing, and each PR should be one specific improvement.
 
-### Forking
+#### Forking
 
 
 	$ git clone
 
 
 
-### Editing and Testing
+#### Editing and Testing
 
 
 Ok, you're ready to start editing the code, right?
@@ -155,14 +149,14 @@ You made your change, tested it, committed it with `git commit`, and want to sen
 To do this on GitHub, you need to submit a "pull request" (PR).
 
 
-### Submitting a Pull Request
+#### Submitting a Pull Request
 
 The golden rule of submitting PRs is to do things the way the project maintainers would want it done.
 
 You can't read the minds of the project maintainers, but you can look at [assembly.com/villeme/bounties](https://assembly.com/villeme/bounties).
 
 
-### Submitting a Bug Report (or "Issue")
+#### Submitting a Bug Report (or "Issue")
 
 In GitHub, "Bug Reports" are called "Issues."
 
@@ -170,13 +164,25 @@ Project maintainers really appreciate thorough explanations.
 It usually helps them address the problem more quickly, so everyone wins!
 
 
+## Tech Stacks
+
+* **Back-end:** Ruby / Rails / Postgresql
+* **Front-end:** HTML5 / CSS / SASS / jQuery / Coffeescript
+* **Tests:** RSpec / FactoryGirl / Faker / Poltergeist / PhantomJS
+* **Technical:** SuitCSS / JavascriptOO / Clean Architecture in Rails way / DDD in Rails way / JSON
+* **DevOps:** SnapCI / TravisCI / Codeclimate
+* **Important Modules:** Devise / Gon / Paperclip / Merit / Geocoder
+
+
 
 ## Best practices 
 
 * **Make part of Assembly community:** [assembly.com/villeme](https://assembly.com/villeme)
 * **Style guide for Ruby:** https://github.com/bbatsov/ruby-style-guide
-* **Tests for Ruby in RSpec** (not obrigatory if you don't know to do) for each scenario of the feature you are trying to implement.
+* **Style Guide for Coffeescriot:** [github.com/coffeescript-style-guide](https://github.com/polarmobile/coffeescript-style-guide)
 * **Pattern for Javascript:** [thoughtbot.com/module-pattern](http://robots.thoughtbot.com/module-pattern-in-javascript-and-coffeescript)
+* **Tests for Ruby in RSpec** (not obrigatory if you don't know to do) for each scenario of the feature you are trying to implement.
+
 
 
 
