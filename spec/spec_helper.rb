@@ -31,6 +31,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     Coveralls::SimpleCov::Formatter
 ]
 SimpleCov.start
+
+
 RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
@@ -107,15 +109,17 @@ RSpec.configure do |config|
 
 
   # Database cleaner
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
   end
 
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
+  config.after do
+    DatabaseCleaner.clean
   end
 
 end
