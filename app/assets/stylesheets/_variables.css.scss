@@ -20,7 +20,9 @@
 
 		$body-bg-color: scale_color($grey, $lightness: 90%);
 
-		$body-bg-dark-color: #fdfdfd;		
+		$body-bg-dark-color: #fdfdfd;
+
+        $grey-lightness: scale_color($grey, $lightness: 95%);
 
 	/* laranja */
 	$orange: #E98348;
@@ -29,7 +31,7 @@
 	$yellow: #E9DE53;
 
 	/* roxo */
-	$purple: #b378d7;
+	$purple: #A478D7;
 
 	/* branco */
 	$white: #ffffff;

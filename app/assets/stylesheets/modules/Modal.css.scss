@@ -1,0 +1,43 @@
+@import 'variables';
+@import "style/Input";
+
+.Modal{
+
+  background: $white;
+  border-radius: $radius-panel;
+
+  &-header{
+    text-align: center;
+    padding: 10px 15px 15px;
+    background: $grey-lightness;
+    border-top-left-radius: $radius-panel;
+    border-top-right-radius: $radius-panel;
+  }
+
+  &-footer{
+    text-align: right;
+    padding: 6px 15px 15px;
+  }
+
+  &-title{
+    font-family: $font-family-default;
+    padding: 0;
+    margin: 5px 0;
+    font-size: 36px;
+    font-weight: 500;
+  }
+
+  &-closeButton{
+    margin: 25px 10px 0 0;
+    padding: 6px;
+  }
+
+  & input{
+
+  }
+
+  & label{
+    font-weight: 400;
+  }
+
+}

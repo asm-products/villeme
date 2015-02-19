@@ -1,7 +1,7 @@
 .Button{
   border: 0;
   border-radius: 4px;
-  padding: 10px;
+  padding: 0.65em;
   font-size: 12px;
   font-family: $font-family-default;
   color: $font-color-default;
@@ -14,7 +14,7 @@
 
   &--large{
     font-size: 16px;
-    padding: 12px;
+    padding: 0.85em;
     font-weight: 400;
   }
 
@@ -25,7 +25,7 @@
 
   &:disabled{
     background: scale_color($grey, $lightness: 90%);
-    color: $white;
+    color: scale_color($grey, $lightness: 50%);
     cursor: not-allowed;
   }
 

@@ -1,20 +1,20 @@
 <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
   <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><%= t('welcome.modal.i_want_invite') %></h4>
+    <div class="Modal">
+      <div class="Modal-header">
+        <button type="button" class="Modal-closeButton close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <span class="Modal-title" id="myModalLabel"><%= t('welcome.modal.i_want_invite') %></span>
       </div>
 
-      <%= simple_form_for(@invite, html:{ id:'new-invite', autocomplete: 'off'}, defaults:{input_html:{class: 'form-control'}, label_html: {class: 'control-label'}, wrapper_html:{class: 'form-group'}}) do |f| %>
+      <%= simple_form_for(@invite, html:{ id:'new-invite', autocomplete: 'off'}, defaults:{input_html:{class: 'Input'}, label_html: {class: 'control-label'}, wrapper_html:{class: 'form-group'}}) do |f| %>
           <div class="modal-body">
 
             <div class="row">
               <div class="col-lg-6">
-                <%= f.input :name, label: t('welcome.modal.name') %>
+                <%= f.input :name, label: t('welcome.modal.name'), autofocus: true %>
               </div>
               <div class="col-lg-6">
-                <%= f.input :email, label: 'Email' %>
+                <%= f.input :email, label: 'Email', placeholder: 'email@example.com' %>
               </div>
             </div>
 
@@ -28,7 +28,7 @@
                 <div class="input string optional invite_address form-group">
                   <label for="address" class="string optional control-label"><%= t('welcome.modal.address') %></label>
                   <span class="Gmap-loadingResponse pull-right"></span>
-                  <input class="Gmap-inputAddress form-control ui-autocomplete-input" type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" autocomplete="off">
+                  <input class="Gmap-inputAddress Input ui-autocomplete-input" type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" autocomplete="off">
                 </div>
 
                 <%= f.input :locale, as: :hidden, input_html:{ value: I18n.locale} %>
@@ -39,7 +39,7 @@
 
           </div>
 
-          <div class="modal-footer">
+          <div class="Modal-footer">
             <%= f.button :submit, t('welcome.modal.confirm'), :class => 'Button Button--primary Button--large js-btn-to-search-address', disabled: true %>
           </div>
 

@@ -1,0 +1,30 @@
+.Input{
+  width: 100%;
+  padding: 0.85em;
+  border-radius: 4px;
+  background: $grey-lightness;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
+  box-shadow: 0px -1px 3px rgba(0,0,0,0.025) inset;
+  outline: 0;
+
+  &--large{
+
+  }
+
+  &--small{
+
+  }
+
+  &:focus{
+    background: scale_color($grey-lightness, $lightness: 50%);
+    border-color: $purple;
+    border-width: 2px;
+    border-style: solid;
+    box-shadow: none;
+  }
+
+
+
+}
