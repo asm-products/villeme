@@ -11,7 +11,7 @@ describe 'Request an invite', js: true do
     it 'should request a invite with success' do
       visit '/en'
 
-      find('.invite.hidden-xs').click
+      find('.Button.hidden-xs').click
 
       within '#new-invite' do
         fill_in 'invite[name]', with: 'John Doe'
