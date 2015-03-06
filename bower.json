@@ -1,0 +1,25 @@
+{
+  "name": "Villeme",
+  "version": "0.0.1",
+  "homepage": "https://github.com/asm-products/villeme",
+  "authors": [
+    "jonataseduardo <jonatas.salgado@acad.pucrs.br>"
+  ],
+  "description": "The app whot knows everything is happening in your city",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "city",
+    "marketing"
+  ],
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -20,6 +20,10 @@ module CidadeVc
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
 
+
+    # Config the recognize foldersgit to javascript and css
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+
     # Carrega arquivos no /lib
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/domain)
