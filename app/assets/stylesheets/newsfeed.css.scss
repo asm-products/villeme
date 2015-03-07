@@ -2,14 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
+@import "modules/SidebarMap";
 
-body {
 
-}
-
-#main {
-
-}
 
 ul {
   list-style: none;
@@ -51,38 +46,7 @@ ul {
 
 /* SIDEBAR MAP */
 
-#sidebar-map {
-  overflow: hidden;
-  width: -moz-available;
 
-  & .infos {
-    display: none;
-    color: scale_color($grey, $lightness: 20%);
-    font-family: $font-family-default;
-    font-size: 11px;
-    font-weight: 300;
-
-    & .icon {
-      margin-right: 6px;
-      vertical-align: top;
-    }
-    & img {
-      height: 14px;
-      vertical-align: middle;
-      margin: 0 6px 0 0;
-      opacity: 0.75;
-    }
-  }
-
-  .car img {
-    width: 12px;
-  }
-
-  .bus img {
-    width: 10px;
-  }
-
-}
 
 /* LOAD-EVENT-SIDEBAR */
 

@@ -12,9 +12,10 @@
     Inicia as funções
     ###
     init: ->
-      Newsfeed.EventEvents()
-      Newsfeed.UserEvent()
+      Newsfeed.eventEvents()
+      Newsfeed.userEvent()
       Newsfeed.createMap()
+      Newsfeed.fixingMapOnScroll()
       return
 
 
@@ -29,7 +30,7 @@
 
 
 
-    EventEvents: ->
+    eventEvents: ->
 
       # event mouseenter
       $(".event .panel").mouseenter ->
@@ -47,35 +48,29 @@
         # pega a letra
         letra = $(this).find(".letter").text()
 
-        $("#neighborhood-count").hide()
+        $(".SidebarMap-neighborhoodCount").hide()
 
         # mostra as infos
-        $("#sidebar-map .infos").filter(":not(:animated)").fadeIn 200
+        $(".SidebarMap-infos").filter(":not(:animated)").fadeIn 200
 
         # mostra o nome do evento no mapa
         $(".address").fadeIn("fast").text($(this).attr("address"))
 
         # mostra o a distância de ônibus
-        $(".walk .data").fadeIn("fast").text($(this).attr("walk"))
+        $(".js-distanceWithWalking .data").fadeIn("fast").text($(this).attr("walk"))
 
         # mostra o a distância de ônibus
-        $(".bike .data").fadeIn("fast").text($(this).attr("bike"))
+        $(".js-distanceWithBike .data").fadeIn("fast").text($(this).attr("bike"))
 
         # mostra o a distância de ônibus
-        $(".bus .data").fadeIn("fast").text($(this).attr("bus"))
+        $(".js-distanceWithBus .data").fadeIn("fast").text($(this).attr("bus"))
 
         # mostra o a distância de ônibus
-        $(".car .data").fadeIn("fast").text($(this).attr("car"))
+        $(".js-distanceWithCar .data").fadeIn("fast").text($(this).attr("car"))
 
         Gmaps.centralizeMapTo($(this).attr("latitude"), $(this).attr("longitude"))
 
         return
-
-
-
-
-
-
 
 
       # event mouseleave
@@ -119,7 +114,7 @@
 
 
 
-    UserEvent: ->
+    userEvent: ->
       # map mouseenter
       $("#map").mouseenter ->
         # limpa o timeout
@@ -135,6 +130,20 @@
       return
 
 
+    fixingMapOnScroll: ->
+      position = 0
+
+      $(window).scroll ->
+        scroll = $(window).scrollTop()
+        if scroll > position
+          $('.js-FixingMapOnScroll').css({top: scroll})
+        else
+          $('.js-FixingMapOnScroll').css({top: scroll})
+
+        position = scroll
+        return
+
+      return
 
 
   $ ->
