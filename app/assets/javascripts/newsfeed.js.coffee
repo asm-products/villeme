@@ -89,7 +89,7 @@
         map = $("#map").gmap3("get")
 
         mostraNeighborhoodCount = ->
-          $("#neighborhood-count").show()
+          $(".SidebarMap-neighborhoodCount").show()
           return
 
         # delay para ajustar o centro do mapa
@@ -98,7 +98,7 @@
           return
 
         escondeInfos = ->
-          $("#sidebar-map .infos").hide()
+          $(".SidebarMap-infos").hide()
           return
 
         timeouts.push(setTimeout(pan, 6500))
