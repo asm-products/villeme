@@ -95,7 +95,7 @@
 
         # delay para ajustar o centro do mapa
         pan = ->
-          map.centralizeMapTo(latLng)
+          map.panTo(latLng)
           return
 
         escondeInfos = ->
