@@ -68,6 +68,7 @@
         # mostra o a distância de ônibus
         $(".js-distanceWithCar .data").fadeIn("fast").text($(this).attr("car"))
 
+        # TODO: Use Gmap module to construct this map
         Gmaps.panTo($(this).attr("latitude"), $(this).attr("longitude"))
 
         return
