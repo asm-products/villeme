@@ -68,7 +68,7 @@
         # mostra o a distância de ônibus
         $(".js-distanceWithCar .data").fadeIn("fast").text($(this).attr("car"))
 
-        Gmaps.centralizeMapTo($(this).attr("latitude"), $(this).attr("longitude"))
+        Gmaps.panTo($(this).attr("latitude"), $(this).attr("longitude"))
 
         return
 
@@ -98,7 +98,7 @@
           return
 
         escondeInfos = ->
-          $(".SidebarMap-infos").hide()
+          $(".Side").hide()
           return
 
         timeouts.push(setTimeout(pan, 6500))
