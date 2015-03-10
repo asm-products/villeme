@@ -38,7 +38,7 @@
                         <%= image_tag "http://graph.facebook.com/#{friend["id"]}/picture?width=26&height=26", size: "26x26", alt: friend["name"], class: "img-circle" %> <span class="p-6"><%= friend["name"].cut 0, 16 %> <span class="green-font pull-right p-6-0 pointer" onclick="invite_friend('<%= friend["id"] %>')">Convidar</span></span>
                     </li>
                 <% end %>
-            <% end %> %>
+            <% end %>
 		</ul>
 	</div>
 	<% end %>

@@ -98,7 +98,7 @@
           return
 
         escondeInfos = ->
-          $(".Side").hide()
+          $(".SidebarMap-infos").hide()
           return
 
         timeouts.push(setTimeout(pan, 6500))
