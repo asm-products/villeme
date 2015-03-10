@@ -87,7 +87,7 @@ gem 'geocoder', github: 'jonatassalgado/geocoder'
 gem 'paperclip', '~> 3.5.3'
 
 # Amazon S3
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Gon
 gem 'gon'
