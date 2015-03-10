@@ -86,6 +86,7 @@ class @Gmaps
                       content: content
 
                 map = $(this).gmap3("get")
+                google.maps.event.trigger(map, 'resize');
                 latLng = results[0].geometry.location
                 map.panTo latLng
 

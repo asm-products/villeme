@@ -21,11 +21,10 @@
 
 
     createMap: ->
-      newMap = ->
+      $(document).on 'ready page:done', ->
         new Gmaps(gon.latitude, gon.longitude)
         return
 
-      setTimeout(newMap, 650)
       return
 
 
