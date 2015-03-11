@@ -43,7 +43,7 @@ module Gmaps
 
 
   def get_current_user_in_a_hash
-    {latLng: current_user.coordinates,
+    {latLng: current_user.try(:coordinates),
      data: current_user.name.to_s,
      options: {
          icon: "/images/marker-user.png"
