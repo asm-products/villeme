@@ -32,7 +32,7 @@
     eventEvents: ->
 
       # event mouseenter
-      $(".event .panel").mouseenter ->
+      $(".Event--newsFeed .panel").mouseenter ->
         # limpa o timeout
         i = 0
         while i < timeouts.length
@@ -74,7 +74,7 @@
 
 
       # event mouseleave
-      $(".event .panel").mouseleave ->
+      $(".Event--newsFeed .panel").mouseleave ->
         $(".infobox").hide().text("")
 
 
