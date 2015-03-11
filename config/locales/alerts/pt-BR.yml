@@ -3,3 +3,6 @@ pt-BR:
     invalid: "Ops! Não foi possível criar seu convite, você preencheu todas as informações?"
     valid: "%{user_name}, seu convite foi solicitado com sucesso. Enviaremos por email em breve."
     repeated: " %{user_name}, você já solicitou um convite. Assim que possível, lhe enviaremos por email."
+  event_show:
+    user_not_logged:
+      transport: "Você precisa estar logado para ver os meios de transporte ate o evento."
