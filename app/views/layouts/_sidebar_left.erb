@@ -10,8 +10,14 @@
 
 
         <li class="active">
-            <%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
-                <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
+            <% if user_signed_in? %>
+                <%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
+                    <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
+                <% end %>
+            <% else  %>
+                <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-th"></span>Inicio
+                <% end %>
             <% end %>
         </li>
 
@@ -71,8 +77,8 @@
 				</a>
 			<% end %>
 		</li>
-		
-		
+
+
 
 		<!-- Categorias -->
 
@@ -82,17 +88,17 @@
 		<ul class="sub-nav hide">
 			<% if user_signed_in? %>
 				<% Category.all.each do |category| %>
-					
+
 					<li>
 						<%= link_to newsfeed_category_path(category), data: { push: true } do %>
 							<%= category.name %><span class="badge"><%= category.events.upcoming.count if category.events.upcoming.count > 0 %></span>
 						<% end %>
 					</li>
-					
+
 				<% end %>
 			<% end %>
 		</ul>
-		
+
 
 
 
@@ -169,6 +175,6 @@
 				</a>
 			<% end %>
 		</li>
-		
+
 	</ul>
 </div>
