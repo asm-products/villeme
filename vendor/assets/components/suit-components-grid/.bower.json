@@ -1,0 +1,26 @@
+{
+  "name": "suitcss-components-grid",
+  "version": "2.0.2",
+  "author": "Nicolas Gallagher",
+  "main": "lib/grid.css",
+  "ignore": [
+    "build",
+    "components",
+    "test",
+    ".*",
+    "CHANGELOG.md",
+    "component.json",
+    "package.json"
+  ],
+  "homepage": "https://github.com/suitcss/components-grid",
+  "_release": "2.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.2",
+    "commit": "817b7398a499e90e4f10e420f295d9d5a902a994"
+  },
+  "_source": "git://github.com/suitcss/components-grid.git",
+  "_target": "~2.0.2",
+  "_originalSource": "suit-components-grid",
+  "_direct": true
+}

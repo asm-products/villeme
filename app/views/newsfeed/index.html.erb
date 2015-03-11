@@ -1,11 +1,13 @@
 
 <!-- HEAD -->
 
-
 <%= stylesheet_link_tag params[:controller] %>
+<%= stylesheet_link_tag 'suit-components-grid/index.css', 'suit-utils-size/index.css' %>
+
 <%= include_gon %>
 <%= javascript_include_tag 'gmaps-builder-user' %>
 <%= javascript_include_tag params[:controller] %>
+
 
 
 
@@ -17,7 +19,7 @@
 
 <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
   <div id="main-content" class="ps-container">
-      <div class="row">
+      <div class="Grid Grid--withGutter">
 
 
 			<%= render "alert_none_events" %>

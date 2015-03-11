@@ -1,0 +1,342 @@
+@import 'variables';
+
+.Event{
+
+  &-agendedByCount {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    margin: 0 0 0 6px;
+    padding: 6px 2px 6px 5px;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &:hover {
+
+    & .box-top .agenda-btn {
+      display: inline;
+
+    }
+    & .title a {
+      text-decoration: underline;
+      color: $green;
+    }
+  }
+  & a {
+    /*	    color: #384047;
+            font-family: varela round,helvetica,arial;
+            font-size: 18px;
+            font-weight: normal;*/
+    &:hover {
+      /*			color: #5fcf80;*/
+      text-decoration: none;
+    }
+  }
+  & h2 {
+    & a {
+      color: $grey;
+      font-family: $font-family-default;
+      font-size: 18px;
+      font-weight: normal;
+      &:hover {
+        color: $green;
+        text-decoration: none;
+      }
+    }
+  }
+  & h4 {
+    color: #384047;
+    font-family: helvetica;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  & .title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $font-family-default;
+  }
+  & .block {
+    float: left;
+    margin: 0 0 35px;
+    width: 100%;
+  }
+  & .panel {
+    margin: 0;
+    & .col-sm-8 {
+      height: 200px;
+    }
+    & .col-sm-4 {
+
+    }
+    & img {
+
+      &:hover {
+        /*opacity:0.75;
+        margin-left: -35.5%;*/
+      }
+    ;
+    }
+  }
+  & .box-top {
+    left: 22px;
+    position: absolute;
+    top: 12px;
+    z-index: 8;
+
+    & .label {
+      @extend .btn-radius;
+      font-size: 12px;
+      font-weight: 400;
+      min-height: 30px;
+      padding: 7px;
+      text-transform: capitalize;
+    }
+    & .label-default {
+      background: desaturate($blue, 80%);
+      color: $white;
+    }
+    & .agenda-btn {
+      cursor: pointer;
+    }
+    & .day {
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+      &.agended {
+        background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
+        color: $grey;
+        text-shadow: none;
+      }
+    }
+    & .schedule {
+
+    }
+    & .unschedule {
+      display: none;
+
+      &:hover {
+        background: $green;
+        color: $white;
+
+        & .agended-by-count {
+          border-color: scale_color($green, $lightness: -10%);
+        }
+
+        & > a {
+          color: $white;
+        }
+      }
+    }
+  }
+  & .caption {
+    font-family: $font-family-default;
+    font-weight: 300;
+    position: relative;
+  }
+  & .sub-cat {
+    font-size: 9px;
+    opacity: 0.5;
+    position: absolute;
+    text-transform: uppercase;
+    top: -13px;
+  }
+  & .description {
+    color: scale_color($grey, $lightness: 10%);
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 0 12px;
+    max-height: 100px;
+    overflow: hidden;
+  }
+  & .infos {
+    color: scale_color($grey, $lightness: 20%);
+    font-family: $font-family-default;
+    font-size: 11px;
+    margin: 0 0 12px;
+    & span {
+      border-right: 1px solid $border-color;
+    }
+    & span:first-child {
+      padding-left: 0;
+    }
+    & span:last-child {
+      border-right: 0;
+    }
+  }
+  & .dia, .preco, .hora {
+    padding: 0 6px;
+  }
+
+  & .transport {
+    background: none repeat scroll 0 0 #FBFCFC;
+    padding: 4px 6px 4px 15px;
+    cursor: help;
+    & .icon {
+      margin: -4px 6px 0 -6px !important;
+      padding: 0;
+    }
+  }
+  & .price {
+    background: none repeat scroll 0 0 #5FCF80;
+    font-size: 11px;
+    left: 8px;
+    padding: 5px 8px;
+    position: absolute;
+    top: -8px;
+    z-index: 8;
+  }
+  &.grid:hover .day {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
+    color: $grey;
+    text-shadow: none;
+  }
+  &.grid:hover .item {
+    display: block;
+  }
+  & .today {
+
+  }
+  & .tomorrow {
+
+  }
+  & .image-box {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 180px;
+    margin: 0 -15px;
+    overflow: hidden;
+  }
+  & .details-box {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 149px;
+
+    & .buttons {
+      opacity: 0;
+      margin: 25px auto 0;
+      text-align: center;
+      width: 60%;
+      min-width: 135px;
+
+      & .btn {
+        margin-bottom: 6px;
+
+        &:hover {
+
+          & > .glyphicon {
+            display: inline-block;
+          }
+        }
+      }
+
+      & .glyphicon {
+        display: none;
+        margin: 1px -24px 0 6px;
+        vertical-align: text-top;
+      }
+
+    }
+  }
+
+  & .categorias {
+
+    & .item {
+      display: none;
+      border-radius: 15px;
+      color: $white;
+      float: left;
+      font-family: $font-family-default;
+      font-size: 9px;
+      font-weight: 300;
+      margin: 0 3px 0 0;
+      padding: 4px 6px;
+
+      transition: $transition-time;
+      & .circle {
+        border-radius: 3px;
+        float: left;
+        height: 5px;
+        margin: 4px 4px 0 2px;
+        width: 5px;
+      }
+    }
+    & .lazer {
+
+      & .circle {
+        background: $green;
+      }
+    }
+    & .saude {
+
+      & .circle {
+        background: $red;
+      }
+    }
+    & .esporte {
+
+      & .circle {
+        background: $blue;
+      }
+    }
+    & .educacao {
+
+      & .circle {
+        background: scale_color($blue, $lightness: 30%);
+      }
+    }
+    & .cultura {
+
+      & .circle {
+        background: $purple;
+      }
+    }
+    & .alimentacao {
+      & .circle {
+        background: $yellow;
+      }
+    }
+  }
+  & .nearbys {
+
+    & .item {
+
+    }
+  }
+  & .letter {
+    background: $red;
+    border-radius: 100%;
+    display: none;
+    height: 30px;
+    position: absolute;
+    right: -15px;
+    text-align: center;
+    top: 8px;
+    width: 30px;
+    z-index: 7;
+
+    & span {
+      color: #ffffff;
+      font-family: varela round, sans-serif;
+      font-size: 20px;
+      position: relative;
+      top: 0;
+    }
+  }
+
+
+
+  &--newsFeed{
+    margin: 0 0 35px 0;
+    position: relative;
+  }
+
+
+}

@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'modules/Event' %>
+
 
 <% letter = ('A'..'Z').to_a %>
 <% i = 0 %>
@@ -12,16 +14,16 @@
 	<% distance = current_user.distance_until(event, :minutes) %>
 
 	<% cache [current_user, event, event.agendas] do %>
-	<div id="event-<%= event.id %>" class="event grid col-lg-4 col-md-4 col-sm-6 col-xs-12">						
+	<div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
 
 		<div class="box-top">
 
 			<% if agended(event) %>
 				<%= event.day_of_week css: "agended" %>
-				<span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="agended-by-count has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>						
+				<span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="Event-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
 			<% else %>
 				<%= event.day_of_week %>
-				<span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="agended-by-count has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+				<span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="Event-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
 			<% end %>
 
 			
@@ -83,7 +85,7 @@
 
 	<% if i == 2 and current_user.friends_from_facebook %>
 
-		<div class="col-lg-4 col-md-4 col-sm-6 hidden-xs height-325 grid" >
+		<div class="Grid-cell u-size4of12  height-325 grid" >
 			
 			<%# render "newsfeed/friends_requests" %>
 			<% cache [current_user, "friends_ranking"], skip_digest: true do %>

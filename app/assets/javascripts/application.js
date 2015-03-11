@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require modulejs.min
 //= require wiselinks
 //= require match-media
 //= require nprogress
