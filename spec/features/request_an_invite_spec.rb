@@ -20,7 +20,7 @@ describe 'Request an invite', js: true do
         fill_in 'invite[email]', with: 'johndoe@gmail.com'
         select 'Entrepreneur', from: 'invite_persona'
         fill_in 'invite[address]', with: '544 Madison Ave, Albany, NY 12208, USA'
-        sleep 3
+        sleep 5
         click_button 'Confirm'
       end
 
