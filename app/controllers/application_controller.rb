@@ -269,13 +269,13 @@ class ApplicationController < ActionController::Base
 
   # Verifica se o evento foi agendado pelo usuario
   def agended(event, user = current_user)
-
-	    if user.agenda_events.include?(event)
-	      return true
+      if current_user.nil?
+        false
+	    elsif user.agenda_events.include?(event)
+        true
 	    else
-	      return false
+        false
 	    end
-    
   end
 
   helper_method :agended
