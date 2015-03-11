@@ -6,3 +6,4 @@ pt-BR:
   event_show:
     user_not_logged:
       transport: "Você precisa estar logado para ver os meios de transporte ate o evento."
+      tips: "Você precisa estar logado para escrever uma dica para o evento"
