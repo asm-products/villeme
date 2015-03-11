@@ -81,9 +81,9 @@
     }
   }
   & .box-top {
-    left: 22px;
+    left: 15px;
     position: absolute;
-    top: 12px;
+    top: 13px;
     z-index: 8;
 
     & .label {
@@ -92,6 +92,7 @@
       font-weight: 400;
       min-height: 30px;
       padding: 7px;
+      margin: 2px;
       text-transform: capitalize;
     }
     & .label-default {
@@ -334,7 +335,7 @@
 
 
   &--newsFeed{
-    margin: 0 0 35px 0;
+    margin: 0 0 30px 0;
     position: relative;
   }
 
