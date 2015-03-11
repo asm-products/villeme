@@ -53,7 +53,8 @@
         $(".SidebarMap-infos").filter(":not(:animated)").fadeIn 200
 
         # mostra o nome do evento no mapa
-        $(".address").fadeIn("fast").text($(this).attr("address"))
+        $(".SidebarMap-address").fadeIn("fast")
+        $(".SidebarMap-address span").text($(this).attr("address"))
 
         # mostra o a distância de ônibus
         $(".js-distanceWithWalking .data").fadeIn("fast").text($(this).attr("walk"))
@@ -98,7 +99,7 @@
           return
 
         escondeInfos = ->
-          $(".SidebarMap-infos").hide()
+          $(".SidebarMap-infos, .SidebarMap-address").hide()
           return
 
         timeouts.push(setTimeout(pan, 6500))

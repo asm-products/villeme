@@ -3,6 +3,12 @@
   position: relative;
   width: 100%;
 
+  &-address{
+    display: none;
+    font-size: 11px;
+    padding: 15px;
+  }
+
   &-infos {
     display: none;
     color: scale_color($grey, $lightness: 20%);
