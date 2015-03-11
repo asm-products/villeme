@@ -21,10 +21,12 @@
 
 
 	<!-- =Friends wich agended -->
-  <% unless current_user.which_friends_will_this_event?(@event).empty? %>
-    <div class="panel panel-default sidebar single-event-sidebar">
-      <%= render 'events/show/friends_agended' %>
-    </div>
+  <% if current_user %>
+      <% unless current_user.which_friends_will_this_event?(@event).empty? %>
+        <div class="panel panel-default sidebar single-event-sidebar">
+          <%= render 'events/show/friends_agended' %>
+        </div>
+      <% end %>
   <% end %>
 
 
