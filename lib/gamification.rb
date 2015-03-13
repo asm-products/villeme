@@ -11,35 +11,35 @@ module Gamification
 
 		case user_points
 
-		# lvl0 - ovo
+		# lvl1 - ovo
 		when 0...30
 			nivel = 1
 
-		# lvl1 - pintinho
+		# lvl2 - pintinho
 		when 30...42
 			nivel = 2
 
-		# lvl2 - Martelo de madeira
+		# lvl3 - Martelo de madeira
 		when 42...59
 			nivel = 3
 
-		# lvl3 - Martelo duplo de madeira
+		# lvl4 - Martelo duplo de madeira
 		when 59...82
 			nivel = 4
 			
-		# lvl4 - Martelo de pedra
+		# lvl5 - Martelo de pedra
 		when 82...115
 			nivel = 5
 			
-		# lvl5 - Martelo duplo de pedra
+		# lvl6 - Martelo duplo de pedra
 		when 115...161
 			nivel = 6
 
-		# lvl6 - Martelo de ferro
+		# lvl7 - Martelo de ferro
 		when 161...226
 			nivel = 7
 		
-		# lvl7 - Martelo duplo de ferro 
+		# lvl8 - Martelo duplo de ferro
 		when 226...316
 			nivel = 8
 
