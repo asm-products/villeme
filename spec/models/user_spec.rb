@@ -62,7 +62,7 @@ describe User, type: :model do
 
       expect(result[:bus].to_i).to be_between(12, 14)
       expect(result[:car].to_i).to be_between(4, 6)
-      expect(result[:walk].to_i).to be_between(24, 28)
+      expect(result[:walk].to_i).to be_between(15, 28)
       expect(result[:bike].to_i).to be_between(3, 6)
     end
   end
