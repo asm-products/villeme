@@ -1,0 +1,25 @@
+@import 'variables';
+
+.AlertCreateEvent{
+  margin: 0 0 30px 0;
+  min-height: 325px;
+  position: relative;
+
+  &--withBorder{
+    border: 1px dashed #aeb6aa;
+    border-radius: $radius-panel;
+  }
+
+  &-text{
+    height: 20px;
+    width: 100%;
+    font-size: 13px;
+    text-align: center;
+    padding: 12px;
+
+    & a{
+      color: $green;
+    }
+  }
+
+}
