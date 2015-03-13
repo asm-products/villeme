@@ -57,6 +57,8 @@ module GeocodedActions
     [latitude, longitude]
   end
 
+
+
   def distance_until(event, format)
 
     if has_geocoded?(event)
@@ -67,7 +69,6 @@ module GeocodedActions
       when :minutes then calculate_distances_for_transport(distance)
       end
     end
-
 
   end
 
@@ -83,7 +84,7 @@ module GeocodedActions
     {
       bus: calculate_distance_for_bus(distance),
       car: calculate_distance_for_car(distance),
-      walk: calculate_distance_for_car(distance),
+      walk: calculate_distance_for_walk(distance),
       bike: calculate_distance_for_bike(distance)
     }
   end
