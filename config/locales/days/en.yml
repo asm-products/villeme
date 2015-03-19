@@ -7,3 +7,5 @@ en:
     thursday: 'Thursday'
     friday: 'Friday'
     saturday: 'Saturday'
+    tomorrow: "Tomorrow"
+    today: "Today"
