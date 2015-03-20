@@ -57,18 +57,18 @@ module Villeme
           end
         end
 
-        def next_day_the_object_occur_in_month
-          period =  (@today..@object.date_finish).to_a
-          next_day = period.find { |day| @object_week_days.include?(day.wday) }
-          return next_day.strftime('%-d/%b')
-        end
-
         def the_object_occur_tomorrow?
           if get_binary_from_object.include?(@tomorrow_in_week)
             true
           else
             false
           end
+        end
+
+        def next_day_the_object_occur_in_month
+          period =  (@today..@object.date_finish).to_a
+          next_day = period.find { |day| @object_week_days.include?(day.wday) }
+          return next_day.strftime('%-d/%b')
         end
 
         def next_day_the_object_occur_in_week
@@ -89,8 +89,14 @@ module Villeme
           end
         end
 
+        def days_left_to_start
+          period =  (@today..@object.date_finish).to_a
+          next_day = period.find { |day| @object_week_days.include?(day.wday) }
+          return (next_day - @today).to_i
+        end
+        
         def the_object_occur_in_this_week?
-          if (@object.date_finish - @today).to_i < 7
+          if days_left_to_start < 7
             true
           else
             false
