@@ -102,14 +102,11 @@ class EventsController < ApplicationController
 
     end
 
-
-
     if @event.save
       redirect_to @event, notice: 'O evento foi  criado com sucesso!'
     else
       render action: 'new', alert: 'O evento não pode ser criado, arrume as informações abaixo.'
     end
-
 
   end
 
@@ -125,16 +122,14 @@ class EventsController < ApplicationController
     @event.update_attributes(event_params)
 
     place = Place.find_by(name: params[:event][:place_attributes][:name])
-    @event.place = place
 
-    if @event.address.blank? and place.nil? == false
-      if @event.place.nil?
-        geocoder_place_address_and_copy_attributes_to_event
-      else
-        copy_place_attributes_to_event
-      end
+    if place.nil?
+      @event.copy_attributes_to place
+      @event.place = place
+    else
+      place.copy_attributes_to @event
+      @event.place = place
     end
-
 
 
     if @event.save
