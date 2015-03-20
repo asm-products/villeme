@@ -26,7 +26,7 @@ module CidadeVc
 
     # Carrega arquivos no /lib
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/app/domain)
+    config.autoload_paths << Rails.root.join('domain')
 
     # Constantes do aplicativo
     HOME_URL = "http://www.villeme.com"

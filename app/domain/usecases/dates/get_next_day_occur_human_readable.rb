@@ -69,6 +69,8 @@ module Villeme
               return get_day_from_week_from_binary(day_binary)
             end
           end
+
+          return get_day_from_week_from_binary(@object_week_days.first)
         end
 
         def the_object_occur_today?
@@ -101,7 +103,7 @@ module Villeme
             array << day.binary
           end
 
-          return array
+          array
         end
 
         def get_day_from_week_from_binary(id)

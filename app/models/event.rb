@@ -111,27 +111,9 @@ class Event < ActiveRecord::Base
 	def day_of_week(options = {})
 
 		require_relative '../../app/domain/usecases/weeks/get_day_of_week'
+		require_relative '../../app/domain/usecases/dates/get_next_day_occur_human_readable'
 
-    if weeks.any?
-      today_in_week = Week.find_by(binary: Date.current.strftime("%w"))
-      tomorrow_in_week = Week.find_by(binary: (Date.current + 1).strftime("%w"))
-
-      if Date.current.between?(date_start, date_finish)
-        if weeks.include?(today_in_week)
-          return ("<span title='#{period_that_occurs}' class='label day today has-tooltip #{options[:css]}'>Hoje</span>").html_safe
-        elsif weeks.include?(tomorrow_in_week)
-          return ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
-        else
-          return ("<span title='#{period_that_occurs}' class='label day has-tooltip #{options[:css]}'>#{Villeme::UseCases::GetDayOfWeek.get_day_by_id(self.weeks.first.id)}</span>").html_safe
-        end
-      elsif date_start == Date.current.tomorrow
-        return ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>Amanhã</span>").html_safe
-      else
-        ("<span title='#{period_that_occurs}' class='label day tomorrow has-tooltip #{options[:css]}'>#{I18n.localize date_start, format: '%A'}</span>").html_safe
-      end
-    else
-      nil
-    end
+		Villeme::UseCases::Dates.get_next_day_occur_human_readable(self)
   end
 
 
