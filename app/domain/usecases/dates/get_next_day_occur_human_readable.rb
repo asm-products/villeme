@@ -94,7 +94,7 @@ module Villeme
           next_day = period.find { |day| @object_week_days.include?(day.wday) }
           return (next_day - @today).to_i
         end
-        
+
         def the_object_occur_in_this_week?
           if days_left_to_start < 7
             true
