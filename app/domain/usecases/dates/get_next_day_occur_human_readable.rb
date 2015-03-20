@@ -29,7 +29,7 @@ module Villeme
         private
 
         def get_today
-          if Rails.env.test?
+          if Rails.env.test? or CI
             Date.parse('19-03-2015')
           else
             Date.current

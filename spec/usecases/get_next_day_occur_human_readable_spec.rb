@@ -25,7 +25,7 @@ describe 'UseCases::Dates' do
     end
 
     context 'when object occur tomorrow' do
-      it 'should return today' do
+      it 'should return tomorrow' do
         event = build(:event, date_start: @date_current, date_finish: @date_current + 6)
         weeks_array = [double('Week', id: 5, name: "Friday", binary: 5, organizer_id: 5),
                        double('Week', id: 6, name: "Saturday", binary: 6, organizer_id: 6),
@@ -39,7 +39,7 @@ describe 'UseCases::Dates' do
     end
 
     context 'when object occur in saturday' do
-      it 'should return today' do
+      it 'should return saturday' do
         event = build(:event, date_start: @date_current, date_finish: @date_current + 6)
         weeks_array = [double('Week', id: 6, name: "Saturday", binary: 6, organizer_id: 6),
                        double('Week', id: 7, name: "Sunday", binary: 0, organizer_id: 7)]
@@ -52,7 +52,7 @@ describe 'UseCases::Dates' do
     end
 
     context 'when object occur in 30 days period' do
-      it 'should return today' do
+      it 'should return 19/Mar' do
         event = build(:event, date_start: @date_current + 10, date_finish: @date_current + 30)
         weeks_array = [double('Week', id: 4, name: "Thursday", binary: 4, organizer_id: 4)]
         allow(event).to receive(:weeks).and_return(weeks_array)
