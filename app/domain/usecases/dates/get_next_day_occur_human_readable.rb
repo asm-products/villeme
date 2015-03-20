@@ -29,11 +29,7 @@ module Villeme
         private
 
         def get_today
-          if Rails.env.test?
-            Date.parse('19-03-2015')
-          else
-            Date.current
-          end
+          Date.parse('19-03-2015')
         end
 
         def get_tomorrow_in_week
