@@ -3,7 +3,7 @@ require_relative '../../app/domain/usecases/dates/get_next_day_occur_human_reada
 
 describe 'UseCases::Dates' do
 
-  before(:all) do
+  before(:each) do
     I18n.locale = :en
     @date_current = Date.parse('19-03-2015')
   end
