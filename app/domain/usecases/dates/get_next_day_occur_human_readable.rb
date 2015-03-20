@@ -6,7 +6,7 @@ module Villeme
         def get_next_day_occur_human_readable(object)
           @object = object
           @object_week_days = get_binary_from_object
-          @today = Rails.env.test? ? Date.parse('19-03-2015') : Date.current
+          @today = get_today
           @today_in_week = @today.strftime("%w").to_i
           @tomorrow_in_week = get_tomorrow_in_week
 
@@ -26,8 +26,15 @@ module Villeme
         end
 
 
-
         private
+
+        def get_today
+          if Rails.env.test?
+            Date.parse('19-03-2015')
+          else
+            Date.current
+          end
+        end
 
         def get_tomorrow_in_week
           if @today_in_week < 6
