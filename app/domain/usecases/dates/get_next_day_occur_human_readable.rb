@@ -3,12 +3,13 @@ module Villeme
     class Dates
       class << self
 
-        def get_next_day_occur_human_readable(object)
+        def get_next_day_occur_human_readable(object, test_env=false)
           @object = object
           @object_week_days = get_binary_from_object
           @today = get_today
           @today_in_week = @today.strftime("%w").to_i
           @tomorrow_in_week = get_tomorrow_in_week
+          @test = test_env
 
           if today_is_between_object_period_occur?
             if the_object_occur_in_this_week?
@@ -29,7 +30,11 @@ module Villeme
         private
 
         def get_today
-          Date.parse('19-03-2015')
+          if @test
+            Date.parse('19-03-2015')
+          else
+            Date.current
+          end
         end
 
         def get_tomorrow_in_week
