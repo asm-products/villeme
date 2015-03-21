@@ -21,10 +21,17 @@
 
 
     createMap: ->
-      $(document).on 'ready page:done', ->
-        setTimeout(->
-          new Gmaps(gon.latitude, gon.longitude)
-        , 850)
+      $(document).on 'ready', ->
+        if $('#main').is(':visible')
+          setTimeout(->
+            new Gmaps(gon.latitude, gon.longitude)
+          , 850)
+        else
+          $(document).on 'page:done', ->
+            setTimeout(->
+              new Gmaps(gon.latitude, gon.longitude)
+            , 850)
+            return
         return
 
       return
