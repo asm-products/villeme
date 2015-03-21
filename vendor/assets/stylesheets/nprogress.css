@@ -31,16 +31,17 @@
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    animation: 400ms linear 0s normal none infinite nprogress-spinner;
-    border-color: #38ba5e transparent transparent #38ba5e;
     border-image: none;
     border-radius: 50%;
-    border-right: 2px solid transparent;
-    border-style: solid;
-    border-width: 2px;
+    border: 2px solid #38ba5e;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
     box-sizing: border-box;
     height: 18px;
     width: 18px;
+
+    -webkit-animation: nprogress-spinner 400ms linear infinite;
+    animation: nprogress-spinner 400ms linear infinite;
 }
 .nprogress-custom-parent {
     overflow: hidden;
@@ -49,11 +50,12 @@
 .nprogress-custom-parent #nprogress .spinner, .nprogress-custom-parent #nprogress .bar {
     position: absolute;
 }
+
+@-webkit-keyframes nprogress-spinner {
+    0%   { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
 @keyframes nprogress-spinner {
-0% {
-    transform: rotate(0deg);
-}
-100% {
-    transform: rotate(360deg);
-}
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
