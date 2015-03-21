@@ -22,7 +22,9 @@
 
     createMap: ->
       $(document).on 'ready page:done', ->
-        new Gmaps(gon.latitude, gon.longitude)
+        setTimeout(->
+          new Gmaps(gon.latitude, gon.longitude)
+        , 850)
         return
 
       return
