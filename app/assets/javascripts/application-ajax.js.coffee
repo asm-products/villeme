@@ -78,8 +78,8 @@
 						event.find(".day").removeClass("agended")
 
 					$("#agenda-count").text("").text(agenda_new_count)
-					event.find(".agended-by-count").text("").text(agended_by_new_count)
-					event.find(".agended-by-count").attr("data-original-title", new_title)
+					event.find(".js-agendedByCount").text("").text(agended_by_new_count)
+					event.find(".js-agendedByCount").attr("data-original-title", new_title)
 
 					return
 				return

@@ -15,10 +15,10 @@
           <div class="box-top">
             <% if agended(event) %>
                 <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip agended'><%= event.day_of_week %></span>
-                <span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="Event-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+                <span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
             <% else %>
                 <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip'><%= event.day_of_week %></span>
-                <span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="Event-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+                <span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
             <% end %>
           </div>
 
