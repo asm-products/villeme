@@ -23,7 +23,7 @@
 			window.wiselinks = new Wiselinks($('#main'), html4: false)
 
 			$(document).on 'page:loading', ->
-				$("#main").fadeOut(450)
+				$("#main").hide()
 				NProgress.start()
 				return
 
