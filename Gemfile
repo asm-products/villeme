@@ -14,7 +14,6 @@ group :development, :test do
 	gem 'rspec'
 	gem 'rspec-rails'
 	gem 'capybara'
-	# gem 'selenium-webdriver', '~> 2.45.0.dev3'
 	gem 'poltergeist'
 	gem 'shoulda-matchers'
 	gem 'factory_girl_rails', '~> 4.0'
@@ -122,6 +121,8 @@ gem 'ratyrate'
 # New relic web service
 gem 'newrelic_rpm'
 
+# Schedule functions
+gem 'whenever', require: false
 
 # Globalize
 gem 'globalize', '~> 4.0.2'

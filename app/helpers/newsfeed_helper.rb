@@ -24,5 +24,11 @@ module NewsfeedHelper
     "#{t('dictionary.show_events_number_in_neighborhood', count: count)}"
   end
 
+  def cache_key_for_events
+    count          = Event.count
+    event_max_updated_at = Event.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    agenda_max_updated_at = current_user.agendas.maximum(:updated_at).try(:utc).try(:to_s, :number)
+    "events/all-#{count}-#{event_max_updated_at}-#{agenda_max_updated_at}"
+  end
 
 end

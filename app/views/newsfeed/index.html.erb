@@ -18,18 +18,18 @@
 
 <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
   <div id="main-content" class="ps-container">
-      <div class="Grid Grid--withGutter">
+    <div class="Grid Grid--withGutter">
 
+      <%= render "alert_none_events" %>
 
-			<%= render "alert_none_events" %>
+      <% cache [cache_key_for_events, current_user] do %>
+          <%= render "events" %>
+      <% end %>
 
-			<%= render "events" %>
-			
-			<%= render "alert_create_new_event" %>
+      <%= render "alert_create_new_event" %>
 
-
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 
 
@@ -37,5 +37,5 @@
 <!-- SIDEBAR -->
 
 <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs">
-	<%= render "sidebar" %>
+  <%= render "sidebar" %>
 </div>

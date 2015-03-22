@@ -11,7 +11,7 @@ CidadeVc::Application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
 
   # Cache digest unable
   config.action_view.cache_template_loading = false
