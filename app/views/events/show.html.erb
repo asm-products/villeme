@@ -12,7 +12,7 @@
 
 <div id="main-content">
 
-  <div id="event-<%= @event.id %>" class="col-lg-7 col-md-8 single-event">
+  <div class="Event--single col-lg-7 col-md-8" id="event-<%= @event.id %>">
 
     <div class="box-top">
       <% cache [@event, "agenda"], skip_digest: true do %>
