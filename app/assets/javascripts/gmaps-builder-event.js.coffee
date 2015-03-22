@@ -157,7 +157,7 @@ $(document).on 'ready page:done', ->
 
   setTimeout(->
     gmaps_builder()
-    map = $(this).gmap3("get")
+    map = $("#single-map").gmap3("get")
     google.maps.event.trigger(map, "resize")
     Gmaps.centerTo(gon.latitude, gon.longitude)
   , 350)
