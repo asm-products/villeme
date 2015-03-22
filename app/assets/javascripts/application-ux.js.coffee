@@ -28,8 +28,10 @@
 				return
 
 			$(document).on 'ready page:done', ->
-				$("#main").fadeIn(600)
-				NProgress.done()
+        setTimeout(->
+          $("#main").show()
+          NProgress.done()
+        , 300)
 				return
 
 			return

@@ -21,16 +21,25 @@
 
 
     createMap: ->
-      $(document).on 'ready', ->
+      $(document).on 'ready page:done', ->
         if $('#main').is(':visible')
           setTimeout(->
             new Gmaps(gon.latitude, gon.longitude)
-          , 850)
+
+            map = $('#map').gmap3("get")
+            google.maps.event.trigger(map, "resize");
+            Gmaps.centerTo(gon.latitude, gon.longitude)
+          , 301)
         else
           $(document).on 'page:done', ->
             setTimeout(->
+              Gmaps.clearMarker()
               new Gmaps(gon.latitude, gon.longitude)
-            , 850)
+
+              map = $('#map').gmap3("get")
+              google.maps.event.trigger(map, "resize")
+              Gmaps.centerTo(gon.latitude, gon.longitude)
+            , 301)
             return
         return
 

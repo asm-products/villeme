@@ -101,6 +101,23 @@ class @Gmaps
 
     map = $("#map").gmap3("get")
     map.panTo latLng
+    return
+
+
+  @centerTo: (latitude, longitude) ->
+    latLng = new google.maps.LatLng(latitude, longitude)
+    map = $("#map").gmap3("get")
+
+    map.setCenter latLng
+    return
+
+
+  @clearMarker: ->
+    $('#map').gmap3(
+      clear:
+        name: "marker"
+    )
+    return
 
 
   @getLocationFromAddress: (address) ->
