@@ -6,7 +6,7 @@
   <div class="panel panel-default sidebar single-event-sidebar">
     <div id="single-map" style="height:215px"></div>
     <div class="panel-body">
-      <div class="place"><%= @event.full_address %></div>
+      <div class="place"><b><%= @event.try(:place).try(:name) %></b><br/><%= @event.full_address %></div>
     </div>
   </div> 
   <% end %>
