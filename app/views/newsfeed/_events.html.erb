@@ -22,7 +22,7 @@
             <% end %>
           </div>
 
-          <div class="panel panel-default min-height-325 shadow-animation" address="<%= event.full_address %>" latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" bus="<%= distance[:bus] %>min." car="<%= distance[:car] %>min." walk="<%= distance[:walk] %>min." bike="<%= distance[:bike] %>min." letter="<%= letter[i] %>">
+          <div class="panel panel-default min-height-325 shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-bus="<%= distance[:bus] %>min." data-car="<%= distance[:car] %>min." data-walk="<%= distance[:walk] %>min." data-bike="<%= distance[:bike] %>min." data-letter="<%= letter[i] %>">
             <div class="row">
               <div class="col-sm-12">
 

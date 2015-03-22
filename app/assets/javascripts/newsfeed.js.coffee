@@ -72,24 +72,29 @@
 
         # mostra o nome do evento no mapa
         $(".SidebarMap-address").fadeIn("fast")
-        $(".SidebarMap-address span").text($(this).attr("address"))
+        placeAndAddres = undefined
+        if $(this).attr("data-place") isnt ""
+          placeAndAddres = ("<b>" + $(this).attr("data-place") + "</b><br/>" + " " + $(this).attr("data-address"))
+        else
+          placeAndAddres = $(this).attr("data-address")
+        $(".SidebarMap-address span").html(placeAndAddres)
 
         # mostra o a distância de ônibus
-        $(".js-distanceWithWalking .data").fadeIn("fast").text($(this).attr("walk"))
+        $(".js-distanceWithWalking .data").fadeIn("fast").text($(this).attr("data-walk"))
 
         # mostra o a distância de ônibus
-        $(".js-distanceWithBike .data").fadeIn("fast").text($(this).attr("bike"))
+        $(".js-distanceWithBike .data").fadeIn("fast").text($(this).attr("data-bike"))
 
         # mostra o a distância de ônibus
-        $(".js-distanceWithBus .data").fadeIn("fast").text($(this).attr("bus"))
+        $(".js-distanceWithBus .data").fadeIn("fast").text($(this).attr("data-bus"))
 
         # mostra o a distância de ônibus
-        $(".js-distanceWithCar .data").fadeIn("fast").text($(this).attr("car"))
+        $(".js-distanceWithCar .data").fadeIn("fast").text($(this).attr("data-car"))
 
         # TODO: Use Gmap module to construct this map
         map = $('#map').gmap3("get")
         google.maps.event.trigger(map, "resize");
-        Gmaps.panTo($(this).attr("latitude"), $(this).attr("longitude"))
+        Gmaps.panTo($(this).attr("data-latitude"), $(this).attr("data-longitude"))
 
         return
 
@@ -104,7 +109,7 @@
 
         latLng = new google.maps.LatLng(gon.latitude, gon.longitude)
         marker = $("#map").gmap3(get:
-          id: $(this).attr "letter"
+          id: $(this).attr "data-letter"
         )
 
         map = $("#map").gmap3("get")
