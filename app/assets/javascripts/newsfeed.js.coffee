@@ -29,7 +29,7 @@
             map = $('#map').gmap3("get")
             google.maps.event.trigger(map, "resize");
             Gmaps.centerTo(gon.latitude, gon.longitude)
-          , 301)
+          , 350)
         else
           $(document).on 'page:done', ->
             setTimeout(->
@@ -39,7 +39,7 @@
               map = $('#map').gmap3("get")
               google.maps.event.trigger(map, "resize")
               Gmaps.centerTo(gon.latitude, gon.longitude)
-            , 301)
+            , 350)
             return
         return
 

@@ -42,7 +42,7 @@ buscaLatlong = (endereco) ->
 										latLng = results[0].geometry.location
 										latitude = results[0].geometry.location.lat()
 										longitude = results[0].geometry.location.lng()
-										map.panTo latLng 
+										map.panTo latLng
 										$("#latitude, #place-latitude").val latitude
 										$("#longitude, #place-longitude").val longitude
 										return
@@ -53,7 +53,7 @@ buscaLatlong = (endereco) ->
 				latLng = results[0].geometry.location
 				latitude = results[0].geometry.location.lat()
 				longitude = results[0].geometry.location.lng()
-				map.panTo latLng 
+				map.panTo latLng
 				$("#latitude, #place-latitude").val latitude
 				$("#longitude, #place-longitude").val longitude
 				return
@@ -82,7 +82,7 @@ gmaps_builder =->
 				scrollwheel: true
 				streetViewControl: false
 				zoomControl: true
-				zoomControlOptions: 
+				zoomControlOptions:
 					style: google.maps.ZoomControlStyle.SMALL,
 					position: google.maps.ControlPosition.RIGHT_TOP
 				styles: style
@@ -91,7 +91,7 @@ gmaps_builder =->
 			values:
 				gon.events_local_formatted
 
-			options: 
+			options:
 				draggable: false
 
 			events:
@@ -120,11 +120,11 @@ gmaps_builder =->
 								return
 
 
-						
+
 
 							# address = results[0].address_components[1].long_name
 
-							
+
 							content = (if results and results[0] then "Endereço encontrado!" else "Endereço não encontrado")
 
 							if infowindow
@@ -136,28 +136,32 @@ gmaps_builder =->
 									options:
 										content: content
 
-							
+
 
 							map = $(this).gmap3("get")
 							latLng = results[0].geometry.location
 							latitude = results[0].geometry.location.lat()
 							longitude = results[0].geometry.location.lng()
-							map.panTo latLng 
+							map.panTo latLng
 							$("#latitude, #place-latitude").val latitude
 							$("#longitude, #place-longitude").val longitude
 
 							return
-					
-					return
-		
 
-	
+					return
+
+
+
 
 $(document).on 'ready page:done', ->
 
-	setTimeout gmaps_builder 850
-	map = $(this).gmap3("get")
-	
+  setTimeout(->
+    gmaps_builder()
+    map = $(this).gmap3("get")
+    google.maps.event.trigger(map, "resize")
+    Gmaps.centerTo(gon.latitude, gon.longitude)
+  , 350)
+
 	# Botao para chamar o endereço no mapa
 	$("#btn-place-buscar-endereco").click ->
 		endereco = $("#place-endereco").val()
@@ -170,5 +174,5 @@ $(document).on 'ready page:done', ->
 		buscaLatlong endereco
 		return
 
-	
+
 	return
