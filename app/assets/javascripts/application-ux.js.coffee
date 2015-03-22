@@ -31,7 +31,7 @@
         setTimeout(->
           $("#main").show()
           NProgress.done()
-        , 300)
+        , 350)
 				return
 
 			return

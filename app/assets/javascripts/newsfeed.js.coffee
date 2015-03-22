@@ -87,6 +87,8 @@
         $(".js-distanceWithCar .data").fadeIn("fast").text($(this).attr("car"))
 
         # TODO: Use Gmap module to construct this map
+        map = $('#map').gmap3("get")
+        google.maps.event.trigger(map, "resize");
         Gmaps.panTo($(this).attr("latitude"), $(this).attr("longitude"))
 
         return
