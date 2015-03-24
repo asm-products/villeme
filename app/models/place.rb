@@ -3,7 +3,6 @@ class Place < ActiveRecord::Base
 	# Geocoder
 	extend  GeocodedByAddress
 	include GeocodedActions
-
 	geocoder_by_address
 
 	# image in the POST method

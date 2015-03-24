@@ -7,7 +7,7 @@ module Villeme
           @object = object
           @object_week_days = get_binary_from_object
           @today = get_today
-          @today_in_week = @today.strftime("%w").to_i
+          @today_in_week = @today.wday
           @tomorrow_in_week = get_tomorrow_in_week
           @test = test_env
 
@@ -90,9 +90,13 @@ module Villeme
         end
 
         def days_left_to_start
-          period =  (@today..@object.date_finish).to_a
-          next_day = period.find { |day| @object_week_days.include?(day.wday) }
-          return (next_day - @today).to_i
+          if @today == @object.date_finish
+            0
+          else
+            period =  (@today..@object.date_finish).to_a
+            next_day = period.find { |day| @object_week_days.include?(day.wday) }
+            (next_day - @today).to_i
+          end
         end
 
         def the_object_occur_in_this_week?
@@ -117,7 +121,7 @@ module Villeme
             array << day.binary
           end
 
-          array
+          return array
         end
 
         def get_day_from_week_from_binary(id)
