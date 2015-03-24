@@ -53,7 +53,7 @@
 
         <!-- Rua ou avenida -->
 
-        <%= f.input :address, placeholder: "Rua ou Avenida:", input_html: {id: "endereco", class: "form-control has-tooltip"} %>
+        <%= f.input :address, placeholder: "Rua ou Avenida:", input_html: {id: "endereco", class: "form-control has-tooltip", value: @place.try(:full_address)} %>
 
       </div>
 

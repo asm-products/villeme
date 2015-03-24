@@ -2,6 +2,7 @@ module GeocodedActions
 
 
   def copy_attributes_to(object)
+    object.address = self.address
     object.latitude = self.latitude
     object.longitude = self.longitude
     object.route = self.route
