@@ -1,8 +1,11 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
 
-  # acesso somente para admin
-  before_action :is_admin  
+  # access only logged users
+  before_action :is_logged, only: [:new, :edit, :create, :update]
+
+  # access only for admin users
+  before_action :is_admin, only: [:index, :destroy]
 
   layout "centralize-lg"
 
@@ -19,19 +22,22 @@ class PlacesController < ApplicationController
 
   # GET /places/new
   def new
-    @place = Place.new
+    @place = current_user.places.new
 
-    if user_signed_in?
-      gon.latitude = @place.latitude.blank? ? current_user.city.latitude : @place.latitude
-      gon.longitude = @place.longitude.blank? ? current_user.city.longitude : @place.longitude    
-    end  
+    gon.latitude = @place.latitude.blank? ? current_user.city.latitude : @place.latitude
+    gon.longitude = @place.longitude.blank? ? current_user.city.longitude : @place.longitude
+
   end
 
   # GET /places/1/edit
   def edit
 
-    gon.latitude = @place.latitude.blank? ? current_user.city.latitude : @place.latitude
-    gon.longitude = @place.longitude.blank? ? current_user.city.longitude : @place.longitude
+    if current_user == @place.user or current_user.admin?
+      gon.latitude = @place.latitude.blank? ? current_user.city.latitude : @place.latitude
+      gon.longitude = @place.longitude.blank? ? current_user.city.longitude : @place.longitude
+    else
+      redirect_to root_path, alert: 'You do not have permission to edit this place.'
+    end
 
   end
 
