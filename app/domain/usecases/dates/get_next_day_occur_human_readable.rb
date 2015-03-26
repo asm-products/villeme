@@ -5,11 +5,11 @@ module Villeme
 
         def get_next_day_occur_human_readable(object, test_env=false)
           @object = object
+          @test = test_env
           @object_week_days = get_binary_from_object
           @today = get_today
           @today_in_week = @today.wday
           @tomorrow_in_week = get_tomorrow_in_week
-          @test = test_env
 
           if today_is_between_object_period_occur?
             if the_object_occur_in_this_week?
