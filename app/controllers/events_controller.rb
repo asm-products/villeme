@@ -92,7 +92,7 @@ class EventsController < ApplicationController
       place = Place.find_by name: params[:event][:place_attributes][:name]
 
       if place.nil?
-        place = Place.new name: params[:event][:place_attributes][:name]
+        place = current_user.place.new(name: params[:event][:place_attributes][:name])
         @event.copy_attributes_to place
         @event.place = place
       else

@@ -40,7 +40,7 @@ class PlacesController < ApplicationController
   def create
 
     # Cria o lugar com os parametros enviados pelo formulario
-    @place = Place.new(place_params)
+    @place = current_user.places.new(place_params)
 
     # Busca o 'id' do bairro selecionado no mapa
     @neighborhood = Neighborhood.find_by(name: place_params[:neighborhood])

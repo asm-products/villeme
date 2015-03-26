@@ -59,6 +59,7 @@ class User < ActiveRecord::Base
   belongs_to :persona
     delegate :name, to: :persona, prefix: true
   has_one :notify
+  has_many :places
   has_many :events
   has_many :feedbacks
   has_many :tips
