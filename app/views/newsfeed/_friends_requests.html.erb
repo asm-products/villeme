@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
 
 	<% if current_user.requested_friendships.blank? %>
-		<ul><li class="centralize font-14 p-15"><span>Sem notificações no momento</span></li></ul>
+		<ul><li class="centralize font-14 u-padding-15"><span>Sem notificações no momento</span></li></ul>
 	<% else %>
 		<ul>
 			<% current_user.requested_friendships.each do |request| %>
@@ -15,5 +15,5 @@
 	<% end %>
 
 <% else %>
-	<ul><li class="centralize font-14 p-15"><span>Você precisa estar logado para ver as notificações.</span></li></ul>
+	<ul><li class="centralize font-14 u-padding-15"><span>Você precisa estar logado para ver as notificações.</span></li></ul>
 <% end %>

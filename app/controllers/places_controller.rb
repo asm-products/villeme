@@ -18,6 +18,7 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
+    @events = @place.events
   end
 
   # GET /places/new

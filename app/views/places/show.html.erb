@@ -1,23 +1,132 @@
-<%- model_class = Place -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<%= stylesheet_link_tag 'suit-components-grid/index.css', 'suit-utils-size/index.css', 'suit-utils-position/index.css' %>
+<%= stylesheet_link_tag 'modules/Place--single', 'modules/Event' %>
+
+<div class="panel">
+  <div class="panel-body">
+
+    <div class="Place--single">
+
+      <!-- =Name -->
+
+      <div class="Place--single-name">
+        <%= @place.name %>
+      </div>
+
+
+      <!-- =Description -->
+
+      <div class="Place--single-description u-margin-15">
+        <%= @place.description[0..300].html_safe %> ...
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @place.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @place.description %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:neighborhood_id) %>:</strong></dt>
-  <dd><%= @place.neighborhood_id %></dd>
-</dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              places_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_place_path(@place), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              place_path(@place),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<!-- =Address -->
+
+<div class="panel">
+  <div class="panel-body">
+    <div class="Place--single-address">
+      <%= @place.get_address %>
+    </div>
+  </div>
+</div>
+
+
+<!-- =Events -->
+
+
+<div class="Place--single-events">
+
+  <div class="Grid Grid--withGutter">
+    <% letter = ('A'..'Z').to_a %>
+    <% i = 0 %>
+
+
+    <% @events.each do |event| %>
+
+        <% i += 1 %>
+
+        <!-- pega a distância entre o evento e o user -->
+        <% distance = current_user.distance_until(event, :minutes) %>
+
+        <% cache [current_user, event, event.agendas] do %>
+            <div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
+
+              <div class="box-top">
+                <% if agended(event) %>
+                    <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip agended'><%= event.day_of_week %></span>
+                    <span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+                <% else %>
+                    <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip'><%= event.day_of_week %></span>
+                    <span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+                <% end %>
+              </div>
+
+              <div class="panel panel-default min-height-325 shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-bus="<%= distance[:bus] %>min." data-car="<%= distance[:car] %>min." data-walk="<%= distance[:walk] %>min." data-bike="<%= distance[:bike] %>min." data-letter="<%= letter[i] %>">
+                <div class="row">
+                  <div class="col-sm-12">
+
+                    <div class="details-box">
+
+                      <div class="categorias">
+                        <%= render "newsfeed/events/strong_category", event: event %>
+                      </div>
+
+                    </div>
+
+                    <%= link_to event_path(event), data: { push: true } do %>
+                        <div class="image-box" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
+                    <% end %>
+
+
+                    <div class="caption">
+
+                      <span class="sub-cat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
+
+                      <h2 class="title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
+                      <span class="description"><%= strip_tags event.description_with_limit %></span>
+
+                      <div class="infos">
+                    <span class="preco <%= cost(event.cost) == 'Gratuito' ? 'green-font' : nil %>">
+                        <%= number_to_currency(event.price, locale: I18n.locale) %>
+                    </span>
+
+                    <span class="hora">
+                        <% if event.hour_start_first %>
+                            <%= event.hour_start_first.strftime("%H:%M") << "h" %>
+                        <% end %>
+                    </span>
+
+                    <span class="friends pull-right">
+                        <% current_user.which_friends_will_this_event?(event).each do |friend| %>
+                            <i class="has-tooltip avatar-icon" title="<%= friend.first_name %> agendou o evento"><%= get_avatar(friend, "22", "22") %></i>
+                        <% end %>
+                    </span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+
+
+        <% if i == 2 and current_user.friends_from_facebook %>
+            <div class="Grid-cell u-size4of12  height-325 grid" >
+              <% cache [current_user, "friends_ranking"], skip_digest: true do %>
+                  <%= render "newsfeed/friends_ranking" %>
+              <% end %>
+            </div>
+        <% end %>
+
+
+
+
+    <% end %>
+  </div>
+</div>

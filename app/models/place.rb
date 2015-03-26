@@ -19,4 +19,12 @@ class Place < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :price
 
+	def get_address
+		if address.blank?
+			self.full_address
+		else
+			self.address
+		end
+	end
+
 end
