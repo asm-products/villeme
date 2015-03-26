@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326163144) do
+ActiveRecord::Schema.define(version: 20150326172537) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -370,6 +370,7 @@ ActiveRecord::Schema.define(version: 20150326163144) do
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
     t.integer  "user_id"
+    t.boolean  "verified",           default: false
   end
 
   add_index "places", ["neighborhood_id"], name: "index_places_on_neighborhood_id"
