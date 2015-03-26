@@ -21,6 +21,6 @@
 
 require_relative '../app/domain/schedules/clean_cache_fragments_daily'
 
-every 1.days do
-  runner Schedule::CleanCacheFragmentDaily.initialize
+every 1.days, at: '0:01 am' do
+  runner Schedule::CleanCacheFragmentDaily.initialize, environment: 'production'
 end
