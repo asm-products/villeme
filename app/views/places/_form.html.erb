@@ -2,7 +2,7 @@
 
 <!-- Construtor do mapa -->
 
-<%= javascript 'gmaps-builder' %>
+<%= javascript_include_tag 'modules/gmap/Gmap' %>
 
 
 <!-- Formulario de criação de lugar -->
@@ -33,6 +33,14 @@
     </div>
 
 
+    <!-- Cover image -->
+    <div class="form-group">
+      <label class="control-label col-lg-3">
+        Imagem
+      </label>
+      <%= f.file_field :cover %>
+    </div>
+
     <!-- Categorias (checkboxes) -->
 
     <div class="form-group">
@@ -53,7 +61,7 @@
 
         <!-- Rua ou avenida -->
 
-        <%= f.input :address, placeholder: "Rua ou Avenida:", input_html: {id: "endereco", class: "form-control has-tooltip", value: @place.try(:full_address)} %>
+        <%= f.input :address, placeholder: "Rua ou Avenida:", input_html: {id: "endereco", class: "form-control has-tooltip", value: @place.try(:address)} %>
 
       </div>
 
@@ -67,7 +75,7 @@
       <!-- Mapa (gmap3/googlemaps) -->
     
       <div class="col-lg-9 pull-right">
-        <div id="map" class="place-inputs address-inputs"></div>
+        <div class="Gmap-map"></div>
       </div>     
 
     </div>
