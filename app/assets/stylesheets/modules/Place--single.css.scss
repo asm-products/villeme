@@ -1,3 +1,5 @@
+@import 'variables';
+
 .Place--single{
 
   &-name{
@@ -6,12 +8,35 @@
   }
 
   &-description{
+    font-size: 12px;
+    color: $font-color-default;
     line-height: 1.3em;
     margin: 15px 0 15px 0;
   }
 
   &-cover{
 
+  }
+
+  &-address{
+    font-size: 12px;
+    color: $font-color-default;
+    line-height: 1.3em;
+    margin: 6px 0 6px 0;
+  }
+
+  &-phone{
+    font-size: 12px;
+    color: $font-color-default;
+    line-height: 1.3em;
+    margin: 6px 0 6px 0;
+  }
+
+  &-site{
+    font-size: 12px;
+    color: $font-color-default;
+    line-height: 1.3em;
+    margin: 6px 0 6px 0;
   }
 
 }
