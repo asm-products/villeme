@@ -166,8 +166,6 @@ class EventsController < ApplicationController
 
   def schedule
 
-    expire_fragment [@event, "agenda"]
-
     if agended(@event)
       current_user.agenda_events.delete(@event)
       render json: {agended: false, event: "event-#{@event.id}", count: current_user.agenda_events.count, agended_by_count: @event.agended_by_count[:count], new_title: @event.agended_by_count[:text]}

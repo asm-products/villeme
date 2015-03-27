@@ -1,4 +1,6 @@
 
+<% cache [current_user, cache_key_for_events] do %>
+
 <!-- HEAD -->
 
 <%= stylesheet_link_tag 'suit-components-grid/index.css', 'suit-utils-size/index.css', 'suit-utils-position/index.css' %>
@@ -22,9 +24,7 @@
 
       <%= render "alert_none_events" %>
 
-      <% cache [cache_key_for_events, current_user] do %>
-          <%= render "events" %>
-      <% end %>
+      <%= render "events" %>
 
       <%= render "alert_create_new_event" %>
 
@@ -39,3 +39,5 @@
 <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs">
   <%= render "sidebar" %>
 </div>
+
+<% end %>
