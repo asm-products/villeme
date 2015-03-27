@@ -19,6 +19,14 @@ class Place < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :price
 
+	# validates
+	validates :name, presence: true, uniqueness: true, length: 0..140
+	validates :description, allow_blank: true, length: 10..5000
+	validates :phone, allow_blank: true, length: 0..50
+	validates :site, allow_blank: true, length: 0..250
+
+
+
 	def get_address
 		if address.blank?
 			self.full_address
