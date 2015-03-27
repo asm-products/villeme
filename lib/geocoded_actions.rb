@@ -60,7 +60,7 @@ module GeocodedActions
 
 
 
-  def distance_until(event, format)
+  def distance_until(event, format = :km)
 
     if has_geocoded?(event)
       distance = calculate_distance(event)
@@ -95,7 +95,12 @@ module GeocodedActions
   end
 
   def calculate_distance_for_walk(distance)
-    (distance_in_minutes_calculate(distance, KM_HOUR_WALK) + (distance / 100 * 5)).round.to_s
+    result = (distance_in_minutes_calculate(distance, KM_HOUR_WALK) + (distance / 100 * 5)).round
+    if result > 60
+      "#{result.to_f / 60.to_f}h"
+    else
+      "#{result}min"
+    end
   end
 
   def calculate_distance_for_car(distance)
