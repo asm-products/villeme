@@ -16,6 +16,7 @@
       Newsfeed.userEvent()
       Newsfeed.createMap()
       Newsfeed.fixingMapOnScroll()
+      Newsfeed.sidebarLeftLinksAnimation()
       return
 
 
@@ -167,6 +168,28 @@
           $('.js-FixingMapOnScroll').css({top: scroll})
 
         position = scroll
+        return
+
+      return
+
+
+
+    sidebarLeftLinksAnimation: ->
+      # when user click on links of sidebar
+      $(".sidebar-left li").click ->
+        $(".sidebar-left li").each ->
+          $(this).removeClass('active')
+          return
+
+        $(this).addClass('active')
+        return
+
+
+      # when user click on events
+      $(".Event").click ->
+        $(".sidebar-left li").each ->
+          $(this).removeClass('active')
+          return
         return
 
       return
