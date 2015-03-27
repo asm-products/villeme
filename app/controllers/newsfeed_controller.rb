@@ -26,7 +26,7 @@ class NewsfeedController < ApplicationController
     	@events = Event.where(city_name: current_user.city_name).upcoming
 
       @number_of_events = @events.count
-      @message_for_none_events = "Não há eventos no momento em #{@city.name}."
+      @message_for_none_events = "Não há eventos no momento em #{@city.try(:name)}."
       @feedback = Feedback.new
 
       # user location
