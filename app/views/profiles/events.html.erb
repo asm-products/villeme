@@ -1,53 +1,53 @@
+<div class="panel">
+
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h1>Eventos criados por <%= current_user.first_name %> <small>(você)</small> <span class="badge pull-right"><%= current_user.events.count %></span></h1>
+    </div>
+  </div>
+
+  <div class="panel-body">
+
+    <table id="table" class="table">
+
+      <thead>
+      <tr>
+        <th>Nome do evento</th>
+        <th>Período</th>
+        <th>Status</th>
+        <th>Ações</th>
+
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @events.each do |event| %>
+          <tr>
+            <td><%= link_to event.name, event, if: event.name %></td>
+            <td><%= "#{event.date_start.strftime('%d/%m') if event.date_start} até #{event.date_finish.strftime('%d/%m/%Y') if event.date_finish}" %></td>
+            <td><%= event.moderate == 1 ? 'Aprovado' : 'Em moderação' %></td>
+            <td>
+              <%= button_to 'Editar',
+                            edit_event_path(event), method: :get, :class => 'btn btn-default' %>
+
+              <%= button_to 'Excluir',
+                            event_path(event),
+                            method: :delete,
+                            data: { anchor: "tr", confirm: 'Você tem certeza que deseja excluir o evento?'},
+                            class: 'btn btn-default excluir',
+                            remote: true %>
 
 
-		<div class="panel-heading">
-			<div class="panel-title">
-				<h1>Eventos criados por <%= current_user.first_name %> <small>(você)</small> <span class="badge pull-right"><%= current_user.events.count %></span></h1>
-			</div>
-		</div>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 
-		<div class="panel-body">
 
-			<table id="table" class="table">
+    <%= link_to 'Criar evento',
+                new_event_path,
+                :class => 'btn btn-primary pull-right' %>
+  </div>
 
-			  <thead>
-			    <tr>
-			      <th>Nome do evento</th>
-			      <th>Período</th>
-			      <th>Status</th>
-			      <th>Ações</th>
-			      
-			    </tr>
-			  </thead>
-
-			  <tbody>
-			    <% @events.each do |event| %>
-			      <tr>
-			        <td><%= link_to event.name, event, if: event.name %></td>
-			        <td><%= "#{event.date_start.strftime('%d/%m') if event.date_start} até #{event.date_finish.strftime('%d/%m/%Y') if event.date_finish}" %></td>
-			        <td><%= event.moderate == 1 ? 'Aprovado' : 'Em moderação' %></td>
-			        <td>
-			          <%= button_to 'Editar',
-			                      edit_event_path(event), method: :get, :class => 'btn btn-default' %>
-
-			          <%= button_to 'Excluir',
-			                      event_path(event),
-			                      method: :delete,
-			                      data: { anchor: "tr", confirm: 'Você tem certeza que deseja excluir o evento?'},
-			                      class: 'btn btn-default excluir',
-			                      remote: true %>
-
-			 
-			        </td>
-			      </tr>
-			    <% end %>
-			  </tbody>
-			</table>
-
-		
-			<%= link_to 'Criar evento',
-			            new_event_path,
-			            :class => 'btn btn-primary pull-right' %>
-		</div>
-		
-	
+</div>
