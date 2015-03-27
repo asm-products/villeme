@@ -77,7 +77,7 @@
 
                     </div>
 
-                    <%= link_to event_path(event), data: { push: true } do %>
+                    <%= link_to event_path(event) do %>
                         <div class="image-box" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
                     <% end %>
 
@@ -113,7 +113,7 @@
               </div>
             </div>
         <% end %>
-        
+
 
 
     <% end %>
