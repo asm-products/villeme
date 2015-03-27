@@ -27,6 +27,7 @@ class NewsfeedController < ApplicationController
     end
 
     @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em #{@city.name}."
     @feedback = Feedback.new
 
     # geolocalização do usuario
@@ -45,6 +46,7 @@ class NewsfeedController < ApplicationController
     @number_of_events = @events.count
 
     @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em #{@city.name}."
     @feedback = Feedback.new
 
     # geolocalização do usuario
@@ -62,6 +64,7 @@ class NewsfeedController < ApplicationController
     @neighborhood = Neighborhood.find_by(slug: params[:neighborhood])
     @events = Event.where(city_name: @city.name, neighborhood_name: @neighborhood.name).upcoming
     @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em #{@neighborhood.name}."
     render :index
   end
 
@@ -69,6 +72,7 @@ class NewsfeedController < ApplicationController
     @category = Category.friendly.find params[:category]
     @events = @category.events.upcoming
     @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em #{@category.name}."
   end
 
   def mypersona
@@ -76,7 +80,8 @@ class NewsfeedController < ApplicationController
     # filtra eventos por persona
     @persona = Persona.find current_user.persona
     @events = @persona.events.upcoming     
-    @number_of_events = @events.count 
+    @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em #{@persona.name}."
 
     # geolocalização do usuario
     gon.latitude = current_user.latitude
@@ -96,6 +101,7 @@ class NewsfeedController < ApplicationController
     @neighborhood = Neighborhood.friendly.find current_user.neighborhood.id
     @events = @neighborhood.events.upcoming
     @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em #{@neighborhood.name}."
 
     # geolocalização do usuario
     gon.latitude = current_user.latitude
@@ -115,6 +121,7 @@ class NewsfeedController < ApplicationController
     # filtra eventos por bairro
     @events = current_user.agenda_events.upcoming
     @number_of_events = @events.count
+    @message_for_none_events = "Não há eventos no momento em sua agenda."
 
     # geolocalização do usuario
     gon.latitude = current_user.latitude
