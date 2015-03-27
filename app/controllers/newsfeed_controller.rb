@@ -24,19 +24,18 @@ class NewsfeedController < ApplicationController
     else
       @city = City.find_by(name: current_user.city_name)
     	@events = Event.where(city_name: current_user.city_name).upcoming
+
+      @number_of_events = @events.count
+      @message_for_none_events = "Não há eventos no momento em #{@city.name}."
+      @feedback = Feedback.new
+
+      # user location
+      gon.latitude = current_user.latitude
+      gon.longitude = current_user.longitude
+
+      # array with places for map navigator on sidebar
+      gon.events_local_formatted = format_for_map_this(@events)
     end
-
-    @number_of_events = @events.count
-    @message_for_none_events = "Não há eventos no momento em #{@city.name}."
-    @feedback = Feedback.new
-
-    # geolocalização do usuario
-    gon.latitude = current_user.latitude
-    gon.longitude = current_user.longitude
-
-    # array com os lugares para o mapa
-    gon.events_local_formatted = format_for_map_this(@events)
-
 
   end
 
@@ -49,11 +48,11 @@ class NewsfeedController < ApplicationController
     @message_for_none_events = "Não há eventos no momento em #{@city.name}."
     @feedback = Feedback.new
 
-    # geolocalização do usuario
+    # user location
     gon.latitude = current_user.latitude
     gon.longitude = current_user.longitude
 
-    # array com os lugares para o mapa
+    # array with places for map navigator on sidebar
     gon.events_local_formatted = format_for_map_this(@events)
 
     render :index
@@ -77,17 +76,17 @@ class NewsfeedController < ApplicationController
 
   def mypersona
 
-    # filtra eventos por persona
+    # filter events from user persona
     @persona = Persona.find current_user.persona
     @events = @persona.events.upcoming     
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em #{@persona.name}."
 
-    # geolocalização do usuario
+    # user location
     gon.latitude = current_user.latitude
     gon.longitude = current_user.longitude
 
-    # array com os lugares para o mapa
+    # array with places for map navigator on sidebar
     gon.events_local_formatted = format_for_map_this(@events)
 
     render 'index'
@@ -97,17 +96,17 @@ class NewsfeedController < ApplicationController
 
   def myneighborhood
 
-    # filtra eventos por bairro
+    # filter events from user neighborhood
     @neighborhood = Neighborhood.friendly.find current_user.neighborhood.id
     @events = @neighborhood.events.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em #{@neighborhood.name}."
 
-    # geolocalização do usuario
+    # user location
     gon.latitude = current_user.latitude
     gon.longitude = current_user.longitude
 
-    # array com os lugares para o mapa
+    # array with places for map navigator on sidebar
     gon.events_local_formatted = format_for_map_this(@events)
 
     render 'index'
@@ -118,16 +117,16 @@ class NewsfeedController < ApplicationController
 
   def myagenda
 
-    # filtra eventos por bairro
+    # filter events from user agenda
     @events = current_user.agenda_events.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em sua agenda."
 
-    # geolocalização do usuario
+    # user location
     gon.latitude = current_user.latitude
     gon.longitude = current_user.longitude
 
-    # array com os lugares para o mapa
+    # array with places for map navigator on sidebar
     gon.events_local_formatted = format_for_map_this(@events)
 
     render 'index'
