@@ -16,7 +16,7 @@
       <!-- =Description -->
 
       <div class="Place--single-description u-margin-15">
-        <%= @place.description[0..300].html_safe %> ...
+        <%= @place.description[0..300].html_safe unless @place.description.nil? %> ...
       </div>
 
     </div>
