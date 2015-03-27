@@ -97,7 +97,7 @@ module GeocodedActions
   def calculate_distance_for_walk(distance)
     result = (distance_in_minutes_calculate(distance, KM_HOUR_WALK) + (distance / 100 * 5)).round
     if result > 60
-      "#{result.to_f / 60.to_f}h"
+      "#{(result.to_f / 60.to_f).round(2)}h"
     else
       "#{result}min"
     end
