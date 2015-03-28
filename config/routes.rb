@@ -48,7 +48,7 @@ CidadeVc::Application.routes.draw do
     get 'mypersona/', to: 'newsfeed#mypersona', as: :my_persona_events
 
     # /category/:category -> filtra os eventos por categoria
-    get 'category/:category/', to: 'newsfeed#index', as: :newsfeed_category
+    get 'category/:category/', to: 'newsfeed#category', as: :newsfeed_category
 
     # /myneighborhood -> filtra os eventos por bairro para o current_user
     get 'myneighborhood/', to: 'newsfeed#myneighborhood', as: :my_neighborhood_events

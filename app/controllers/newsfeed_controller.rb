@@ -72,6 +72,7 @@ class NewsfeedController < ApplicationController
     @events = @category.events.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em #{@category.name}."
+    render :index
   end
 
   def mypersona
