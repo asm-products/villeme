@@ -49,7 +49,7 @@ FactoryGirl.define do
     date_start Date.parse('2014-11-17')
     date_finish Date.parse('2014-11-28')
     hour_start_first Faker::Time.between(Date.today, Date.tomorrow, :all)
-    place
+    place_id 1
     persona
     image_file_name 'test.jpg'
     image_content_type 'image/jpg'
@@ -57,6 +57,7 @@ FactoryGirl.define do
   end
 
   factory :place do
+    sequence(:id)
     name "New York State Museum"
     neighborhood_name "Park South"
     city_name "Albany"
