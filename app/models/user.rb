@@ -13,7 +13,25 @@ class User < ActiveRecord::Base
   require_relative '../domain/policies/user/account_complete'
 
 
-  after_validation :geocode_user, unless: 'address.nil?'
+  # Validations
+
+  def password_required?
+    if guest?
+      false
+    else
+      !persisted? || !password.nil? || !password_confirmation.nil?
+    end
+  end
+
+  def email_required?
+    if guest?
+      false
+    else
+      true
+    end
+  end
+
+  after_validation :geocode_user, unless: 'address.nil?' or :guest?
 
   # Gamification
   has_merit
@@ -224,6 +242,10 @@ class User < ActiveRecord::Base
 
   def geocode_user
     Villeme::UseCases::GeocodeUser.new(self).geocoded_by_address(self.address)
+  end
+
+  def new_guest
+    User.new(guest: true)
   end
 
 end

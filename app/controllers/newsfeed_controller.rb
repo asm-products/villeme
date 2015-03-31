@@ -149,6 +149,8 @@ class NewsfeedController < ApplicationController
   end
 
   def render_newsfeed_for_guest_user
+    @current_user = User.new_guest
+
     @city = City.find_by(slug: params[:city])
     @events = Event.where(city_name: @city.name).upcoming
     @number_of_events = @events.count

@@ -318,7 +318,7 @@
                 <li> 
                   <%= "<span class='number body-grey font-18'> #{number += 1} </span> ".html_safe unless ativado %>
                   <%= "<span class='number body-grey font-18'><span class='glyphicon glyphicon-ok' style='float: left; padding: 5px;'></span></span> ".html_safe if ativado %>
-                  <span class='city font-22'><%= city.name %> <small class="opacity-50"><%= city.state_name %> - <%= city.country_code %></small></span>
+                  <span class='city font-22'><%= link_to city.name, newsfeed_city_path(city) %> <small class="opacity-50"><%= city.state_name %> - <%= city.country_code %></small></span>
                   <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='#{t('welcome.tooltip.i_want_invite_for')} #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want')}</span> </div>".html_safe unless ativado %>
                   <%= "<div> <span class='pull-right has-modal has-tooltip rounded font-16 green-btn' title='#{t('welcome.tooltip.i_want_invite_for')} #{city.name}' data-city='#{city.id}'>#{t('welcome.want_invite.i_want_to')}</span> </div>".html_safe if ativado %>
                   <span class="people font-18"><%= contador %></span>
