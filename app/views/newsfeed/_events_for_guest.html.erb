@@ -1,0 +1,78 @@
+<% letter = ('A'..'Z').to_a %>
+<% i = 0 %>
+
+
+<% @events.each do |event| %>
+
+    <% i += 1 %>
+
+    <% cache [current_user, event, event.agendas] do %>
+        <div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
+
+          <div class="box-top">
+            <% if agended(event) %>
+                <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip agended'><%= event.day_of_week %></span>
+                <span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+            <% else %>
+                <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip'><%= event.day_of_week %></span>
+                <span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+            <% end %>
+          </div>
+
+          <div class="panel panel-default min-height-325 shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-letter="<%= letter[i] %>">
+            <div class="row">
+              <div class="col-sm-12">
+
+                <div class="details-box">
+
+                  <div class="categorias">
+                    <%= render "newsfeed/events/strong_category", event: event %>
+                  </div>
+
+                </div>
+
+                <%= link_to event_path(event), data: { push: true } do %>
+                    <div class="image-box" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
+                <% end %>
+
+
+                <div class="caption">
+
+                  <span class="sub-cat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
+
+                  <h2 class="title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
+                  <span class="description"><%= strip_tags event.description_with_limit %></span>
+
+                  <div class="infos">
+                    <span class="preco <%= cost(event.cost) == 'Gratuito' ? 'green-font' : nil %>">
+                        <%= number_to_currency(event.price, locale: I18n.locale) %>
+                    </span>
+
+                    <span class="hora">
+                        <% if event.hour_start_first %>
+                            <%= event.hour_start_first.strftime("%H:%M") << "h" %>
+                        <% end %>
+                    </span>
+
+                    <span class="friends pull-right">
+                        Faça login para ver seus amigos que vão no evento.
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+
+
+
+    <% if i == 2  %>
+
+    <% end %>
+
+
+
+
+<% end %>

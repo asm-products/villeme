@@ -1,43 +1,47 @@
 
 <% cache [current_user, cache_key_for_events, params[:action]] do %>
 
-<!-- HEAD -->
+    <!-- HEAD -->
 
-<%= stylesheet_link_tag 'suit-components-grid/index.css', 'suit-utils-size/index.css', 'suit-utils-position/index.css' %>
-<%= stylesheet_link_tag 'modules/Event', 'modules/AlertCreateEvent' %>
-<%= stylesheet_link_tag params[:controller] %>
+    <%= stylesheet_link_tag 'suit-components-grid/index.css', 'suit-utils-size/index.css', 'suit-utils-position/index.css' %>
+    <%= stylesheet_link_tag 'modules/Event', 'modules/AlertCreateEvent' %>
+    <%= stylesheet_link_tag params[:controller] %>
 
-<%= include_gon %>
-<%= javascript_include_tag 'gmaps-builder-user' %>
-<%= javascript_include_tag params[:controller] %>
+    <%= include_gon %>
+    <%= javascript_include_tag 'gmaps-builder-user' %>
+    <%= javascript_include_tag params[:controller] %>
 
 
-<!-- MAIN -->
+    <!-- MAIN -->
 
-<div class="col-lg-12">
-  <h3><%= @city.name unless @city.nil? %></h3>
-</div>
-
-<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-  <div id="main-content" class="ps-container">
-    <div class="Grid Grid--withGutter">
-
-      <%= render "alert_none_events" %>
-
-      <%= render "events" %>
-
-      <%= render "alert_create_new_event" %>
-
+    <div class="col-lg-12">
+      <h3><%= @city.name unless @city.nil? %></h3>
     </div>
-  </div>
-</div>
+
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+      <div id="main-content" class="ps-container">
+        <div class="Grid Grid--withGutter">
+
+          <%= render "alert_none_events" %>
+
+          <% if current_user %>
+              <%= render "events" %>
+          <% else %>
+              <%= render "events_for_guest" %>
+          <% end %>
+
+          <%= render "alert_create_new_event" %>
+
+        </div>
+      </div>
+    </div>
 
 
 
-<!-- SIDEBAR -->
+    <!-- SIDEBAR -->
 
-<div class="col-lg-3 col-md-3 col-sm-4 hidden-xs">
-  <%= render "sidebar" %>
-</div>
+    <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs">
+      <%= render "sidebar" %>
+    </div>
 
 <% end %>
