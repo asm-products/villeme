@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
 
   rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
     session[:guest_user_id] = nil
-    guest_user if with_retry
+    guest_user(false) if with_retry
   end
 
   private
