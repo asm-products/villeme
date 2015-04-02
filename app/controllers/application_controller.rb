@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
 
   def create_guest_user
     user = User.new(guest: true, email: "guest_#{Time.now.to_i}#{rand(100)}@example.com")
-    user.city = City.friendly.find(params[:city])
+    user.city = params[:city].blank? ? City.where(launch: true).first : City.friendly.find(params[:city])
     session[:guest_user_id] = user.id
 
     if user.save
