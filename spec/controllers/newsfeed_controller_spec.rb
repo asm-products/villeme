@@ -30,13 +30,15 @@ describe NewsfeedController do
 
     context 'current_user logged in and NOT invited' do
       before(:each) do
-        set_current_user_nil
+        @user = User.new
+        allow(controller).to receive(:current_user).and_return(@user)
         allow(@user).to receive(:city_slug).and_return(:albany)
+        allow(@user).to receive(:invited).and_return(false)
       end
       it 'should be block access for user' do
         get :index, city: @user.city_slug, locale: :en
 
-        expect(response).to redirect_to(welcome_path)
+        expect(response).to redirect_to(newsfeed_city_path(:albany))
       end
     end
 

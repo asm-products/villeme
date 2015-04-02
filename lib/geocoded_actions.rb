@@ -35,6 +35,10 @@ module GeocodedActions
     end
   end
 
+  def city=(city)
+    self.city_name = city.name
+  end
+
 
   def state
     State.find_by(name: state_name)

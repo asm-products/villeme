@@ -1,60 +1,65 @@
 
-  <%= render 'feedbacks/modal'  %>  
+<%= render 'feedbacks/modal'  %>
 
-  <div class="header-fixed">
+<div class="header-fixed">
 
-    <div class="row">
+  <div class="row">
 
-      <div class="col-lg-2 col-md-3 col-sm-3 col-xs-2">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-2">
 
-        <!-- Logo -->
-        <div class="logo">
-          <%= link_to root_path do %>
-            <%= image_tag "logo.png", title: "Vivêncie a Cidade", alt: "logo cidadevocê" %>
-          <% end %>
-          <!-- <i class="has-tooltip" title="<%# current_user.city.name %>" data-placement="right"><%# current_user.city.label.upcase %></i> -->
-        </div>        
-
-      </div>
-
-
-      <div class="col-lg-7 col-md-6 col-sm-5 col-xs-4">
-
-        <!-- Notificações -->
-        <div class="bell p-20-0 pull-right">
-          <%= render 'layouts/header/bell' %>
-        </div>
-
-        <!-- Botões -->
-        <ul class="links hidden-xs">
-          <% if user_signed_in? %>
-            <li><%= link_to "Início", root_path, class: "page-selected" %></li>
-            <li><%= link_to 'Criar evento', new_event_path %></li>
-          <% else %>
-            <li><%= link_to "Início", root_path, class: "page-selected" %></li>
-            <li><%= link_to "Criar evento", '#', class: 'unlogged' %></li>
-          <% end %>
-
-        </ul>
-
-
-
-      </div> 
-
-
-      <!-- Links e Avatar (dropdown) -->
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="padding: 0 0 0 30px">
-
-
-        <!-- Avatar -->
-        <% if GAMIFICATION  %>
-        <%= render 'layouts/header/avatar' %>
+      <!-- Logo -->
+      <div class="logo">
+        <% if current_or_guest_user.guest? %>
+            <%= link_to welcome_path do %>
+                <%= image_tag "logo.png", title: "Vivêncie a Cidade", alt: "logo cidadevocê" %>
+            <% end %>
+        <% else %>
+            <%= link_to newsfeed_path do %>
+                <%= image_tag "logo.png", title: "Vivêncie a Cidade", alt: "logo cidadevocê" %>
+            <% end %>
         <% end %>
-
       </div>
 
     </div>
 
-    <div class="header-shadow"></div>
+
+    <div class="col-lg-7 col-md-6 col-sm-5 col-xs-4">
+
+      <!-- Notificações -->
+      <div class="bell p-20-0 pull-right">
+        <%= render 'layouts/header/bell' %>
+      </div>
+
+      <!-- Botões -->
+      <ul class="links hidden-xs">
+        <% if user_signed_in? %>
+            <li><%= link_to "Início", root_path, class: "page-selected" %></li>
+            <li><%= link_to 'Criar evento', new_event_path %></li>
+        <% else %>
+            <li><%= link_to "Início", root_path, class: "page-selected" %></li>
+            <li><%= link_to "Criar evento", '#', class: 'unlogged' %></li>
+        <% end %>
+
+      </ul>
+
+
+
+    </div>
+
+
+    <!-- Links e Avatar (dropdown) -->
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6" style="padding: 0 0 0 30px">
+
+
+      <!-- Avatar -->
+      <% if GAMIFICATION  %>
+          <%= render 'layouts/header/avatar' %>
+      <% end %>
+
+    </div>
 
   </div>
+
+  <div class="header-shadow"></div>
+
+</div>

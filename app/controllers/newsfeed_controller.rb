@@ -1,13 +1,13 @@
 class NewsfeedController < ApplicationController
 
   # verifica se o user esta logado
-  before_action :is_logged, except: :city
+  before_action :is_logged, except: [:index, :city]
 
   # verifica se a conta esta completa
-  before_action :is_invited, except: :city
+  before_action :is_invited, except: [:index, :city]
 
   # verifica se a conta esta completa
-  before_action :is_complete, except: :city
+  before_action :is_complete, except: [:index, :city]
 
   include Gmaps
 
@@ -19,31 +19,35 @@ class NewsfeedController < ApplicationController
 
   def index
 
-    if current_user.nil?
-      render_newsfeed_for_guest_user
-    elsif current_user.city_slug
-      redirect_to newsfeed_city_path(current_user.city_slug) and return
+    if current_or_guest_user.nil?
+      redirect_to welcome_path
+    elsif current_or_guest_user.city_slug
+      redirect_to newsfeed_city_path(current_or_guest_user.city_slug) and return
     else
-      @city = City.find_by(name: current_user.city_name)
-      @events = Event.where(city_name: current_user.city_name).upcoming
+      @city = City.find_by(name: current_or_guest_user.city_name)
+      @events = Event.where(city_name: current_or_guest_user.city_name).upcoming
 
       @number_of_events = @events.count
       @message_for_none_events = "Não há eventos no momento em #{@city.try(:name)}."
       @feedback = Feedback.new
 
       # user location
-      gon.latitude = current_user.latitude
-      gon.longitude = current_user.longitude
+      gon.latitude = current_or_guest_user.latitude
+      gon.longitude = current_or_guest_user.longitude
 
       # array with places for map navigator on sidebar
       gon.events_local_formatted = format_for_map_this(@events)
+
+      render :index
     end
 
   end
 
   def city
 
-    if current_user
+    if current_or_guest_user.guest?
+      render_newsfeed_for_guest_user
+    else
       @city = City.find_by(slug: params[:city])
       @events = Event.where(city_name: @city.name).upcoming
 
@@ -52,15 +56,13 @@ class NewsfeedController < ApplicationController
       @feedback = Feedback.new
 
       # user location
-      gon.latitude = current_user.latitude
-      gon.longitude = current_user.longitude
+      gon.latitude = current_or_guest_user.latitude
+      gon.longitude = current_or_guest_user.longitude
 
       # array with places for map navigator on sidebar
       gon.events_local_formatted = format_for_map_this(@events)
 
       render :index
-    else
-      render_newsfeed_for_guest_user
     end
 
   end
@@ -149,7 +151,6 @@ class NewsfeedController < ApplicationController
   end
 
   def render_newsfeed_for_guest_user
-    @current_user = User.new_guest
 
     @city = City.find_by(slug: params[:city])
     @events = Event.where(city_name: @city.name).upcoming

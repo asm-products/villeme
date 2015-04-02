@@ -1,5 +1,5 @@
 
-<% cache [current_user, cache_key_for_events, params[:action]] do %>
+<% cache [cache_key_for_events, params] do %>
 
     <!-- HEAD -->
 
@@ -24,10 +24,10 @@
 
           <%= render "alert_none_events" %>
 
-          <% if current_user %>
-              <%= render "events" %>
-          <% else %>
+          <% if current_or_guest_user.guest? %>
               <%= render "events_for_guest" %>
+          <% else %>
+              <%= render "events" %>
           <% end %>
 
           <%= render "alert_create_new_event" %>

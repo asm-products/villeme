@@ -25,15 +25,15 @@ module NewsfeedHelper
   end
 
   def cache_key_for_events
-    if current_user
+    if current_or_guest_user.guest?
+      count = Event.count
+      event_max_updated_at = Event.maximum(:updated_at).try(:utc).try(:to_s, :number)
+      "events/all-#{count}-#{event_max_updated_at}"
+    else
       count = Event.count
       event_max_updated_at = Event.maximum(:updated_at).try(:utc).try(:to_s, :number)
       agenda_max_updated_at = current_user.agendas.maximum(:updated_at).try(:utc).try(:to_s, :number)
       "events/all-#{count}-#{event_max_updated_at}-#{agenda_max_updated_at}"
-    else
-      count = Event.count
-      event_max_updated_at = Event.maximum(:updated_at).try(:utc).try(:to_s, :number)
-      "events/all-#{count}-#{event_max_updated_at}"
     end
   end
 

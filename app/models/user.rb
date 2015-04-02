@@ -244,9 +244,6 @@ class User < ActiveRecord::Base
     Villeme::UseCases::GeocodeUser.new(self).geocoded_by_address(self.address)
   end
 
-  def new_guest
-    User.new(guest: true)
-  end
 
 end
 

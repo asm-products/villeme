@@ -1,10 +1,30 @@
-  
 
-  <% if user_signed_in? %>
+
+<% if current_or_guest_user.guest? %>
+
     <div class="avatar">
-      
+
+      <%= get_avatar current_or_guest_user %>
+
+      <span class="name dropdown">
+        <a href="#" class="unlogged"><%= link_to 'Entrar ou criar conta', welcome_path %></a>
+
+        <div class="progress has-tooltip" data-placement="bottom" title="Faltam 30 Pontos de Experiência para o próximo level.">
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 00%">
+            <span>0</span>
+          </div>
+        </div>
+
+      </span>
+
+    </div>
+
+<% else %>
+
+    <div class="avatar">
+
       <%= get_avatar current_user, '38', '38' %>
-      
+
       <div class="level-image">
         <%= image_tag current_user.level_icon_url, class: 'has-tooltip', data: {placement: "bottom"}, title: "#{current_user.level_name}" if current_user.level %>
       </div>
@@ -36,23 +56,4 @@
 
     </div>
 
-  <% else %>
-
-    <div class="avatar">
-      
-      <%= get_avatar current_user %>
-      
-      <span class="name dropdown">
-        <a href="#" class="unlogged">Fazer login</a>
-
-        <div class="progress has-tooltip" data-placement="bottom" title="Faltam 54 Pontos de Experiência para o próximo level.">
-          <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-            <span>238</span>
-          </div>
-        </div>
-
-      </span>
-
-    </div>
-
-  <% end %> 
+<% end %>

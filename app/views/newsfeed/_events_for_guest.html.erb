@@ -6,7 +6,7 @@
 
     <% i += 1 %>
 
-    <% cache [current_user, event, event.agendas] do %>
+    <% cache [current_or_guest_user, event, event.agendas] do %>
         <div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
 
           <div class="box-top">
