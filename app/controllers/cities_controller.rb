@@ -78,7 +78,7 @@ class CitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params
-      params.require(:city).permit(:name, :description,:label, :goal, :address, :latitude, :longitude)
+      params.require(:city).permit(:name, :description,:label, :goal, :address, :launch, :latitude, :longitude)
     end
 
     def set_lat_long
