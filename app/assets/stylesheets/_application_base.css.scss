@@ -1,10 +1,23 @@
-//= Html
+//=Html
 html{
   overflow-y: scroll;
 }
 
 
-//= Select
+//=Links
+
+a.hasBorder{
+  border-width: 0 0 1px 0;
+  border-style: solid;
+
+  &:hover{
+    color: $green;
+    text-decoration: none;
+  }
+}
+
+
+//=Select
 
 select{
   width: 100%;

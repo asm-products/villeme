@@ -34,7 +34,7 @@ pt-BR:
       more: "e muito mais!"
     proposition:
       title: "Mais que um aplicativo,<br/> um propósito"
-      description: "O Villeme vai além de aplicativo, nosso propósito é aumentar e tornar divertido a interação das pessoas com o bairro e a forma como se relacionam com os diversos setores dele: público, privado, ONGs e mobilizações sociais."
+      description_html: "O Villeme vai além de um aplicativo, nosso propósito é tornar nossas cidades lugares incríveis por meio da interação entre as pessoas em eventos e atividades. Saiba mais sobre o propósito do Villeme %{link}."
     want_invite:
       title: "Quero um convite!"
       description: "Solicite um convite para testar o aplicativo na sua cidade, ou crie uma cidade"

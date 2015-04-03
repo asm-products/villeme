@@ -36,7 +36,7 @@ en:
       more: "and much more!"
     proposition:
       title: "Many services,<br/> one purpose"
-      description: "Villeme is not just any social website, our purpose is to increase the interaction of people with their neighborhood and the various sectors of city: public, private, NGOs and social movements."
+      description_html: "Villeme is not just any social website, our purpose is to increase the interaction of people with their neighborhood and the various sectors of city: public, private, NGOs and social movements."
     want_invite:
       title: "I want an invite!"
       description: "Request an invitation to test the application in your city, or create a city"
