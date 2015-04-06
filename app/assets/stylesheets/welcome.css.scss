@@ -18,28 +18,28 @@ body{
 }
 
 .wodry-flipping {
-    display: inline-block;
-    position: relative;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform-origin-x: 50%;
+  display: inline-block;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin-x: 50%;
 }
 .wodry-flipping .front-face, .wodry-flipping .back-face {
-    display: inline-block;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
+  display: inline-block;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .wodry-flipping .front-face {
-    position: absolute;
+  position: absolute;
 }
 .wodry-flipping .back-face {
-    position: relative;
+  position: relative;
 }
 
 h2 {
@@ -79,13 +79,13 @@ span {
 }
 
 .varela-title{
-	
-	& h3{
+
+  & h3{
     font-family: $font-family-default;
     font-size: 22px;
     font-weight: 300;
     line-height: 1em;
-	}
+  }
 }
 
 
@@ -96,7 +96,7 @@ span {
 .container {
 
   & .default{
-		padding: 95px 0 35px;
+    padding: 95px 0 35px;
   }
 }
 
@@ -119,7 +119,7 @@ span {
 }
 
 .pattern{
-	background: url("/images/welcome/pattern.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: url("/images/welcome/pattern.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
 .content {
@@ -127,7 +127,7 @@ span {
 }
 
 .logo-lg{
-	margin: 35px 0 0;
+  margin: 35px 0 0;
 
   img{
 
@@ -140,12 +140,12 @@ span {
 }
 
 .slogan{
-	margin: 25px 0;
+  margin: 25px 0;
   display: none;
 
-	& span{
+  & span{
     font-family: $font-family-default;
-	}
+  }
 }
 
 #header-hide-on-scroll{
@@ -223,9 +223,9 @@ span {
       color: $white;
       border-color: scale_color($green, $lightness: -25%);
       border-style: solid;
-      border-width: 0 0 3px; 
-      min-width: 80px;     
-      
+      border-width: 0 0 3px;
+      min-width: 80px;
+
       &:hover{
         background: scale_color($green, $lightness: -15%);
       }
@@ -233,7 +233,7 @@ span {
   }
 
 
-  
+
 
 }
 
@@ -250,11 +250,11 @@ span {
       cursor: pointer;
       border-color: scale_color($blue, $lightness: -5%);
       border-style: solid;
-      border-width: 0 0 3px;      
+      border-width: 0 0 3px;
 
       &:hover{
         background: scale_color($blue, $lightness: 5%);
-      }     
+      }
     }
   }
 
@@ -264,8 +264,8 @@ span {
       background: $red;
       border-color: scale_color($red, $lightness: -5%);
       border-style: solid;
-      border-width: 0 0 3px;       
-      
+      border-width: 0 0 3px;
+
       &:hover{
         background: scale_color($red, $lightness: 5%);
       }
@@ -287,12 +287,12 @@ span {
   }
 
   & .fb-like {
-      background: none repeat scroll 0 0 #fff;
-      border-radius: 10px;
-      float: left;
-      opacity: 0.9;
-      padding: 10px;
-  }  
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 10px;
+    float: left;
+    opacity: 0.9;
+    padding: 10px;
+  }
 }
 
 .marcador{
@@ -323,7 +323,7 @@ span {
 
   & span{
 
-  }   
+  }
 
 }
 
@@ -333,11 +333,11 @@ span {
   color: $white;
   border-color: scale_color($green, $lightness: -25%);
   border-style: solid;
-  border-width: 0 0 3px;      
-  
+  border-width: 0 0 3px;
+
   &:hover{
     background: scale_color($green, $lightness: -15%);
-  } 
+  }
 }
 
 
@@ -347,11 +347,11 @@ span {
   color: $grey;
   border-color: scale_color($white, $lightness: -10%);
   border-style: solid;
-  border-width: 0 0 3px;      
-  
+  border-width: 0 0 3px;
+
   &:hover{
     background: scale_color($white, $lightness: -5%);
-  } 
+  }
 }
 
 .small-font{
@@ -374,27 +374,27 @@ span {
 }
 
 .city-img{
-  width: 100%; 
-  margin: 0px;  
+  width: 100%;
+  margin: 0px;
 }
 
 .icons{
 
   & img {
     max-height: 65px;
-  } 
+  }
 }
 
 
 
 footer{
-    clear: both;
-    color: white;
-    display: table;
-    font-family: $font-family-default;
-    padding: 18px;
-    text-align: center;
-    width: 100%;
+  clear: both;
+  color: white;
+  display: table;
+  font-family: $font-family-default;
+  padding: 18px;
+  text-align: center;
+  width: 100%;
 
   & ul {
     list-style: none outside none;
@@ -411,13 +411,13 @@ footer{
       float: none;
       font-size: 15px;
       font-family: $font-family-default;
-      margin: 0 10px 0; 
+      margin: 0 10px 0;
 
       &:hover{
         color: $white;
       }
     }
-  } 
+  }
 }
 
 #city-sugest, #persona_sugest{
@@ -438,6 +438,20 @@ footer{
   padding: 8px 12px 6px;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
+}
+
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+  .footer li{
+    display: block;
+    margin: 6px;
+    padding: 0;
+  }
+
 }
 
 
