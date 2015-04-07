@@ -3,9 +3,7 @@
   padding: 0.85em;
   border-radius: 4px;
   background: $grey-lightness;
-  border-width: 2px;
-  border-color: transparent;
-  border-style: solid;
+  border: 2px solid #c7c7c7;
   outline: 0;
 
   &--large{
@@ -18,9 +16,7 @@
 
   &:focus{
     background: scale_color($grey-lightness, $lightness: 50%);
-    border-color: $purple;
-    border-width: 2px;
-    border-style: solid;
+    border: 2px solid $purple;
     box-shadow: none;
   }
 
