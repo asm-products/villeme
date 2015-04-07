@@ -16,7 +16,7 @@ class EventsController < ApplicationController
 
   include Gmaps
 
-  
+
   # GET /events
   # GET /events.json
   def index
@@ -165,8 +165,9 @@ class EventsController < ApplicationController
 
 
   def schedule
-
-    if agended(@event)
+    if current_or_guest_user.guest?
+      render js: 'Villeme.Ux.loginModal()'
+    elsif agended(@event)
       current_user.agenda_events.delete(@event)
       render json: {agended: false, event: "event-#{@event.id}", count: current_user.agenda_events.count, agended_by_count: @event.agended_by_count[:count], new_title: @event.agended_by_count[:text]}
     else
@@ -179,7 +180,7 @@ class EventsController < ApplicationController
 
 
   def full_description
-    @event = Event.friendly.find params[:event]    
+    @event = Event.friendly.find params[:event]
     render json:{full_description: @event.description}
   end
 
