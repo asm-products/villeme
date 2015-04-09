@@ -54,9 +54,11 @@
                         <% end %>
                     </span>
 
-                    <span class="friends pull-right">
-                        Faça login para ver seus amigos que vão no evento.
-                    </span>
+                    <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver seus amigos que agendaram o evento.")' do %>
+                        <span class="friends pull-right">
+                            <div class="AvatarPhoto AvatarPhoto--small AvatarPhoto--onEventSingle"></div>
+                        </span>
+                    <% end %>
                   </div>
 
                 </div>

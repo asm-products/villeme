@@ -1,0 +1,20 @@
+@import 'variables';
+
+.AvatarPhoto{
+  border-radius: 100%;
+  background-color: $grey-lightness;
+
+  &:hover{
+    background-color: scale_color($grey-lightness, $lightness: -10%);
+  }
+
+  &--small{
+    width: 22px;
+    height: 22px;
+  }
+
+  &--onEventSingle{
+    margin-top: -5px;
+  }
+
+}
