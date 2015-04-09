@@ -4,7 +4,7 @@
 	<div class="Grid-cell u-size4of12 u-centralize">
 		<div class="AlertCreateEvent AlertCreateEvent--withBorder">
 			<div class="AlertCreateEvent-text u-posAbsoluteCenter">
-              <span>Não há mais eventos no momento. <%= link_to "Criar evento.", new_event_path, class: "link link-green" %></span>
+              <span>Não há mais eventos no momento. <%= current_or_guest_user.guest? ? link_to_function('Criar evento', 'Villeme.Ux.loginModal("Você precisa estar logado para criar um evento.")') : link_to('Criar evento.', new_event_path, class: 'link link-green') %></span>
             </div>
 		</div>
 	</div>

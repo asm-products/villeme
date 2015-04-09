@@ -27,7 +27,7 @@ $(document).ready ->
 
 
   # rola ate os beneficios
-  $("a[href^=\"#\"]").on "click", (e) ->
+  $("a[href^=\"#beneficios\"]").on "click", (e) ->
     e.preventDefault()
     target = @hash
     $target = $(target)

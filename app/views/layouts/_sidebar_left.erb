@@ -10,13 +10,13 @@
 
 
     <li class="active">
-      <% if user_signed_in? %>
-          <%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
-              <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
-          <% end %>
-      <% else  %>
+      <% if current_or_guest_user.guest? %>
           <%= link_to root_path do %>
               <span class="glyphicon glyphicon-th"></span>Inicio
+          <% end %>
+      <% else  %>
+          <%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
+              <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
           <% end %>
       <% end %>
     </li>
@@ -35,9 +35,9 @@
               <span class="badge"><%= current_user.quantity_of_events_from_persona %></span>
           <% end %>
       <% else %>
-          <a>
-            <span class="glyphicon glyphicon-user unlogged"></span>Minha persona
-          </a>
+          <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver eventos da sua persona.")' do %>
+              <span class="glyphicon glyphicon-user unlogged"></span>Minha persona
+          <% end %>
       <% end %>
     </li>
 
@@ -55,9 +55,9 @@
               <span class="badge"><%= current_user.quantity_of_events_from_neighborhood %></span>
           <% end %>
       <% else %>
-          <a>
-            <span class="glyphicon glyphicon-home unlogged"></span>Meu bairro
-          </a>
+          <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver eventos do seu bairro.")' do %>
+              <span class="glyphicon glyphicon-home unlogged"></span>Meu bairro
+          <% end %>
       <% end %>
     </li>
 
@@ -72,9 +72,9 @@
               <span class="glyphicon glyphicon-bookmark"></span>Minha agenda<span id="agenda-count" class="badge"><%= current_user.agenda_events.upcoming.count if current_user.agenda_events.upcoming.count >= 1 %></span>
           <% end %>
       <% else %>
-          <a>
-            <span class="glyphicon glyphicon-bookmark unlogged"></span>Minha agenda
-          </a>
+          <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver sua agenda.")' do %>
+              <span class='glyphicon glyphicon-bookmark unlogged'></span>Minha agenda
+          <% end %>
       <% end %>
     </li>
 

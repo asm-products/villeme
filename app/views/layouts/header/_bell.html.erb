@@ -1,20 +1,20 @@
-<% if user_signed_in? %>
-	
-	<% if current_user.requested_friendships_notify.blank? %>
-		<div class="bell-wrapper p-0-15">
-			<span id="bell" class="glyphicon glyphicon-bell green-dark-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
-		</div>
-	<% else %>
-		<div class="bell-wrapper p-0-15">
-			<span id="bell" class="glyphicon glyphicon-bell white-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
-			<span class="counter white-font font-11"><%= current_user.requested_friendships_notify.count %></span>
-		</div>
-	<% end %>	
+<% if current_or_guest_user.guest? %>
+
+    <div class="bell-wrapper p-0-15">
+      <span id="bell" class="glyphicon glyphicon-bell green-dark-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
+    </div>
 
 <% else %>
 
-	<div class="bell-wrapper p-0-15">
-		<span id="bell" class="glyphicon glyphicon-bell green-dark-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
-	</div>	
-	
+    <% if current_user.requested_friendships_notify.blank? %>
+        <div class="bell-wrapper p-0-15">
+          <span id="bell" class="glyphicon glyphicon-bell green-dark-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
+        </div>
+    <% else %>
+        <div class="bell-wrapper p-0-15">
+          <span id="bell" class="glyphicon glyphicon-bell white-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
+          <span class="counter white-font font-11"><%= current_user.requested_friendships_notify.count %></span>
+        </div>
+    <% end %>
+
 <% end %>

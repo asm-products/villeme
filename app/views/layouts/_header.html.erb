@@ -33,12 +33,12 @@
 
       <!-- Botões -->
       <ul class="links hidden-xs">
-        <% if user_signed_in? %>
+        <% if current_or_guest_user.guest? %>
             <li><%= link_to "Início", root_path, class: "page-selected" %></li>
-            <li><%= link_to 'Criar evento', new_event_path %></li>
+            <li><%= link_to_function "Criar evento", 'Villeme.Ux.loginModal("Você precisar estar logado para criar um evento.")', class: 'unlogged' %></li>
         <% else %>
             <li><%= link_to "Início", root_path, class: "page-selected" %></li>
-            <li><%= link_to "Criar evento", '#', class: 'unlogged' %></li>
+            <li><%= link_to 'Criar evento', new_event_path %></li>
         <% end %>
 
       </ul>
