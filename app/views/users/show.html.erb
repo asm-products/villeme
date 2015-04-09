@@ -10,7 +10,7 @@
       <div class="col-lg-4 col-md-4">
         <div class="panel panel-default data-spy="affix" data-offset-top="60" data-offset-bottom="200"">
           
-          <div class="panel-heading centralize">
+          <div class="panel-heading u-centralize">
             <span class="avatar-absolute"><%= get_avatar @user, "50", "50" %></span>
             <h2><%= @user.name %></h2>
             <span class="font-14"><%= "#{@user.neighborhood.name} - #{@user.neighborhood.city.name}" %></span>
@@ -40,7 +40,7 @@
                 <li class="list-group-item"><%= link_to event.name, event %> <span class="pull-right"><%= event.day_of_week css: "grey-font f-weight-300" %></span></li>
               <% end %>
             <% else %>
-              <li class="list-group-item centralize font-12">Você precisa ser amigo de <%= @user.first_name %> para ver seus eventos</li>
+              <li class="list-group-item u-centralize font-12">Você precisa ser amigo de <%= @user.first_name %> para ver seus eventos</li>
             <% end %>
           </ul>
 

@@ -2,7 +2,7 @@
 
 <% if @number_of_events == 0 %>
 	<div class="Grid-cell u-size12of12">
-      <div class="AlertCreateEvent AlertCreateEvent--withBorder centralize">
+      <div class="AlertCreateEvent AlertCreateEvent--withBorder u-centralize">
         <div class="AlertCreateEvent-text AlertCreateEvent-text--large u-posAbsoluteCenter">
           <span><%= @message_for_none_events %> <%= link_to "Criar evento.", new_event_path, class: "link link-green" %></span>
         </div>

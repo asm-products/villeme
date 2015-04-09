@@ -1,0 +1,35 @@
+
+<div class="js-ModalLogin modal fade" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="Modal-closeButton close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title u-centralize">Entrar ou solicitar convite</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="Modal-alert js-Modal-alert u-centralize">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          <span class="js-ModalLogin-alert"></span>
+        </div>
+
+        <%= link_to welcome_path do %>
+            <div class="Button Button--primary Button--large u-centralize u-margin-15-0">
+              <%= t('welcome.first_screen.request_invite') %>
+            </div>
+        <% end %>
+
+        <%= link_to user_omniauth_authorize_path(:facebook) do %>
+            <div class="Button Button--large Button--facebook u-centralize u-margin-15-0-0-0 has-tooltip" data-placement="bottom" data-original-title="<%= t('welcome.tooltip.have_an_invitation') %>">
+              <%= t('welcome.buttons.login_with_facebook') %>
+            </div>
+        <% end %>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>

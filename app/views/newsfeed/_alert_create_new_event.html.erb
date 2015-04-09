@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'modules/AlertCreateEvent' %>
 
 <% if @number_of_events >= 1 and  @number_of_events  < 20 %>
-	<div class="Grid-cell u-size4of12 centralize">
+	<div class="Grid-cell u-size4of12 u-centralize">
 		<div class="AlertCreateEvent AlertCreateEvent--withBorder">
 			<div class="AlertCreateEvent-text u-posAbsoluteCenter">
               <span>Não há mais eventos no momento. <%= link_to "Criar evento.", new_event_path, class: "link link-green" %></span>

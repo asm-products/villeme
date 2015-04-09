@@ -166,7 +166,7 @@ class EventsController < ApplicationController
 
   def schedule
     if current_or_guest_user.guest?
-      render js: 'Villeme.Ux.loginModal()'
+      render js: 'Villeme.Ux.loginModal("Você precisa estar logado para agendar eventos!")'
     elsif agended(@event)
       current_user.agenda_events.delete(@event)
       render json: {agended: false, event: "event-#{@event.id}", count: current_user.agenda_events.count, agended_by_count: @event.agended_by_count[:count], new_title: @event.agended_by_count[:text]}

@@ -69,19 +69,19 @@
 
 
         <!-- Logo -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 logo-lg centralize">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 logo-lg u-centralize">
           <%= image_tag 'welcome/logo-lg.png', width: '267', height: '75' %>
         </div>
 
         <!-- Slogan -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slogan centralize">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 slogan u-centralize">
           <span class="font-36"><%= t('welcome.first_screen.slogan') %> <span class="wodry"><%= t('welcome.first_screen.slogan_city') %>|<%= t('welcome.first_screen.slogan_neighborhood') %></span>!</span><br/>
           <span class="font-14"><%= t('welcome.first_screen.sub_slogan') %></span>
         </div>
 
 
         <!-- Slogan -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 temporary-slogan centralize">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 temporary-slogan u-centralize">
           <span class="font-36"><%= t('welcome.first_screen.slogan') %> <%= t('welcome.first_screen.slogan_city') %></span><br/>
           <span class="font-14"><%= t('welcome.first_screen.sub_slogan') %></span>
         </div>        
@@ -109,8 +109,8 @@
 
             <div class="col-lg-2 col-md-2 col-sm-3 hidden-xs">
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0 "><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 centralize p-30-0"><%= link_to t('welcome.first_screen.sign_in'), user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize p-30-0 "><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize p-30-0"><%= link_to t('welcome.first_screen.sign_in'), user_omniauth_authorize_path(:facebook), id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>
               </div>
             </div>  
 
@@ -268,7 +268,7 @@
               <span><%= t('welcome.proposition.description_html', link: link_to('neste link', 'http://goo.gl/LHlnbj', class: 'hasBorder')) %></span>
             </div>
 
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 centralize">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 u-centralize">
               <%= image_tag('welcome/city.png', class: 'city-img') %>
             </div>                                 
 
@@ -294,7 +294,7 @@
 
         <div class="row">
           
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 u-centralize">
             <h2 class="green-font"><%= t('welcome.want_invite.title') %></h2>
             <span><%= t('welcome.want_invite.description') %></span>
           </div>
@@ -350,12 +350,12 @@
       <div class=" default row">
        
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 centralize">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 u-centralize">
           <h3><%= t('welcome.footer.title') %></h3>
         </div>
 
 
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 centralize blue-font">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10 col-xs-offset-1 u-centralize blue-font">
           <div class="fb-like" data-href="https://www.facebook.com/app.Villeme" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
 

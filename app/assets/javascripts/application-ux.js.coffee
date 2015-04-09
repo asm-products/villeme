@@ -129,8 +129,13 @@ Villeme.Ux = ( ->
 
   return {
 
-    loginModal: ->
-      alert("Faça login!")
+    loginModal: (text) ->
+      $(".js-ModalLogin").modal "toggle"
+      if text isnt undefined
+        $(".js-ModalLogin-alert").html(text)
+      else
+        $(".js-Modal-alert").html("")
+
       return
 
   }

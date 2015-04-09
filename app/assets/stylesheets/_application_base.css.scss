@@ -6,6 +6,10 @@ html{
 
 //=Links
 
+a:hover, a:focus{
+  text-decoration: none;
+}
+
 a.hasBorder{
   border-width: 0 0 1px 0;
   border-style: solid;

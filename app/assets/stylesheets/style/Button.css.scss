@@ -22,6 +22,19 @@
   &--primary{
     background: $green;
     color: $white;
+
+    &:hover{
+      background: scale_color($green, $lightness: 10%);
+    }
+  }
+
+  &--facebook{
+    background-color: #297fb8;
+    color: $white;
+
+    &:hover{
+      background: scale_color(#297fb8, $lightness: 10%);
+    }
   }
 
   &--callToAction{

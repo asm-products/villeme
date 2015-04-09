@@ -70,6 +70,8 @@ pt-BR:
       have_an_invitation: "Se já tiver um convite"
       i_want_invite_for: "Quero um convite para"
       your_city_dont_exist: "Sua cidade não está acima?"
+    buttons:
+      login_with_facebook: "Entrar com Facebook"
   dictionary:
     show_events_number_in_neighborhood: "Você %{count} perto de você ou no seu bairro."
     no_have_events: "não possui eventos"

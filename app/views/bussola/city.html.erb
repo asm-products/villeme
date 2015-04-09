@@ -5,7 +5,7 @@
 
 <%= simple_form_for :city, url: '/bussola/selecionado', defaults:{label: false, wrapper_html: false} do |f| %>
 
-  <div class="form-group centralize">
+  <div class="form-group u-centralize">
     <h2>Em qual cidade você ira criar o evento?</h2>
     <div class="">
       <%= f.input :city, collection: @cities, prompt: 'Seleciona a cidade'  %>
