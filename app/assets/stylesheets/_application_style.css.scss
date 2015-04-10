@@ -99,7 +99,7 @@
 }
 
 .green-bg{
-  background: #36AA55;
+  background: $green;
   color: $white;
   border-color: scale_color($green, $lightness: -10%);
 

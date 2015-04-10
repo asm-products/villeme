@@ -1,79 +1,79 @@
 
-	/* COLORS ------------------------*/
+/* COLORS ------------------------*/
 
 
-	/* vermelho */
-	$red: #dc5c5a;
-	$red-light: #e37d7b;
+/* vermelho */
+$red: #dc5c5a;
+$red-light: #e37d7b;
 
-	/* azul */
-	$blue: #5476e9;
-	$blue-light: #7691ed;
+/* azul */
+$blue: #5476e9;
+$blue-light: #7691ed;
 
-	/* verde */
-	$green: #5FCF80;
+/* verde */
+$green: #38ba5e;
+$green-light: #30A051;
+$green-lighter: #3CC764;
+$green-dark: #257A3E;
+$green-darker: #123A1E;
 
-	/* cinza */
-	$grey: #5f695a;
+/* cinza */
+$grey: #3B5450;
+$border-color: scale_color($grey, $lightness: 90%);
+$body-bg-color: scale_color($grey, $lightness: 90%);
+$body-bg-dark-color: #fdfdfd;
+$grey-lightness: scale_color($grey, $lightness: 95%);
 
-		$border-color: scale_color($grey, $lightness: 90%);
+/* laranja */
+$orange: #E98348;
 
-		$body-bg-color: scale_color($grey, $lightness: 90%);
+/* amarelo */
+$yellow: #E9DE53;
 
-		$body-bg-dark-color: #fdfdfd;
+/* roxo */
+$purple: #A478D7;
 
-        $grey-lightness: scale_color($grey, $lightness: 95%);
-
-	/* laranja */
-	$orange: #E98348;
-
-	/* amarelo */
-	$yellow: #E9DE53;
-
-	/* roxo */
-	$purple: #A478D7;
-
-	/* branco */
-	$white: #ffffff;
-
-
-
-
-
-	/* TEXTS ----------------------------------------*/
-
-	
-	/* texto de destaque e de identidade visual */
-	$font-family-identity: 'Varela Round', arial, sans-serif;
-
-	/* texto para leitura */
-	$font-family-default: 'Roboto', helvetica, arial, sans-serif;
-
-	/* cor para texto de leitura */
-	$font-color-default: $grey;
-
-	/* tamanho para leitura */
-	$font-size-default: 14px;
+/* branco */
+$white: #ffffff;
 
 
 
-	/* TRANSITION -----------------------*/
-
-	$transition-time: all 0.45s ease 0s;
 
 
-	/* SHAPE --------------------------- */
+/* TEXTS ----------------------------------------*/
 
-    $radius-panel: 4px;
 
-	.radius{
-		border-radius: 10px;
-	}
+/* texto de destaque e de identidade visual */
+$font-family-identity: 'Varela Round', arial, sans-serif;
 
-	.btn-radius{
-		border-radius: 6px;
-	}
+/* texto para leitura */
+$font-family-default: 'Roboto', helvetica, arial, sans-serif;
 
-	.circle{
-		border-radius: 100%;
-	}	
+/* cor para texto de leitura */
+$font-color-default: $grey;
+
+/* tamanho para leitura */
+$font-size-default: 14px;
+
+
+
+/* TRANSITION -----------------------*/
+
+$transition-time: all 0.45s ease 0s;
+
+
+/* SHAPE --------------------------- */
+
+$radius-panel: 4px;
+
+.radius{
+  border-radius: 10px;
+}
+
+.btn-radius{
+  border-radius: 6px;
+}
+
+.circle{
+  border-radius: 100%;
+}
