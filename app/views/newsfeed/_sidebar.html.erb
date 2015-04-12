@@ -5,21 +5,27 @@
   <div class="SidebarMap js-FixingMapOnScroll panel panel-default">
     <div class="panel-body user-box sidebar no-padding">
 
-        <div id="map" style="width:100%"></div>
+      <div id="map" style="width:100%"></div>
 
     </div>
 
 
 
-    <% if user_signed_in? %>
+    <% if current_or_guest_user.guest? %>
+
+        <div class="panel-body u-centralize">
+          <%= link_to_function 'Você precisa estar logado para ver sua localização e o tempo de transporte até o local.', 'Villeme.Ux.loginModal("Para ver o tempo ate o local você precisa estar logado.")' %>
+        </div>
+
+    <% else %>
         <div class="SidebarMap-neighborhoodCount panel-body">
-            <ul class="list-group m-0 font-12">
-                <%= render "newsfeed/sidebar/neighborhood_count" %>
-            </ul>
+          <ul class="list-group m-0 font-12">
+            <%= render "newsfeed/sidebar/neighborhood_count" %>
+          </ul>
         </div>
 
         <div class="SidebarMap-address">
-            <span></span>
+          <span></span>
         </div>
 
         <ul class="SidebarMap-infos list-group">
@@ -28,7 +34,6 @@
           <li class="SidebarMap-icon list-group-item js-distanceWithBus" title="Indo de ônibus"><span class="data"></span> de ônibus</li>
           <li class="SidebarMap-icon list-group-item js-distanceWithCar" title="Indo de carro"><span class="data"></span> dirigindo</li>
         </ul>
-
     <% end %>
 
   </div>
