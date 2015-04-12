@@ -12,10 +12,10 @@ $blue-light: #7691ed;
 
 /* verde */
 $green: #38ba5e;
-$green-light: #30A051;
-$green-lighter: #3CC764;
-$green-dark: #257A3E;
-$green-darker: #123A1E;
+$green-light: scale_color($green, $lightness: 10%);
+$green-lighter: scale_color($green, $lightness: 30%);
+$green-dark: scale_color($green, $lightness: -10%);
+$green-darker: scale_color($green, $lightness: -30%);
 
 /* cinza */
 $grey: #3B5450;

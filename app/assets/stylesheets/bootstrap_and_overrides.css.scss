@@ -330,10 +330,10 @@ ul li{
 }
 
 .page-selected{
-  background: scale_color($green, $lightness: -20%);
+  background: scale_color($green, $lightness: -10%);
 
   &:hover{
-    background: scale_color($green, $lightness: -10%);
+    background: scale_color($green, $lightness: -5%);
   }
 }
 
