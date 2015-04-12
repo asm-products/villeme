@@ -119,6 +119,7 @@
       &:hover {
         background: $green;
         color: $white;
+        border-color: $green-dark;
 
         & .agended-by-count {
           border-color: scale_color($green, $lightness: -10%);
