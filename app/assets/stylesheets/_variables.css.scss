@@ -19,6 +19,7 @@ $green-darker: scale_color($green, $lightness: -30%);
 
 /* cinza */
 $grey: #3B5450;
+$grey-light: scale_color($grey, $lightness: 10%);
 $border-color: scale_color($grey, $lightness: 90%);
 $body-bg-color: scale_color($grey, $lightness: 90%);
 $body-bg-dark-color: #fdfdfd;
