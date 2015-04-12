@@ -542,7 +542,7 @@ ul li{
     position: relative;
 
     & .name{
-      font-family: "Varela Round",arial,sans-serif;
+      font-family: "Roboto",arial,sans-serif;
       margin: 0 0 0 6px;
       position: relative;
       top: -5px;
@@ -553,7 +553,7 @@ ul li{
         }
       }
       & .persona{
-        font-family: open sans;
+        font-family: open sans, arial, sans-serif;
         font-size: 9px;
         font-weight: 300;
         vertical-align: middle;
@@ -610,7 +610,7 @@ ul li{
     }
   }
   & .links{
-    font-family: varela round,helvetica,arial;
+    font-family: Roboto, helvetica,arial, sans-serif;
     margin: 28px 0 0;
     & li{
       display: inline;
