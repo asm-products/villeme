@@ -1,4 +1,3 @@
-# encoding: utf-8
 
 class ApplicationController < ActionController::Base
 
@@ -173,7 +172,9 @@ class ApplicationController < ActionController::Base
 
 
 
-
+  def after_sign_out_path_for()
+    welcome_path
+  end
 
 
 
