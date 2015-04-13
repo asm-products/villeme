@@ -10,6 +10,10 @@
     height: 140px;
   }
 
+  #header-hide-on-scroll {
+    max-height: 500px;
+  }
+
   .centralize-xs{text-align: center}
   .align-left-xs{text-align: left}
   .align-right-xs{text-align: right}
@@ -42,6 +46,19 @@
 
   .plataforms {
     height: 200px;
+  }
+
+  #header-hide-on-scroll {
+    max-height: 575px;
+  }
+
+  .logo-lg{
+    margin: 6px 0 0;
+
+    img{
+      width: 173px;
+      height: 48px;
+    }
   }
 
   .p-xs-100-0{padding: 0}
@@ -183,6 +200,15 @@
 
   .plataforms {
     height: 320px;
+  }
+
+  .logo-lg{
+    margin: 6px 0 0;
+
+    img{
+      width: 173px;
+      height: 48px;
+    }
   }
 
   #header-hide-on-scroll {
