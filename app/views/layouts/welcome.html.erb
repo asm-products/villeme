@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div class="col-lg-6 links-translate u-align-right a_p-0-12">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 links-translate u-align-right a_p-0-12">
       <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
       <%= link_to_unless I18n.locale == :br, "Português", locale: 'pt-BR' %>
     </div>
@@ -76,13 +76,13 @@
 
   <div class="row">
 
-    <div class="col-lg-9 col-lg-offset-1_5">
+    <div class="col-lg-9 col-md-12 col-sm-12 col-lg-offset-1_5">
 
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8 col-sm-8">
         <!-- Slogan -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 u-no-padding">
           <div class="slogan">
-            <span class="font-36"><%= t('welcome.first_screen.slogan') %><br> <span class="wodry"><%= t('welcome.first_screen.slogan_city') %>|<%= t('welcome.first_screen.slogan_neighborhood') %></span>!</span><br/>
+            <span class="font-36"><%= t('welcome.first_screen.slogan') %><br> <span class="wodry"><%= t('welcome.first_screen.slogan_city') %>|<%= t('welcome.first_screen.slogan_neighborhood') %></span></span><br/>
           </div>
           <div class="description">
             <span class="font-14"><%= t('welcome.first_screen.sub_slogan').html_safe %></span>
@@ -97,21 +97,21 @@
         </div>
 
         <ul class="ListValues">
-          <div class="col-lg-4 u-no-padding">
+          <div class="col-lg-4 col-md-4 col-sm-6 u-no-padding">
             <li>
               <span class="ListValues-icon glyphicon glyphicon-ok"></span>
               <span class="ListValues-text">Lazer</span>
             </li>
             <li>
               <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Saude</span>
+              <span class="ListValues-text">Saúde</span>
             </li>
             <li>
               <span class="ListValues-icon glyphicon glyphicon-ok"></span>
               <span class="ListValues-text">Esporte</span>
             </li>
           </div>
-          <div class="col-lg-4 u-no-padding">
+          <div class="col-lg-4 col-md-4 col-sm-6 u-no-padding">
             <li>
               <span class="ListValues-icon glyphicon glyphicon-ok"></span>
               <span class="ListValues-text">Educação</span>
@@ -125,20 +125,20 @@
 
       </div>
 
-      <div class="col-lg-4 u-no-padding">
+      <div class="col-lg-4 col-md-4 col-sm-4">
         <!-- Logins -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 u-no-padding">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
           <div class="LoginBox">
 
             <!-- invite -->
             <div class="Button Button--callToAction Button--large Button--alignCenter has-modal hidden-xs">
               <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-10 col-md-10 col-sm-9">
                   <span class="Button-text"><%= t('welcome.first_screen.request_invite') %></span><br/>
                   <span class="Button-description" style="position: relative; top: -3px; opacity: 0.65;"><%= t('welcome.first_screen.request_invite_free') %></span>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-2 col-sm-3 u-no-padding">
                   <span class="Button--callToAction-icon glyphicon glyphicon-play"></span>
                 </div>
               </div>

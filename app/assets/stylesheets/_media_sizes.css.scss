@@ -167,6 +167,14 @@
   .align-left-md{text-align: left}
   .align-right-md{text-align: right}
 
+  .col-lg-offset-1_5{
+    margin-left: 0;
+  }
+
+  #header-hide-on-scroll {
+    max-height: 665px;
+  }
+
 }
 
 
@@ -177,7 +185,9 @@
     height: 320px;
   }
 
-
+  #header-hide-on-scroll {
+    max-height: 715px;
+  }
 
   #sidebar-left-md{
       display: none;
@@ -220,5 +230,9 @@
   .centralize-lg{text-align: center}
   .align-left-lg{text-align: left}
   .align-right-lg{text-align: right}
+
+  .col-lg-offset-1_5{
+    margin-left: 12.111111%;
+  }
 
 }

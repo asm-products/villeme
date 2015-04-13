@@ -65,7 +65,7 @@ $(document).ready ->
     , 1200
 
     $(".plataforms").animate
-      top: (h / 9)
+      top: 25
     , 800
 
     $("#header-hide-on-scroll-dark").animate
