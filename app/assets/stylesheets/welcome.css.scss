@@ -17,6 +17,11 @@ body{
   position: absolute;
 }
 
+.Header{
+  padding: 15px 0 50px 0;
+  overflow: hidden;
+}
+
 .wodry-flipping {
   display: inline-block;
   position: relative;
@@ -140,7 +145,6 @@ span {
 
 .list-values{
   margin: 35px 0 0 0;
-  margin: 0;
   padding: 0;
 
   & li{
@@ -156,7 +160,7 @@ span {
 }
 
 .slogan{
-  margin: 25px 0 6px 0;
+  margin: 0 0 6px 0;
   display: none;
 
   & span{
