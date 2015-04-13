@@ -134,18 +134,39 @@ span {
   }
 }
 
+.links-translate{
+  margin: 25px 0 0 0;
+}
+
+.list-values{
+  margin: 35px 0 0 0;
+  margin: 0;
+  padding: 0;
+
+  & li{
+    list-style: none;
+    padding: 6px 0;
+  }
+
+}
+
 
 .temporary-slogan{
   margin: 25px 0;
 }
 
 .slogan{
-  margin: 25px 0;
+  margin: 25px 0 6px 0;
   display: none;
 
   & span{
     font-family: $font-family-default;
+    line-height: 1em;
   }
+}
+
+.description{
+  margin-bottom: 25px;
 }
 
 #header-hide-on-scroll{
