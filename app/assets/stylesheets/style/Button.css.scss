@@ -46,6 +46,10 @@
       background: scale_color($white, $lightness: -2%);
       box-shadow: 0 3px 5px rgba(0,0,0,0.15);
     }
+
+    &-icon{
+      margin: 13px 0 0 0;
+    }
   }
 
   &-text{

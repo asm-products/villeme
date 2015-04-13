@@ -18,9 +18,17 @@ body{
 }
 
 .Header{
-  padding: 15px 0 50px 0;
+  margin: 10px -30px 65px -30px;
   overflow: hidden;
+  padding: 0 50px 15px 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  &-facebookButton{
+
+  }
 }
+
+
 
 .wodry-flipping {
   display: inline-block;
@@ -133,6 +141,7 @@ span {
 
 .logo-lg{
   margin: 35px 0 0;
+  float: left;
 
   img{
 
@@ -143,13 +152,24 @@ span {
   margin: 25px 0 0 0;
 }
 
-.list-values{
+.ListValues {
   margin: 35px 0 0 0;
   padding: 0;
 
   & li{
     list-style: none;
     padding: 6px 0;
+  }
+
+  &-icon{
+    padding: 0 8px 0 0;
+    vertical-align: middle;
+  }
+
+  &-text{
+    font-weight: 400;
+    font-size: 15px;
+    vertical-align: middle;
   }
 
 }
@@ -171,6 +191,10 @@ span {
 
 .description{
   margin-bottom: 25px;
+
+  & span{
+    font-weight: 400;
+  }
 }
 
 #header-hide-on-scroll{
@@ -262,7 +286,9 @@ span {
 
 }
 
-.login{
+.LoginBox{
+
+  margin: 70px 0 0 0;
 
   & .invite{
     min-width: 200px;

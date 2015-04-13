@@ -48,14 +48,14 @@ $(document).ready ->
     $("#header-hide-on-scroll, #header-hide-on-scroll-dark").height 750
     $("#header-hide-on-scroll-dark").css "margin-top", -750
 
-  $(window).on "scroll", ->
-    st = $(this).scrollTop()
-    $("#header-hide-on-scroll").css "opacity", (1 - st / h)
-    $("#header-hide-on-scroll").css "background-position", "0px " + (0 - (st / 2)).toString() + "px"
-    $(".plataforms").css "top", (h / 9) + (st / 4)
-
-
-    return
+#  $(window).on "scroll", ->
+#    st = $(this).scrollTop()
+#    $("#header-hide-on-scroll").css "opacity", (1 - st / h)
+#    $("#header-hide-on-scroll").css "background-position", "0px " + (0 - (st / 2)).toString() + "px"
+#    $(".plataforms").css "top", (h / 9) + (st / 4)
+#
+#
+#    return
 
 
   #troca a fotografia de fundo
