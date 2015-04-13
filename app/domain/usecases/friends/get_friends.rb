@@ -19,7 +19,7 @@ module Villeme
           list_of_friends_from_facebook ||= []
 
           entity.city.users.each do |friend|
-            if fb_friend["name"].split.first == friend.first_name
+            if fb_friend["name"] ==!nil and fb_friend["name"].split.first == friend.first_name
               if entity.are_friends?(friend) == false and entity.are_friedship_invite?(friend) == false
                 list_of_friends_from_facebook << friend
               end

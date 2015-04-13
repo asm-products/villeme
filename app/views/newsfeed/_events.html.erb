@@ -58,9 +58,11 @@
                     </span>
 
                     <span class="friends pull-right">
+                      <% unless current_user.which_friends_will_this_event?(event).blank? %>
                         <% current_user.which_friends_will_this_event?(event).each do |friend| %>
                             <i class="has-tooltip avatar-icon" title="<%= friend.first_name %> agendou o evento"><%= get_avatar(friend, "22", "22") %></i>
                         <% end %>
+                      <% end %>
                     </span>
                   </div>
 
@@ -73,7 +75,7 @@
 
 
 
-    <% if i == 2 and current_user.friends_from_facebook %>
+    <% if i == 2 and current_user.friends_from_facebook and current_or_guest_user.guest? == false %>
         <div class="Grid-cell u-size4of12  height-325 grid" >
           <% cache [current_user, "friends_ranking"], skip_digest: true do %>
               <%= render "newsfeed/friends_ranking" %>

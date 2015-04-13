@@ -23,7 +23,7 @@
 			<% end %>
 
 			<!-- amigos do facebook que estão no Villeme -->
-            <% if current_user.friends_from_facebook_on_villeme %>
+            <% unless current_user.friends_from_facebook_on_villeme.blank? %>
                 <% current_user.friends_from_facebook_on_villeme.each do |friend| %>
                     <li id="friend-<%= friend[:id] %>" data-content="<%= btn_friend current_user, friend, status: "not-friend", hash: true %>" class="list-group-item has-popover avatar small-avatar font-11" data-placement="left">
                         <%= get_avatar friend[:id], "26", "26" %><div class="level-image"><%= image_tag User.find(friend[:id]).level_icon_url, class: "has-tooltip", title: User.find(friend[:id]).level.name %></div> <span class="name p-6"><%= link_to friend[:name].cut(0, 16), show_user_path(friend[:slug])  %></span> <span class="pull-right p-6-0"><%= friend[:points].blank? ? "0" : friend[:points] %> Pts.</span>
@@ -32,7 +32,7 @@
             <% end %>
 
 			<!-- amigos do facebook que não estão no Villeme -->
-            <% if current_user.friends_from_facebook %>
+            <% unless current_user.friends_from_facebook.blank? %>
                 <% current_user.friends_from_facebook.each do |friend| %>
                     <li class="list-group-item avatar font-11">
                         <%= image_tag "http://graph.facebook.com/#{friend["id"]}/picture?width=26&height=26", size: "26x26", alt: friend["name"], class: "img-circle" %> <span class="p-6"><%= friend["name"].cut 0, 16 %> <span class="green-font pull-right p-6-0 pointer" onclick="invite_friend('<%= friend["id"] %>')">Convidar</span></span>
