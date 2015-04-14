@@ -7,6 +7,7 @@
 
     init: ->
       # EventForm.inputTransitions()
+      EventForm.activeJqueryTE()
       EventForm.opacityOnInputsNotRequireds()
       EventForm.removeImageFromUpload()
       EventForm.activeHelper()
@@ -32,7 +33,15 @@
       return
 
 
-
+    activeJqueryTE: ->
+      $("#event_description").jqte
+        focus: ->
+          $(".jqte_editor").height(450)
+          return
+        blur: ->
+          $(".jqte_editor").height(100)
+          return
+      return
 
 
     opacityOnInputsNotRequireds: ->
