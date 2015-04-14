@@ -11,7 +11,6 @@
       EventForm.removeImageFromUpload()
       EventForm.activeHelper()
       EventForm.applyPluginFileStyle()
-      EventForm.activeWisyhtml5()
       EventForm.addMoreHours()
       EventForm.moneyMask()
       EventForm.moreDetails()
@@ -31,6 +30,9 @@
         return
 
       return
+
+
+
 
 
     opacityOnInputsNotRequireds: ->
@@ -88,24 +90,6 @@
           return
 
       return
-
-    activeWisyhtml5: ->
-      $("#event_description").wysihtml5
-        "color": false
-        "image": false
-        "font-styles": false
-        "link": false
-
-      $("#event_cost_details").wysihtml5
-        "color": false
-        "image": false
-        "font-styles": false
-        "link": false
-        "emphasis": false
-        "lists": false
-
-      return
-
 
     addMoreHours: ->
       $(".AddHour").click ->

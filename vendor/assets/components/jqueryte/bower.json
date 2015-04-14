@@ -1,0 +1,26 @@
+{
+  "name": "jqueryte",
+  "version": "1.4.0",
+  "homepage": "http://jqueryte.com",
+  "authors": [
+    "Fatih Koca (fattih@fattih.com)"
+  ],
+  "description": "jQuery TE is a jQuery plugin. It is a lightweight and very useful HTML editor. And it works with WYSIWYG model.",
+  "main": "dist/jquery-te-1.4.0.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "texteditor",
+    "wsywig",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

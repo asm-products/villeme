@@ -27,8 +27,8 @@
 //= require jquery-dateFormat
 //= require jquery-scrollstop
 //= require jquery-lazyload
-//= require wysihtml5-0.3.0
-//= require bootstrap-wysihtml5
+// require wysihtml5-0.3.0
+// require bootstrap-wysihtml5
 //= require application-ajax
 //= require application_bootstrap
 //= require application-ux
