@@ -1,5 +1,5 @@
-  
-    
+
+
 <!-- HEAD -->
 
 <%= stylesheet_link_tag params[:controller] %>
@@ -60,20 +60,20 @@
 	            </div>
 	            <!-- <div class="col-lg-5">
 	              <span style="float: left; margin: -15px 0px 6px;">Hora de início do evento</span>
-	            </div>  -->       
+	            </div>  -->
 	            <div class="col-lg-12">
 	              <%= f.input :date_start, as: :date, input_html: {class: "form-control"}, start_year: Date.today.year, end_year: Date.today.year + 1 %>
 	            </div>
 	            <div class="col-lg-12" style="margin-top: 12px;">
 	              <span class="info">Dia de termino do evento</span>
-	            </div>       
+	            </div>
 	            <div class="col-lg-12 not-required">
 	              <%= f.input :date_finish, as: :date, input_html: {class: "form-control"}, start_year: Date.today.year, end_year: Date.today.year + 1 %>
-	            </div>                
+	            </div>
 	          </div>
-	      
+
 	        </div>
-	        
+
 
 
 
@@ -84,7 +84,7 @@
 	          <div class="col-lg-9">
 	            <%= f.association :weeks, collection: Week.order('organizer_id ASC'), as: :check_boxes, include_blank: false %>
 	          </div>
-	        </div> 
+	        </div>
 
 
 
@@ -104,7 +104,7 @@
 	            </div>
 	            <div class="col-lg-5 not-required">
 	              <%= f.input :hour_finish_first, input_html: {class: "form-control"}, as: :time, prompt: '--' %>
-	            </div>             
+	            </div>
 	            <div class="col-lg-2 no-require">
 	              <span class="AddHour glyphicon glyphicon-plus has-tooltip" title="Adicionar mais um horario"></span>
 	            </div>
@@ -118,7 +118,7 @@
 
 
 
-	        
+
 	    <!-- PREÇO -->
 
 	    <div class="form-group has-helper" helper="<b>Dica 1:</b> Insira o preço cobrado para poder participar do evento.<br/><br/><b>Dica 2:</b> Use o espaço de <i>Detalhes</i> para colocar mais informações sobre os preços e a tabela para cada segmento de preço cobrado.<br><br><b>Obrigações:</b><ul><li>O preço deve ser preenchido.</li></ul>">
@@ -127,14 +127,14 @@
 	        <input id="event_cost_fake" value="<%= @event.cost unless @event.cost.blank? %>" class="string optional has-tooltip form-control has-focus-transition" data-max-length="12" data-min-length="1" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
 	        <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control has-focus-transition", data:{"max-length" => 25, "min-length" => 2}}  %>
 	      </div>
-	      <label class="control-label col-lg-2">Detalhes</label>            
+	      <label class="control-label col-lg-2">Detalhes</label>
 	      <div class="col-lg-4 not-required">
 	        <%= f.input :cost_details, as: :text, input_html:{rows: "2", class: "form-control"}  %>
-	      </div>            
-	    </div>    
-	   
+	      </div>
+	    </div>
 
- 
+
+
 
 
 
@@ -148,7 +148,7 @@
 
 					<% unless @event.image.blank? %>
 		        <div class="img-thumbnail event-img image-upload" style="background-image: url('<%= @event.image.url(:thumb) %>')">
-		          
+
 		        </div>
 					<% else %>
 		        <div class="img-thumbnail event-img image-upload">
@@ -162,7 +162,7 @@
 	        <%= f.input :image, as: :file, input_html: {class: "event-file form-control"}, wrapper_html: false %>
 	        <a class="remove-img hint">Remover</a>
 	      </div>
-	    </div> 
+	    </div>
 
 
 
@@ -213,11 +213,11 @@
 	            <!-- mapa -->
 	            <div class="col-lg-9 pull-right">
 	              <div id="map" class="place-inputs"></div>
-	            </div> 
+	            </div>
 
 	          </div>
 
-	        
+
 					<div class="not-required-show green-font fake-link u-centralize">+ Mais detalhes</div>
 
 					<div class="not-required-block">
@@ -266,12 +266,12 @@
 		          <div class="control-label col-lg-3" style="margin-top:15px"></div>
 		          <div class="col-lg-9" style="margin-top:15px">
 		            <%= f.input :link, input_html:{class: "form-control has-focus-transition", data:{"max-length" => 500, "min-length" => 0}}, placeholder: "link ou site" %>
-		          </div>	          
-		        </div>	
+		          </div>
+		        </div>
 
 					</div>
 
-	        
+
 
 
 
@@ -304,7 +304,7 @@
       <div class="panel-body">
         <div class="helper-text">
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>
