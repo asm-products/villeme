@@ -82,10 +82,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-
-
     @event = current_user.events.create(event_params)
-
 
     if params[:event][:place_attributes][:name]
 
@@ -124,6 +121,7 @@ class EventsController < ApplicationController
     place = Place.find_by(name: params[:event][:place_attributes][:name])
 
     if place.nil?
+      place = current_user.places.new(name: params[:event][:place_attributes][:name])
       @event.copy_attributes_to place
       @event.place = place
     else
