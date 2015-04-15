@@ -27,9 +27,9 @@ module Villeme
 
         def price(entity)
           if entity.cost == 0 or entity.cost.blank?
-            'Gratuito'
+            I18n.t('event.free')
           else
-            entity.cost
+            ActionController::Base.helpers.number_to_currency(entity.cost, locale: I18n.locale)
           end
         end
 

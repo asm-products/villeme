@@ -48,7 +48,7 @@
 
                   <div class="infos">
                     <span class="preco <%= cost(event.cost) == 'Gratuito' ? 'green-font' : nil %>">
-                        <%= number_to_currency(event.price, locale: I18n.locale) %>
+                        <%= event.price %>
                     </span>
 
                     <span class="hora">
