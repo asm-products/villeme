@@ -280,9 +280,9 @@ class ApplicationController < ActionController::Base
     else
       event.categories[0, 2].each do |category|
         if i == 1
-          return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.name.downcase}'>#{category.name}</span></a>".html_safe
+          return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.try(:slug)}'>#{category.name}</span></a>".html_safe
         elsif category.name != 'Lazer'
-          return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.name.downcase}'>#{category.name}</span></a>".html_safe
+          return "<a href='#{url_for(newsfeed_category_path(category))}'><span class='item #{category.try(:slug)}'>#{category.name}</span></a>".html_safe
         end
       end
     end

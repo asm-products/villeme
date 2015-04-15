@@ -270,40 +270,23 @@
         width: 5px;
       }
     }
-    & .lazer {
-
-      & .circle {
-        background: $green;
-      }
+    & .leisure {
+      background: $green;
     }
-    & .saude {
-
-      & .circle {
-        background: $red;
-      }
+    & .health {
+      background: $red;
     }
-    & .esporte {
-
-      & .circle {
-        background: $blue;
-      }
+    & .sport {
+      background: $orange;
     }
-    & .educacao {
-
-      & .circle {
-        background: scale_color($blue, $lightness: 30%);
-      }
+    & .education {
+      background: $blue;
     }
-    & .cultura {
-
-      & .circle {
+    & .culture {
         background: $purple;
-      }
     }
-    & .alimentacao {
-      & .circle {
+    & .food {
         background: $yellow;
-      }
     }
   }
   & .nearbys {

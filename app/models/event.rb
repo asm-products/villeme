@@ -114,6 +114,8 @@ class Event < ActiveRecord::Base
 		require_relative '../../app/domain/usecases/dates/get_next_day_occur_human_readable'
 
 		Villeme::UseCases::Dates.get_next_day_occur_human_readable(self)
+	rescue
+		nil
   end
 
 
