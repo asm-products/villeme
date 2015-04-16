@@ -68,17 +68,17 @@
     </div>
 
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 links-translate u-align-right a_p-0-12">
-      <%= link_to_unless I18n.locale == :en, "English", locale: :en %>
-      <%= link_to_unless I18n.locale == :br, "Português", locale: 'pt-BR' %>
+      <%= link_to("EN", locale: :en) if I18n.locale == :'pt-BR' %>
+      <%= link_to("PT", locale: :'pt-BR') if I18n.locale == :en %>
     </div>
 
   </div>
 
   <div class="row hidden-xs">
 
-    <div class="col-lg-9 col-md-12 col-sm-12 col-lg-offset-1_5">
+    <div class="col-lg-9 col-md-10 col-sm-12 col-lg-offset-1_5 col-md-offset-1">
 
-      <div class="col-lg-7 col-md-8 col-sm-8">
+      <div class="col-lg-7 col-md-7 col-sm-7">
         <!-- Slogan -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 u-no-padding">
           <div class="slogan">
@@ -96,39 +96,19 @@
           <span class="font-14"><%= t('welcome.first_screen.sub_slogan') %></span>
         </div>
 
-        <ul class="ListValues">
-          <div class="col-lg-4 col-md-4 col-sm-6 u-no-padding">
-            <li>
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Lazer</span>
-            </li>
-            <li>
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Saúde</span>
-            </li>
-            <li>
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Esporte</span>
-            </li>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6 u-no-padding">
-            <li>
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Educação</span>
-            </li>
-            <li>
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Cultura</span>
-            </li>
-          </div>
-        </ul>
-
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="col-lg-4 col-md-5 col-sm-5">
         <!-- Logins -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+        <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize"><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize"><%= link_to_function t('welcome.first_screen.sign_in'), 'Villeme.Ux.loginModal()', id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="LoginBox">
 
             <!-- invite -->
@@ -151,19 +131,45 @@
             </div>
 
           </div>
-
         </div>
-
-        <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize p-30-0 "><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize p-30-0"><%= link_to_function t('welcome.first_screen.sign_in'), 'Villeme.Ux.loginModal()', id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>
-          </div>
-        </div>
-
-
 
       </div>
+
+      <div class="col-lg-10 col-md-12 col-sm-12 hidden-xs">
+        <ul class="ListValues">
+          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
+            <li>
+              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+              <span class="ListValues-text">Lazer</span>
+            </li>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
+            <li>
+              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+              <span class="ListValues-text">Saúde</span>
+            </li>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
+            <li>
+              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+              <span class="ListValues-text">Esporte</span>
+            </li>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
+            <li>
+              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+              <span class="ListValues-text">Educação</span>
+            </li>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
+            <li>
+              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+              <span class="ListValues-text">Cultura</span>
+            </li>
+          </div>
+        </ul>
+      </div>
+
 
     </div>
 

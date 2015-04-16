@@ -155,17 +155,23 @@ span {
 }
 
 .ListValues {
-  margin: 35px 0 0 0;
+  margin: 12px 0 0 0;
   padding: 0;
 
   & li{
     list-style: none;
-    padding: 3px 0;
+    padding: 3px 0px;
+    text-align: center;
+    border: 1px solid $green-darker;
+    border-radius: 30px;
+    margin: 0 6px;
   }
 
   &-icon{
     padding: 0 8px 0 0;
     vertical-align: middle;
+    font-size: 15px;
+    color: $green-darker;
   }
 
   &-text{
@@ -290,7 +296,7 @@ span {
 
 .LoginBox{
 
-  margin: 70px 0 0 0;
+  margin: 15px 0 0 0;
 
   & .invite{
     min-width: 200px;
