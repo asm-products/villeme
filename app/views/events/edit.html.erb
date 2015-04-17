@@ -4,7 +4,7 @@
 <%= javascript_include_tag params[:controller] %>
 	
 <% content_for :header do %>
-	<%= link_to "Editar evento", root_path %>
+	<%= link_to "Editar: #{@event.try(:name)}", root_path %>
 <% end %>
 
 <%= render :partial => 'form' %>

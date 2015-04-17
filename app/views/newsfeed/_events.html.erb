@@ -47,7 +47,7 @@
                   <span class="description"><%= strip_tags event.description_with_limit %></span>
 
                   <div class="infos">
-                    <span class="preco <%= cost(event.cost) == 'Gratuito' ? 'green-font' : nil %>">
+                    <span class="preco <%= event.cost == 0 ? 'green-font' : nil %>">
                         <%= event.price %>
                     </span>
 
