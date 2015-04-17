@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402203215) do
+ActiveRecord::Schema.define(version: 20150416192712) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(version: 20150402203215) do
     t.string   "neighborhood_name"
     t.string   "street_number"
     t.string   "route"
+    t.boolean  "allday",                                     default: false
   end
 
   add_index "events", ["persona_id"], name: "index_events_on_persona_id"

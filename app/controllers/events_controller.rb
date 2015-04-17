@@ -234,6 +234,7 @@ class EventsController < ApplicationController
         :link,
         :email,
         :phone,
+        :allday,
         :category_ids => [],
         :week_ids => []
     )

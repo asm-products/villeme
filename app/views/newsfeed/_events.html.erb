@@ -52,7 +52,9 @@
                     </span>
 
                     <span class="hora">
-                        <% if event.hour_start_first %>
+                        <% if event.allday %>
+                            O dia todo
+                        <% else %>
                             <%= event.hour_start_first.strftime("%H:%M") << "h" %>
                         <% end %>
                     </span>

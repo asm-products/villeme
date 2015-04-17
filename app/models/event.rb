@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
 	validates :name, presence: true, uniqueness: true, length: 6..140
 	validates :description, allow_blank: true, length: 10..5000
 	validates :address, presence: true, length: {maximum: 200}, unless: Proc.new {|event| Place.find_by(name: event.address).nil?}
-	validates :hour_start_first, presence: true
+	validates :hour_start_first, presence: true, if: 'allday.nil?'
 	validates :date_start, presence: true
 	validates :cost, length: {maximum: 8}
 	validates :cost_details, length: {maximum: 300}

@@ -10,9 +10,8 @@
 /* editor's general field */
 .jqte {
 	margin: 0;
-	border:#000 1px solid;
+	border:#ccc 1px solid;
 	border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;
-	box-shadow:0 0 3px #999; -webkit-box-shadow:0 0 3px #999; -moz-box-shadow:0 0 3px #999;
 	overflow:hidden;
 	transition:box-shadow 0.4s, border 0.4s; -webkit-transition:-webkit-box-shadow 0.4s, border 0.4s; -moz-transition:-moz-box-shadow 0.4s, border 0.4s; -o-transition:-o-box-shadow 0.4s, border 0.4s;
 }
@@ -341,6 +340,7 @@
 	max-height:900px;
 	overflow:auto;
 	outline:none;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 	word-wrap:break-word; -ms-word-wrap:break-word;
 	resize:vertical
 }
