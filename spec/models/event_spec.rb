@@ -20,7 +20,6 @@ describe Event, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :date_start }
-    it { is_expected.to validate_presence_of :hour_start_first }
   end
 
   describe '#create' do
