@@ -7,16 +7,31 @@
   font-family: $font-family-default;
   color: $font-color-default;
 
+  & .glyphicon{
+    font-size: 11px;
+    padding: 0 6px;
+  }
+
   &--small{
     font-size: 10px;
     padding: 8px;
     font-weight: 200;
+
+    & .glyphicon{
+      font-size: 10px;
+      padding: 0 6px;
+    }
   }
 
   &--large{
     font-size: 16px;
     padding: 0.85em 1.5em;
     font-weight: 600;
+
+    & .glyphicon{
+      font-size: 16px;
+      padding: 0 6px;
+    }
   }
 
   &--primary{

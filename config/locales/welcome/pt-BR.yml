@@ -32,6 +32,7 @@ pt-BR:
         description: "Busque por produtos e serviços e conheça novos mercadinhos, padarias, lancherias, pizzarias..."
         title: "Promoções de comércios locais"
       more: "e muito mais!"
+      try: "Experimente agora em Porto Alegre"
     proposition:
       title: "Mais que um aplicativo,<br/> um propósito"
       description_html: "O Villeme vai além de um aplicativo, nosso propósito é tornar nossas cidades lugares incríveis por meio da interação entre as pessoas em eventos e atividades. Saiba mais sobre o propósito do Villeme %{link}."

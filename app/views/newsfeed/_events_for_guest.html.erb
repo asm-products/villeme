@@ -44,12 +44,14 @@
                   <span class="description"><%= strip_tags event.description_with_limit %></span>
 
                   <div class="infos">
-                    <span class="preco <%= cost(event.cost) == 'Gratuito' ? 'green-font' : nil %>">
-                        <%= number_to_currency(event.price, locale: I18n.locale) %>
+                    <span class="preco <%= event.cost == 0 ? 'green-font' : nil %>">
+                        <%= event.price %>
                     </span>
 
                     <span class="hora">
-                        <% if event.hour_start_first %>
+                        <% if event.allday %>
+                            O dia todo
+                        <% else %>
                             <%= event.hour_start_first.strftime("%H:%M") << "h" %>
                         <% end %>
                     </span>
