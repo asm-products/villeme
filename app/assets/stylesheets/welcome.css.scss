@@ -30,7 +30,16 @@ body{
   }
 }
 
-
+.ButtonTryPortoAlegre{
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  margin-left: -225px;
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
+  top: 50%;
+  margin-top: -25px;
+  display: none;
+}
 
 .wodry-flipping {
   display: inline-block;
@@ -430,6 +439,7 @@ span {
     max-width: 936px;
     width:100%;
   }
+
 }
 
 .city-img{

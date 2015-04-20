@@ -79,6 +79,8 @@
 /* SIZES */
 .u-width-100-percents {width: 100%}
 .u-width-350px{width: 350px}
+.u-width-400px{width: 400px}
+.u-width-450px{width: 450px}
 .height-325 {height: 325px}
 .min-height-325 {min-height: 325px}
 
@@ -102,3 +104,14 @@
 .a_p-0-12 a {padding: 0 12px}
 
 
+/* FILTER */
+
+.u-blur{
+  filter: blur(3.5px);
+  -webkit-filter: blur(2.5px);
+}
+
+.u-blurOnHover:hover{
+  filter: blur(3.5px);
+  -webkit-filter: blur(2.5px);
+}

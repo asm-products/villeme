@@ -34,12 +34,32 @@
     }
   }
 
+  &--extraLarge{
+    font-size: 21px;
+    padding: 1.25em 1.5em;
+    font-weight: 600;
+
+    & .glyphicon{
+      font-size: 20px;
+      padding: 0 12px;
+    }
+  }
+
   &--primary{
     background: $green;
     color: $white;
 
     &:hover{
       background: scale_color($green, $lightness: 10%);
+    }
+  }
+
+  &--white{
+    background: $white;
+    color: $green;
+
+    &:hover{
+      background: scale_color($white, $lightness: -10%);
     }
   }
 

@@ -1,1 +1,1 @@
-TRY_ACTIVATED = true
+TRY_ACTIVATED = false

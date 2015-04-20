@@ -58,6 +58,23 @@ $(document).ready ->
 #    return
 
 
+  $(".plataforms img").hover (->
+    $(".ButtonTryPortoAlegre").show()
+    $(".plataforms img").addClass('u-blur')
+    return
+  ), ->
+    $(".ButtonTryPortoAlegre").hide()
+    $(".plataforms img").removeClass('u-blur')
+    return
+
+  $(".ButtonTryPortoAlegre").hover ->
+    $(this).show()
+    $(".plataforms img").addClass('u-blur')
+    return
+
+
+
+
   #troca a fotografia de fundo
   setTimeout( ->
     $("#header-hide-on-scroll").animate
