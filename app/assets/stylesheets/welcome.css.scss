@@ -27,6 +27,10 @@ body{
     margin: 24px 0px 0 20px;
     float: left;
     opacity: 0.3;
+
+    &:hover{
+      opacity: 1;
+    }
   }
 }
 

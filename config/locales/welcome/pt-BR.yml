@@ -64,7 +64,7 @@ pt-BR:
       in_one_word: "Em uma palavra"
       confirm: "Confirmar"
       i_want_invite: "Quero um convite!"
-      name: "Nome"
+      name: "Seu nome"
       address: "Endereço ou localização próxima"
       address_hint: "O endereço não será armazenado"
     tooltip:
