@@ -127,11 +127,11 @@ Villeme.Gmap = ( ->
       return
 
     searching: ->
-      $(".Gmap-inputAddress").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("Searching...").show()
+      $(".Gmap-inputAddress").css("border-color", "#cccccc").parent().find(".Gmap-loadingResponse").text("Buscando...").show()
       return
 
     invalid: ->
-      $(".Gmap-inputAddress").css("border-color", "#A94442").parent().find(".Gmap-loadingResponse").text("Address not found").show()
+      $(".Gmap-inputAddress").css("border-color", "#A94442").parent().find(".Gmap-loadingResponse").text("Endereço não encontrado").show()
 
       shakeInput = ((intShakes=3, intDistance=10, intDuration=500) ->
         $(".Gmap-inputAddress").css 'position', 'relative'
@@ -144,7 +144,7 @@ Villeme.Gmap = ( ->
       return
 
     valid: ->
-      $(".Gmap-inputAddress").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").show().text("Found address!").fadeOut(1000)
+      $(".Gmap-inputAddress").css("border-color", "#5fcf80").parent().find(".Gmap-loadingResponse").show().text("Endereço encontrado!").fadeOut(1000)
       return
 
 

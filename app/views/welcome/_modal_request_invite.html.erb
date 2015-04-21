@@ -24,7 +24,7 @@
 
                 <!-- TODO: Need to implement a custom simple field to this input -->
                 <div class="input string optional invite_address form-group">
-                  <label for="address" class="string optional control-label">* <%= t('welcome.modal.address') %></label>
+                  <label for="address" class="string optional control-label">* <%= t('welcome.modal.address') %></label> <span class="small">(<%= t('welcome.modal.address_hint') %>)</span>
                   <span class="Gmap-loadingResponse pull-right"></span>
                   <input class="Gmap-inputAddress Input ui-autocomplete-input" type="text" size="255" placeholder="<%= t('welcome.modal.address_placeholder') %>" name="invite[address]" maxlength="255" autocomplete="off">
                 </div>
