@@ -249,6 +249,20 @@ Villeme.Gmap = ( ->
       return
 
 
+
+    getAddressFromLatLong: (latLong) ->
+      _map = $(".Gmap-map").gmap3("get")
+      $(_map).gmap3 getaddress:
+        latLng: latLong
+        callback: (results) ->
+          latLng = results[0].geometry.location
+          address = (if results and results[0] then results and results[0].formatted_address else "no address")
+
+          $(".Gmap-inputAddress").val address
+          return
+      return
+
+
     getMarker: ->
       return _marker
 
@@ -269,6 +283,31 @@ Villeme.Gmap = ( ->
       $(".Gmap-map").gmap3("get").panTo latLng
       return
 
+
+    putMarkerOnPosition: (latLng, options) ->
+      if options
+        _draggable = if options.draggable is undefined then false else options.draggable
+        _marker = if options.marker is undefined then Villeme.Gmap.getMarker() else options.marker
+        _clear = if options.clear is undefined then "marker" else options.clear
+
+      Villeme.Gmap.getAddressFromLatLong(latLng)
+      Villeme.Gmap.setAddressInputValid()
+
+      $(".Gmap-map").gmap3
+        clear:
+          name: _clear
+        marker:
+          latLng: latLng
+          options:
+            draggable: _draggable
+            icon: _marker
+
+          events:
+            dragend: (_marker) ->
+              Villeme.Gmap.getAddressOfMarker(this, _marker)
+              return
+
+      return
   }
 
 )()

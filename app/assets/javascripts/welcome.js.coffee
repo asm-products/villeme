@@ -4,16 +4,6 @@
 
 $(document).ready ->
 
-  # mostra input de sugestão para cidade
-  $(".invite_city .hint a").click ->
-    $("#city-sugest").fadeIn()
-    return
-
-  # mostra input de sugestão para persona
-  $(".invite_persona .hint a").click ->
-    $("#persona_sugest").fadeIn()
-    return
-
 
   $(".temporary-slogan").hide()
   $(".slogan").show()
@@ -114,6 +104,21 @@ $(document).ready ->
       zoomControl: true
       zoom: 15
     )
+
+    setTimeout(->
+      if navigator.geolocation
+        map = $(".Gmap-map").gmap3("get")
+        navigator.geolocation.getCurrentPosition ((position) ->
+            latLng = new (google.maps.LatLng)(position.coords.latitude, position.coords.longitude)
+            Villeme.Gmap.centralizeMapTo(latLng)
+            Villeme.Gmap.putMarkerOnPosition(latLng,
+              draggable: true
+            )
+            return
+          ), ->
+          handleNoGeolocation true
+          return
+    , 650)
     return
 
 

@@ -18,9 +18,7 @@
               </div>
             </div>
 
-            <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: 'Persona',  prompt: t('welcome.modal.persona_identify'), hint: link_to(t('welcome.modal.create_persona'), '#persona_sugest').html_safe %>
-
-            <%= f.input :persona_sugest, label: t('welcome.modal.persona_sugest'), placeholder: t('welcome.modal.in_one_word'), wrapper_html:{ id: 'persona_sugest'} %>
+            <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: 'Persona',  prompt: t('welcome.modal.persona_identify') %>
 
             <div class="Gmap">
 
