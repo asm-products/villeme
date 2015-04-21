@@ -40,7 +40,7 @@ module Villeme
       end
 
       def get_city_from_invite
-        City.find_by(address: @address)
+        City.find_by(name: @invite.city_name)
       end
 
       def invite_is_geocoded?
