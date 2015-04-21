@@ -182,7 +182,7 @@
 
     <!-- Plataforms -->
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plataforms hidden-xs">
-      <% if TRY_ACTIVATED %>
+      <% if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
           <%= link_to newsfeed_city_path('porto-alegre') do %>
               <div class="ButtonTryPortoAlegre Button Button--primary Button--extraLarge u-width-450px u-margin-x-auto">
                 Experimente agora em Porto Alegre <span class='glyphicon glyphicon-play'></span>
@@ -380,7 +380,7 @@
 
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centralize-lg">
-          <% if TRY_ACTIVATED %>
+          <% if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
               <%= link_to newsfeed_city_path('porto-alegre') do %>
                   <div class="Button Button--primary Button--large u-width-350px u-margin-x-auto">
                     <%= t('welcome.attributes.try') %> <span class='glyphicon glyphicon-play'></span>
