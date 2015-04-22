@@ -13,15 +13,15 @@ module Villeme
 
           if today_is_between_object_period_occur?
             if the_object_occur_in_this_week?
-              get_a_day_in_week_when_object_occur
+              return get_a_day_in_week_when_object_occur
             else
-              next_day_the_object_occur_in_month
+              return next_day_the_object_occur_in_month
             end
           else
             if @today < @object.date_start
-              next_day_the_object_occur_in_month
+              return next_day_the_object_occur_in_month
             elsif @today > @object.date_finish
-              nil
+              return nil
             end
           end
         end
@@ -66,9 +66,17 @@ module Villeme
         end
 
         def next_day_the_object_occur_in_month
-          period =  (@today..@object.date_finish).to_a
-          next_day = period.find { |day| @object_week_days.include?(day.wday) }
-          return next_day.strftime('%-d/%b')
+          period = (@object.date_start..@object.date_finish).to_a
+
+          period.each do |day|
+            if @object_week_days.include?(day.wday)
+              return I18n.l(day, format: :short_month)
+            else
+              return I18n.l(@object.date_start, format: :short_month)
+            end
+          end
+        rescue
+          return I18n.l(@object.date_start, format: :short_month)
         end
 
         def next_day_the_object_occur_in_week

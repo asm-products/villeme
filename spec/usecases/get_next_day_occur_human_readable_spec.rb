@@ -63,6 +63,18 @@ describe 'UseCases::Dates' do
       end
     end
 
+    context 'when object occur in 60 days period' do
+      it 'should return 19/May' do
+        event = build(:event, date_start: @date_current + 60, date_finish: @date_current + 65)
+        weeks_array = [double('Week', id: 4, name: "Thursday", binary: 4, organizer_id: 4)]
+        allow(event).to receive(:weeks).and_return(weeks_array)
+
+        result = Villeme::UseCases::Dates.get_next_day_occur_human_readable(event, true)
+
+        expect(result).to eq '21/May'
+      end
+    end
+
   end
 
 end
