@@ -5,8 +5,8 @@ class InviteMailer < ActionMailer::Base
   def welcome_email(invite)
     @invite = invite
     @url  = 'http://www.villeme.com/'
-    @city_name = @invite.city_name
-    @city_goal = 250
+    @city = City.find_by(name: @invite.city_name)
+    @city_goal = @city.goal
     @invites_in_this_city = Invite.where(city_name: @city_name).count
 
     set_message_about_quantity_of_invites
@@ -33,11 +33,11 @@ class InviteMailer < ActionMailer::Base
   private
 
   def set_message_about_quantity_of_invites
-    if @city_goal <= @invites_in_this_city
+    if @city_goal <= 0
       @message = "versão Beta lançada!"
       @city_beta_actived = true
     else
-      @message = "<b>#{(@city_goal - @invites_in_this_city)}</b> pessoas para ativar o Beta em <b>#{@city_name}</b>".html_safe
+      @message = "<b>#{(@city_goal)}</b> pessoas para ativar o Beta em <b>#{@city.name}</b>".html_safe
     end
   end
 
