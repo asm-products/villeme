@@ -20,10 +20,8 @@ module Villeme
         geocoderize_invite(geocoding_by_address)
 
         if invite_is_geocoded?
-          if create_city_or_neighborhood
-            decrease_city_goal
-          end
-
+          create_city_or_neighborhood
+          decrease_city_goal
           @invite
         end
       end
