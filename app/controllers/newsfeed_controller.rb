@@ -49,7 +49,7 @@ class NewsfeedController < ApplicationController
       render_newsfeed_for_guest_user
     else
       @city = City.find_by(slug: params[:city])
-      @events = Event.where(city_name: @city.name).upcoming_by_persona
+      @events = Event.where(city_name: @city.name).upcoming_by_persona(current_user)
 
       @number_of_events = @events.count
       @message_for_none_events = "Não há eventos no momento em #{@city.name}."
