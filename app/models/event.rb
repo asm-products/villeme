@@ -71,9 +71,9 @@ class Event < ActiveRecord::Base
 
 	def self.get_current_user_persona_id
 		if current_user
-			current_user.persona_id? ? current_user.persona_id : 1
+			return current_user.persona_id? ? current_user.persona_id : 1
 		else
-			1
+			return 1
 		end
 	rescue
 		nil
