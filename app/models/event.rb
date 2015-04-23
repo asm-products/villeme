@@ -66,7 +66,7 @@ class Event < ActiveRecord::Base
 	}
 
 	scope :upcoming_by_persona, lambda { |user|
-		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order('persona_id = ? DESC, date_start ASC', user.try(:persona_id).to_s)
+		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
 	}
 
 
