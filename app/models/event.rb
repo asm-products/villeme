@@ -66,7 +66,7 @@ class Event < ActiveRecord::Base
 	}
 
 	scope :by_persona, lambda {
-		where('ORDER BY persona_id= ?', current_user.persona_id)
+		order('persona_id = ?', '1')
 	}
 
 
