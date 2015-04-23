@@ -66,9 +66,18 @@ class Event < ActiveRecord::Base
 	}
 
 	scope :by_persona, lambda {
-		order('persona_id = ?', '1')
+		order('persona_id = ?', get_current_user_persona_id)
 	}
 
+	def self.get_current_user_persona_id
+		if current_user
+			current_user.persona_id? ? current_user.persona_id : 1
+		else
+			1
+		end
+	rescue
+		nil
+	end
 
 
 	def name_with_limit
