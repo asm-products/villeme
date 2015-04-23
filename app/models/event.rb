@@ -65,6 +65,10 @@ class Event < ActiveRecord::Base
 	  where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order(:date_start)
 	}
 
+	scope :by_persona, lambda {
+		where('ORDER BY persona_id= ?', current_user.persona_id)
+	}
+
 
 
 	def name_with_limit
