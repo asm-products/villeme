@@ -65,8 +65,8 @@ class Event < ActiveRecord::Base
 	  where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order(:date_start)
 	}
 
-	scope :by_persona, lambda {
-		order('persona_id = ?', '1')
+	scope :upcoming_by_persona, lambda {
+		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order('persona_id = 1')
 	}
 
 
