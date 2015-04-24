@@ -179,8 +179,8 @@ class User < ActiveRecord::Base
       graph = Koala::Facebook::API.new(self.token)
       friends = graph.get_connections("me", "friends?fields=id,name,picture.type(square)")
 
-      # Retorna 15 amigos
-      friends[0..15]
+      # Retorna 150 amigos
+      friends[0..150]
     else
       false
     end
