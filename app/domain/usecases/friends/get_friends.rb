@@ -11,6 +11,7 @@ module Villeme
         end
 
 
+
         private
 
         def compares_app_friends_to_facebook_friends(entity, friends)
@@ -28,6 +29,7 @@ module Villeme
 
           list_of_friends_from_facebook
         end
+
 
         def get_graph_of_friends_from_facebook_via_koala(entity)
           graph = Koala::Facebook::API.new(entity.token)
