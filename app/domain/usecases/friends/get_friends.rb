@@ -7,7 +7,7 @@ module Villeme
           friends = get_graph_of_friends_from_facebook_via_koala(entity)
 
           friends.each do |fb_friend|
-            compares_app_friends_to_facebook_friends(fb_friend, entity)
+            return compares_app_friends_to_facebook_friends(fb_friend, entity)
           end
         end
 
@@ -26,7 +26,7 @@ module Villeme
             end
           end
 
-          return list_of_friends_from_facebook
+          list_of_friends_from_facebook
         end
 
 
