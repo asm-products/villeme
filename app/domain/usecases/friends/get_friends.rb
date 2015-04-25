@@ -7,7 +7,7 @@ module Villeme
           friends_from_facebook = get_graph_of_friends_from_facebook_via_koala(entity)
           return compares_app_friends_to_facebook_friends(entity, friends_from_facebook)
         rescue
-          []
+          nil
         end
 
 
