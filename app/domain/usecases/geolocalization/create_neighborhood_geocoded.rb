@@ -32,12 +32,12 @@ module Villeme
       end
 
       def geocoder_by_address
-        response = Geocoder.search(@address).first
+        response = Geocoder.search(@address)
 
         if response.empty?
           retry_geocoder_by_address
         else
-          response
+          response.first
         end
       end
 
