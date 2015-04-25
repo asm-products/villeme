@@ -10,7 +10,7 @@ module Villeme
       end
 
       def create_objects
-        if create_city_or_neighborhood
+        if create_city_and_neighborhood
           true
         else
           false
@@ -20,7 +20,7 @@ module Villeme
 
       private
 
-      def create_city_or_neighborhood
+      def create_city_and_neighborhood
         create_city and create_neighborhood
       end
 

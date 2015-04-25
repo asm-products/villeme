@@ -4,6 +4,7 @@ module Villeme
 
       def initialize(address)
         @address = address
+        @max_retries = 10
       end
 
 
@@ -31,7 +32,23 @@ module Villeme
       end
 
       def geocoder_by_address
-        Geocoder.search(@address).first
+        response = Geocoder.search(@address).first
+
+        if response.empty?
+          retry_geocoder_by_address
+        else
+          response
+        end
+      end
+
+      def retry_geocoder_by_address
+        @retries ||= 0
+        if @retries < @max_retries
+          @retries += 1
+          geocoder_by_address
+        else
+          false
+        end
       end
 
       def geocoderize_neighborhood
