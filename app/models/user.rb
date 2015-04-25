@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
 
   def first_name
-    self.name.split.first
+    name ? name.split.first : nil
   end
 
   def city_slug
