@@ -27,7 +27,7 @@ module GeocodedActions
   end
 
   def neighborhood_name
-    neighborhood ? neighborhood.name : nil
+    neighborhood.try(:name)
   end
 
   def city
@@ -40,7 +40,7 @@ module GeocodedActions
   end
 
   def city_name
-    city ? city.name : nil
+    city.try(:name)
   end
 
   def state
