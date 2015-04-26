@@ -13,7 +13,7 @@
           <div class="panel-heading u-centralize">
             <span class="avatar-absolute"><%= get_avatar @user, "50", "50" %></span>
             <h2><%= @user.name %></h2>
-            <span class="font-14"><%= "#{@user.neighborhood_name} - #{@user.city_name}" %></span>
+            <span class="font-14"><%= "#{@user.neighborhood.try(:name)} - #{@user.city.try(:name)}" %></span>
           </div>
 
           <div class="panel-body">

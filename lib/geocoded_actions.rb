@@ -22,26 +22,23 @@ module GeocodedActions
 
 
   def neighborhood
-    neighborhood = Neighborhood.find_by(name: neighborhood_name)
-    neighborhood ? neighborhood : false
+    Neighborhood.find_by(name: neighborhood_name)
   end
 
-  def neighborhood_name
-    neighborhood.try(:name)
-  end
 
   def city
     city = City.find_by(name: city_name)
-    city ? city : false
+    if city
+      city
+    else
+      false
+    end
   end
 
   def city=(city)
     self.city_name = city.name
   end
 
-  def city_name
-    city.try(:name)
-  end
 
   def state
     State.find_by(name: state_name)
