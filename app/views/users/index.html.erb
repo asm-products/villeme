@@ -23,7 +23,7 @@
                 <td><%= user.username %></td>
                 <td><%= user.id %></td>
                 <td><%= user.email %></td>
-                <td><%= user.city.name %></td>
+                <td><%= user.city.try(:name) %></td>
                 <td><%= time_ago_in_words user.created_at %></td>
                 <td>
                   <%= link_to t('.edit', :default => t("helpers.links.edit")),
