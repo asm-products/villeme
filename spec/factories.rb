@@ -7,6 +7,7 @@ FactoryGirl.define do
     account_complete true
     invited true
     admin false
+    guest false
     latitude 42.670443
     longitude -73.788397
     address "544 Madison Ave, Albany, NY 12208, USA"

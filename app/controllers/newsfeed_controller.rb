@@ -4,7 +4,7 @@ class NewsfeedController < ApplicationController
   before_action :is_logged, except: [:index, :city]
 
   # verifica se a conta esta completa
-  before_action :is_invited, except: [:index, :city]
+  before_action :is_invited
 
   # verifica se a conta esta completa
   before_action :is_complete, except: [:index, :city]

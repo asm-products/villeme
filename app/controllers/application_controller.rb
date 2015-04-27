@@ -163,12 +163,16 @@ class ApplicationController < ActionController::Base
 
 	
 	def is_invited
-    if current_user.invited
+    if current_or_guest_user.invited?
       true
+    elsif current_or_guest_user.guest?
+      true
+    elsif current_or_guest_user.invited? == false and current_or_guest_user.provider == 'facebook'
+      redirect_to welcome_path, notice: "#{current_user.name.split.first}, você precisa de um convite para acessar. Solicite abaixo!"
     else
       redirect_to welcome_path, notice: "#{current_user.name.split.first}, você precisa de um convite para acessar. Solicite abaixo!"
     end
-	end
+  end
 
 
 
