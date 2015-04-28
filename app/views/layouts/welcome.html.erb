@@ -53,7 +53,7 @@
 
 <!-- Container 1 -->
 
-<div id="header-hide-on-scroll" class="container-fluid green-bg">
+<div id="header-hide-on-scroll" class="container-fluid">
 
   <div class="Header hidden-xs">
 
@@ -76,16 +76,36 @@
 
   <div class="row hidden-xs">
 
-    <div class="col-lg-9 col-md-10 col-sm-12 col-lg-offset-1_5 col-md-offset-1">
+    <div class="col-lg-12 col-md-12 col-sm-12">
 
       <div class="col-lg-7 col-md-7 col-sm-7">
+
+
+        <!-- Plataforms -->
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plataforms hidden-xs">
+          <% if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
+              <%= link_to newsfeed_city_path('porto-alegre') do %>
+                  <div class="ButtonTryPortoAlegre Button Button--primary Button--extraLarge u-width-450px u-margin-x-auto">
+                    Experimente agora em Porto Alegre <span class='glyphicon glyphicon-play'></span>
+                  </div>
+              <% end %>
+          <% end %>
+          <%= image_tag 'welcome/plataforms-b.png', width: '936', height: '318' %>
+        </div>
+
+
+      </div>
+
+      <div class="col-lg-5 col-md-5 col-sm-5 u-no-padding">
+
+
         <!-- Slogan -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 u-no-padding">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="slogan">
-            <span class="font-36"><%= t('welcome.first_screen.slogan') %><br> <span class="wodry"><%= t('welcome.first_screen.slogan_city') %>|<%= t('welcome.first_screen.slogan_neighborhood') %></span></span><br/>
+            <span><%= t('welcome.first_screen.slogan') %> <%= t('welcome.first_screen.slogan_city') %></span><br/>
           </div>
           <div class="description">
-            <span class="font-14"><%= t('welcome.first_screen.sub_slogan').html_safe %></span>
+            <span><%= t('welcome.first_screen.sub_slogan').html_safe %></span>
           </div>
         </div>
 
@@ -96,27 +116,23 @@
           <span class="font-14"><%= t('welcome.first_screen.sub_slogan') %></span>
         </div>
 
-      </div>
-
-      <div class="col-lg-4 col-md-5 col-sm-5">
         <!-- Logins -->
 
-        <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize"><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize"><%= link_to_function t('welcome.first_screen.sign_in'), 'Villeme.Ux.loginModal()', id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>
-          </div>
-        </div>
+        <!--<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs">-->
+          <!--<div class="row">-->
+            <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize"><a href="#beneficios"><%= t('welcome.first_screen.learn_more') %></a></div>-->
+            <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 u-centralize"><%= link_to_function t('welcome.first_screen.sign_in'), 'Villeme.Ux.loginModal()', id: 'sign_in', class: 'has-tooltip', rel: 'nofollow',  title: t('welcome.tooltip.have_an_invitation') %></div>-->
+          <!--</div>-->
+        <!--</div>-->
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="LoginBox">
 
             <!-- invite -->
-            <div class="Button Button--callToAction Button--large Button--alignCenter has-modal hidden-xs">
+            <div class="Button Button--primary Button--large Button--callToAction Button--alignCenter has-modal hidden-xs">
               <div class="row">
-                <div class="col-lg-10 col-md-10 col-sm-9">
-                  <span class="Button-text"><%= t('welcome.first_screen.request_invite') %></span><br/>
-                  <span class="Button-description" style="position: relative; top: -3px; opacity: 0.65;"><%= t('welcome.first_screen.request_invite_free') %></span>
+                <div class="col-lg-10 col-md-10 col-sm-9 u-centralize">
+                  <span class="Button--callToAction-text"><%= t('welcome.first_screen.request_invite') %></span><br/>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-3 u-no-padding">
                   <span class="Button--callToAction-icon glyphicon glyphicon-play"></span>
@@ -133,42 +149,46 @@
           </div>
         </div>
 
+
+        <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs u-margin-15-0">
+          <ul class="ListValues">
+            <div class="col-lg-12 col-md-2 col-sm-2 u-no-padding">
+              <li>
+                <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+                <span class="ListValues-text">É grátis e sempre será</span>
+              </li>
+            </div>
+            <div class="col-lg-12 col-md-2 col-sm-2 u-no-padding">
+              <li>
+                <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+                <span class="ListValues-text">Eventos e atividades do seu interesse</span>
+              </li>
+            </div>
+            <div class="col-lg-12 col-md-2 col-sm-2 u-no-padding">
+              <li>
+                <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+                <span class="ListValues-text">Saiba as datas e localização de forma simples</span>
+              </li>
+            </div>
+            <div class="col-lg-12 col-md-2 col-sm-2 u-no-padding">
+              <li>
+                <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+                <span class="ListValues-text">Agende com apenas um clique</span>
+              </li>
+            </div>
+            <div class="col-lg-12 col-md-2 col-sm-2 u-no-padding">
+              <li>
+                <span class="ListValues-icon glyphicon glyphicon-ok"></span>
+                <span class="ListValues-text">Eventos de lazer, saúde, esporte educação e cultura</span>
+              </li>
+            </div>
+          </ul>
+        </div>
+
+
       </div>
 
-      <div class="col-lg-10 col-md-12 col-sm-12 hidden-xs">
-        <ul class="ListValues">
-          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
-            <li class="has-tooltip" title="Quando acontecem feiras em parques, festivais divertidos, festas, onde ir com os amigos, com família...">
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Lazer</span>
-            </li>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
-            <li class="has-tooltip" title="Quando e onde posso marcar dentista, fazer consultas...">
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Saúde</span>
-            </li>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
-            <li class="has-tooltip" title="Quando acontece o jogo de futebol na praça, onde posso correr, praticar natação, jogar basquete...">
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Esporte</span>
-            </li>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
-            <li class="has-tooltip" title="Quando acontecem cursos que me interessam perto de casa, palestras, workshops, eventos acadêmicos...">
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Educação</span>
-            </li>
-          </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 u-no-padding">
-            <li class="has-tooltip" title="Quando e onde posso ir ver um filme que eu gosto, uma peça de teatro, um festival de música, exibição de arte...">
-              <span class="ListValues-icon glyphicon glyphicon-ok"></span>
-              <span class="ListValues-text">Cultura</span>
-            </li>
-          </div>
-        </ul>
-      </div>
+
 
 
     </div>
@@ -180,17 +200,7 @@
 
 
 
-    <!-- Plataforms -->
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plataforms hidden-xs">
-      <% if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
-          <%= link_to newsfeed_city_path('porto-alegre') do %>
-              <div class="ButtonTryPortoAlegre Button Button--primary Button--extraLarge u-width-450px u-margin-x-auto">
-                Experimente agora em Porto Alegre <span class='glyphicon glyphicon-play'></span>
-              </div>
-          <% end %>
-      <% end %>
-      <%= image_tag 'welcome/plataforms-b.png', width: '936', height: '318' %>
-    </div>
+
 
 
 
@@ -282,9 +292,7 @@
 
 
 
-<div id="header-hide-on-scroll-dark" class="container-fluid green-bg">
 
-</div>
 
 
 

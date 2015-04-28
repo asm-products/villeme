@@ -73,23 +73,26 @@
   }
 
   &--callToAction{
-    background: $white;
-    color: $grey;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+    text-align: center;
+    padding: 30px;
+
+    &-text{
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 24px;
+    }
 
     &:hover{
-      background: scale_color($white, $lightness: -2%);
-      box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+      background: $green-light;
 
       & .Button--callToAction-icon{
-        color: $grey;
-        margin: 13px 0 0 3px;
+        margin: 11px 0 0 3px;
       }
     }
 
     &-icon{
-      margin: 13px 0 0 0;
-      color: #dfdfdf;
+      margin: 11px 0 0 0;
+      color: $white;
     }
   }
 

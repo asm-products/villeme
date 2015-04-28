@@ -3,10 +3,10 @@ pt-BR:
     head:
       title: "Bem-vindo ao Villeme - Eventos e atividades na sua cidade!"
     first_screen:
-      slogan: "Eventos e atividades"
+      slogan: "Agenda de eventos"
       slogan_neighborhood: "no seu bairro"
       slogan_city: "na sua cidade"
-      sub_slogan: "O jeito mais fácil de se divertir, <br>de aprender e de cuidar da saúde perto de casa."
+      sub_slogan: "Saiba o que esta acontecendo na cidade e não perca mais nenhum evento legal."
       request_invite: "Pegue um convite"
       request_invite_free: "É grátis e sempre será!"
       learn_more: "Saiba mais"

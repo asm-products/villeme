@@ -18,10 +18,11 @@ body{
 }
 
 .Header{
-  margin: 10px -30px 45px -30px;
+  margin: 0px -30px 45px -30px;
   overflow: hidden;
-  padding: 0 50px 15px 50px;
-  border-bottom: 1px solid #32a655;
+  padding: 10px 50px 15px 50px;
+  background-color: #fff;
+  border-bottom: 1px solid #f1f1f1;
 
   &-facebookButton{
     margin: 24px 0px 0 20px;
@@ -173,31 +174,25 @@ span {
 
   & li{
     list-style: none;
-    padding: 3px 0px;
-    text-align: center;
-    border: 1px solid $green-darker;
-    border-radius: 30px;
-    margin: 0 6px;
+    padding: 6px 0px;
+    margin: 0px 30px;
 
     &:hover{
       border-color: $white;
       cursor: default;
     }
 
-    &:hover .ListValues-icon{
-      color: $white;
-    }
   }
 
   &-icon{
     padding: 0 8px 0 0;
     vertical-align: middle;
     font-size: 15px;
-    color: $green-darker;
+    color: $green;
   }
 
   &-text{
-    font-weight: 400;
+    font-weight: 100;
     font-size: 15px;
     vertical-align: middle;
   }
@@ -214,8 +209,10 @@ span {
   display: none;
 
   & span{
-    font-family: $font-family-default;
+    font-family: "Roboto", helvetica, arial, sans-serif;
     line-height: 1em;
+    font-size: 30px;
+    font-weight: 600;
   }
 }
 
@@ -223,29 +220,23 @@ span {
   margin-bottom: 25px;
 
   & span{
-    font-weight: 400;
+    font-weight: 100;
+    line-height: 1.3em;
+    font-size: 20px;
   }
 }
 
 #header-hide-on-scroll{
-  background-image: url("/images/capa-b.jpg");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
+//  background-image: url("/images/capa-b.jpg");
+//  background-position: center top;
+//  background-repeat: no-repeat;
+//  background-size: cover;
   overflow: hidden;
-  opacity: 0;
   position: relative;
   z-index: 1;
+  background: #fafafa;
 }
 
-#header-hide-on-scroll-dark{
-  background-image: url("/images/capa.jpg");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-  height: 800px
-}
 
 .goals{
   font-family: varela round;
@@ -445,12 +436,13 @@ span {
   text-align: center;
   opacity: 1;
   position: relative;
-  top: 320px;
+  bottom: 0;
 
   & img{
     height: auto;
     max-width: 936px;
     width:100%;
+    margin: 100px 0 0 0;
   }
 
 }

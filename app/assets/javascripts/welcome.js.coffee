@@ -9,10 +9,10 @@ $(document).ready ->
   $(".slogan").show()
 
 
-  $(".wodry").wodry
-    animation: 'rotateX'
-    delay: 10000
-    animationDuration: 400
+#  $(".wodry").wodry
+#    animation: 'rotateX'
+#    delay: 10000
+#    animationDuration: 400
 
 
 
@@ -30,13 +30,13 @@ $(document).ready ->
     return
 
   # esconde head ao rolar tela
-  h = window.innerHeight
-  if h > 750
-    $("#header-hide-on-scroll, #header-hide-on-scroll-dark").height h
-    $("#header-hide-on-scroll-dark").css "margin-top", -h
-  else
-    $("#header-hide-on-scroll, #header-hide-on-scroll-dark").height 750
-    $("#header-hide-on-scroll-dark").css "margin-top", -750
+#  h = window.innerHeight
+#  if h > 750
+#    $("#header-hide-on-scroll, #header-hide-on-scroll-dark").height h
+#    $("#header-hide-on-scroll-dark").css "margin-top", -h
+#  else
+#    $("#header-hide-on-scroll, #header-hide-on-scroll-dark").height 750
+#    $("#header-hide-on-scroll-dark").css "margin-top", -750
 
 #  $(window).on "scroll", ->
 #    st = $(this).scrollTop()
@@ -66,21 +66,21 @@ $(document).ready ->
 
 
   #troca a fotografia de fundo
-  setTimeout( ->
-    $("#header-hide-on-scroll").animate
-      opacity: 1
-    , 1200
-
-    $(".plataforms").animate
-      top: 25
-    , 800
-
-    $("#header-hide-on-scroll-dark").animate
-      opacity: 0
-    , 1200
-
-  , 2500
-  )
+#  setTimeout( ->
+#    $("#header-hide-on-scroll").animate
+#      opacity: 1
+#    , 1200
+#
+#    $(".plataforms").animate
+#      top: 25
+#    , 800
+#
+#    $("#header-hide-on-scroll-dark").animate
+#      opacity: 0
+#    , 1200
+#
+#  , 2500
+#  )
 
 
   # Gmail em breve
@@ -127,7 +127,7 @@ $(document).ready ->
   $('body').prepend('<div id="fb-root"></div>')
 
   $.ajax
-    url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
+    url: "#{window.location.protocol}//connect.facebook.nehahahat/en_US/all.js"
     dataType: 'script'
     cache: true
 
