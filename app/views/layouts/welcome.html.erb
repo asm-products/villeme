@@ -84,13 +84,13 @@
 
         <!-- Plataforms -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 plataforms hidden-xs u-no-padding">
-          <%# if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
+          <% if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
           <%= link_to newsfeed_city_path('porto-alegre') do %>
               <div class="ButtonTryPortoAlegre Button Button--extraLarge u-width-450px u-margin-x-auto">
                 Experimente agora em Porto Alegre <span class='glyphicon glyphicon-play'></span>
               </div>
           <% end %>
-          <%# end %>
+          <% end %>
           <%= image_tag 'welcome/desktop-with-printscreen.png', width: '936' %>
         </div>
 
@@ -269,7 +269,7 @@
 
 
 
-<%# if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
+<% if TRY_ACTIVATED and Event.where(city_name: 'Porto Alegre').upcoming.count > 5 %>
     <div class="row">
       <div class="col-lg-12 u-centralize">
         <div class="MoreInfo">
@@ -277,7 +277,7 @@
         </div>
       </div>
     </div>
-<%# end %>
+<% end %>
 
 
 
