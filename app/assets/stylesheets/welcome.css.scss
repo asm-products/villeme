@@ -6,6 +6,8 @@
 @import 'application_layout';
 @import 'modules/Gmap';
 @import 'modules/Autocomplete';
+@import 'media_sizes';
+@import 'media_font_sizes';
 
 body{
   overflow: auto;
@@ -21,11 +23,11 @@ body{
   margin: 0px -30px 45px -30px;
   overflow: hidden;
   padding: 10px 50px 15px 50px;
-  background-color: #fff;
-  border-bottom: 1px solid #f1f1f1;
+//  background-color: #fff;
+//  border-bottom: 1px solid #f1f1f1;
 
   &-facebookButton{
-    margin: 24px 0px 0 20px;
+    margin: 0 0 0 25px;
     float: left;
   }
 }
@@ -149,7 +151,6 @@ span {
 }
 
 .logo-lg{
-  margin: 35px 0 0;
   float: left;
 
   img{
@@ -204,7 +205,6 @@ span {
   & span{
     font-family: "Roboto", helvetica, arial, sans-serif;
     line-height: 1em;
-    font-size: 30px;
     font-weight: 600;
   }
 }
@@ -215,19 +215,16 @@ span {
   & span{
     font-weight: 100;
     line-height: 1.3em;
-    font-size: 20px;
   }
 }
 
 #header-hide-on-scroll{
-//  background-image: url("/images/capa-b.jpg");
-//  background-position: center top;
-//  background-repeat: no-repeat;
-//  background-size: cover;
   overflow: hidden;
   position: relative;
   z-index: 1;
 }
+
+
 
 
 .goals{
@@ -265,7 +262,6 @@ span {
     border-bottom: 1px solid scale_color($grey, $lightness: 80%);
     display: inline-block;
     list-style: none outside none;
-    padding: 12px 100px;
     width: 100%;
 
     & a{
@@ -443,7 +439,6 @@ span {
 }
 
 .plataforms{
-  height: 330px;
   overflow: hidden;
   text-align: center;
   opacity: 1;
@@ -542,5 +537,3 @@ footer{
 
 
 
-@import 'media_sizes';
-@import 'media_font_sizes';
