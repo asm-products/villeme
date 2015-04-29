@@ -790,13 +790,13 @@ ul li{
 }
 
 .tooltip.top .tooltip-arrow {
-  border-top-color: $white;
+  border-top-color: $grey;
   z-index: 2000 !important;
 }
 
 .tooltip-inner {
-  background-color: $white;
-  color: $grey;
+  background-color: $grey;
+  color: $white;
   font-size: 12px;
   max-width: 245px;
   padding: 10px;
