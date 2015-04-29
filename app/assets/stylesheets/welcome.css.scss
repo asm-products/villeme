@@ -27,11 +27,6 @@ body{
   &-facebookButton{
     margin: 24px 0px 0 20px;
     float: left;
-    opacity: 0.3;
-
-    &:hover{
-      opacity: 1;
-    }
   }
 }
 
@@ -40,10 +35,13 @@ body{
   z-index: 100;
   left: 50%;
   margin-left: -225px;
-  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
   top: 50%;
-  margin-top: -25px;
+  margin-top: -75px;
   display: none;
+  font-size: 30px;
+  line-height: 1em;
+  color: $white;
+  text-shadow: 0px 0px 8px rgba(0,0,0,0.7);
 }
 
 .wodry-flipping {
@@ -137,14 +135,9 @@ span {
 .like-button{
   left: 50%;
   margin-left: 150px;
-  opacity: 0.5;
   position: absolute;
   top: 104px;
   transition: all 0.3s ease 0s;
-
-  &:hover{
-    opacity:1;
-  }
 }
 
 .pattern{
@@ -234,7 +227,6 @@ span {
   overflow: hidden;
   position: relative;
   z-index: 1;
-  background: #fafafa;
 }
 
 
@@ -346,6 +338,26 @@ span {
 
 }
 
+.MoreInfo{
+  border-bottom: 1px solid #f1f1f1;
+  padding: 50px 0;
+
+  & a{
+    border-bottom: 1px dotted;
+    color: $green;
+
+    &:hover{
+      border-bottom: none;
+      color: $green-light;
+    }
+  }
+
+  &-text{
+    font-size: 22px;
+    font-weight: 100;
+  }
+}
+
 .login-footer{
   & .rounded{
 
@@ -442,7 +454,7 @@ span {
     height: auto;
     max-width: 936px;
     width:100%;
-    margin: 100px 0 0 0;
+    margin: 25px 0 0 0;
   }
 
 }
