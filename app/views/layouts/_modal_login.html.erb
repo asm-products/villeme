@@ -14,19 +14,14 @@
           <span class="js-ModalLogin-alert"></span>
         </div>
 
-        <%= link_to user_omniauth_authorize_path(:facebook) do %>
-            <div class="Button Button--large Button--facebook u-centralize u-margin-15-0 has-tooltip" data-placement="top" data-original-title="<%= t('welcome.tooltip.have_an_invitation') %>">
-              <%= t('welcome.buttons.login_with_facebook') %>
-            </div>
-        <% end %>
-
-        ou
-
         <%= link_to welcome_path do %>
-            <div class="Button Button--primary Button--large u-centralize u-margin-15-0-0-0">
+            <div class="Button Button--primary Button--large u-centralize u-margin-0-0-0-15">
               <%= t('welcome.first_screen.request_invite') %>
             </div>
         <% end %>
+
+        <span>ou <%= link_to 'entre com o facebook', user_omniauth_authorize_path(:facebook), class: 'fake-link has-tooltip', title: t('welcome.tooltip.have_an_invitation'), 'data-placement' => 'bottom' %></span>
+
 
       </div>
 
