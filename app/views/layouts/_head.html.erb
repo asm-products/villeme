@@ -5,15 +5,7 @@
     <title><%= content_for?(:title) ? yield(:title) + " — Villeme" : "Villeme" %></title>
 
     <!-- Open Graph para Facebook -->
-    <meta property="og:site_name" content="Villeme" />
-    <meta property="og:url" content="http://www.villeme.com" />
-    <meta property="og:title" content="Villeme — Qualidade de vida e diversão na sua cidade!" />
-    <meta property="og:description" content="O Villeme vai além de uma plataforma web e mobile, nosso propósito é aumentar e tornar divertido a interação das pessoas da [e com a] cidade e a forma como se relacionam com os diversos setores dela: público, privado, ONGs e mobilizações sociais." />
-    <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/villeme-visual-identity/solicite-um-convite.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1191">
-    <meta property="og:image:height" content="841">
-    <meta property="og:type" content="website" />
+    <%= render 'layouts/share_rules' %>
 
     <%= csrf_meta_tags %>
 
