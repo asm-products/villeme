@@ -1,6 +1,6 @@
 <% if @event %>
     <meta property="og:site_name" content="Villeme" />
-    <meta property="og:url" content="http://www.villeme.com/"/>
+    <meta property="og:url" content="<%= event_path(@event) %>"/>
     <meta property="og:title" content="<%= @event.try(:name) %>" />
     <meta property="og:description" content="<%= strip_tags @event.try(:description_with_limit) %>" />
     <meta property="og:image" content="<%= @event.try(:image).try(:url, :share).nil? ? @event.try(:image).try(:url, :medium) : @event.try(:image).try(:url, :share) %>">
