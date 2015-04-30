@@ -1,4 +1,4 @@
-<% if params[:controller] == 'events'and params[:action] == 'show' and @event != nil %>
+<% if params[:controller] == 'events' and @event != nil %>
     <meta property="og:site_name" content="Villeme" />
     <meta property="og:url" content="http://www.villeme.com/"/>
     <meta property="og:title" content="<%= @event.try(:name) %>" />
