@@ -37,7 +37,7 @@ class Event < ActiveRecord::Base
 
 	# gem paperclip
 	has_attached_file :image,
-                    styles: {thumb: "280x280>", medium: "800x300>"},
+                    styles: {thumb: "280x280>", medium: "504x504>", share: "484x252>"},
                     default_url: "/images/:style/missing.png"
 
 
