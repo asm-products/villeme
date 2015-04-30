@@ -1,9 +1,9 @@
 <% if params[:controller] == 'events'and params[:action] == 'show' and @event != nil %>
     <meta property="og:site_name" content="Villeme" />
-    <meta property="og:url" content="<%= event_path(@event) %>" />
+    <meta property="og:url" content="http://www.villeme.com/"/>
     <meta property="og:title" content="<%= @event.try(:name) %>" />
     <meta property="og:description" content="<%= strip_tags @event.try(:description_with_limit) %>" />
-    <meta property="og:image" content="<%= @event.try(:image).try(:url, :share) %>">
+    <meta property="og:image" content="<%= @event.try(:image).try(:url, :share).nil? ? @event.try(:image).try(:url, :medium) : @event.try(:image).try(:url, :share) %>">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="484">
     <meta property="og:image:height" content="252">
