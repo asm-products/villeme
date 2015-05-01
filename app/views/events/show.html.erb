@@ -1,5 +1,5 @@
 
-<% cache [current_user, @event, @event.agended_by_count[:count]] do %>
+<% cache [current_user, @event, @event.agended_by_count[:count]], expires: 1.hour do %>
 
     <% wiselinks_title(@event.name + ' em ' + @event.city_name + ' — Villeme') %>
     <%= content_for :title, @event.name + ' em ' + @event.city_name %>
