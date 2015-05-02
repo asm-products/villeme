@@ -20,7 +20,6 @@
     font-weight: 600;
     min-height: 30px;
     padding: 8px 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     margin: 2px;
     background-clip: padding-box;
     text-transform: capitalize;
@@ -33,7 +32,6 @@
   &-dayButton {
     color: $white;
     border: none;
-    text-shadow: 0 1px #000000;
 
     &.is-schedule {
       color: $grey;
@@ -128,19 +126,14 @@
       display: inline;
 
     }
-    & .title a {
-      text-decoration: underline;
+    & .Event-title a {
       color: $green;
     }
   }
 
   & a {
-    /*	    color: #384047;
-            font-family: varela round,helvetica,arial;
-            font-size: 18px;
-            font-weight: normal;*/
+
     &:hover {
-      /*			color: #5fcf80;*/
       text-decoration: none;
     }
   }
@@ -162,11 +155,13 @@
     font-size: 20px;
     font-weight: bold;
   }
-  & .title {
+  &-title {
     font-size: 18px;
     font-weight: bold;
     font-family: $font-family-default;
+    margin: 20px 0 6px 0;
   }
+
   & .block {
     float: left;
     margin: 0 0 35px;

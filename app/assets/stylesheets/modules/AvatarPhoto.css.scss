@@ -2,10 +2,10 @@
 
 .AvatarPhoto{
   border-radius: 100%;
-  background-color: $grey-lightness;
+  background-color: scale_color($grey-lightness, $lightness: -10%);
 
   &:hover{
-    background-color: scale_color($grey-lightness, $lightness: -10%);
+    background-color: $grey-lightness;
   }
 
   &--small{
