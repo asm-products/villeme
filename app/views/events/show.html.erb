@@ -14,86 +14,93 @@
 
     <div id="main-content">
 
-      <div class="Event--single col-lg-7 col-md-8" id="event-<%= @event.id %>">
+      <div class="col-lg-7 col-md-8">
 
-        <div class="box-top">
+        <div id="event-<%= @event.id %>" class="EventSingle">
 
-          <% if agended(@event) %>
-              <span title='<%= @event.period_that_occurs %>' class='label day today has-tooltip agended'><%= @event.day_of_week %></span>
-              <span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(@event) %>"><span class="text">Agendado</span><span class="agended-by-count has-tooltip" title="<%= @event.agended_by_count[:valid] ? @event.agended_by_count[:text] : nil %>"><%= @event.agended_by_count[:count] %></span></span>
-          <% else %>
-              <span title='<%= @event.period_that_occurs %>' class='label day today has-tooltip'><%= @event.day_of_week %></span>
-              <span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(@event) %>"><span class="text">Agendar</span><span class="agended-by-count has-tooltip" title="<%= @event.agended_by_count[:valid] ? @event.agended_by_count[:text] : nil %>"><%= @event.agended_by_count[:count] %></span></span>
-          <% end %>
-
-        </div>
-
-        <div class="panel panel-default">
-
-
-          <!-- =Image -->
-          <div class="image" style="background-image: url(<%= @event.image.url(:medium) %>)"></div>
-
-
-          <div class="panel-body">
-
-
-            <!-- =Title -->
-            <span class="font-9 opacity-50 uppercase"><%= @event.subcategory.name unless @event.subcategory.nil? %></span>
-            <h1 class="title"><%= @event.name %></h1>
-
-
-            <!-- =Description -->
-            <div class="panel-body-item p-0-0-15">
-              <%= render 'events/show/description' %>
-            </div>
-
+          <div class="EventSingle-buttonsBox">
+            <% if agended(@event) %>
+                <span title='<%= @event.period_that_occurs %>' class='EventSingle-button EventSingle-dayButton js-EventDayButton is-schedule has-tooltip'><%= @event.day_of_week %></span>
+                <span class="EventSingle-button EventSingle-agendaButton js-EventAgendaButton is-schedule" data-schedule-url="<%= schedule_event_path(@event) %>"><span class="EventSingle-buttonText js-EventButtonText">Agendado</span><span class="EventSingle-agendedByCount js-agendedByCount has-tooltip" title="<%= @event.agended_by_count[:valid] ? @event.agended_by_count[:text] : nil %> "><%= @event.agended_by_count[:count] %></span></span>
+            <% else %>
+                <span title='<%= @event.period_that_occurs %>' class='EventSingle-button EventSingle-dayButton js-EventDayButton has-tooltip'><%= @event.day_of_week %></span>
+                <span class="EventSingle-button EventSingle-agendaButton js-EventAgendaButton" data-schedule-url="<%= schedule_event_path(@event) %>"><span class="EventSingle-buttonText js-EventButtonText">Agendar</span><span class="EventSingle-agendedByCount js-agendedByCount has-tooltip" title="<%= @event.agended_by_count[:valid] ? @event.agended_by_count[:text] : nil %> "><%= @event.agended_by_count[:count] %></span></span>
+            <% end %>
           </div>
 
-          <ul class="list-group font-12">
+          <div class="panel panel-default">
 
-            <li class="list-group-item categories u-centralize u-padding-15-0">
-              <div class="row">
 
-                <!-- =Categories -->
-                <div class="col-lg-5 col-md-5 p-6-0">
-                  <% @event.category_ids.each do |id| %>
-                      <% # noinspection RailsChecklist05
-                         cat = Category.find(id) %>
-                      <%= link_to newsfeed_category_path(cat) do %>
-                          <%= image_tag "categories/#{cat.slug}.png", title: cat.name, class: "has-tooltip"  %>
-                      <% end %>
-                  <% end %>
-                </div>
+            <!-- =Image -->
+            <div class="EventSingle-imageBox" style="background-image: url(<%= @event.image.url(:medium) %>)"></div>
 
-                <!-- =Rating -->
-                <div class="col-lg-7 col-md-7 p-15-0-0-0">
-                  <%= rating_for @event, "geral", disable_after_rate: true, half_show: false %>
-                  <span class="block p-10-0-0-0 font-10"><span class="glyphicon glyphicon-user"></span> <%= @event.rates_count %></span>
-                </div>
 
+            <div class="panel-body">
+
+
+              <!-- =Title -->
+              <span class="EventSingle-subCat">
+                <%= @event.subcategory.name unless @event.subcategory.nil? %>
+              </span>
+              <h1 class="EventSingle-title">
+                <%= @event.name %>
+              </h1>
+
+
+              <!-- =Description -->
+              <div class="panel-body-item p-0-0-15">
+                <%= render 'events/show/description' %>
               </div>
-            </li>
 
-            <!-- =Infos -->
-            <li class="list-group-item">
-              <%= render 'events/show/infos' %>
-            </li>
+            </div>
+
+            <ul class="list-group font-12">
+
+              <li class="list-group-item categories u-centralize u-padding-15-0">
+                <div class="row">
+
+                  <!-- =Categories -->
+                  <div class="col-lg-5 col-md-5 p-6-0">
+                    <% @event.category_ids.each do |id| %>
+                        <% # noinspection RailsChecklist05
+                           cat = Category.find(id) %>
+                        <%= link_to newsfeed_category_path(cat) do %>
+                            <%= image_tag "categories/#{cat.slug}.png", title: cat.name, class: "has-tooltip"  %>
+                        <% end %>
+                    <% end %>
+                  </div>
+
+                  <!-- =Rating -->
+                  <div class="col-lg-7 col-md-7 p-15-0-0-0">
+                    <%= rating_for @event, "geral", disable_after_rate: true, half_show: false %>
+                    <span class="block p-10-0-0-0 font-10"><span class="glyphicon glyphicon-user"></span> <%= @event.rates_count %></span>
+                  </div>
+
+                </div>
+              </li>
+
+              <!-- =Infos -->
+              <li class="list-group-item">
+                <%= render 'events/show/infos' %>
+              </li>
 
 
-            <!-- =Contacts -->
-            <% if @event.email.blank? == false or @event.phone.blank? == false or @event.link.blank? == false %>
-                <li class="list-group-item">
-                  <%= render 'events/show/contacts' %>
-                </li>
-            <% end %>
+              <!-- =Contacts -->
+              <% if @event.email.blank? == false or @event.phone.blank? == false or @event.link.blank? == false %>
+                  <li class="list-group-item">
+                    <%= render 'events/show/contacts' %>
+                  </li>
+              <% end %>
 
-          </ul>
+            </ul>
+          </div>
+
         </div>
+
 
 
         <!-- =Tip -->
-        <div class="panel panel-default">
+        <div class="panel panel-default u-margin-15-0">
           <%= render 'events/show/tips' %>
         </div>
 

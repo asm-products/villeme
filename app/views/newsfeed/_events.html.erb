@@ -12,13 +12,13 @@
     <% cache [current_user, event, event.agendas], expires: 1.hour do %>
         <div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
 
-          <div class="box-top">
+          <div class="Event-buttonsBox">
             <% if agended(event) %>
-                <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip agended'><%= event.day_of_week %></span>
-                <span class="label green-bg agenda-btn schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendado</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+                <span title='<%= event.period_that_occurs %>' class='Event-button Event-dayButton Event--newsfeed js-EventDayButton is-schedule has-tooltip'><%= event.day_of_week %></span>
+                <span class="Event-button Event-agendaButton js-EventAgendaButton is-schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="Event-buttonText js-EventButtonText">Agendado</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
             <% else %>
-                <span title='<%= event.period_that_occurs %>' class='label day today has-tooltip'><%= event.day_of_week %></span>
-                <span class="label white-bg agenda-btn unschedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="text">Agendar</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
+                <span title='<%= event.period_that_occurs %>' class='Event-button Event-dayButton Event--newsfeed js-EventDayButton has-tooltip'><%= event.day_of_week %></span>
+                <span class="Event-button Event-agendaButton js-EventAgendaButton" data-schedule-url="<%= schedule_event_path(event) %>"><span class="Event-buttonText js-EventButtonText">Agendar</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
             <% end %>
           </div>
 
@@ -35,19 +35,19 @@
                 </div>
 
                 <%= link_to event_path(event), data: { push: true } do %>
-                    <div class="image-box" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
+                    <div class="Event-imageBox" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
                 <% end %>
 
 
                 <div class="caption">
 
-                  <span class="sub-cat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
+                  <span class="Event-subCat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
 
                   <h2 class="title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
                   <span class="description"><%= strip_tags event.description_with_limit %></span>
 
                   <div class="infos">
-                    <span class="preco <%= event.cost == 0 ? 'green-font' : nil %>">
+                    <span class="preco <%= event.cost == 0 ? 'free' : nil %>">
                         <%= event.price %>
                     </span>
 

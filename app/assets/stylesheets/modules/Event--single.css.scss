@@ -1,173 +1,232 @@
 @import 'variables';
 
-.Event--single{
+.EventSingle{
+  position: relative;
+  margin: 30px 0 0 0;
 
-  font-family: $font-family-default;
-  margin-top: 30px;
-
-  &:hover{
-    & .box-top .agenda-btn{
-      display: inline;
-    }
-  }
-
-  &:hover .day {
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
-    color: $grey;
-    text-shadow: none;
-  }
-
-  & .agended-by-count{
+  &-agendedByCount {
     border-color: inherit;
     border-style: solid;
     border-width: 0 0 0 1px;
     margin: 0 0 0 6px;
-    padding: 6px 2px 6px 5px;
+    padding: 8px 0 8px 8px;
 
-    &:empty{
-      display:none;
+    &:empty {
+      display: none;
     }
   }
 
-  & .day {
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-    &.agended {
-      background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
-      color: $grey;
-      text-shadow: none;
+  &-buttonsBox {
+    left: 9px;
+    position: absolute;
+    top: 18px;
+    z-index: 8;
+
+    & .label-default {
+      background: desaturate($blue, 80%);
+      color: $white;
     }
+
   }
 
-  & a{
-    color: $green;
+  &-button{
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 30px;
+    padding: 8px 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-clip: padding-box;
+    text-transform: capitalize;
+  }
+
+  &-buttonText{
+    text-shadow: 0 1px #ffffff;
+  }
+
+  &-dayButton {
+    color: $grey;
+    background: linear-gradient(#fff, #f0f0f0);
+    background-color: $white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,0.3);
+    text-shadow: none;
+    display: inline;
+  }
+
+  &:hover .EventSingle-dayButton {
+    color: $grey;
+    background: linear-gradient(#fff, #f0f0f0);
+    background-color: $white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,0.3);
+    text-shadow: 0 1px #ffffff;
+  }
+
+  &:hover .EventSingle-subCat {
+    opacity: 1;
+    font-weight: 500;
+  }
+
+
+  &-agendaButton{
+    color: #3B5450;
+    text-shadow: 0 1px #ffffff;
+    background: linear-gradient(#fff, #f0f0f0);
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.3);
+    cursor: pointer;
+    background-clip: padding-box;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+
     &:hover{
-      color: scale_color($green, $lightness: 20%);
+      color: $white;
+      text-shadow: 0 1px $green;
+      background-color: $green;
+      background: linear-gradient($green, $green-dark);
+
+      & .EventSingle-buttonText{
+        text-shadow: 0 1px $green-dark;
+      }
+    }
+
+    &.is-schedule {
+      display: inline;
+      color: $white;
+      background-color: $green;
+      background: linear-gradient($green, $green-dark);
+
+      & .EventSingle-buttonText{
+        text-shadow: none;
+      }
+
+      & .EventSingle-agendedByCount{
+        text-shadow: none;
+      }
+    }
+  }
+
+  &:hover {
+
+    & .EventSingle-buttonsBox .EventSingle-agendaButton {
+      display: inline;
+
+    }
+    & .title a {
+      text-decoration: underline;
+      color: $green;
+    }
+  }
+
+  & a {
+
+    &:hover {
       text-decoration: none;
     }
   }
-  & h2{
-    color: $grey;
-    font-family: $font-family-default;
-    & a{
+
+  & h2 {
+    & a {
       color: $grey;
       font-family: $font-family-default;
       font-size: 18px;
       font-weight: normal;
-      &:hover{
+      &:hover {
         color: $green;
         text-decoration: none;
       }
     }
   }
-  & h3{
-    font-family:$font-family-default;
+
+  & h4 {
+    color: #384047;
+    font-family: helvetica;
+    font-size: 20px;
+    font-weight: bold;
   }
 
-  & .panel{
+  &-title {
+    font-size: 22px;
+    font-weight: bold;
+    font-family: $font-family-default;
+    margin: 6px 0 10px 0;
+  }
 
-    & .col-sm-8{
+  & .panel {
+    margin: 0;
+    & .col-sm-8 {
       height: 200px;
     }
-    & .col-sm-4{
+    & .col-sm-4 {
 
     }
-    & img{
+    & img {
 
-      &:hover{
+      &:hover {
 
-      };
+      }
     }
   }
-  & .panel-body{
+
+  & .caption {
     font-family: $font-family-default;
-    line-height: 1.7em;
-
-    & .title {
-      margin-top: 0px;
-    }
-
-    & .panel-body-item{
-      border-bottom: 1px solid $border-color;
-    }
-    & .panel-body-item:last-child{
-      border-bottom: 0;
-    }
-  }
-  & .image{
-    background-position: center top;
-    background-size: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 215px;
-    margin: 0;
-
-    & img{
-
-    }
-  }
-  & .description{
-
-  }
-  & .snippet{
-    cursor: pointer;
-    height: 4em;
-  }
-  & .read-more{
-    box-shadow: 0 -11px 10px 0 rgba(255, 255, 255, 1);
-    color: $green;
-    display: block;
-    padding: 6px;
+    font-weight: 300;
     position: relative;
-    text-align: center;
-    z-index: 11;
+  }
 
-    &:hover{
-      text-decoration: underline;
-      cursor: pointer;
+  &-subCat {
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  &-description {
+    color: $grey;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  & .infos {
+    color: scale_color($grey, $lightness: 20%);
+    font-family: $font-family-default;
+    font-size: 11px;
+    background: #FCFCFC;
+    margin: 0 -15px 0px;
+    border-top: 1px solid #f1f1f1;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+
+    & .free{
+      color: $green;
+      font-weight: 600;
+    }
+
+    & span {
+      border-right: 1px solid $border-color;
+    }
+    & span:first-child {
+      padding-left: 0;
+    }
+    & span:last-child {
+      border-right: 0;
     }
   }
-  & .infos{
-    color: scale_color($grey, $lightness: 10%);
-    & div{
-      display: block;
-      padding:0 25px 0 0;
-      margin:12px 0;
-      & .icon{
-        background-repeat: no-repeat;
-        display: inline-block;
-        height: 1em;
-        margin: 0 5px 0 0;
-        width: 1em;
-      }
-      & .bus{
-        background-image: url("/images/icons/bus-gray.png");
-      }
-    }
-    & div:last-child{
-      padding:0;
-    }
+  & .dia, .preco, .hora {
+    padding: 0 6px;
   }
-  & .dia{
-    background: none repeat scroll 0 0 #EDEFF0;
-    border-bottom-left-radius: 5px;
-    font-weight: bold;
-    padding: 4px 6px 4px 15px;
-  }
-  & .dia-completo{
-    background: none repeat scroll 0 0 #F4F5F6;
-    padding: 4px 6px 4px 9px;
-  }
-  & .hora{
-    background: none repeat scroll 0 0 #f8f9f9;
-    border-top-right-radius: 0;
-    padding: 4px 6px;
-  }
-  & .transport{
+
+  & .transport {
     background: none repeat scroll 0 0 #FBFCFC;
     padding: 4px 6px 4px 15px;
     cursor: help;
+    & .icon {
+      margin: -4px 6px 0 -6px !important;
+      padding: 0;
+    }
   }
-  & .price{
+  & .price {
     background: none repeat scroll 0 0 #5FCF80;
     font-size: 11px;
     left: 8px;
@@ -177,129 +236,104 @@
     z-index: 8;
   }
 
-  & .tomorrow{
-    background: none repeat scroll 0 0 #669ACD;
-    font-size: 11px;
-    padding: 5px 8px;
-    text-transform: uppercase;
-    z-index: 8;
+  & .today {
+
   }
-  & .image-box{
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    height: 200px;
-    margin: 0 -15px;
+  & .tomorrow {
+
+  }
+
+  &-imageBox {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 285px;
     overflow: hidden;
   }
-  & .header{
-
-    & h4{
-      margin: 20px 0 10px;
-    }
-  }
-  & .periodo{
-    margin: 0 8px 0 0;
-
-    & .today{
-      margin: 0 0 0 3px;
-      text-transform: uppercase;
-    }
-  }
-  & .horarios > div {
-    display:inline-block;
-  }
-  & .categories{
-    color: scale_color($grey, $lightness: 20%);
-    & img{
-      padding: 0 10px;
-    }
-
-  }
-  & .body{
-    & p{
-      line-height: 1.8em;
-    }
-    & h3{
-      margin: 5px 0 0;
-      padding: 0 15px;
-      text-align: right;
-    }
-  }
-  & .categorias{
 
 
-    & .item{
-      border: 1px solid scale_color($grey, $lightness: 80%);
-      border-radius: 3px;
-      color: scale_color($grey, $lightness: 60%);
-      display:inline-block;
-      font-family: Helvetica,sans-serif;
-      font-size: 9px;
+
+  & .details-box {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 149px;
+
+    & .buttons {
+      opacity: 0;
+      margin: 25px auto 0;
+      text-align: center;
+      width: 60%;
+      min-width: 135px;
+
+      & .btn {
+        margin-bottom: 6px;
+
+        &:hover {
+
+          & > .glyphicon {
+            display: inline-block;
+          }
+        }
+      }
+
+      & .glyphicon {
+        display: none;
+        margin: 1px -24px 0 6px;
+        vertical-align: text-top;
+      }
+
+    }
+  }
+
+  & .categorias {
+
+    & .item {
+      display: none;
+      border-radius: 15px;
+      color: #ffffff;
+      float: left;
+      font-family: "Roboto", helvetica, arial, sans-serif;
+      font-size: 11.5px;
+      font-weight: 500;
       margin: 0 3px 0 0;
-      padding: 3px 4px;
-    }
-    & .lazer{
+      padding: 4px 10px;
+      transition: all 0.45s ease 0s;
 
-      & .circle{
-        background: none repeat scroll 0 0 #5FCF80;
+      & .circle {
         border-radius: 3px;
-        display:inline-block;
+        float: left;
         height: 5px;
         margin: 4px 4px 0 2px;
         width: 5px;
       }
     }
-    & .saude{
-
-      & .circle{
-        background: none repeat scroll 0 0 #c8423f;
-        border-radius: 3px;
-        display:inline-block;
-        height: 5px;
-        margin: 4px 4px 0 2px;
-        width: 5px;
-      }
+    & .leisure {
+      background: $green;
     }
-    & .esporte{
-
-      & .circle{
-        background: none repeat scroll 0 0 #a6d78e;
-        border-radius: 3px;
-        display:inline-block;
-        height: 5px;
-        margin: 4px 4px 0 2px;
-        width: 5px;
-      }
+    & .health {
+      background: $red;
     }
-    & .educacao{
-
-      & .circle{
-        background: none repeat scroll 0 0 #669acd;
-        border-radius: 3px;
-        display:inline-block;
-        height: 5px;
-        margin: 4px 4px 0 2px;
-        width: 5px;
-      }
+    & .sport {
+      background: $orange;
     }
-    & .cultura{
-
-      & .circle{
-        background: none repeat scroll 0 0 #4a2f83;
-        border-radius: 3px;
-        display:inline-block;
-        height: 5px;
-        margin: 4px 4px 0 2px;
-        width: 5px;
-      }
+    & .education {
+      background: $blue;
     }
-    & .alimentacao{
-
+    & .culture {
+      background: $purple;
+    }
+    & .food {
+      background: $yellow;
     }
   }
-  & .nearbys{
+  & .nearbys {
 
-    & .item{
+    & .item {
 
     }
   }
@@ -317,7 +351,7 @@
 
     & span {
       color: #ffffff;
-      font-family: varela round,sans-serif;
+      font-family: varela round, sans-serif;
       font-size: 20px;
       position: relative;
       top: 0;
@@ -325,4 +359,3 @@
   }
 
 }
-

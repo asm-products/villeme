@@ -56,7 +56,7 @@
 		Ativa o botão para agendar eventos
 		###
 		AgendaButton: ->
-			$(document).on 'click', '.agenda-btn', ->
+			$(document).on 'click', '.js-EventAgendaButton', ->
 
 				$.ajax(
 					url: $(this).attr("data-schedule-url")
@@ -69,17 +69,17 @@
 					new_title = data.new_title
 
 					if agended
-						event.find(".agenda-btn").addClass("green-bg schedule").removeClass("white-bg unschedule")
-						event.find(".agenda-btn .text").text("Agendado")
-						event.find(".day").addClass("agended")
+						event.find(".js-EventAgendaButton").addClass("is-schedule")
+						event.find(".js-EventButtonText").text("Agendado")
+						event.find(".js-EventDayButton").addClass("is-schedule")
 					else
-						event.find(".agenda-btn").addClass("white-bg unschedule").removeClass("green-bg schedule")
-						event.find(".agenda-btn .text").text("Agendar")
-						event.find(".day").removeClass("agended")
+						event.find(".js-EventAgendaButton").removeClass("is-schedule")
+						event.find(".js-EventButtonText").text("Agendar")
+						event.find(".js-EventDayButton").removeClass("is-schedule")
 
 					$("#agenda-count").text("").text(agenda_new_count)
 					event.find(".js-agendedByCount").text("").text(agended_by_new_count)
-					event.find(".js-agendedByCount").attr("data-original-title", new_title)
+					event.find(".js-agendedByCount").attr("title", new_title)
 
 					return
 				return

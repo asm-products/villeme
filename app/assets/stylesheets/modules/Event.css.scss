@@ -7,16 +7,124 @@
     border-style: solid;
     border-width: 0 0 0 1px;
     margin: 0 0 0 6px;
-    padding: 6px 2px 6px 5px;
+    padding: 8px 0 8px 8px;
 
     &:empty {
       display: none;
     }
   }
 
+  &-button{
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    min-height: 30px;
+    padding: 8px 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 2px;
+    background-clip: padding-box;
+    text-transform: capitalize;
+  }
+
+  &-buttonText{
+    text-shadow: 0 1px #ffffff;
+  }
+
+  &-dayButton {
+    color: $white;
+    border: none;
+    text-shadow: 0 1px #000000;
+
+    &.is-schedule {
+      color: $grey;
+      background: linear-gradient(#fff, #f0f0f0);
+      background-color: $white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      background-clip: padding-box;
+      border: 1px solid rgba(0,0,0,0.3);
+      text-shadow: none;
+      display: inline;
+    }
+  }
+
+  &.grid:hover .Event-dayButton {
+    color: $grey;
+    background: linear-gradient(#fff, #f0f0f0);
+    background-color: $white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,0.3);
+    text-shadow: 0 1px #ffffff;
+  }
+
+  &.grid:hover .Event-subCat {
+    opacity: 1;
+    font-weight: 500;
+  }
+
+  &.grid:hover .item {
+    display: block;
+  }
+
+  &-agendaButton{
+    color: #3B5450;
+    text-shadow: 0 1px #ffffff;
+    background: linear-gradient(#fff, #f0f0f0);
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.3);
+    display: none;
+    cursor: pointer;
+    background-clip: padding-box;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+
+    &:hover{
+      color: $white;
+      text-shadow: 0 1px $green;
+      background-color: $green;
+      background: linear-gradient($green, $green-dark);
+
+      & .Event-buttonText{
+        text-shadow: 0 1px $green-dark;
+      }
+    }
+
+    &.is-schedule {
+      display: inline;
+      color: $white;
+      background-color: $green;
+      background: linear-gradient($green, $green-dark);
+
+      & .Event-buttonText{
+        text-shadow: none;
+      }
+
+      & .Event-agendedByCount{
+        text-shadow: none;
+      }
+    }
+  }
+
+
+
+
+  &-buttonsBox {
+    left: 18px;
+    position: absolute;
+    top: 16px;
+    z-index: 8;
+
+    & .label-default {
+      background: desaturate($blue, 80%);
+      color: $white;
+    }
+
+  }
+
+
+
   &:hover {
 
-    & .box-top .agenda-btn {
+    & .Event-buttonsBox .Event-agendaButton {
       display: inline;
 
     }
@@ -25,6 +133,7 @@
       color: $green;
     }
   }
+
   & a {
     /*	    color: #384047;
             font-family: varela round,helvetica,arial;
@@ -80,69 +189,21 @@
     ;
     }
   }
-  & .box-top {
-    left: 15px;
-    position: absolute;
-    top: 13px;
-    z-index: 8;
 
-    & .label {
-      @extend .btn-radius;
-      font-size: 12px;
-      font-weight: 400;
-      min-height: 30px;
-      padding: 7px;
-      margin: 2px;
-      text-transform: capitalize;
-    }
-    & .label-default {
-      background: desaturate($blue, 80%);
-      color: $white;
-    }
-    & .agenda-btn {
-      cursor: pointer;
-    }
-    & .day {
-      text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-      &.agended {
-        background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
-        color: $grey;
-        text-shadow: none;
-      }
-    }
-    & .schedule {
-
-    }
-    & .unschedule {
-      display: none;
-
-      &:hover {
-        background: $green;
-        color: $white;
-        border-color: $green-dark;
-
-        & .agended-by-count {
-          border-color: scale_color($green, $lightness: -10%);
-        }
-
-        & > a {
-          color: $white;
-        }
-      }
-    }
-  }
   & .caption {
     font-family: $font-family-default;
     font-weight: 300;
     position: relative;
   }
-  & .sub-cat {
+
+  &-subCat {
     font-size: 9px;
     opacity: 0.5;
     position: absolute;
     text-transform: uppercase;
     top: -13px;
   }
+
   & .description {
     color: scale_color($grey, $lightness: 10%);
     display: block;
@@ -156,7 +217,18 @@
     color: scale_color($grey, $lightness: 20%);
     font-family: $font-family-default;
     font-size: 11px;
-    margin: 0 0 12px;
+    background: #FCFCFC;
+    margin: 0 -15px 0px;
+    border-top: 1px solid #f1f1f1;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+
+    & .free{
+      color: $green;
+      font-weight: 600;
+    }
+
     & span {
       border-right: 1px solid $border-color;
     }
@@ -189,21 +261,15 @@
     top: -8px;
     z-index: 8;
   }
-  &.grid:hover .day {
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
-    color: $grey;
-    text-shadow: none;
-  }
-  &.grid:hover .item {
-    display: block;
-  }
+
   & .today {
 
   }
   & .tomorrow {
 
   }
-  & .image-box {
+
+  &-imageBox {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -213,6 +279,9 @@
     margin: 0 -15px;
     overflow: hidden;
   }
+
+
+
   & .details-box {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -253,15 +322,15 @@
     & .item {
       display: none;
       border-radius: 15px;
-      color: $white;
+      color: #ffffff;
       float: left;
-      font-family: $font-family-default;
-      font-size: 11px;
-      font-weight: 300;
+      font-family: "Roboto", helvetica, arial, sans-serif;
+      font-size: 11.5px;
+      font-weight: 500;
       margin: 0 3px 0 0;
-      padding: 4px 6px;
+      padding: 4px 10px;
+      transition: all 0.45s ease 0s;
 
-      transition: $transition-time;
       & .circle {
         border-radius: 3px;
         float: left;

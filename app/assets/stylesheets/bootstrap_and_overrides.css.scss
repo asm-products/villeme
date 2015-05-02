@@ -849,13 +849,12 @@ ul li{
 
 .panel {
   border: 0 none !important;
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 25px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   margin-bottom: 20px;
   @extend .radius;
 
   &.shadow-animation:hover{
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 25px rgba(0, 0, 0, 0.10);
-    transition: all 0.6s ease 0s;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
   }
 
   & input{
