@@ -151,7 +151,7 @@ $(document).on 'ready page:done', ->
       $(".read-more").hide()
 
       description = data.full_description
-      $(".description").removeClass("snippet").html(description)
+      $(".EventSingle-description").removeClass("snippet").html(description)
       return
     return
 
