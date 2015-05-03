@@ -24,9 +24,13 @@
             <div class="row">
               <div class="col-sm-12">
 
-                <div class="details-box">
+                <div class="Event-detailsBox">
 
-                  <div class="categorias">
+                  <div class="Event-place">
+                    <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
+                  </div>
+
+                  <div class="Event-categories">
                     <%= strong_category(event, 'item') %>
                   </div>
 

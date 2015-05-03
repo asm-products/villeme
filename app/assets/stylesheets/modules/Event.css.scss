@@ -2,6 +2,47 @@
 
 .Event{
 
+  &:hover {
+
+    & .Event-buttonsBox .Event-agendaButton {
+      display: inline;
+
+    }
+
+    & .Event-title a {
+      color: $green;
+    }
+  }
+
+  &-title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: $font-family-default;
+    margin: 20px 0 6px 0;
+  }
+
+  &-place{
+    display: none;
+    float: left;
+    font-size: 11px;
+    color: #fff;
+    height: 1.2em;
+    margin: 5px 6px 0 0;
+    max-width: 72%;
+    font-weight: 500;
+    overflow: hidden;
+    vertical-align: middle;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+
+    & a{
+      color: $white;
+    }
+  }
+
+  &.grid:hover .Event-place {
+    display: block;
+  }
+
   &-agendedByCount {
     border-color: inherit;
     border-style: solid;
@@ -32,6 +73,7 @@
   &-dayButton {
     color: $white;
     border: none;
+    cursor: default;
 
     &.is-schedule {
       color: $grey;
@@ -63,6 +105,8 @@
   &.grid:hover .item {
     display: block;
   }
+
+
 
   &-agendaButton{
     color: #3B5450;
@@ -120,16 +164,7 @@
 
 
 
-  &:hover {
 
-    & .Event-buttonsBox .Event-agendaButton {
-      display: inline;
-
-    }
-    & .Event-title a {
-      color: $green;
-    }
-  }
 
   & a {
 
@@ -155,12 +190,8 @@
     font-size: 20px;
     font-weight: bold;
   }
-  &-title {
-    font-size: 18px;
-    font-weight: bold;
-    font-family: $font-family-default;
-    margin: 20px 0 6px 0;
-  }
+
+
 
   & .block {
     float: left;
@@ -277,13 +308,15 @@
 
 
 
-  & .details-box {
+  &-detailsBox {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     height: 30px;
     position: absolute;
-    right: 10px;
+    right: 0;
     top: 149px;
+    width: 100%;
+    padding: 0 10px;
 
     & .buttons {
       opacity: 0;
@@ -312,17 +345,17 @@
     }
   }
 
-  & .categorias {
+  &-categories {
 
     & .item {
       display: none;
       border-radius: 15px;
       color: #ffffff;
-      float: left;
+      float: right;
       font-family: "Roboto", helvetica, arial, sans-serif;
       font-size: 11.5px;
       font-weight: 500;
-      margin: 0 3px 0 0;
+      margin: 0 0 0 3px;
       padding: 4px 10px;
       transition: all 0.45s ease 0s;
 
@@ -347,10 +380,10 @@
       background: $blue;
     }
     & .culture {
-        background: $purple;
+      background: $purple;
     }
     & .food {
-        background: $yellow;
+      background: $yellow;
     }
   }
   & .nearbys {
