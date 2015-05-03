@@ -21,34 +21,32 @@
           </div>
 
           <div class="panel panel-default shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-letter="<%= letter[i] %>">
-            <div class="row">
-              <div class="col-sm-12">
+            <div class="Event-content">
+              <div class="Event-detailsBox">
 
-                <div class="Event-detailsBox">
-
-                  <div class="Event-place">
-                    <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
-                  </div>
-
-                  <div class="Event-categories">
-                    <%= strong_category(event, 'item') %>
-                  </div>
-
+                <div class="Event-place">
+                  <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
                 </div>
 
-                <%= link_to event_path(event), data: { push: true } do %>
-                    <div class="Event-imageBox" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
-                <% end %>
+                <div class="Event-categories">
+                  <%= strong_category(event, 'item') %>
+                </div>
+
+              </div>
+
+              <%= link_to event_path(event), data: { push: true } do %>
+                  <div class="Event-imageBox" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
+              <% end %>
 
 
-                <div class="caption">
+              <div class="caption">
 
-                  <span class="Event-subCat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
+                <span class="Event-subCat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
 
-                  <h2 class="Event-title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
-                  <span class="description"><%= strip_tags event.description_with_limit %></span>
+                <h2 class="Event-title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
+                <span class="description"><%= strip_tags event.description_with_limit %></span>
 
-                  <div class="infos">
+                <div class="Event-infos">
                     <span class="preco <%= event.cost == 0 ? 'free' : nil %>">
                         <%= event.price %>
                     </span>
@@ -68,9 +66,8 @@
                         </span>
                     <% end %>
                     </span>
-                  </div>
-
                 </div>
+
               </div>
             </div>
           </div>

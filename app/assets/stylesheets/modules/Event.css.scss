@@ -27,7 +27,7 @@
     font-size: 11px;
     color: #fff;
     height: 1.2em;
-    margin: 5px 6px 0 0;
+    margin: 7px 6px 0 0;
     max-width: 72%;
     font-weight: 500;
     overflow: hidden;
@@ -159,12 +159,12 @@
       background: desaturate($blue, 80%);
       color: $white;
     }
-
   }
 
-
-
-
+  &-content{
+    padding: 0 10px;
+    position: relative;
+  }
 
   & a {
 
@@ -239,12 +239,13 @@
     max-height: 100px;
     overflow: hidden;
   }
-  & .infos {
+
+  &-infos {
     color: scale_color($grey, $lightness: 20%);
     font-family: $font-family-default;
     font-size: 11px;
     background: #FCFCFC;
-    margin: 0 -15px 0px;
+    margin: 0 -10px 0;
     border-top: 1px solid #f1f1f1;
     border-bottom-right-radius: 10px;
     padding: 10px;
@@ -302,21 +303,19 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     height: 180px;
-    margin: 0 -15px;
+    margin: 0 -10px;
     overflow: hidden;
   }
 
 
 
   &-detailsBox {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 30px;
+    height: 40px;
     position: absolute;
     right: 0;
-    top: 149px;
+    top: 140px;
     width: 100%;
-    padding: 0 10px;
+    padding: 10px 10px;
 
     & .buttons {
       opacity: 0;
@@ -343,6 +342,10 @@
       }
 
     }
+  }
+
+  &.grid:hover .Event-detailsBox{
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 25%, transparent 100%);
   }
 
   &-categories {
