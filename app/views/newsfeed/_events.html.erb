@@ -27,7 +27,7 @@
               <div class="Event-detailsBox">
 
                 <div class="Event-place">
-                  <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
+                  <span class="glyphicon glyphicon-map-marker"></span> <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
                 </div>
 
                 <div class="Event-categories">
