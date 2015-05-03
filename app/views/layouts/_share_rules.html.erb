@@ -1,4 +1,4 @@
-<% if @event %>
+<% if params[:controller] == 'events' and params[:action] == 'new' and @event %>
     <meta property="og:site_name" content="Villeme" />
     <meta property="og:title" content="<%= @event.try(:name) %>" />
     <meta property="og:description" content="<%= strip_tags @event.try(:description_with_limit) %>" />
