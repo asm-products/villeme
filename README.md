@@ -8,7 +8,7 @@ The official repo is https://github.com/asm-products/villeme
 
 ## Status
 
-[![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Coverage Status](https://img.shields.io/coveralls/jonatassalgado/villeme.svg)](https://coveralls.io/r/jonatassalgado/villeme?branch=master) [![Dependency Status](https://gemnasium.com/asm-products/villeme.svg)](https://gemnasium.com/asm-products/villeme) <a href="https://assembly.com/villeme/bounties?utm_campaign=assemblage&utm_source=villeme&utm_medium=repo_badge"><img src="http://badger.asm.co/villeme/badges/tasks.svg" height="20px" alt="Open Tasks" /></a>
+[![Build Status](https://snap-ci.com/jonatassalgado/villeme/branch/master/build_image)](https://snap-ci.com/jonatassalgado/villeme/branch/master) [![Code Climate](https://codeclimate.com/github/asm-products/villeme/badges/gpa.svg)](https://codeclimate.com/github/asm-products/villeme) [![Coverage Status](https://img.shields.io/coveralls/jonatassalgado/villeme.svg)](https://coveralls.io/r/jonatassalgado/villeme?branch=master) <a href="https://assembly.com/villeme/bounties?utm_campaign=assemblage&utm_source=villeme&utm_medium=repo_badge"><img src="http://badger.asm.co/villeme/badges/tasks.svg" height="20px" alt="Open Tasks" /></a>
 
 ## Dependencies
 
