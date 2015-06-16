@@ -73,6 +73,12 @@ pt-BR:
       your_city_dont_exist: "Sua cidade não está acima?"
     buttons:
       login_with_facebook: "Entrar com Facebook"
+    values:
+      events_and_activities: "Eventos e atividades do seu interesse"
+      date_and_localization: "Saiba as datas e localização de forma simples"
+      schedule_one_click: "Agende com apenas um clique"
+      categories: "Eventos de lazer, saúde, esporte educação e cultura"
+      open_colaborative: "É grátis, de código aberto e colaborativo"
   dictionary:
     show_events_number_in_neighborhood: "Você %{count} perto de você ou no seu bairro."
     no_have_events: "não possui eventos"

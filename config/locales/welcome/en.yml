@@ -76,6 +76,11 @@ en:
       your_city_dont_exist: "Your city is not above?"
     buttons:
       login_with_facebook: "Sign in with Facebook"
+    values:
+      events_and_activities: "Events and activities of interest to you"
+      date_and_localization: "Know the dates and location simply"
+      categories: "Leisure, health, sport education and culture"
+      open_colaborative: "It's free, open and collaborative code"
   dictionary:
     have_events: "have %{neighborhood_count} events"
     no_have_events: "no have events"

@@ -9,3 +9,6 @@ en:
     saturday: 'Saturday'
     tomorrow: "Tomorrow"
     today: "Today"
+  welcome:
+    values:
+      schedule_one_click: "Schedule with just one click"
