@@ -19,8 +19,8 @@ class Event < ActiveRecord::Base
 	belongs_to :place
 	belongs_to :user
 	belongs_to :price
-	belongs_to :persona
 	belongs_to :subcategory
+	has_and_belongs_to_many :personas
 	has_and_belongs_to_many :categories
 	has_and_belongs_to_many :weeks
 

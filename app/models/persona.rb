@@ -5,6 +5,6 @@ class Persona < ActiveRecord::Base
 
 	# associações
 	has_many :users
-	has_many :events
+	has_and_belongs_to_many :events
 
 end

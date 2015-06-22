@@ -11,9 +11,6 @@ describe 'UseCases::CityGoalDecrease' do
     it 'should decrease one unit in city goal attribute' do
       expect(@result).to eq(249)
     end
-    it 'should save new goal in the city' do
-      expect(City.last.goal).to eq(249)
-    end
   end
 
 end

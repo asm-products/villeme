@@ -244,7 +244,7 @@
             <div class="form-group has-helper" helper="<b>Dica:</b> Selecionar uma persona torna o evento mais visto por pessoas que se interessam pelo assunto. <br><br><b>Exemplo:</b><ul><li>Empreendedor: Evento sobre marketing.</li> <li>Fashionista: Exposição de moda.</li></ul>">
               <label class="control-label col-lg-3">Recomendado para:</label>
               <div class="col-lg-9">
-                <%= f.association :persona, as: :select, include_blank: "Todos", input_html:{ class: "form-control"} %>
+                <%= f.association :persona, as: :check_boxes, include_blank: false %>
               </div>
             </div>
 

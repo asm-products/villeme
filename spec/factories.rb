@@ -51,7 +51,6 @@ FactoryGirl.define do
     date_finish Date.parse('2014-11-28')
     hour_start_first Faker::Time.between(Date.today, Date.tomorrow, :all)
     place_id 1
-    persona
     image_file_name 'test.jpg'
     image_content_type 'image/jpg'
     image_file_size 1024

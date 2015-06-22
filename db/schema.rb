@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416192712) do
+ActiveRecord::Schema.define(version: 20150621225431) do
 
   create_table "agenda_events", force: true do |t|
     t.integer  "event_id"
@@ -167,6 +167,14 @@ ActiveRecord::Schema.define(version: 20150416192712) do
   add_index "events", ["slug"], name: "index_events_on_slug"
   add_index "events", ["subcategory_id"], name: "index_events_on_subcategory_id"
   add_index "events", ["user_id"], name: "index_events_on_user_id"
+
+  create_table "events_personas", id: false, force: true do |t|
+    t.integer "event_id"
+    t.integer "persona_id"
+  end
+
+  add_index "events_personas", ["event_id"], name: "index_events_personas_on_event_id"
+  add_index "events_personas", ["persona_id"], name: "index_events_personas_on_persona_id"
 
   create_table "events_weeks", id: false, force: true do |t|
     t.integer "event_id"
