@@ -9,6 +9,11 @@
       <%= simple_form_for(@invite, html:{ id:'new-invite', autocomplete: 'off'}, defaults:{input_html:{class: 'Input'}, label_html: {class: 'control-label'}, wrapper_html:{class: 'form-group'}}) do |f| %>
           <div class="modal-body">
 
+            <div style="overflow: hidden; margin-bottom: 15px">
+              <label class="select optional control-label" for="invite_persona"><%= t('welcome.modal.persona_identify') %></label> <span class="Modal-icon glyphicon glyphicon-question-sign has-tooltip" title="<%= t('welcome.modal.persona_tooltip') %>"></span>
+              <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :check_boxes, include_blank: false, label: false,  prompt: t('welcome.modal.persona_identify') %>
+            </div>
+
             <div class="row">
               <div class="col-lg-6">
                 <%= f.input :name, label: t('welcome.modal.name'), autofocus: true %>
@@ -17,9 +22,6 @@
                 <%= f.input :email, label: 'Email', placeholder: 'email@example.com', as: :string %>
               </div>
             </div>
-
-            <label class="select optional control-label" for="invite_persona">Escolha um Perfil</label> <span class="Modal-icon glyphicon glyphicon-question-sign has-tooltip" title="Ele ajudará a separar os eventos que mais podem lhe interessar. Por exemplo: o perfil 'Artista' irá ver eventos de cinema, música e arte com mais frequência."></span>
-            <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :select, include_blank: false, label: false,  prompt: t('welcome.modal.persona_identify') %>
 
             <div class="Gmap">
 

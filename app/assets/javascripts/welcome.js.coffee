@@ -16,6 +16,14 @@ $(document).ready ->
 
 
 
+  $('input[name="invite[persona][]"]').on 'change', (e) ->
+    if $('input[name="invite[persona][]"]:checked').length > 2
+      $(this).prop 'checked', false
+      alert 'allowed only 2'
+    return
+
+
+
   # rola ate os beneficios
   $("a[href^=\"#beneficios\"]").on "click", (e) ->
     e.preventDefault()
