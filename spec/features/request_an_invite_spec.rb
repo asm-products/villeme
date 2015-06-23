@@ -18,7 +18,7 @@ describe 'Request an invite', js: true do
       within '#new-invite' do
         fill_in 'invite[name]', with: 'John Doe'
         fill_in 'invite[email]', with: 'johndoe@gmail.com'
-        select 'Entrepreneur', from: 'invite_persona'
+        check 'Entrepreneur'
         fill_in 'invite[address]', with: '544 Madison Ave, Albany, NY 12208, USA'
         sleep 5
         click_button 'Confirm'
