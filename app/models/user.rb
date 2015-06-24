@@ -74,8 +74,8 @@ class User < ActiveRecord::Base
   belongs_to :level
     delegate :name, to: :level, prefix: true, allow_nil: true
     delegate :nivel, to: :level, prefix: true, allow_nil: true
-  belongs_to :persona
-    delegate :name, to: :persona, prefix: true
+  has_and_belongs_to_many :personas
+    delegate :name, to: :persona, prefix: true, allow_nil: true
   has_one :notify
   has_many :places
   has_many :events
@@ -110,6 +110,14 @@ class User < ActiveRecord::Base
 
   def first_name
     name ? name.split.first : nil
+  end
+
+  def persona
+    if personas.size > 1
+      personas.first
+    else
+      personas.first
+    end
   end
 
   def city_slug

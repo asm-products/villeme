@@ -8,11 +8,12 @@ class Invite < ActiveRecord::Base
 
 	# associações
   belongs_to :user
+  has_and_belongs_to_many :personas
 
   # validações
   validates :name, presence: true, length: 1..140
   validates :email, presence: true, length: 6..140
-  validates :persona, presence: true
+  # validates :persona, presence: true
 
 
   def geocode_invite

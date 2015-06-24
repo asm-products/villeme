@@ -23,12 +23,13 @@ module InviteModule
   end
 
   def user_create(invite)
-    User.create(name: invite.name,
+    user = User.create(name: invite.name,
                 email: invite.email,
                 password: Devise.friendly_token[0, 8],
-                persona_id: invite.persona,
                 invited: true,
                 address: invite.address)
+
+    user.personas << invite.personas
 
   end
 

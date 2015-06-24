@@ -11,7 +11,7 @@
 
             <div style="overflow: hidden; margin-bottom: 15px">
               <label class="select optional control-label" for="invite_persona"><%= t('welcome.modal.persona_identify') %></label> <span class="Modal-icon glyphicon glyphicon-question-sign has-tooltip" title="<%= t('welcome.modal.persona_tooltip') %>"></span>
-              <%= f.input :persona, collection: Persona.order(:name), label_method: :name, value_method: :id, as: :check_boxes, include_blank: false, label: false,  prompt: t('welcome.modal.persona_identify') %>
+              <%= f.association :personas, as: :check_boxes, label: false, prompt: t('welcome.modal.persona_identify') %>
             </div>
 
             <div class="row">

@@ -94,7 +94,7 @@ class InvitesController < ApplicationController
                                      :city_sugest,
                                      :locale,
                                      :key,
-                                     :persona => []
+                                     :persona_ids => []
       )
     end
 end

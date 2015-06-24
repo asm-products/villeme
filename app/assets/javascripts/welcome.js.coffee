@@ -16,8 +16,8 @@ $(document).ready ->
 
 
 
-  $('input[name="invite[persona][]"]').on 'change', (e) ->
-    if $('input[name="invite[persona][]"]:checked').length > 1
+  $('input[name="invite[persona_ids][]"]').on 'change', (e) ->
+    if $('input[name="invite[persona_ids][]"]:checked').length > 2
       $(this).prop 'checked', false
     return
 
