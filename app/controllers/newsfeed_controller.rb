@@ -99,7 +99,7 @@ class NewsfeedController < ApplicationController
     # array with places for map navigator on sidebar
     gon.events_local_formatted = format_for_map_this(@events)
 
-    render 'index'
+    render :index
 
   end
 
@@ -139,7 +139,7 @@ class NewsfeedController < ApplicationController
     # array with places for map navigator on sidebar
     gon.events_local_formatted = format_for_map_this(@events)
 
-    render 'index'
+    render :index
 
   end
 

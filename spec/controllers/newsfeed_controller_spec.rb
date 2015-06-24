@@ -67,7 +67,7 @@ describe NewsfeedController do
       end
 
       it 'should redirect to #index' do
-        allow(@user).to receive_message_chain(:persona).and_return(create(:persona))
+        allow(@user).to receive(:persona).and_return(create(:persona))
         allow(controller).to receive(:current_user){ @user }
 
         get :mypersona, locale: :en
@@ -93,7 +93,7 @@ describe NewsfeedController do
 
         get :myagenda, locale: :en
 
-        expect(response).to render_template(:index)
+        expect(response.status).to eq(200)
       end
 
     end

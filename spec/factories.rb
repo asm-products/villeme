@@ -18,6 +18,7 @@ FactoryGirl.define do
     state_name "New York"
     country_name "United States"
     level
+    after(:create) {|user| user.personas = [create(:persona)]}
   end
 
   # This will use the User class (Admin would have been guessed)

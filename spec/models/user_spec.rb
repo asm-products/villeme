@@ -6,8 +6,8 @@ describe User, type: :model do
   let(:user){ create(:user) }
 
   describe 'associations' do
+    it{ is_expected.to have_and_belong_to_many :personas }
     it{ is_expected.to belong_to :level }
-    it{ is_expected.to belong_to :persona }
     it{ is_expected.to have_one :notify }
     it{ is_expected.to have_many :events }
     it{ is_expected.to have_many :feedbacks }
