@@ -108,9 +108,6 @@ def create_key_for_active_account(invite)
   key_for_active_account = SecureRandom.urlsafe_base64
   values = invite
   values[:key] = key_for_active_account
-
-  # TODO: Create HABTM association between User - Persona and Invite - Personas.
-  values[:persona] = values[:persona][0]
   values
 end
 
