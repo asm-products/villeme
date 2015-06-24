@@ -17,7 +17,6 @@ FactoryGirl.define do
     city_name "Albany"
     state_name "New York"
     country_name "United States"
-    persona
     level
   end
 
