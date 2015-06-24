@@ -12,8 +12,8 @@ class Invite < ActiveRecord::Base
   # validações
   validates :name, presence: true, length: 1..140
   validates :email, presence: true, length: 6..140
-  validates :persona, presence: true, length: {maximum: 10}, if: lambda {self.persona_sugest.blank?}
-  validates :persona_sugest, length: {maximum: 140}
+  validates :persona, presence: true
+
 
   def geocode_invite
     Villeme::UseCases::GeocodeInvite.new(self).geocoded_by_address(self.address)

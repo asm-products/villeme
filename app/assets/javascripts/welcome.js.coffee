@@ -17,9 +17,8 @@ $(document).ready ->
 
 
   $('input[name="invite[persona][]"]').on 'change', (e) ->
-    if $('input[name="invite[persona][]"]:checked').length > 2
+    if $('input[name="invite[persona][]"]:checked').length > 1
       $(this).prop 'checked', false
-      alert 'allowed only 2'
     return
 
 
