@@ -6,9 +6,9 @@ module ControllerMacros
     end
   end
 
-  def set_user_logged_in
+  def set_user_logged_in(user_attributes={})
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @user = create(:user)
+    @user = create(:user, user_attributes)
     sign_in @user
   end
 
