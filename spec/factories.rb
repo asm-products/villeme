@@ -37,7 +37,6 @@ FactoryGirl.define do
 
 
   factory :event do
-    id 1
     name "Campus Party"
     neighborhood_name "Pine Hills"
     city_name "Albany"
