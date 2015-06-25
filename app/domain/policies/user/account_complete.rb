@@ -16,7 +16,7 @@ module Villeme
         private
 
         def complete?(entity)
-          entity.name && entity.username && entity.email && entity.personas
+          entity.name && entity.username && entity.email && entity.personas.size > 0
         end
 
         def geocoded?(entity)

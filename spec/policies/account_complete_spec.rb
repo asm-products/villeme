@@ -6,7 +6,8 @@ describe 'Policies::AccountComplete' do
 
     context 'When user is complete' do
       it 'should return true ' do
-        user = double('User', attributes_for(:user, persona_id: 1))
+        user = double('User', attributes_for(:user))
+        allow(user).to receive(:personas).and_return([1])
 
         result = Villeme::Policies::AccountComplete.is_complete?(user)
 
@@ -49,7 +50,8 @@ describe 'Policies::AccountComplete' do
 
     context 'When user is DO NOT have a persona' do
       it 'should return false ' do
-        user = double(attributes_for(:user, persona_id: nil))
+        user = double(attributes_for(:user))
+        allow(user).to receive(:personas).and_return([])
 
         result = Villeme::Policies::AccountComplete.is_complete?(user)
 
@@ -60,7 +62,7 @@ describe 'Policies::AccountComplete' do
     context 'When user is DO NOT have a latitude' do
       it 'should return false ' do
         user = double(attributes_for(:user, latitude: nil))
-        allow(user).to receive(:persona_id).and_return(1)
+        allow(user).to receive(:personas).and_return([1])
 
         result = Villeme::Policies::AccountComplete.is_complete?(user)
 
@@ -71,7 +73,7 @@ describe 'Policies::AccountComplete' do
     context 'When user is DO NOT have a longitude' do
       it 'should return false ' do
         user = double(attributes_for(:user, longitude: nil))
-        allow(user).to receive(:persona_id).and_return(1)
+        allow(user).to receive(:personas).and_return([1])
 
         result = Villeme::Policies::AccountComplete.is_complete?(user)
 
