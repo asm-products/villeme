@@ -5,23 +5,29 @@ describe 'UseCases::SetAccountCompleted' do
 
   context 'when user account is complete' do
 
-    before(:all) do
-      @user = build(:user, persona_id: 1, account_complete: false)
-      @result = Villeme::UseCases::SetAccountCompleted.set_completed(@user)
-    end
-
     it 'should return true on completed account' do
-      expect(@result).to be_truthy
+      user = build(:user, account_complete: false)
+      allow(user).to receive(:personas).and_return([1])
+
+      result = Villeme::UseCases::SetAccountCompleted.set_completed(user)
+
+      expect(result).to be_truthy
     end
 
     it 'should set  user.account_complete to true' do
-      expect(@user.account_complete).to be_truthy
+      user = build(:user, account_complete: false)
+      allow(user).to receive(:personas).and_return([1])
+
+      Villeme::UseCases::SetAccountCompleted.set_completed(user)
+
+      expect(user.account_complete).to be_truthy
     end
   end
 
   context 'when user account is NOT complete' do
     it 'should set attribute account_complete to true' do
-      user = build(:user, persona_id: nil, account_complete: false)
+      user = build(:user, account_complete: false)
+      allow(user).to receive(:personas).and_return([])
 
       result = Villeme::UseCases::SetAccountCompleted.set_completed(user)
 
