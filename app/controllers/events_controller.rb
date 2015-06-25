@@ -68,12 +68,16 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
 
-    @event.build_place if @event.place.nil?
+    if @event.user_id == current_user.id
+      @event.build_place if @event.place.nil?
 
-    set_array_of_places_in_gon
+      set_array_of_places_in_gon
 
-    gon.latitude = @event.relative_latitude
-    gon.longitude = @event.relative_longitude
+      gon.latitude = @event.relative_latitude
+      gon.longitude = @event.relative_longitude
+    else
+      redirect_to root_path, alert: 'Ops! Você so pode editar os eventos que criou.'
+    end
   end
 
 

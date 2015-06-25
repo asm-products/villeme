@@ -2,6 +2,11 @@
 ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require 'rspec/rails'
+
+# To login in Capybara tests
+include Warden::Test::Helpers
+Warden.test_mode!
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

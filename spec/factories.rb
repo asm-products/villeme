@@ -32,11 +32,12 @@ FactoryGirl.define do
     invited true
     admin true
     city_name "Albany"
-    persona
+    after(:create) {|admin| admin.personas = [create(:persona)]}
   end
 
 
   factory :event do
+    id 1
     name "Campus Party"
     neighborhood_name "Pine Hills"
     city_name "Albany"
