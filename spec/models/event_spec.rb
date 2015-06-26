@@ -100,7 +100,7 @@ describe Event, type: :model do
       expect(event.place.name).to eq('New York State Museum')
     end
   end
-
+  
   describe '#name_with_limit' do
     it 'should return name of event with limit of chars' do
       event = create(:event, name: 'This name of events have more than 45 chars for make this test testable')
@@ -151,5 +151,82 @@ describe Event, type: :model do
     end
   end
 
+  describe '#agended_by_count' do
+    it 'should return the number of 0 people which scheduled event' do
+      allow(event).to receive_message_chain(:agended_by, :count).and_return(0)
+
+      expect(event.agended_by_count).to eq({valid: false, count: ""})
+    end
+
+    it 'should return the number of 1 person which scheduled event' do
+      allow(event).to receive_message_chain(:agended_by, :count).and_return(1)
+
+      expect(event.agended_by_count).to eq({valid: true, count: 1, text: '1 pessoa agendou'})
+    end
+
+    it 'should return the number of 5 people which scheduled event' do
+      allow(event).to receive_message_chain(:agended_by, :count).and_return(5)
+
+      expect(event.agended_by_count).to eq({valid: true, count: 5, text: "5 pessoas agendaram"})
+    end
+  end
+
+  describe '#day_of_week' do
+    it 'should return Today which event occur' do
+      Timecop.freeze(2014, 11, 17)
+      allow(event).to receive(:weeks).and_return([double(binary: 1)])
+
+      expect(event.day_of_week).to eq('Today')
+    end
+
+    it 'should return Tomorrow which event occur' do
+      Timecop.freeze(2014, 11, 17)
+      allow(event).to receive(:weeks).and_return([double(binary: 2)])
+
+      expect(event.day_of_week).to eq('Tomorrow')
+    end
+
+    it 'should return Saturday which event occur' do
+      Timecop.freeze(2014, 11, 17)
+      allow(event).to receive(:weeks).and_return([double(binary: 6)])
+
+      expect(event.day_of_week).to eq('Saturday')
+    end
+
+    it 'should return the date 17/Nov which event occur' do
+      Timecop.freeze(2014, 11, 10)
+      allow(event).to receive(:weeks).and_return([double(binary: 1)])
+
+      expect(event.day_of_week).to eq('17/Nov')
+    end
+
+    # it 'should return the date 21/Nov which event occur' do
+    #   Timecop.freeze(2014, 11, 10)
+    #   allow(event).to receive(:weeks).and_return([double(binary: 5)])
+    #
+    #   expect(event.day_of_week).to eq('21/Nov')
+    # end
+
+    after(:each) do
+      Timecop.return
+    end
+  end
+
+
+  describe '#days_of_week' do
+    it 'should return a days of week formatted' do
+      Timecop.freeze(2014, 11, 17)
+      monday = double(id: 1, name: 'Monday', slug: 'monday')
+      allow(event).to receive_message_chain(:weeks, :select).and_return([monday])
+      double(Week, id: 1, name: 'Monday', slug: 'monday')
+      allow(Week).to receive_message_chain(:all, :select).and_return([monday])
+
+      expect(event.days_of_week).to eq("<span class='label white-bg border'>Monday</span>")
+    end
+
+    after(:each) do
+      Timecop.return
+    end
+  end
 
 end

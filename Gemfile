@@ -18,6 +18,7 @@ group :development, :test do
 	gem 'shoulda-matchers'
 	gem 'factory_girl_rails', '~> 4.0'
 	gem 'database_cleaner'
+	gem 'timecop'
 	gem 'coveralls', require: false
 	gem 'simplecov', require: false
 end

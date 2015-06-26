@@ -16,8 +16,18 @@ describe EventsController do
   end
 
   context 'when current user DO NOT created the event' do
-    describe '#edit' do
+    describe '#show' do
       it 'should load page with success' do
+        set_user_logged_in(id: 1)
+        event = create(:event, user_id: 2)
+
+        get(:show, {locale: :en, id: event})
+
+        expect(response.status).to eq(200)
+      end
+    end
+    describe '#edit' do
+      it 'should redirect page to newsfeed' do
         set_user_logged_in(id: 1)
         event = create(:event, user_id: 2)
 
