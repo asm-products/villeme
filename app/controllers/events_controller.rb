@@ -68,7 +68,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
 
-    if @event.user_id == current_user.id
+    if @event.user_id == current_user.id or current_user.admin?
       @event.build_place if @event.place.nil?
 
       set_array_of_places_in_gon

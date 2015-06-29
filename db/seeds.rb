@@ -116,8 +116,9 @@ CITIES.each do |city|
       state_code: city[:state_code],
       country_name: city[:country_name],
       country_code: city[:country_code],
+      address: "#{city[:name]} #{city[:state_name]} #{city[:country_name]}"
   )
-  puts "City #{city.name} created with success!"
+  puts city.save ? "City #{city.name} created with success!" : 'Error on create city'
 end
 
 puts "\n"
@@ -282,19 +283,19 @@ admin = User.create(
     username: 'john-doe',
     password: 'password',
     password_confirmation: 'password',
-    latitude: faker_address.latitude,
-    longitude: faker_address.longitude,
-    route: faker_address.street_address,
-    street_number: faker_address.building_number,
-    neighborhood_name: Neighborhood.order("RANDOM()").first.name,
-    city_name: City.order("RANDOM()").first.name,
-    postal_code: faker_address.postcode,
-    state_name: State.order("RANDOM()").first.name,
+    latitude: nil,
+    longitude: nil,
+    route: nil,
+    street_number: nil,
+    neighborhood_name: nil,
+    city_name: nil,
+    postal_code: nil,
+    state_name: nil,
     state_code: nil,
-    country_name: Country.order("RANDOM()").first.name,
+    country_name: nil,
     country_code: nil,
-    address: faker_address.street_address,
-    formatted_address: faker_address.street_address,
+    address: City.first.address,
+    formatted_address: nil,
     admin: true,
     invited: true,
     account_complete: true,
@@ -303,6 +304,8 @@ admin = User.create(
 )
 
 admin.personas << Persona.first
+
+puts admin.save ? 'The admin is created with success' : 'Error: the admin is not created'
 
 
 8.times do
@@ -415,12 +418,14 @@ puts "\n"
       state_code: place.state_code,
       country_name: place.country_name,
       country_code: place.country_code,
-      full_address: nil,
+      address: faker_address.street_address + faker_address.state + faker_address.country,
+      formatted_address: nil,
       user_id: User.order("RANDOM()").first.id,
       place_id: place.id,
-      moderate: 1
+      moderate: 1,
+      image: File.new("#{Rails.root}/app/assets/images/default-event-image.jpg")
   )
-  puts "Event #{event.name} created with success!"
+  puts event.save ? "Event #{event.name} created with success!" : "Error on create event"
 end
 
 puts "\n"
