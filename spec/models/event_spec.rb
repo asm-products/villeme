@@ -100,7 +100,7 @@ describe Event, type: :model do
       expect(event.place.name).to eq('New York State Museum')
     end
   end
-  
+
   describe '#name_with_limit' do
     it 'should return name of event with limit of chars' do
       event = create(:event, name: 'This name of events have more than 45 chars for make this test testable')

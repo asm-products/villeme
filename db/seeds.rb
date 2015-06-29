@@ -293,12 +293,16 @@ admin = User.create(
     state_code: nil,
     country_name: Country.order("RANDOM()").first.name,
     country_code: nil,
-    full_address: faker_address.street_address,
+    address: faker_address.street_address,
+    formatted_address: faker_address.street_address,
     admin: true,
     invited: true,
+    account_complete: true,
     level_id: 1,
     persona_id: Persona.first.id
 )
+
+admin.personas << Persona.first
 
 
 8.times do

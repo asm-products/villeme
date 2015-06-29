@@ -31,7 +31,7 @@ module GeocodedActions
   end
 
   def city=(city)
-    self.city_name = city.name
+    self.city_name = city.try(:name)
   end
 
 
