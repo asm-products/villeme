@@ -56,18 +56,17 @@ class Event < ActiveRecord::Base
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
 
-	# scopes
+	# SCOPES
 
-	# busca oe eventos que irão acontecer em uma
-	# semana e que estão acontecendo
-	# e filtra somente os moderados
 	scope :upcoming, lambda {
 	  where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order(:date_start)
 	}
-
 	scope :upcoming_by_persona, lambda { |user|
-		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
-	}
+															where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
+														}
+	scope :today, lambda {
+								where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order(:date_start)
+							}
 
 
 	def name_with_limit
@@ -112,14 +111,19 @@ class Event < ActiveRecord::Base
 	# Retorna o dia da semana que o evento acontece
 
 	def day_of_week(options = {})
-
 		require_relative '../../app/domain/usecases/weeks/get_day_of_week'
 		require_relative '../../app/domain/usecases/dates/get_next_day_occur_human_readable'
 
-		Villeme::UseCases::Dates.get_next_day_occur_human_readable(self)
+		Villeme::UseCases::Dates.new(self).get_next_day_occur_human_readable
 	rescue
 		nil
   end
+
+	def today?
+		require_relative '../../app/domain/usecases/dates/get_next_day_occur_human_readable'
+
+		Villeme::UseCases::Dates.new(self).today?
+	end
 
 
 	# Retorna os dias da semana que o evento acontece

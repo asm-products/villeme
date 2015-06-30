@@ -212,6 +212,25 @@ describe Event, type: :model do
     end
   end
 
+  describe '#today?' do
+    it 'should return TRUE' do
+      Timecop.freeze(2014, 11, 17)
+      allow(event).to receive(:weeks).and_return([double(binary: 1)])
+
+      expect(event.today?).to be_truthy
+    end
+
+    it 'should return FALSE' do
+      Timecop.freeze(2014, 11, 18)
+      allow(event).to receive(:weeks).and_return([double(binary: 1)])
+
+      expect(event.today?).to be_falsey
+    end
+
+    after(:each) do
+      Timecop.return
+    end
+  end
 
   describe '#days_of_week' do
     it 'should return a days of week formatted' do
