@@ -256,14 +256,17 @@ puts "\n"
 
 WEEKS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 n = 1
+i = 6
 
 WEEKS.each do |name|
   week = Week.create(
       name: name,
       slug: name.downcase,
-      organizer_id: n
+      organizer_id: n,
+      binary: i
   )
   n += 1
+  i -= 1
   puts "Week #{week.name} created with success!"
 end
 
@@ -306,6 +309,10 @@ admin = User.create(
 admin.personas << Persona.first
 
 puts admin.save ? 'The admin is created with success' : 'Error: the admin is not created'
+
+puts "\n"
+puts "\n"
+
 
 
 8.times do
@@ -425,11 +432,45 @@ puts "\n"
       moderate: 1,
       image: File.new("#{Rails.root}/app/assets/images/default-event-image.jpg")
   )
-  puts event.save ? "Event #{event.name} created with success!" : "Error on create event"
+  puts event.save ? "Event #{event.name} created with success!" : 'Error on create event'
 end
 
 puts "\n"
 puts "\n"
+
+puts Event.last.latitude.nil? ? 'ERROR: You need access to internet to seed' : 'OK: Events are geocoded with success'
+
+puts "\n"
+puts "\n"
+
+Event.all.each do |event|
+    weeks = Week.order("RANDOM()")
+    event.weeks << [weeks[0], weeks[1], weeks[2], weeks[3]]
+    puts event.weeks.count > 0 ? 'Weeks added with success' : 'Error on added weeks'
+end
+
+
+puts "\n"
+puts "\n"
+
+Event.all.each do |event|
+    categories = Category.order("RANDOM()")
+    event.categories << [categories[0], categories[1], categories[2]]
+    puts event.categories.count > 0 ? 'Categories added with success' : 'Error on added categories'
+end
+
+puts "\n"
+puts "\n"
+
+Event.all.each do |event|
+    personas = Persona.order("RANDOM()")
+    event.personas << [personas[0], personas[1]]
+    puts event.personas.count > 0 ? 'Personas added with success' : 'Error on added personas'
+end
+
+puts "\n"
+puts "\n"
+
 
 puts '=========== Admin access ==============='
 
