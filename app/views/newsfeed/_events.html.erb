@@ -1,15 +1,13 @@
-<% letter = ('A'..'Z').to_a %>
 <% i = 0 %>
 
+<% events.each do |event| %>
 
-<% @events.each do |event| %>
-
-    <% i += 1 %>ravando tudo
+    <% i += 1 %>
 
     <!-- pega a distância entre o evento e o user -->
     <% distance = current_user.distance_until(event, :minutes) %>
 
-    <% cache [current_user, event, event.agendas], expires: 1.hour do %>
+    <% cache [current_user, event, event.agendas], expires: 15.minutes do %>
         <div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
 
           <div class="Event-buttonsBox">
@@ -22,7 +20,7 @@
             <% end %>
           </div>
 
-          <div class="panel panel-default shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-bus="<%= distance[:bus] %>min." data-car="<%= distance[:car] %>min." data-walk="<%= distance[:walk] %>" data-bike="<%= distance[:bike] %>min." data-letter="<%= letter[i] %>">
+          <div class="panel panel-default shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-bus="<%= distance[:bus] %>min." data-car="<%= distance[:car] %>min." data-walk="<%= distance[:walk] %>" data-bike="<%= distance[:bike] %>min." data-letter="<%= event.id %>">
             <div class="Event-content">
               <div class="Event-detailsBox">
 
@@ -76,8 +74,6 @@
         </div>
     <% end %>
 
-
-
     <% if i == 2 and current_user.friends_from_facebook and current_or_guest_user.guest? == false %>
         <div class="Grid-cell u-size4of12  height-325 grid" >
           <% cache [current_user, "friends_ranking"], expires: 1.hour, skip_digest: true do %>
@@ -85,8 +81,5 @@
           <% end %>
         </div>
     <% end %>
-
-
-
 
 <% end %>

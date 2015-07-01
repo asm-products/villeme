@@ -1,5 +1,4 @@
-
-<% cache [cache_key_for_events, params] do %>
+<% cache [cache_key_for_events, params], expires: 15.minutes do %>
 
     <!-- HEAD -->
 
@@ -14,33 +13,30 @@
 
     <!-- MAIN -->
 
-    <div class="col-lg-12">
-      <h3><%= @city.name unless @city.nil? %></h3>
-    </div>
-
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-      <div id="main-content" class="ps-container">
-        <div class="Grid Grid--withGutter">
+      <div class="row">
+        <div class="col-lg-12">
 
-          <%= render "alert_none_events" %>
+          <div id="main-content" class="ps-container">
 
-          <% if current_or_guest_user.guest? %>
-              <%= render "events_for_guest" %>
-          <% else %>
-              <%= render "events" %>
-          <% end %>
+            <%= render 'events_today' %>
 
-          <%= render "alert_create_new_event" %>
+            <%= render 'events_persona' %>
 
+            <%= render 'events_neighborhood' %>
+
+            <%= render 'events_city' %>
+
+          </div>
         </div>
+
       </div>
     </div>
 
 
-
     <!-- SIDEBAR -->
 
-    <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs">
+    <div class="col-lg-3 col-md-3 col-sm-4 hidden-xs m-30-0">
       <%= render "sidebar" %>
     </div>
 

@@ -62,12 +62,29 @@ class Event < ActiveRecord::Base
 	  where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order(:date_start)
 	}
 	scope :upcoming_by_persona, lambda { |user|
-															where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
-														}
-	scope :today, lambda {
-								where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order(:date_start)
-							}
+		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
+	}
 
+	def self.all_today_in_my_city(user)
+		response = []
+		Event.where(city_name: user.city_name).each do |event|
+			if event.today?
+				response << event
+			end
+		end
+
+		return response
+	end
+
+	def self.all_persona_in_my_city(user)
+		persona = Persona.find user.persona
+		return persona.events.where(city_name: user.city.try(:name))
+	end
+
+	def self.all_in_my_neighborhood(user)
+		neighborhood = Neighborhood.find user.neighborhood
+		return neighborhood.events
+	end
 
 	def name_with_limit
 		Villeme::UseCases::EventAttributes.name_with_limit(self)
@@ -99,7 +116,7 @@ class Event < ActiveRecord::Base
 			respota = {valid: true, count: number, text: "#{number} pessoas agendaram"}
 		end
 
-		return respota
+		respota
 	end
 
 

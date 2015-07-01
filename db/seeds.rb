@@ -274,6 +274,65 @@ puts "\n"
 puts "\n"
 
 
+
+puts '=== Places fakers creator ==='
+
+puts "\n"
+puts "\n"
+
+
+PLACES = [
+    {
+        name: 'Belmond Copacabana Palace',
+        route: 'Av. Atlântica',
+        street_number: '1702',
+        neighborhood_name: 'Copacabana',
+        city_name: 'Rio de Janeiro',
+        latitude: -22.967816,
+        longitude: -43.179073,
+        state_name: 'Rio de Janeiro',
+        state_code: 'RJ',
+        country_name: 'Brazil',
+        country_code: 'BR',
+        address: 'Av. Atlântica, 1702 - Copacabana, Rio de Janeiro - RJ, 22021-001'
+    },
+    {
+        name: 'New York State Museum',
+        route: 'Madison Ave',
+        street_number: '222',
+        neighborhood_name: 'Park South',
+        city_name: 'Albany',
+        latitude: 42.6497478302915,
+        longitude: -73.7614809697085,
+        state_name: 'New York',
+        state_code: 'NY',
+        country_name: 'United States',
+        country_code: 'US',
+        address: '222 Madison Ave, Albany, NY 12230, Estados Unidos'
+    }
+]
+
+PLACES.each do |place|
+    place = Place.create(
+        name: place[:name],
+        latitude: place[:latitude],
+        longitude: place[:longitude],
+        neighborhood_name: place[:neighborhood_name],
+        city_name: place[:city_name],
+        state_name: place[:state_name],
+        state_code: place[:state_code],
+        country_name: place[:country_name],
+        country_code: place[:country_code],
+        address: place[:address]
+    )
+    puts "Place #{place.name} created with success!"
+end
+
+puts "\n"
+puts "\n"
+
+
+
 puts '=========== Users fakers creator ==========='
 
 puts "\n"
@@ -297,11 +356,11 @@ admin = User.create(
     state_code: nil,
     country_name: nil,
     country_code: nil,
-    address: City.first.address,
+    address: Place.first.address,
     formatted_address: nil,
     admin: true,
     invited: true,
-    account_complete: true,
+    account_complete: false,
     level_id: 1,
     persona_id: Persona.first.id
 )
@@ -346,64 +405,12 @@ puts "\n"
 
 
 
-puts '=== Places fakers creator ==='
-
-puts "\n"
-puts "\n"
-
-
-PLACES = [
-    {
-        name: 'Cristo Redentor',
-        neighborhood_name: 'Copacabana',
-        city_name: 'Rio de Janeiro',
-        latitude: -22.9532707302915,
-        longitude: -43.2116648802915,
-        state_name: 'Rio de Janeiro',
-        state_code: 'RJ',
-        country_name: 'Brazil',
-        country_code: 'BR'
-    },
-    {
-        name: 'New York State Museum',
-        neighborhood_name: 'Park South',
-        city_name: 'Albany',
-        latitude: 42.6497478302915,
-        longitude: -73.7614809697085,
-        state_name: 'New York',
-        state_code: 'NY',
-        country_name: 'United States',
-        country_code: 'US'
-    }
-]
-
-PLACES.each do |place|
-  place = Place.create(
-      name: place[:name],
-      latitude: place[:latitude],
-      longitude: place[:longitude],
-      neighborhood_name: place[:neighborhood_name],
-      city_name: place[:city_name],
-      state_name: place[:state_name],
-      state_code: place[:state_code],
-      country_name: place[:country_name],
-      country_code: place[:country_code],
-  )
-  puts "Place #{place.name} created with success!"
-end
-
-puts "\n"
-puts "\n"
-
-
-
-
 puts '=========== Events fakers creator ==========='
 
 puts "\n"
 puts "\n"
 
-10.times do
+30.times do
   place = Place.order("RANDOM()").first
   faker_address = Faker::Address
   event = Event.create(
@@ -445,7 +452,7 @@ puts "\n"
 
 Event.all.each do |event|
     weeks = Week.order("RANDOM()")
-    event.weeks << [weeks[0], weeks[1], weeks[2], weeks[3]]
+    event.weeks << [weeks[0], weeks[1], weeks[2]]
     puts event.weeks.count > 0 ? 'Weeks added with success' : 'Error on added weeks'
 end
 
@@ -455,7 +462,7 @@ puts "\n"
 
 Event.all.each do |event|
     categories = Category.order("RANDOM()")
-    event.categories << [categories[0], categories[1], categories[2]]
+    event.categories << [categories[0], categories[1]]
     puts event.categories.count > 0 ? 'Categories added with success' : 'Error on added categories'
 end
 

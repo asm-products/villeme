@@ -26,6 +26,7 @@ class NewsfeedController < ApplicationController
     else
       @city = City.find_by(name: current_or_guest_user.city_name)
       @events = Event.where(city_name: current_or_guest_user.city_name).upcoming
+      @events_today = Event.all_today_in_my_city(current_user)
 
       @number_of_events = @events.count
       @message_for_none_events = "Não há eventos no momento em #{@city.try(:name)}."
@@ -49,7 +50,10 @@ class NewsfeedController < ApplicationController
       render_newsfeed_for_guest_user
     else
       @city = City.find_by(slug: params[:city])
-      @events = Event.where(city_name: @city.name).upcoming_by_persona(current_user)
+      @events = Event.where(city_name: current_or_guest_user.city_name).upcoming
+      @events_today = Event.all_today_in_my_city(current_or_guest_user)
+      @events_persona = Event.all_persona_in_my_city(current_or_guest_user)
+      @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user)
 
       @number_of_events = @events.count
       @message_for_none_events = "Não há eventos no momento em #{@city.name}."
