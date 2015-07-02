@@ -65,10 +65,15 @@ class Event < ActiveRecord::Base
 		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 7, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
 	}
 
-	def self.all_today_in_my_city(user)
+	def self.all_today_in_my_city(user, limit: false)
+		events = Event.where(city_name: user.city_name)
+
+		i = 0
 		response = []
-		Event.where(city_name: user.city_name).each do |event|
+
+		events.each do |event|
 			if event.today?
+				i == limit ? break : i += 1 if limit
 				response << event
 			end
 		end
@@ -76,14 +81,14 @@ class Event < ActiveRecord::Base
 		return response
 	end
 
-	def self.all_persona_in_my_city(user)
+	def self.all_persona_in_my_city(user, limit: false)
 		persona = Persona.find user.persona
-		return persona.events.where(city_name: user.city.try(:name))
+		return limit ? persona.events.limit(limit).where(city_name: user.city.try(:name)) : persona.events.where(city_name: user.city.try(:name))
 	end
 
-	def self.all_in_my_neighborhood(user)
+	def self.all_in_my_neighborhood(user, limit: false)
 		neighborhood = Neighborhood.find user.neighborhood
-		return neighborhood.events
+		return limit ? neighborhood.events.limit(limit) : neighborhood.events
 	end
 
 	def name_with_limit
