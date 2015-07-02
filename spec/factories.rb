@@ -18,7 +18,7 @@ FactoryGirl.define do
     state_name "New York"
     country_name "United States"
     level
-    after(:create) {|user| user.personas = [create(:persona)]}
+    after(:create) {|user| user.personas << create(:persona)}
   end
 
   # This will use the User class (Admin would have been guessed)
@@ -32,7 +32,7 @@ FactoryGirl.define do
     invited true
     admin true
     city_name "Albany"
-    after(:create) {|admin| admin.personas = [create(:persona)]}
+    after(:create) {|admin| admin.personas << create(:persona)}
   end
 
 
