@@ -38,6 +38,7 @@ FactoryGirl.define do
 
   factory :event do
     name "Campus Party"
+    description Faker::Lorem.paragraph(5..30)
     neighborhood_name "Pine Hills"
     city_name "Albany"
     state_name "New York"

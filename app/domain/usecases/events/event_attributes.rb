@@ -15,6 +15,9 @@ module Villeme
 
 
         def description_with_limit(entity)
+
+          return nil if entity.description.nil?
+
           name = entity.name
           description = ActionController::Base.helpers.strip_tags(entity.description)
           if name.length > 25

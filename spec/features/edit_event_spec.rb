@@ -16,9 +16,9 @@ describe 'Edit an event' do
 
   context 'when current user create the event' do
     it 'should open the page with success' do
-      user = create(:user, id: 1)
+      user = create(:user, id: 16173617)
              login_as(user, :scope => :user)
-      event = create(:event, user_id: 1)
+      event = create(:event, user_id: 16173617)
 
       visit("events/#{event.id}/edit")
 
