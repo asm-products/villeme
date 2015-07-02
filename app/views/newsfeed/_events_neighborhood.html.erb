@@ -1,8 +1,8 @@
 <h3>Eventos no meu bairro <%= current_or_guest_user.neighborhood.name %></h3>
 <div class="Grid Grid--withGutter">
-  <%= render "alert_none_events" %>
+  <%= render 'alert_none_events' %>
 
-  <%= render "events", events: @events_neighborhood %>
+  <%= render 'events', events: @events_neighborhood %>
 
-  <%= render "alert_create_new_event" %>
+  <%= render 'alert_create_new_event', events: @events_neighborhood %>
 </div>
