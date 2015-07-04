@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150624154605) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "label"
@@ -94,7 +95,6 @@ ActiveRecord::Schema.define(version: 20150624154605) do
     t.string   "state_name"
     t.string   "state_code"
     t.string   "slug"
-    t.string   "address"
     t.boolean  "launch",       default: false
   end
 

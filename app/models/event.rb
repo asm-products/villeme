@@ -82,12 +82,12 @@ class Event < ActiveRecord::Base
 	end
 
 	def self.all_persona_in_my_city(user, limit: false)
-		persona = Persona.find user.persona
+		persona = user.persona
 		return limit ? persona.events.limit(limit).where(city_name: user.city.try(:name)) : persona.events.where(city_name: user.city.try(:name))
 	end
 
 	def self.all_in_my_neighborhood(user, limit: false)
-		neighborhood = Neighborhood.find user.neighborhood
+		neighborhood = user.neighborhood
 		return limit ? neighborhood.events.limit(limit) : neighborhood.events
 	end
 

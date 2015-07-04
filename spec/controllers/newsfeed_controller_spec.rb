@@ -20,6 +20,7 @@ describe NewsfeedController do
       before(:each) do
         set_user_logged_in
         build(:city, name: 'Albany', slug: nil)
+        create(:neighborhood)
       end
       it 'should be load the page with success' do
         get :index, locale: :en
