@@ -23,6 +23,8 @@ describe Event, type: :model do
   end
 
   describe '.all_persona_in_my_city' do
+    before(:each) { DatabaseCleaner.clean }
+
     it 'should return 3 events from user persona' do
       persona = build(:persona)
                 build(:persona, name: 'Fashionist')
@@ -42,6 +44,8 @@ describe Event, type: :model do
   end
 
   describe '.all_in_my_neighborhood' do
+    before(:each) { DatabaseCleaner.clean }
+
     it 'should return 3 events' do
       3.times do
         event = create(:event, neighborhood_name: 'Park South', name: Faker::Lorem.sentence(2, false, 4),)
@@ -55,6 +59,8 @@ describe Event, type: :model do
   end
 
   describe '.all_fun_in_my_city' do
+    before(:each) { DatabaseCleaner.clean }
+
     it 'should return 2 events' do
       categories = [build(:category, slug: 'leisure'), build(:category, slug: 'culture')]
 
