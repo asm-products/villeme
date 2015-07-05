@@ -22,6 +22,57 @@ describe Event, type: :model do
     it { is_expected.to validate_presence_of :date_start }
   end
 
+  describe '.all_persona_in_my_city' do
+    it 'should return 3 events from user persona' do
+      persona = build(:persona)
+                build(:persona, name: 'Fashionist')
+
+      3.times do
+        event = create(:event, name: Faker::Lorem.sentence(2, false, 4),)
+                event.personas << persona
+      end
+      create(:event)
+
+      user = create(:user)
+             user.personas << persona
+             allow(user).to receive(:city).and_return create(:city)
+
+      expect(Event.all_persona_in_my_city(user).count).to eq(3)
+    end
+  end
+
+  describe '.all_in_my_neighborhood' do
+    it 'should return 3 events' do
+      3.times do
+        event = create(:event, neighborhood_name: 'Park South', name: Faker::Lorem.sentence(2, false, 4),)
+      end
+      create(:event, neighborhood_name: 'Partenon',)
+      user = create(:user, neighborhood_name: 'Park South')
+             allow(user).to receive(:neighborhood).and_return build(:neighborhood, name: 'Park South')
+
+      expect(Event.all_in_my_neighborhood(user).count).to eq(3)
+    end
+  end
+
+  describe '.all_fun_in_my_city' do
+    it 'should return 2 events' do
+      categories = [build(:category, slug: 'leisure'), build(:category, slug: 'culture')]
+
+      2.times do
+        event = create(:event, city_name: 'Albany', name: Faker::Lorem.sentence(2, false, 4))
+                event.categories = categories
+      end
+
+      create(:event, city_name: 'Albany')
+
+      user = build(:user, city_name: 'Albany')
+             allow(user).to receive(:city).and_return build(:city, name: 'Albany')
+
+
+      expect(Event.all_fun_in_my_city(user).count).to eq(2)
+    end
+  end
+
   describe '#create' do
 
     context 'event valid' do

@@ -121,5 +121,9 @@ FactoryGirl.define do
     nivel 1
   end
 
+  factory :category do
+    name "Leisure"
+    slug "leisure"
+  end
 
 end

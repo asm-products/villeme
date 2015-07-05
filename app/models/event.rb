@@ -82,13 +82,27 @@ class Event < ActiveRecord::Base
 	end
 
 	def self.all_persona_in_my_city(user, limit: false)
-		persona = user.persona
-		return limit ? persona.events.limit(limit).where(city_name: user.city.try(:name)) : persona.events.where(city_name: user.city.try(:name))
+		if limit
+			user.city.events.includes(:personas).where(personas: { id: user.personas.pluck(:id) }).limit(limit)
+		else
+			user.city.events.includes(:personas).where(personas: { id: user.personas.pluck(:id) })
+		end
 	end
 
 	def self.all_in_my_neighborhood(user, limit: false)
-		neighborhood = user.neighborhood
-		return limit ? neighborhood.events.limit(limit) : neighborhood.events
+		if limit
+			user.neighborhood.events.limit(limit)
+		else
+			user.neighborhood.events
+		end
+	end
+
+	def self.all_fun_in_my_city(user, limit: false)
+		if limit
+			user.city.events.includes(:categories).where(personas: { id: user.personas.pluck(:id) }).limit(limit)
+		else
+			user.city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture'] })
+		end
 	end
 
 	def name_with_limit
