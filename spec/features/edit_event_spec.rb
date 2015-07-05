@@ -6,9 +6,9 @@ describe 'Edit an event' do
     it 'should open the page with success' do
       user = create(:user)
              login_as(user, :scope => :user)
-      event = create(:event)
+      event = create(:event, place_id: 1)
               create(:neighborhood)
-              allow(event).to receive(:place).and_return build(:place)
+              create(:place, id: 1)
 
       visit("events/#{event.id}/edit")
 
