@@ -74,6 +74,7 @@ FactoryGirl.define do
     name "Albany"
     goal 250
     address "544 Madison Ave, Albany, NY 12208, USA"
+    slug "albany"
   end
 
   factory :neighborhood do

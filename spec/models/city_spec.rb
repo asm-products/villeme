@@ -4,6 +4,10 @@ describe City, type: :model do
 
   let(:city){ build(:city) }
 
+  before(:each) do
+    DatabaseCleaner.start
+  end
+
   describe '#users' do
     it 'should return all users from this city' do
       create(:user, name: 'foo', email: 'foo@gmail.com', city_name: 'Albany', address: nil)
@@ -30,6 +34,10 @@ describe City, type: :model do
 
       expect(city.events.count).to eq(2)
     end
+  end
+
+  after(:each) do
+    DatabaseCleaner.clean
   end
 
 end

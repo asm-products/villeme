@@ -24,23 +24,7 @@ class NewsfeedController < ApplicationController
     elsif current_or_guest_user.city_slug
       redirect_to newsfeed_city_path(current_or_guest_user.city_slug) and return
     else
-      @city = City.find_by(name: current_or_guest_user.city_name)
-      @events = Event.where(city_name: current_or_guest_user.city_name).upcoming
-      @events_today = Event.all_today_in_my_city(current_user, limit: 3)
-      @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 3)
-      @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 3)
-
-      @message_for_none_events = "Não há eventos no momento em #{@city.try(:name)}."
-      @feedback = Feedback.new
-
-      # user location
-      gon.latitude = current_or_guest_user.latitude
-      gon.longitude = current_or_guest_user.longitude
-
-      # array with places for map navigator on sidebar
-      gon.events_local_formatted = format_for_map_this(@events)
-
-      render :index
+      redirect_to newsfeed_city_path(City.where(launch: true).first.slug) and return
     end
 
   end

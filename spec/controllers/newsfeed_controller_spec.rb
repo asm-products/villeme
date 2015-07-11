@@ -16,16 +16,17 @@ describe NewsfeedController do
       end
     end
 
-    context 'when current_user logged id, invited and DO NOT have a #city_slug' do
+    context 'when current_user logged, invited and DO NOT have a #city_slug' do
       before(:each) do
-        set_user_logged_in
-        build(:city, name: 'Albany', slug: nil)
-        create(:neighborhood)
+        set_user_logged_in({city_name: 'Rio de Janeiro'})
+        allow(@user).to receive(:city_slug).and_return false
+        @city = create(:city, name: 'Albany', launch: true)
+               create(:city, name: 'Porto Alegre', launch: true)
       end
       it 'should be load the page with success' do
         get :index, locale: :en
 
-        expect(response.status).to eq(200)
+        expect(response.status).to redirect_to(newsfeed_city_path(@city.slug))
       end
     end
 

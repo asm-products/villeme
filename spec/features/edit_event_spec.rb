@@ -8,6 +8,7 @@ describe 'Edit an event' do
              login_as(user, :scope => :user)
       event = create(:event, place_id: 1)
               create(:neighborhood)
+              create(:city)
               create(:place, id: 1)
 
       visit("events/#{event.id}/edit")
