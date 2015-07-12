@@ -47,7 +47,7 @@ describe Event, type: :model do
         event = create(:event, neighborhood_name: 'Park South', name: Faker::Lorem.sentence(2, false, 4))
       end
       create(:event, neighborhood_name: 'Partenon')
-      user = create(:user, neighborhood_name: 'Park South')
+      user = build(:user, neighborhood_name: 'Park South')
              allow(user).to receive(:neighborhood).and_return build(:neighborhood, name: 'Park South')
 
       expect(Event.all_in_my_neighborhood(user).count).to eq(3)
