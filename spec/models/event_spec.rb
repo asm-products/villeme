@@ -44,11 +44,11 @@ describe Event, type: :model do
   describe '.all_in_my_neighborhood' do
     it 'should return 3 events' do
       3.times do
-        event = create(:event, neighborhood_name: 'Park South', name: Faker::Lorem.sentence(2, false, 4))
+        event = create(:event, neighborhood_name: 'Pine Hills', address: '502 Washington Avenue, Albany, NY 12203, USA', name: Faker::Lorem.sentence(2, false, 4))
       end
-      create(:event, neighborhood_name: 'Partenon')
+      create(:event, neighborhood_name: 'Partenon', address: 'Rua Rivadavia Correia, 08 - Partenon')
       user = build(:user, neighborhood_name: 'Park South')
-             allow(user).to receive(:neighborhood).and_return build(:neighborhood, name: 'Park South')
+             allow(user).to receive(:neighborhood).and_return build(:neighborhood, name: 'Pine Hills')
 
       expect(Event.all_in_my_neighborhood(user).count).to eq(3)
     end
