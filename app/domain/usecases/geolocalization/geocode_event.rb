@@ -13,8 +13,8 @@ module Villeme
 
         if @address.nil?
           return @event
-        elsif Rails.env.test?
-          return FactoryGirl.build(:event)
+        # elsif Rails.env.test?
+        #   return FactoryGirl.build(:event)
         end
 
         geocoderize_event(geocoding_by_address)
