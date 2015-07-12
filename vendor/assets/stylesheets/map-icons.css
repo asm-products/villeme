@@ -2,7 +2,6 @@
 	font-family: 'map-icons';
 	src:url('../fonts/map-icons.eot');
 	src:url('../fonts/map-icons.eot?#iefix') format('embedded-opentype'),
-		url('../fonts/map-icons.woff') format('woff'),
 		url('../fonts/map-icons.ttf') format('truetype'),
 		url('../fonts/map-icons.svg#map-icons') format('svg');
 	font-weight: normal;

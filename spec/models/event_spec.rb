@@ -28,7 +28,7 @@ describe Event, type: :model do
                 build(:persona, name: 'Fashionist')
 
       3.times do
-        event = create(:event, name: Faker::Lorem.sentence(2, false, 4),)
+        event = create(:event, name: Faker::Lorem.sentence(2, false, 4))
                 event.personas << persona
       end
       create(:event)
@@ -44,9 +44,9 @@ describe Event, type: :model do
   describe '.all_in_my_neighborhood' do
     it 'should return 3 events' do
       3.times do
-        event = create(:event, neighborhood_name: 'Park South', name: Faker::Lorem.sentence(2, false, 4),)
+        event = create(:event, neighborhood_name: 'Park South', name: Faker::Lorem.sentence(2, false, 4))
       end
-      create(:event, neighborhood_name: 'Partenon',)
+      create(:event, neighborhood_name: 'Partenon')
       user = create(:user, neighborhood_name: 'Park South')
              allow(user).to receive(:neighborhood).and_return build(:neighborhood, name: 'Park South')
 
