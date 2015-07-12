@@ -1,4 +1,4 @@
-<h3>Eventos no meu bairro <%= current_or_guest_user.neighborhood.name %></h3>
+<h3>Eventos no meu bairro <%= current_or_guest_user.neighborhood.try(:name) %></h3>
 <div class="Grid Grid--withGutter">
   <%= render 'alert_none_events' %>
 

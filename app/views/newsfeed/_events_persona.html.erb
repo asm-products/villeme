@@ -1,4 +1,4 @@
-<h3>Eventos indicados para <%= current_or_guest_user.persona.name %></h3>
+<h3>Eventos indicados para <%= current_or_guest_user.persona.try(:name) %></h3>
 <div class="Grid Grid--withGutter">
   <%= render 'alert_none_events' %>
 
