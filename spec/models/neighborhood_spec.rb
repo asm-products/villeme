@@ -16,10 +16,10 @@ describe Neighborhood, type: :model do
 
   describe '#events' do
     it 'should return events from neighborhood' do
-      neighborhood = build(:neighborhood, name: 'Park South')
+      neighborhood = build(:neighborhood, name: 'Pine Hills')
 
-      create(:event, name: 'Campus Party', neighborhood_name: 'Park South')
-      create(:event, name: 'Hackathon', neighborhood_name: 'Park South')
+      create(:event, name: 'Campus Party', neighborhood_name: 'Pine Hills')
+      create(:event, name: 'Hackathon', neighborhood_name: 'Pine Hills')
       create(:event, name: 'Oktoberfest', neighborhood_name: 'Mathias Velho', address: 'Rua Carazinho, 456 - Canoas')
 
       expect(neighborhood.events.count).to eq(2)
