@@ -39,6 +39,7 @@ class NewsfeedController < ApplicationController
       @events_today = Event.all_today_in_my_city(current_or_guest_user, limit: 3)
       @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 3)
       @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 3)
+      @events_fun = Event.all_fun_in_my_city(current_or_guest_user, limit: 3)
 
       @number_of_events = @events.count
       @message_for_none_events = "Não há eventos no momento em #{@city.name}."
@@ -146,6 +147,7 @@ class NewsfeedController < ApplicationController
     @events_today = Event.all_today_in_my_city(current_or_guest_user, limit: 3)
     @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 3)
     @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 3)
+    @events_fun = Event.all_fun_in_my_city(current_or_guest_user, limit: 3)
 
     @number_of_events = @events.count
 

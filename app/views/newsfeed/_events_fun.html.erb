@@ -1,0 +1,12 @@
+<h3>Se divertir</h3>
+<div class="Grid Grid--withGutter">
+  <%= render 'alert_none_events' %>
+
+  <% if current_or_guest_user.guest? %>
+      <%= render 'events_for_guest', events: @events_fun %>
+  <% else %>
+      <%= render 'events', events: @events_fun %>
+  <% end %>
+
+  <%= render 'alert_create_new_event', events: @events_fun %>
+</div>

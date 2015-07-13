@@ -99,7 +99,7 @@ class Event < ActiveRecord::Base
 
 	def self.all_fun_in_my_city(user, limit: false)
 		if limit
-			user.city.events.includes(:categories).where(personas: { id: user.personas.pluck(:id) }).limit(limit)
+			user.city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture']}).limit(limit)
 		else
 			user.city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture'] })
 		end
