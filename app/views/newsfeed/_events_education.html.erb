@@ -1,0 +1,12 @@
+<h3>Aprender algo novo</h3>
+<div class="Grid Grid--withGutter">
+  <%= render 'alert_none_events' %>
+
+  <% if current_or_guest_user.guest? %>
+      <%= render 'events_for_guest', events: @events_education %>
+  <% else %>
+      <%= render 'events', events: @events_education %>
+  <% end %>
+
+  <%= render 'alert_create_new_event', events: @events_education %>
+</div>

@@ -105,6 +105,14 @@ class Event < ActiveRecord::Base
 		end
 	end
 
+	def self.all_education_in_my_city(user, limit: false)
+		if limit
+			user.city.events.includes(:categories).where(categories: { slug: ['education']}).limit(limit)
+		else
+			user.city.events.includes(:categories).where(categories: { slug: ['education'] })
+		end
+	end
+
 	def name_with_limit
 		Villeme::UseCases::EventAttributes.name_with_limit(self)
 	end
