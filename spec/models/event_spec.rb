@@ -92,6 +92,25 @@ describe Event, type: :model do
     end
   end
 
+  describe '.all_health_in_my_city' do
+    it 'should return 2 events' do
+      categories = [build(:category, slug: 'sport'), build(:category, slug: 'health')]
+
+      2.times do
+        event = create(:event, city_name: 'Albany', name: Faker::Lorem.sentence(2, false, 4))
+        event.categories = categories
+      end
+
+      create(:event, city_name: 'Albany')
+
+      user = build(:user, city_name: 'Albany')
+      allow(user).to receive(:city).and_return build(:city, name: 'Albany')
+
+
+      expect(Event.all_health_in_my_city(user).count).to eq(2)
+    end
+  end
+
   describe '#create' do
 
     context 'event valid' do

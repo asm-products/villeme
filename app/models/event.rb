@@ -113,6 +113,14 @@ class Event < ActiveRecord::Base
 		end
 	end
 
+	def self.all_health_in_my_city(user, limit: false)
+		if limit
+			user.city.events.includes(:categories).where(categories: { slug: ['health', 'sport']}).limit(limit)
+		else
+			user.city.events.includes(:categories).where(categories: { slug: ['health', 'sport'] })
+		end
+	end
+
 	def name_with_limit
 		Villeme::UseCases::EventAttributes.name_with_limit(self)
 	end
