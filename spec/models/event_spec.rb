@@ -111,6 +111,23 @@ describe Event, type: :model do
     end
   end
 
+  describe '.all_trends_in_my_city' do
+    it 'should return 2 events' do
+      2.times do
+        event = create(:event, city_name: 'Albany', name: Faker::Lorem.sentence(2, false, 4))
+        2.times { event.agendas.create }
+      end
+
+      other_event = create(:event, city_name: 'Albany')
+                    other_event.agendas.create
+
+      user = build(:user, city_name: 'Albany')
+      allow(user).to receive(:city).and_return build(:city, name: 'Albany')
+
+      expect(Event.all_trends_in_my_city(user).count).to eq(2)
+    end
+  end
+
   describe '#create' do
 
     context 'event valid' do

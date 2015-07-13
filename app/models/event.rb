@@ -121,6 +121,14 @@ class Event < ActiveRecord::Base
 		end
 	end
 
+	def self.all_trends_in_my_city(user, limit: false)
+		if limit
+			user.city.events.where('agendas_count > 1').order('agendas_count DESC').limit(limit)
+		else
+			user.city.events.where('agendas_count > 1').order('agendas_count DESC')
+		end
+	end
+
 	def name_with_limit
 		Villeme::UseCases::EventAttributes.name_with_limit(self)
 	end
