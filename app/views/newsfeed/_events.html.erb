@@ -8,7 +8,7 @@
     <% distance = current_user.distance_until(event, :minutes) %>
 
     <% cache [current_user, event, event.agendas], expires: 15.minutes do %>
-        <div id="event-<%= event.id %>" class="Event Event--newsFeed grid Grid-cell u-size4of12">
+        <div class="event-<%= event.id %> Event Event--newsFeed grid Grid-cell u-size4of12">
 
           <div class="Event-buttonsBox">
             <% if agended(event) %>

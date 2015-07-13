@@ -62,7 +62,7 @@
 					url: $(this).attr("data-schedule-url")
 				).done (data) ->
 					
-					event = $("#"+data.event)
+					event = $("."+data.event)
 					agended = data.agended
 					agenda_new_count = data.count
 					agended_by_new_count = data.agended_by_count
