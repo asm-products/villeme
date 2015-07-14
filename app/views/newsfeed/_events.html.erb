@@ -8,14 +8,15 @@
     <% distance = current_user.distance_until(event, :minutes) %>
 
     <% cache [current_user, event, event.agendas], expires: 15.minutes do %>
+
         <div class="event-<%= event.id %> Event Event--newsFeed grid Grid-cell u-size4of12">
 
           <div class="Event-buttonsBox">
             <% if agended(event) %>
-                <span title='<%= event.period_that_occurs %>' class='Event-button Event-dayButton Event--newsfeed js-EventDayButton is-schedule has-tooltip'><%= event.day_of_week %></span>
+                <span title='<%= event.period_that_occurs %>' class='Event-button Event-dayButton Event--newsfeed js-EventDayButton is-schedule has-tooltip'><%= event.day_of_week %> <%= event.start_hour %></span>
                 <span class="Event-button Event-agendaButton js-EventAgendaButton is-schedule" data-schedule-url="<%= schedule_event_path(event) %>"><span class="Event-buttonText js-EventButtonText">Agendado</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
             <% else %>
-                <span title='<%= event.period_that_occurs %>' class='Event-button Event-dayButton Event--newsfeed js-EventDayButton has-tooltip'><%= event.day_of_week %></span>
+                <span title='<%= event.period_that_occurs %>' class='Event-button Event-dayButton Event--newsfeed js-EventDayButton has-tooltip'><%= event.day_of_week %> <%= event.start_hour %></span>
                 <span class="Event-button Event-agendaButton js-EventAgendaButton" data-schedule-url="<%= schedule_event_path(event) %>"><span class="Event-buttonText js-EventButtonText">Agendar</span><span class="Event-agendedByCount js-agendedByCount has-tooltip" title="<%= event.agended_by_count[:valid] ? event.agended_by_count[:text] : nil %> "><%= event.agended_by_count[:count] %></span></span>
             <% end %>
           </div>
@@ -28,9 +29,10 @@
                   <span class="glyphicon glyphicon-map-marker"></span> <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
                 </div>
 
-                <div class="Event-categories">
-                  <%= strong_category(event, 'item') %>
-                </div>
+                <!-- TODO: Clean this if not use more -->
+                <!--<div class="Event-categories">-->
+                  <!--<%= strong_category(event, 'item') %>-->
+                <!--</div>-->
 
               </div>
 
@@ -50,15 +52,6 @@
                     <span class="preco <%= event.cost == 0 ? 'free' : nil %>">
                         <%= event.price %>
                     </span>
-
-                    <span class="hora">
-                        <% if event.allday %>
-                            O dia todo
-                        <% else %>
-                            <%= event.hour_start_first.strftime("%H:%M") << "h" %>
-                        <% end %>
-                    </span>
-
                     <span class="friends pull-right">
                       <% unless current_user.which_friends_will_this_event?(event).blank? %>
                         <% current_user.which_friends_will_this_event?(event).each do |friend| %>

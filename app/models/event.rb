@@ -185,9 +185,15 @@ class Event < ActiveRecord::Base
 		Villeme::UseCases::Dates.new(self).today?
 	end
 
+	def start_hour
+		if allday?
+			'AM-PM'
+		else
+			hour_start_first.strftime('%H:%M') << 'h'
+		end
+	end
 
 	# Retorna os dias da semana que o evento acontece
-
 	def days_of_week
 
 		# array para retorno
