@@ -71,6 +71,25 @@ describe Event, type: :model do
 
       expect(Event.all_fun_in_my_city(user).count).to eq(2)
     end
+
+    context 'when events is out of month range of upcoming scope' do
+      it 'should return 1 event' do
+        categories = [build(:category, slug: 'leisure'), build(:category, slug: 'culture')]
+
+        2.times do
+          event = create(:event, city_name: 'Albany', name: Faker::Lorem.sentence(2, false, 4))
+          event.categories = categories
+        end
+
+        event_in_range = create(:event, city_name: 'Albany', date_start: Date.current, date_finish: Date.current + 7)
+                         event_in_range.categories = categories
+
+        user = build(:user, city_name: 'Albany')
+               allow(user).to receive(:city).and_return build(:city, name: 'Albany')
+
+        expect(Event.all_fun_in_my_city(user).upcoming.count).to eq(1)
+      end
+    end
   end
 
   describe '.all_education_in_my_city' do

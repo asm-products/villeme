@@ -36,13 +36,13 @@ class NewsfeedController < ApplicationController
     else
       @city = City.find_by(slug: params[:city])
       @events = Event.where(city_name: current_or_guest_user.city_name).upcoming
-      @events_today = Event.all_today_in_my_city(current_or_guest_user, limit: 5)
-      @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 2)
-      @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 2)
-      @events_fun = Event.all_fun_in_my_city(current_or_guest_user, limit: 2)
-      @events_education = Event.all_education_in_my_city(current_or_guest_user, limit: 2)
-      @events_health = Event.all_health_in_my_city(current_or_guest_user, limit: 2)
-      @events_trends = Event.all_trends_in_my_city(current_or_guest_user, limit: 5)
+      @events_today = Event.all_today_in_my_city(current_or_guest_user, limit: 5).upcoming
+      @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 2).upcoming
+      @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 2).upcoming
+      @events_fun = Event.all_fun_in_my_city(current_or_guest_user, limit: 2).upcoming
+      @events_education = Event.all_education_in_my_city(current_or_guest_user, limit: 2).upcoming
+      @events_health = Event.all_health_in_my_city(current_or_guest_user, limit: 2).upcoming
+      @events_trends = Event.all_trends_in_my_city(current_or_guest_user, limit: 5).upcoming
 
       @number_of_events = @events.count
       @message_for_none_events = "Não há eventos no momento em #{@city.name}."
@@ -147,13 +147,13 @@ class NewsfeedController < ApplicationController
 
     @city = City.find_by(slug: params[:city])
     @events = Event.where(city_name: @city.name).upcoming
-    @events_today = Event.all_today_in_my_city(current_or_guest_user, limit: 3)
-    @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 3)
-    @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 3)
-    @events_fun = Event.all_fun_in_my_city(current_or_guest_user, limit: 3)
-    @events_education = Event.all_education_in_my_city(current_or_guest_user, limit: 2)
-    @events_health = Event.all_health_in_my_city(current_or_guest_user, limit: 2)
-    @events_trends = Event.all_trends_in_my_city(current_or_guest_user, limit: 5)
+    @events_today = Event.all_today_in_my_city(current_or_guest_user, limit: 3).upcoming
+    @events_persona = Event.all_persona_in_my_city(current_or_guest_user, limit: 3).upcoming
+    @events_neighborhood = Event.all_in_my_neighborhood(current_or_guest_user, limit: 3).upcoming
+    @events_fun = Event.all_fun_in_my_city(current_or_guest_user, limit: 3).upcoming
+    @events_education = Event.all_education_in_my_city(current_or_guest_user, limit: 2).upcoming
+    @events_health = Event.all_health_in_my_city(current_or_guest_user, limit: 2).upcoming
+    @events_trends = Event.all_trends_in_my_city(current_or_guest_user, limit: 5).upcoming
 
     @number_of_events = @events.count
 

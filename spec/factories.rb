@@ -55,6 +55,7 @@ FactoryGirl.define do
     image_file_name 'test.jpg'
     image_content_type 'image/jpg'
     image_file_size 1024
+    moderate 1
   end
 
   factory :place do
