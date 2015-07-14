@@ -31,7 +31,7 @@
 
                 <!-- TODO: Clean this if not use more -->
                 <!--<div class="Event-categories">-->
-                  <!--<%= strong_category(event, 'item') %>-->
+                <!--<%= strong_category(event, 'item') %>-->
                 <!--</div>-->
 
               </div>
@@ -42,17 +42,31 @@
 
 
               <div class="caption">
+                <span class="Event-subCat">
+                  <%= event.subcategory.name unless event.subcategory.nil? %>
+                </span>
 
-                <span class="Event-subCat"><%= event.subcategory.name unless event.subcategory.nil? %></span>
+                <h2 class="Event-title">
+                  <%= link_to event.name_with_limit, event_path(event), data: { push: true } %>
+                </h2>
 
-                <h2 class="Event-title"><%= link_to event.name_with_limit, event_path(event), data: { push: true } %></h2>
-                <span class="description"><%= strip_tags event.description_with_limit %></span>
+                <span class="description">
+                  <%= strip_tags event.description_with_limit %>
+                </span>
 
                 <div class="Event-infos">
-                    <span class="preco <%= event.cost == 0 ? 'free' : nil %>">
-                        <%= event.price %>
+                    <span class="Event-infosPrice <%= event.cost == 0 ? 'free' : nil %> Event-infosItem">
+                      <%= event.price %>
                     </span>
-                    <span class="friends pull-right">
+
+                    <span class="Event-infosRating Event-infosItem">
+                      <% if event.rates_media %>
+                          <span class="Event-infosRatingStar glyphicon glyphicon-star"></span>
+                          <%= event.rates_media %>
+                      <% end %>
+                    </span>
+
+                    <span class="Event-infosFriends pull-right Event-infosItem">
                       <% unless current_user.which_friends_will_this_event?(event).blank? %>
                         <% current_user.which_friends_will_this_event?(event).each do |friend| %>
                             <i class="has-tooltip avatar-icon" title="<%= friend.first_name %> agendou o evento"><%= get_avatar(friend, "22", "22") %></i>

@@ -185,6 +185,7 @@ class Event < ActiveRecord::Base
 		Villeme::UseCases::Dates.new(self).today?
 	end
 
+	# TODO: #35 - ux debt on adjust data exhibition
 	def start_hour
 		if allday?
 			'AM-PM'
@@ -215,12 +216,8 @@ class Event < ActiveRecord::Base
 		return "#{days_of_event.join(' ')}".html_safe
 	end
 
-
-	# Retorna a media da votação
-	def rate_media
-		# Pega as votações
-		rates = Rate.where(rateable_id: self.id)
-
+	def rates_media
+		rates = Rate.where(rateable_id: id)
     if rates.empty?
       nil
     else
@@ -228,9 +225,7 @@ class Event < ActiveRecord::Base
     end
 	end
 
-	# Numero de pessoas que votaram
 	def rates_count
-		# Pega as votações
 		rates = Rate.where(rateable_id: self.id)
 
 		if rates.empty?
