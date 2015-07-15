@@ -23,17 +23,13 @@
 
           <div class="panel panel-default shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-bus="<%= distance[:bus] %>min." data-car="<%= distance[:car] %>min." data-walk="<%= distance[:walk] %>" data-bike="<%= distance[:bike] %>min." data-letter="<%= event.id %>">
             <div class="Event-content">
-              <div class="Event-detailsBox">
 
+              <div class="Event-overlay"></div>
+
+              <div class="Event-detailsBox">
                 <div class="Event-place">
                   <span class="glyphicon glyphicon-map-marker"></span> <%= link_to_if current_user, event.place.try(:name), place_path(event.place) %>
                 </div>
-
-                <!-- TODO: Clean this if not use more -->
-                <!--<div class="Event-categories">-->
-                <!--<%= strong_category(event, 'item') %>-->
-                <!--</div>-->
-
               </div>
 
               <%= link_to event_path(event), data: { push: true } do %>

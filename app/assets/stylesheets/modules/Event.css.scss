@@ -21,6 +21,22 @@
     margin: 20px 0 6px 0;
   }
 
+  &-overlay{
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0));
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    opacity: 0.5;
+    top: 0;
+    border-top-right-radius: 10px;
+    height: 180px;
+    border-top-left-radius: 10px;
+  }
+
   &-place{
     display: none;
     float: left;
@@ -75,6 +91,7 @@
     cursor: default;
     text-transform: uppercase;
     float: left;
+    text-shadow: 0px 1px 0.5px rgba(0,0,0,0.6);
 
     &.is-schedule {
 //      color: $grey;
@@ -326,6 +343,7 @@
     top: 140px;
     width: 100%;
     padding: 10px 10px;
+    z-index: 2;
 
     & .buttons {
       opacity: 0;
@@ -355,7 +373,7 @@
   }
 
   &.grid:hover .Event-detailsBox{
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 25%, transparent 100%);
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 25%, transparent 100%);
   }
 
   &-categories {
