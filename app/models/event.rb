@@ -185,13 +185,10 @@ class Event < ActiveRecord::Base
 		Villeme::UseCases::Dates.new(self).today?
 	end
 
-	# TODO: #35 - ux debt on adjust data exhibition
 	def start_hour
-		if allday?
-			'AM-PM'
-		else
-			hour_start_first.strftime('%H:%M') << 'h'
-		end
+		require_relative '../domain/usecases/events/event_attributes'
+
+		Villeme::UseCases::EventAttributes.get_start_hour(self)
 	end
 
 	# Retorna os dias da semana que o evento acontece

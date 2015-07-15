@@ -357,6 +357,32 @@ describe Event, type: :model do
     end
   end
 
+  describe '#start_hour' do
+    context 'when event has a NOT rounded hour' do
+      it 'should return the hour of event start NOT formatted' do
+        event = build(:event, hour_start_first: Time.utc(2015, 'may',1,20,15,1))
+
+        expect(event.start_hour).to eq('20:15h')
+      end
+    end
+
+    context 'when event has a rounded hour' do
+      it 'should return the hour of event start formatted' do
+        event = build(:event, hour_start_first: Time.utc(2015, 'may',1,20,00,1))
+
+        expect(event.start_hour).to eq('20h')
+      end
+    end
+
+    context 'when event during all day' do
+      it 'should return the hour of event start formatted' do
+        event = build(:event, allday: true)
+
+        expect(event.start_hour).to eq('AM-PM')
+      end
+    end
+  end
+
   describe '#days_of_week' do
     it 'should return a days of week formatted' do
       Timecop.freeze(2014, 11, 17)

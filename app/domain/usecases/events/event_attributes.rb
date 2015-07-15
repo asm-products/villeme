@@ -43,6 +43,15 @@ module Villeme
         end
 
 
+        def get_start_hour(entity)
+          if entity.allday?
+            'AM-PM'
+          else
+            hour = entity.hour_start_first.strftime('%H:%M')
+            hour.include?(':00') ? hour.chomp(':00') << 'h' : hour << 'h'
+          end
+        end
+
       end
     end
   end
