@@ -19,21 +19,21 @@
 
           <div id="main-content" class="ps-container">
 
-            <%= render 'events_today' if @events_today %>
+            <%= render 'events_today' unless @events_today.empty? %>
 
-            <%= render 'events_persona' if @events_persona %>
+            <%= render 'events_persona' unless @events_persona.empty? %>
 
-            <%= render 'events_neighborhood' if @events_neighborhood %>
+            <%= render 'events_neighborhood' unless @events_neighborhood.empty? %>
 
-            <%= render 'events_fun' if @events_fun %>
+            <%= render 'events_fun' unless @events_fun.empty? %>
 
-            <%= render 'events_education' if @events_education %>
+            <%= render 'events_education' unless @events_education.empty? %>
 
-            <%= render 'events_health' if @events_health %>
+            <%= render 'events_health' unless @events_health.empty? %>
 
-            <%= render 'events_trends' if @events_trends %>
+            <%= render 'events_trends' unless @events_trends.empty? %>
 
-            <%= render 'events_city' if @events %>
+            <%= render 'events_city' unless @events.empty? %>
 
           </div>
         </div>
