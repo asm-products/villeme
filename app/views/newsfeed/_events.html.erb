@@ -24,7 +24,9 @@
           <div class="panel panel-default shadow-animation" data-place="<%= event.try(:place).try(:name) %>" data-address="<%= event.full_address %>" data-latitude="<%= event.latitude.blank? ? event.place.latitude : event.latitude %>" data-longitude="<%= event.longitude.blank? ? event.place.longitude : event.longitude %>" data-bus="<%= distance[:bus] %>min." data-car="<%= distance[:car] %>min." data-walk="<%= distance[:walk] %>" data-bike="<%= distance[:bike] %>min." data-letter="<%= event.id %>">
             <div class="Event-content">
 
-              <div class="Event-overlay"></div>
+              <%= link_to event_path(event), data: { push: true } do %>
+                  <div class="Event-overlay"></div>
+              <% end %>
 
               <div class="Event-detailsBox">
                 <div class="Event-place">
@@ -32,10 +34,7 @@
                 </div>
               </div>
 
-              <%= link_to event_path(event), data: { push: true } do %>
-                  <div class="Event-imageBox" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
-              <% end %>
-
+              <div class="Event-imageBox" style="background-image: url('<%= event.image.url(:thumb) %>')"></div>
 
               <div class="caption">
                 <span class="Event-subCat">
