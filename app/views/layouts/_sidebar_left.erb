@@ -5,25 +5,7 @@
 <div id="sidebar-left-lg" class="sidebar-left">
   <ul class="nav nav-pills nav-stacked">
 
-
-    <!-- Newsfeed -->
-
-
-    <li class="active">
-      <% if current_or_guest_user.guest? %>
-          <%= link_to root_path do %>
-              <span class="glyphicon glyphicon-th"></span>Inicio
-          <% end %>
-      <% else  %>
-          <%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
-              Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
-          <% end %>
-      <% end %>
-    </li>
-
-
-
-
+    
     <!-- Persona -->
 
 
