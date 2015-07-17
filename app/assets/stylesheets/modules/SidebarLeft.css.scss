@@ -1,0 +1,112 @@
+.SidebarLeft {
+  left: 0;
+  margin-left: -200px;
+  overflow: hidden;
+  position: fixed;
+  top: 115px;
+  width: 170px;
+  z-index: 9;
+
+  &-section{
+    padding: 0 0 25px 0;
+  }
+
+  & ul > li{
+    display: block;
+    height: 2.2em;
+    min-height: 28px;
+  }
+
+  & ul > li > a:hover{
+    background: transparent;
+  }
+
+
+
+  & ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    & li{
+      color: $grey;
+      font-family: $font-family-default;
+      font-weight: 300;
+      font-size: 12px;
+      padding: 6px 0;
+
+
+      &:hover{
+
+      }
+
+      & a {
+        padding: 0;
+        color: scale_color($grey, $lightness: 20%);
+        margin: 0;
+        font-weight:300;
+        width: 170px;
+
+        &:hover{
+          cursor: pointer;
+        }
+
+        & .badge{
+          background: $body-bg-color;
+          color: $grey;
+          border: 1px solid scale_color($grey, $lightness: 50%);
+          font-family: Helvetica,arial;
+          font-size: 9px;
+          margin-left: 8px;
+        }
+
+        & .active{
+          color: $white;
+          background: $blue;
+        }
+
+        & .glyphicon{
+          margin: 0 6px 0 0;
+        }
+      }
+
+      &.active{
+
+        & a{
+          background: none;
+          color: $green;
+          margin-right: -1px;
+          font-weight: 500;
+
+          & .badge{
+            background: $body-bg-color;
+            color: $green;
+            border: 1px solid $green;
+            font-family: Helvetica,arial;
+            font-size: 9px;
+          }
+        }
+      }
+
+      & .glyphicon{
+        font-size: 12px;
+        margin: 0 8px 0 0;
+      }
+    }
+  }
+
+
+
+  ul .sub-nav {
+    margin: 0 0 0 20px;
+  }
+
+  li.divider {
+    border-top: 1px solid scale_color($body-bg-color, $lightness: -5%);
+    height: 0;
+    margin: 3px 0;
+    min-height: 0;
+  }
+
+
+}

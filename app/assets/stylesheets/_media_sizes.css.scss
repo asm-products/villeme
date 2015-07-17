@@ -121,7 +121,7 @@
   .content{
       padding-left: 60px;
 
-      & .sidebar-left{
+      & .SidebarLeft {
           left: 225px;
           width: 50px;
 
@@ -149,7 +149,7 @@
   .content.active{
       padding-left: 200px;
 
-      & .sidebar-left{
+      & .SidebarLeft {
           left: 225px;
           width: 200px;
       }
@@ -238,7 +238,7 @@
   .content{
       padding-left: 200px;
 
-      & .sidebar-left{
+      & .SidebarLeft {
           left: 225px;
           width: 170px;
 
@@ -256,7 +256,7 @@
       padding-left: 200px;
       transition: all 0.4s ease 0s;
 
-      & .sidebar-left{
+      & .SidebarLeft {
           left: 225px;
           width: 200px;
       }
