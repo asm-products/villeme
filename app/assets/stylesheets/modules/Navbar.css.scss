@@ -126,14 +126,13 @@
       & a{
         color: #ffffff;
         text-decoration: none;
-        padding: 10px 12px;
-        @extend .radius;
+        padding: 8px 10px;
+        border-radius: 4px;
         font-size: 14px;
         font-weight: 600;
 
         &:hover{
           background: scale_color($green, $lightness: -10%);
-          padding: 10px 12px;
           text-decoration:none;
         };
       }
