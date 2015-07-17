@@ -16,7 +16,7 @@
           <% end %>
       <% else  %>
           <%= link_to root_path, id: "newsfeed-link", data: {push: true} do %>
-              <span class="glyphicon glyphicon-th"></span>Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
+              Inicio<span class="badge"><%= current_user.newsfeed_notify_count if current_user.newsfeed_notify_count > 0 %></span></a>
           <% end %>
       <% end %>
     </li>
@@ -30,13 +30,12 @@
     <li>
       <% if user_signed_in? and current_user.persona %>
           <%= link_to my_persona_events_path, data: { push: true } do %>
-              <span class="glyphicon glyphicon-user"></span>
               <span class="has-tooltip" title="Minha persona"><%= current_user.persona_name %></span>
               <span class="badge"><%= current_user.quantity_of_events_from_persona %></span>
           <% end %>
       <% else %>
           <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver eventos da sua persona.")' do %>
-              <span class="glyphicon glyphicon-user unlogged"></span>Minha persona
+              Minha persona
           <% end %>
       <% end %>
     </li>
@@ -49,14 +48,14 @@
     <li>
       <% if user_signed_in? and current_user.neighborhood %>
           <%= link_to my_neighborhood_events_path, data: { push: true } do %>
-              <span class="glyphicon glyphicon-home"></span>
+
                     <span class="has-tooltip" title="Meu bairro">
                         <%= current_user.neighborhood.name %></span>
               <span class="badge"><%= current_user.quantity_of_events_from_neighborhood %></span>
           <% end %>
       <% else %>
           <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver eventos do seu bairro.")' do %>
-              <span class="glyphicon glyphicon-home unlogged"></span>Meu bairro
+              Meu bairro
           <% end %>
       <% end %>
     </li>
@@ -69,11 +68,11 @@
     <li>
       <% if user_signed_in? %>
           <%= link_to my_agenda_events_path, data: { push: true } do %>
-              <span class="glyphicon glyphicon-bookmark"></span>Minha agenda<span id="agenda-count" class="badge"><%= current_user.agenda_events.upcoming.count if current_user.agenda_events.upcoming.count >= 1 %></span>
+              Minha agenda<span id="agenda-count" class="badge"><%= current_user.agenda_events.upcoming.count if current_user.agenda_events.upcoming.count >= 1 %></span>
           <% end %>
       <% else %>
           <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver sua agenda.")' do %>
-              <span class='glyphicon glyphicon-bookmark unlogged'></span>Minha agenda
+              Minha agenda
           <% end %>
       <% end %>
     </li>
@@ -82,7 +81,7 @@
 
     <!-- Categorias -->
 
-    <li class="sub-nav-anchor"><a><span class="glyphicon glyphicon-tag"></span>Categorias</a></li>
+    <li class="sub-nav-anchor"><a>Categorias</a></li>
 
 
     <ul class="sub-nav hide">
@@ -122,7 +121,7 @@
 
     <li class="active">
       <%= link_to root_path do %>
-          <span class="glyphicon glyphicon-th"></span><span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
+          <span class="text">Inicio</span><span class="badge text"><%= Event.upcoming.where(moderate: 1).count %></span></a>
       <% end %>
     </li>
 
@@ -134,11 +133,11 @@
     <li>
       <% if user_signed_in? and current_user.persona %>
           <%= link_to my_persona_events_path, data: { push: true } do %>
-              <span class="glyphicon glyphicon-user"></span><span class="has-tooltip text" title="<%= current_user.persona.name %>">Minha persona</span><span class="badge text"><%= current_user.events_from_persona.count if current_user.events_from_persona.count >= 1 %></span>
+              <span class="has-tooltip text" title="<%= current_user.persona.name %>">Minha persona</span><span class="badge text"><%= current_user.events_from_persona.count if current_user.events_from_persona.count >= 1 %></span>
           <% end %>
       <% else %>
           <a>
-            <span class="glyphicon glyphicon-user unlogged"></span><span class="text">Minha persona</span><span class="badge text">4</span>
+            <span class="text">Minha persona</span><span class="badge text">4</span>
           </a>
       <% end %>
     </li>
@@ -151,11 +150,11 @@
     <li>
       <% if user_signed_in? and current_user.neighborhood %>
           <%= link_to my_neighborhood_events_path, data: { push: true } do %>
-              <span class="glyphicon glyphicon-home"></span><span class="has-tooltip" title="<%= current_user.neighborhood.name %>"><span class="text">Meu bairro</span></span><span class="badge text"><%= current_user.events_from_neighborhood.count if current_user.events_from_neighborhood.count >= 1 %></span>
+              <span class="has-tooltip" title="<%= current_user.neighborhood.name %>"><span class="text">Meu bairro</span></span><span class="badge text"><%= current_user.events_from_neighborhood.count if current_user.events_from_neighborhood.count >= 1 %></span>
           <% end %>
       <% else %>
           <a>
-            <span class="glyphicon glyphicon-home unlogged"></span><span class="text">Meu bairro</span><span class="badge text">18</span>
+            <span class="text">Meu bairro</span><span class="badge text">18</span>
           </a>
       <% end %>
     </li>
@@ -167,11 +166,11 @@
     <li>
       <% if user_signed_in? %>
           <%= link_to my_agenda_events_path, data: { push: true } do %>
-              <span class="glyphicon glyphicon-bookmark"></span><span class="text">Minha agenda</span><span id="agenda-count" class="badge text"><%= current_user.agenda_events.count if current_user.agenda_events.count >= 1 %></span>
+              <span class="text">Minha agenda</span><span id="agenda-count" class="badge text"><%= current_user.agenda_events.count if current_user.agenda_events.count >= 1 %></span>
           <% end %>
       <% else %>
           <a>
-            <span class="glyphicon glyphicon-bookmark unlogged"></span><span class="text">Minha agenda</span><span id="agenda-count" class="badge text">6</span>
+            <span class="text">Minha agenda</span><span id="agenda-count" class="badge text">6</span>
           </a>
       <% end %>
     </li>
