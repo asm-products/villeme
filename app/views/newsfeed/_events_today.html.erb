@@ -1,14 +1,21 @@
-<h3>Acontecendo hoje</h3>
-<div class="Grid Grid--withGutter">
+<section class="Section">
 
-  <%= render 'alert_none_events' %>
+  <div class="Section-header">
+    <h1 class="Section-title">Acontecendo hoje em <%= @city.name %></h1>
+    <span class="Section-description"></span>
+  </div>
 
-  <% if current_or_guest_user.guest? %>
-      <%= render 'events_for_guest', events: @events %>
-  <% else %>
-      <%= render 'events', events: @events_today %>
-  <% end %>
+  <div class="Grid Grid--withGutter">
 
-  <%= render 'alert_create_new_event', events: @events_today %>
+    <%= render 'alert_none_events' %>
 
-</div>
+    <% if current_or_guest_user.guest? %>
+        <%= render 'events_for_guest', events: @events %>
+    <% else %>
+        <%= render 'events', events: @events_today %>
+    <% end %>
+
+    <%= render 'alert_create_new_event', events: @events_today %>
+
+  </div>
+</section>

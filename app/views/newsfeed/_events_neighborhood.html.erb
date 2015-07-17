@@ -1,4 +1,8 @@
-<h3>Eventos no meu bairro <%= current_or_guest_user.neighborhood.try(:name) %></h3>
+<div class="Section-header">
+  <h1 class="Section-title">Eventos no meu bairro <%= current_or_guest_user.neighborhood.try(:name) %></h1>
+  <span class="Section-description"></span>
+</div>
+
 <div class="Grid Grid--withGutter">
   <%= render 'alert_none_events' %>
 
