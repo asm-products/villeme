@@ -2,7 +2,7 @@
 
 :root {
   --Grid-font-size: 1rem;
-  --Grid-gutter-size: 25px;
+  --Grid-gutter-size: 16px;
 }
 
 /**
@@ -78,7 +78,7 @@
 }
 
 .Grid--withGutter > .Grid-cell {
-  padding: 0 calc(0.5 * 25px);
+  padding: 0 calc(0.5 * 16px);
 }
 
 /* Grid cell
