@@ -2,14 +2,14 @@
 <%= render 'feedbacks/modal' %>
 <%= render 'layouts/modal_login' %>
 
-<div class="header-fixed">
+<div class="Navbar">
 
   <div class="row">
 
     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-2">
 
       <!-- Logo -->
-      <div class="logo">
+      <div class="Navbar-logo">
         <% if current_or_guest_user.guest? %>
             <%= link_to welcome_path do %>
                 <%= image_tag "logo.png", title: "Vivêncie a Cidade", alt: "logo cidadevocê" %>
@@ -27,12 +27,12 @@
     <div class="col-lg-7 col-md-6 col-sm-5 col-xs-4">
 
       <!-- Notificações -->
-      <div class="bell p-20-0 pull-right">
+      <div class="Navbar-bell p-20-0 pull-right">
         <%= render 'layouts/header/bell' %>
       </div>
 
       <!-- Botões -->
-      <ul class="links hidden-xs">
+      <ul class="Navbar-links hidden-xs">
         <% if current_or_guest_user.guest? %>
             <li><%= link_to "Início", root_path, class: "page-selected" %></li>
             <li><%= link_to_function "Criar evento", 'Villeme.Ux.loginModal("Você precisar estar logado para criar um evento.")', class: 'unlogged' %></li>
