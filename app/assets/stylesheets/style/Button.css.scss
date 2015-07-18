@@ -96,6 +96,12 @@
     }
   }
 
+  &--navbar{
+    color: $green-darker;
+    border: 1px solid $green-dark;
+    font-weight: 600;
+  }
+
   &-text{
     font-weight: 400;
   }

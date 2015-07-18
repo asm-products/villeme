@@ -7,12 +7,12 @@
 <% else %>
 
     <% if current_user.requested_friendships_notify.blank? %>
-        <div class="bell-wrapper p-0-15">
-          <span id="bell" class="glyphicon glyphicon-bell green-dark-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
+        <div class="Button Button--navbar bell-wrapper p-0-15 has-popover-click pointer" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true">
+          <span id="bell" class="glyphicon glyphicon-bell green-dark-font font-fixed-28" title="Notificações"></span> Notificações
         </div>
     <% else %>
-        <div class="bell-wrapper p-0-15">
-          <span id="bell" class="glyphicon glyphicon-bell white-font font-fixed-28 has-popover-click pointer" title="Notificações" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true"></span>
+        <div class="bell-wrapper p-0-15 has-popover-click pointer" data-placement="bottom" data-content="<%= "#{render 'newsfeed/friends_requests'}" %>" html="true">
+          <span id="bell" class="glyphicon glyphicon-bell white-font font-fixed-28" title="Notificações"></span>
           <span class="counter white-font font-11"><%= current_user.requested_friendships_notify.count %></span>
         </div>
     <% end %>
