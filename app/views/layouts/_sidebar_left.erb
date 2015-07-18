@@ -7,7 +7,15 @@
   <section class="SidebarLeft-section">
     <ul>
       <li>
-        <a href="#">Minha agenda</a>
+        <% if user_signed_in? %>
+            <%= link_to my_agenda_events_path, data: { push: true } do %>
+                Minha agenda<span id="agenda-count" class="badge"><%= current_user.agenda_events.upcoming.count if current_user.agenda_events.upcoming.count >= 1 %></span>
+            <% end %>
+        <% else %>
+            <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver sua agenda.")' do %>
+                Minha agenda
+            <% end %>
+        <% end %>
       </li>
     </ul>
   </section>
@@ -49,24 +57,6 @@
             <% end %>
         <% end %>
       </li>
-
-
-
-
-      <!-- Agenda -->
-
-      <li>
-        <% if user_signed_in? %>
-            <%= link_to my_agenda_events_path, data: { push: true } do %>
-                Minha agenda<span id="agenda-count" class="badge"><%= current_user.agenda_events.upcoming.count if current_user.agenda_events.upcoming.count >= 1 %></span>
-            <% end %>
-        <% else %>
-            <%= link_to '#', onclick: 'Villeme.Ux.loginModal("Você precisa estar logado para ver sua agenda.")' do %>
-                Minha agenda
-            <% end %>
-        <% end %>
-      </li>
-
 
 
       <!-- Categorias -->
