@@ -1,16 +1,18 @@
-<div class="Section-header">
-  <h1 class="Section-title">Se divertir</h1>
-  <span class="Section-description">Eventos para você sair com os amigos, passear com a familia, pegar um sol, curtir um piquenique, namorar...</span>
-</div>
+<section class="Section" data-anchor="fun">
+  <div class="Section-header">
+    <h1 class="Section-title">Se divertir</h1>
+    <span class="Section-description">Eventos para você sair com os amigos, passear com a familia, pegar um sol, curtir um piquenique, namorar...</span>
+  </div>
 
-<div class="Grid Grid--withGutter">
-  <%= render 'alert_none_events' %>
+  <div class="Grid Grid--withGutter">
+    <%= render 'alert_none_events' %>
 
-  <% if current_or_guest_user.guest? %>
-      <%= render 'events_for_guest', events: @events_fun %>
-  <% else %>
-      <%= render 'events', events: @events_fun %>
-  <% end %>
+    <% if current_or_guest_user.guest? %>
+        <%= render 'events_for_guest', events: @events_fun %>
+    <% else %>
+        <%= render 'events', events: @events_fun %>
+    <% end %>
 
-  <%= render 'alert_create_new_event', events: @events_fun %>
-</div>
+    <%= render 'alert_create_new_event', events: @events_fun %>
+  </div>
+</section>

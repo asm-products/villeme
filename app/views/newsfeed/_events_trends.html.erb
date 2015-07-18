@@ -1,16 +1,19 @@
-<div class="Section-header">
-  <h1 class="Section-title">Estão em alta</h1>
-  <span class="Section-description"></span>
-</div>
+<section class="Section" data-anchor="trends">
+  <div class="Section-header">
+    <h1 class="Section-title">Estão em alta</h1>
+    <span class="Section-description"></span>
+  </div>
 
-<div class="Grid Grid--withGutter">
-  <%= render 'alert_none_events' %>
+  <div class="Grid Grid--withGutter">
+    <%= render 'alert_none_events' %>
 
-  <% if current_or_guest_user.guest? %>
-      <%= render 'events_for_guest', events: @events_trends %>
-  <% else %>
-      <%= render 'events', events: @events_trends %>
-  <% end %>
+    <% if current_or_guest_user.guest? %>
+        <%= render 'events_for_guest', events: @events_trends %>
+    <% else %>
+        <%= render 'events', events: @events_trends %>
+    <% end %>
 
-  <%= render 'alert_create_new_event', events: @events_trends %>
-</div>
+    <%= render 'alert_create_new_event', events: @events_trends %>
+  </div>
+</section>
+
