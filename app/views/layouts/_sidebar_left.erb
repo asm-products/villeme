@@ -22,14 +22,28 @@
 
   <section class="SidebarLeft-section">
     <ul class="SidebarLeft-nav">
-      <li><a href="#" data-scroll="today">Acontecendo hoje</a></li>
-      <li><a href="#" data-scroll="persona">Indicados p/ mim</a></li>
-      <li><a href="#" data-scroll="neighborhood">No meu bairro</a></li>
-      <li><a href="#" data-scroll="friends">Meus amigos vão</a></li>
-      <li><a href="#" data-scroll="fun">Para se divertir</a></li>
-      <li><a href="#" data-scroll="learn">Aprender algo novo</a></li>
-      <li><a href="#" data-scroll="health">Cuidar da saude</a></li>
-      <li><a href="#" data-scroll="trends">Em alta</a></li>
+      <% unless @events_today.empty? %>
+          <li><a href="#" data-scroll="today">Acontecendo hoje</a></li>
+      <% end %>
+      <% unless @events_persona.empty? %>
+          <li><a href="#" data-scroll="persona">Indicados p/ mim</a></li>
+      <% end %>
+      <% unless @events_neighborhood.empty? %>
+        <li><a href="#" data-scroll="neighborhood">No meu bairro</a></li>
+      <% end %>
+
+      <% unless @events_fun.empty? %>
+        <li><a href="#" data-scroll="fun">Para se divertir</a></li>
+      <% end %>
+      <% unless @events_education.empty? %>
+        <li><a href="#" data-scroll="learn">Aprender algo novo</a></li>
+      <% end %>
+      <% unless @events_health.empty? %>
+        <li><a href="#" data-scroll="health">Cuidar da saude</a></li>
+      <% end %>
+      <% unless @events_trends.empty? %>
+        <li><a href="#" data-scroll="trends">Em alta</a></li>
+      <% end %>
     </ul>
   </section>
 </div>
