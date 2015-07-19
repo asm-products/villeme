@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # access only for admin users
   before_action :is_admin, only: [:index, :aprove, :destroy]
 
-  layout 'three-columns', except: :index
+  layout 'main_and_right_sidebar', except: :index
 
 
   include Gmaps

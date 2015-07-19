@@ -14,7 +14,7 @@ class NewsfeedController < ApplicationController
 
 
   # Layout newsfeed
-  layout "three-columns"
+  layout "main_and_left_and_right_sidebars"
 
 
   def index

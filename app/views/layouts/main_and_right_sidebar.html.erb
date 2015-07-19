@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <%= render 'layouts/head' %>
+
+</head>
+<body>
+
+<%= bootstrap_flash %>
+
+<div class="container-fluid">
+
+  <%= render 'layouts/header' %>
+
+  <div class="content">
+
+    <div id="main" class="row">
+
+      <%= yield %>
+
+    </div>
+
+  </div>
+
+
+
+  <%= render 'layouts/footer' %>
+
+</div>
+
+</body>
+
+<%= render 'layouts/analitycs' %>
+
+</html>
