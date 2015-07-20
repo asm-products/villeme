@@ -157,6 +157,10 @@
       background: linear-gradient(#32A755, $green 15%);
       box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.15);
 
+      &:hover{
+        background: $green;
+      }
+
       & .Event-buttonText{
         text-shadow: none;
       }
