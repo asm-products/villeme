@@ -10,7 +10,7 @@
     <% if current_or_guest_user.guest? %>
         <%= render 'events_for_guest', events: @events %>
     <% else %>
-        <%= render 'events', events: @events %>
+        <%= render 'event', events: @events %>
     <% end %>
 
     <%= render 'alert_create_new_event', events: @events %>
