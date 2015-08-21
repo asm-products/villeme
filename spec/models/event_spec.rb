@@ -257,14 +257,14 @@ describe Event, type: :model do
   describe '#price' do
     context 'when event have a price' do
       it 'should return price of event' do
-        expect(event.price).to eq('$1,200.00')
+        expect(event.price[:value]).to eq('$1,200.00')
       end
     end
     context 'when event DO NOT have a price' do
       it 'should return a string' do
         event = create(:event, cost: 0)
 
-        expect(event.price).to eq('Free')
+        expect(event.price[:value]).to eq('Free')
       end
     end
   end
