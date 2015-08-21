@@ -29,11 +29,20 @@ module Villeme
 
 
         def price(entity)
+          response = Hash.new(value: nil, css_attributes: nil)
+          number_to_currency = ActionController::Base.helpers.number_to_currency(entity.cost, locale: I18n.locale)
+
           if entity.cost == 0 or entity.cost.blank?
-            I18n.t('event.free')
+            response[:value] = I18n.t('event.free')
+            response[:css_attributes] = 'is-free'
+          elsif entity.cost < 12
+            response[:value] = number_to_currency
+            response[:css_attributes] = 'is-highlight'
           else
-            ActionController::Base.helpers.number_to_currency(entity.cost, locale: I18n.locale)
+            response[:value] = number_to_currency
           end
+
+          response
         end
 
 

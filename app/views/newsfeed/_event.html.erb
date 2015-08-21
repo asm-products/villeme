@@ -50,8 +50,8 @@
                 </span>
 
                 <div class="Event-infos">
-                    <span class="Event-infosPrice <%= event.cost == 0 ? 'free' : nil %> Event-infosItem">
-                      <%= event.price %>
+                    <span class="Event-infosPrice <%= event.price[:css_attributes] %> Event-infosItem">
+                      <%= event.price[:value] %>
                     </span>
 
                     <span class="Event-infosRating Event-infosItem">
