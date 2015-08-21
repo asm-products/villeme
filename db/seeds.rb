@@ -116,7 +116,8 @@ CITIES.each do |city|
       state_code: city[:state_code],
       country_name: city[:country_name],
       country_code: city[:country_code],
-      address: "#{city[:name]} #{city[:state_name]} #{city[:country_name]}"
+      address: "#{city[:name]} #{city[:state_name]} #{city[:country_name]}",
+      launch: true
   )
   puts city.save ? "City #{city.name} created with success!" : 'Error on create city'
 end

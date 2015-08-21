@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   has_many :feedbacks
   has_many :tips
   has_many :agendas
-  has_many :agenda_events, -> { uniq }, through: :agendas, source: :event
+  has_many :agenda_items, -> { uniq }, through: :agendas, source: :item
   has_many :friendships
   has_many :friends, through: :friendships
   has_many :accepted_friendships,

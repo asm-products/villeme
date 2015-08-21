@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150713204927) do
+ActiveRecord::Schema.define(version: 20150821193745) do
 
-  create_table "agenda_events", force: true do |t|
-    t.integer  "event_id"
+  create_table "agenda_items", force: true do |t|
+    t.integer  "item_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "agendas", force: true do |t|
-    t.integer  "event_id"
+    t.integer  "item_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20150713204927) do
     t.string   "slug"
   end
 
-  create_table "categories_events", id: false, force: true do |t|
+  create_table "categories_items", id: false, force: true do |t|
     t.integer  "category_id"
-    t.integer  "event_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(version: 20150713204927) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "label"
@@ -95,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150713204927) do
     t.string   "state_name"
     t.string   "state_code"
     t.string   "slug"
+    t.string   "address"
     t.boolean  "launch",       default: false
   end
 
@@ -107,83 +107,6 @@ ActiveRecord::Schema.define(version: 20150713204927) do
     t.datetime "updated_at"
     t.string   "slug"
   end
-
-  create_table "events", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "place_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "price_id"
-    t.string   "address"
-    t.date     "date_start"
-    t.time     "hour_start_first"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.date     "date_finish"
-    t.time     "hour_finish_first"
-    t.string   "number"
-    t.decimal  "cost",               precision: 8, scale: 2
-    t.time     "hour_start_second"
-    t.time     "hour_start_third"
-    t.time     "hour_start_fourth"
-    t.time     "hour_start_fifth"
-    t.time     "hour_start_sixth"
-    t.time     "hour_finish_second"
-    t.time     "hour_finish_third"
-    t.time     "hour_finish_fourth"
-    t.time     "hour_finish_fifth"
-    t.time     "hour_finish_sixth"
-    t.text     "cost_details"
-    t.integer  "moderate"
-    t.string   "slug"
-    t.integer  "persona_id"
-    t.string   "link"
-    t.string   "email"
-    t.string   "phone"
-    t.integer  "subcategory_id"
-    t.string   "full_address"
-    t.string   "country_name"
-    t.string   "country_code"
-    t.string   "postal_code"
-    t.string   "state_name"
-    t.string   "state_code"
-    t.string   "formatted_address"
-    t.string   "city_name"
-    t.string   "neighborhood_name"
-    t.string   "street_number"
-    t.string   "route"
-    t.boolean  "allday",                                     default: false
-    t.integer  "agendas_count",                              default: 0
-  end
-
-  add_index "events", ["persona_id"], name: "index_events_on_persona_id"
-  add_index "events", ["place_id"], name: "index_events_on_place_id"
-  add_index "events", ["price_id"], name: "index_events_on_price_id"
-  add_index "events", ["slug"], name: "index_events_on_slug"
-  add_index "events", ["subcategory_id"], name: "index_events_on_subcategory_id"
-  add_index "events", ["user_id"], name: "index_events_on_user_id"
-
-  create_table "events_personas", id: false, force: true do |t|
-    t.integer "event_id"
-    t.integer "persona_id"
-  end
-
-  add_index "events_personas", ["event_id"], name: "index_events_personas_on_event_id"
-  add_index "events_personas", ["persona_id"], name: "index_events_personas_on_persona_id"
-
-  create_table "events_weeks", id: false, force: true do |t|
-    t.integer "event_id"
-    t.integer "week_id"
-  end
-
-  add_index "events_weeks", ["event_id", "week_id"], name: "index_events_weeks_on_event_id_and_week_id", unique: true
-  add_index "events_weeks", ["week_id"], name: "index_events_weeks_on_week_id"
 
   create_table "feedbacks", force: true do |t|
     t.integer  "user_id"
@@ -259,6 +182,84 @@ ActiveRecord::Schema.define(version: 20150713204927) do
 
   add_index "invites_personas", ["invite_id"], name: "index_invites_personas_on_invite_id"
   add_index "invites_personas", ["persona_id"], name: "index_invites_personas_on_persona_id"
+
+  create_table "items", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "price_id"
+    t.string   "address"
+    t.date     "date_start"
+    t.time     "hour_start_first"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.date     "date_finish"
+    t.time     "hour_finish_first"
+    t.string   "number"
+    t.decimal  "cost",               precision: 8, scale: 2
+    t.time     "hour_start_second"
+    t.time     "hour_start_third"
+    t.time     "hour_start_fourth"
+    t.time     "hour_start_fifth"
+    t.time     "hour_start_sixth"
+    t.time     "hour_finish_second"
+    t.time     "hour_finish_third"
+    t.time     "hour_finish_fourth"
+    t.time     "hour_finish_fifth"
+    t.time     "hour_finish_sixth"
+    t.text     "cost_details"
+    t.integer  "moderate"
+    t.string   "slug"
+    t.integer  "persona_id"
+    t.string   "link"
+    t.string   "email"
+    t.string   "phone"
+    t.integer  "subcategory_id"
+    t.string   "full_address"
+    t.string   "country_name"
+    t.string   "country_code"
+    t.string   "postal_code"
+    t.string   "state_name"
+    t.string   "state_code"
+    t.string   "formatted_address"
+    t.string   "city_name"
+    t.string   "neighborhood_name"
+    t.string   "street_number"
+    t.string   "route"
+    t.boolean  "allday",                                     default: false
+    t.integer  "agendas_count",                              default: 0
+    t.string   "type"
+  end
+
+  add_index "items", ["persona_id"], name: "index_items_on_persona_id"
+  add_index "items", ["place_id"], name: "index_items_on_place_id"
+  add_index "items", ["price_id"], name: "index_items_on_price_id"
+  add_index "items", ["slug"], name: "index_items_on_slug"
+  add_index "items", ["subcategory_id"], name: "index_items_on_subcategory_id"
+  add_index "items", ["user_id"], name: "index_items_on_user_id"
+
+  create_table "items_personas", id: false, force: true do |t|
+    t.integer "item_id"
+    t.integer "persona_id"
+  end
+
+  add_index "items_personas", ["item_id"], name: "index_items_personas_on_item_id"
+  add_index "items_personas", ["persona_id"], name: "index_items_personas_on_persona_id"
+
+  create_table "items_weeks", id: false, force: true do |t|
+    t.integer "item_id"
+    t.integer "week_id"
+  end
+
+  add_index "items_weeks", ["item_id", "week_id"], name: "index_items_weeks_on_item_id_and_week_id", unique: true
+  add_index "items_weeks", ["week_id"], name: "index_items_weeks_on_week_id"
 
   create_table "levels", force: true do |t|
     t.string   "name"
@@ -472,13 +473,13 @@ ActiveRecord::Schema.define(version: 20150713204927) do
 
   create_table "tips", force: true do |t|
     t.text     "description"
-    t.integer  "event_id"
+    t.integer  "item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
 
-  add_index "tips", ["event_id"], name: "index_tips_on_event_id"
+  add_index "tips", ["item_id"], name: "index_tips_on_item_id"
   add_index "tips", ["user_id"], name: "index_tips_on_user_id"
 
   create_table "users", force: true do |t|

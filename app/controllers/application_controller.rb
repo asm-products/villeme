@@ -331,7 +331,7 @@ class ApplicationController < ActionController::Base
   def agended(event, user = current_user)
       if user.nil?
         false
-	    elsif user.agenda_events.include?(event)
+	    elsif user.agenda_items.include?(event)
         true
 	    else
         false
