@@ -433,7 +433,7 @@ puts "\n"
       state_code: place.state_code,
       country_name: place.country_name,
       country_code: place.country_code,
-      address: faker_address.street_address + faker_address.state + faker_address.country,
+      address: place.address,
       formatted_address: nil,
       user_id: User.order("RANDOM()").first.id,
       place_id: place.id,

@@ -53,7 +53,7 @@ module Villeme
 
       def geocoderize_neighborhood
         if @geocoder
-          @neighborhood.update_attributes(name: @geocoder.address_components_of_type(:neighborhood).first["long_name"],
+          @neighborhood.update_attributes(name: get_geocoder_for_neighborhood(@geocoder),
                                          latitude: @geocoder.latitude,
                                          longitude: @geocoder.longitude,
                                          city_name: @geocoder.city,
@@ -71,6 +71,18 @@ module Villeme
         else
           false
         end
+      end
+
+      def get_geocoder_for_neighborhood(geocoder)
+        if neighborhood_empty?(geocoder)
+          nil
+        else
+          geocoder.address_components_of_type(:neighborhood).first["long_name"]
+        end
+      end
+
+      def neighborhood_empty?(geocoder)
+        geocoder.address_components_of_type(:neighborhood).empty?
       end
 
     end

@@ -3,6 +3,7 @@ module Villeme
     class GeocodeEvent
 
       require_relative '../../policies/geocoder/entity_geocoded'
+      require_relative '../../usecases/geolocalization/create_object_geocoded'
 
       def initialize(entity)
         @event = entity
@@ -20,6 +21,7 @@ module Villeme
         geocoderize_event(geocoding_by_address)
 
         if event_is_geocoded?
+          Villeme::UseCases::CreateObjectGeocoded.new(@event.address).create_objects
           @event
         end
       end
