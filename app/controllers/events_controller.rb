@@ -54,7 +54,7 @@ class EventsController < ApplicationController
       redirect_to root_path, alert: 'Você precisa estar com o perfil completo para criar um evento!'
     end
 
-    @event = current_user.events.build
+    @event = current_user.items.build(type: 'Event')
     @place = @event.build_place
 
     set_current_user_lat_long_in_gon
@@ -86,7 +86,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = current_user.events.create(event_params)
+    @event = current_user.items.create(event_params)
+    @event.type = 'Event'
 
     if params[:event][:place_attributes][:name]
 
