@@ -27,7 +27,11 @@ CidadeVc::Application.routes.draw do
 
     root to: 'welcome#index', as: :welcome
 
-    resources :events do
+    resources :items, controller: 'events' do
+      get :schedule, on: :member
+    end
+
+    resources :events, controller: 'events', type: 'Event' do
       get :schedule, on: :member
     end
 

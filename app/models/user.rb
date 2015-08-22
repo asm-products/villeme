@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
   has_one :notify
   has_many :places
   has_many :items
+  has_many :events
   has_many :feedbacks
   has_many :tips
   has_many :agendas
