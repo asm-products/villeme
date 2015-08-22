@@ -48,7 +48,7 @@ module GeocodedByAddress
     bus_station_component = geocoder.address_components_of_type(:bus_station)
 
     if route_component.empty?
-      bus_station_component.first["short_name"]
+      bus_station_component.first["short_name"] unless bus_station_component.nil?
     else
       route_component.first["short_name"]
     end
