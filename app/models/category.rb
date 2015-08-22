@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
 	# associações
-	has_and_belongs_to_many :events
+	has_and_belongs_to_many :items
 	has_and_belongs_to_many :places
 
 

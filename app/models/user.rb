@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
     delegate :name, to: :persona, prefix: true, allow_nil: true
   has_one :notify
   has_many :places
-  has_many :events
+  has_many :items
   has_many :feedbacks
   has_many :tips
   has_many :agendas

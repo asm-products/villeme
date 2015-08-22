@@ -1,5 +1,5 @@
 class Tip < ActiveRecord::Base
-  belongs_to :event
+  belongs_to :item
   belongs_to :user
 
   # Validações
