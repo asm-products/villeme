@@ -91,7 +91,7 @@ describe NewsfeedController do
       end
 
       it 'should redirect_to #index' do
-        allow(@user).to receive_message_chain(:agenda_events, :upcoming).and_return(nil)
+        allow(@user).to receive_message_chain(:agenda_items, :upcoming).and_return(nil)
 
         get :myagenda, locale: :en
 

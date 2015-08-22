@@ -9,11 +9,11 @@ describe User, type: :model do
     it{ is_expected.to have_and_belong_to_many :personas }
     it{ is_expected.to belong_to :level }
     it{ is_expected.to have_one :notify }
-    it{ is_expected.to have_many :events }
+    it{ is_expected.to have_many :items }
     it{ is_expected.to have_many :feedbacks }
     it{ is_expected.to have_many :tips }
     it{ is_expected.to have_many :agendas }
-    it{ is_expected.to have_many :agenda_events }
+    it{ is_expected.to have_many :agenda_items }
     it{ is_expected.to have_many :friendships }
     it{ is_expected.to have_many :friends }
     it{ is_expected.to have_many :accepted_friends }

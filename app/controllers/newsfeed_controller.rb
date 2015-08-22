@@ -71,7 +71,7 @@ class NewsfeedController < ApplicationController
 
   def category
     @category = Category.friendly.find params[:category]
-    @events = @category.events.upcoming
+    @events = @category.items.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em #{@category.name}."
     render :index
@@ -81,7 +81,7 @@ class NewsfeedController < ApplicationController
 
     # filter events from user persona
     @persona = Persona.find current_user.persona
-    @events = @persona.events.upcoming
+    @events = @persona.items.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em #{@persona.name}."
 
@@ -101,7 +101,7 @@ class NewsfeedController < ApplicationController
 
     # filter events from user neighborhood
     @neighborhood = Neighborhood.friendly.find current_user.neighborhood.id
-    @events = @neighborhood.events.upcoming
+    @events = @neighborhood.items.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em #{@neighborhood.name}."
 
