@@ -121,7 +121,7 @@ class NewsfeedController < ApplicationController
   def myagenda
 
     # filter events from user agenda
-    @events = current_user.agenda_events.upcoming
+    @events = current_user.agenda_items.upcoming
     @number_of_events = @events.count
     @message_for_none_events = "Não há eventos no momento em sua agenda."
 
