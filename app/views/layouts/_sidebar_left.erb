@@ -28,7 +28,7 @@
       <% unless @events_persona.empty? %>
           <li><a href="#" data-scroll="persona">Indicados p/ mim</a></li>
       <% end %>
-      <% unless @events_neighborhood.empty? %>
+      <% if @events_neighborhood %>
         <li><a href="#" data-scroll="neighborhood">No meu bairro</a></li>
       <% end %>
 

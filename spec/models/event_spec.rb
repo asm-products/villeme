@@ -37,7 +37,7 @@ describe Event, type: :model do
              user.personas << persona
              allow(user).to receive(:city).and_return create(:city)
 
-      expect(Event.all_persona_in_my_city(user).count).to eq(3)
+      expect(Event.all_persona_in_city(user.personas, user.city).count).to eq(3)
     end
   end
 
@@ -50,7 +50,7 @@ describe Event, type: :model do
       user = build(:user, neighborhood_name: 'Pine Hills')
              allow(user).to receive(:neighborhood).and_return build(:neighborhood, name: 'Pine Hills')
 
-      expect(Event.all_in_my_neighborhood(user).count).to eq(3)
+      expect(Event.all_in_neighborhood(user.neighborhood).count).to eq(3)
     end
   end
 
@@ -69,7 +69,7 @@ describe Event, type: :model do
              allow(user).to receive(:city).and_return build(:city, name: 'Albany')
 
 
-      expect(Event.all_fun_in_my_city(user).count).to eq(2)
+      expect(Event.all_fun_in_city(user.city).count).to eq(2)
     end
 
     context 'when events is out of month range of upcoming scope' do
@@ -87,7 +87,7 @@ describe Event, type: :model do
         user = build(:user, city_name: 'Albany')
                allow(user).to receive(:city).and_return build(:city, name: 'Albany')
 
-        expect(Event.all_fun_in_my_city(user).upcoming.count).to eq(1)
+        expect(Event.all_fun_in_city(user.city).upcoming.count).to eq(1)
       end
     end
   end
@@ -107,7 +107,7 @@ describe Event, type: :model do
       allow(user).to receive(:city).and_return build(:city, name: 'Albany')
 
 
-      expect(Event.all_education_in_my_city(user).count).to eq(2)
+      expect(Event.all_education_in_city(user.city).count).to eq(2)
     end
   end
 
@@ -126,7 +126,7 @@ describe Event, type: :model do
       allow(user).to receive(:city).and_return build(:city, name: 'Albany')
 
 
-      expect(Event.all_health_in_my_city(user).count).to eq(2)
+      expect(Event.all_health_in_city(user.city).count).to eq(2)
     end
   end
 
@@ -143,7 +143,7 @@ describe Event, type: :model do
       user = build(:user, city_name: 'Albany')
       allow(user).to receive(:city).and_return build(:city, name: 'Albany')
 
-      expect(Event.all_trends_in_my_city(user).count).to eq(2)
+      expect(Event.all_trends_in_city(user.city).count).to eq(2)
     end
   end
 

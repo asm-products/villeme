@@ -65,67 +65,67 @@ class Item < ActiveRecord::Base
 		where('date_start >= ? AND date_finish >= ? AND moderate = 1 OR date_start <= ? AND date_finish >= ? AND moderate = 1', Date.current - 30, Date.current, Date.current, Date.current).order("CASE WHEN persona_id IS NULL THEN 1 ELSE 0 END, persona_id = #{user.try(:persona_id)} DESC, date_start ASC")
 	}
 
-	def self.all_today_in_my_city(user, limit: false)
-		events = Event.where(city_name: user.city_name)
+	def self.all_today(options = Hash(city: false, limit: false))
+		events = options[:city] ? options[:city].events : self
 
 		i = 0
 		response = []
 
 		events.each do |event|
 			if event.today?
-				i == limit ? break : i += 1 if limit
+				i == options[:limit] ? break : i += 1 if options[:limit]
 				response << event
 			end
 		end
 
-		return response
+		response
 	end
 
-	def self.all_persona_in_my_city(user, limit: false)
-		if limit
-			user.city.events.includes(:personas).where(personas: { id: user.personas.pluck(:id) }).limit(limit)
+	def self.all_persona_in_city(personas, city, options = {limit: false})
+		if options[:limit]
+			city.events.includes(:personas).where(personas: { id: personas.pluck(:id) }).limit(options[:limit])
 		else
-			user.city.events.includes(:personas).where(personas: { id: user.personas.pluck(:id) })
+			city.events.includes(:personas).where(personas: { id: personas.pluck(:id) })
 		end
 	end
 
-	def self.all_in_my_neighborhood(user, limit: false)
+	def self.all_in_neighborhood(neighborhood, limit: false)
 		if limit
-			user.neighborhood.events.limit(limit)
+			neighborhood.events.limit(limit)
 		else
-			user.neighborhood.events
+			neighborhood.events
 		end
 	end
 
-	def self.all_fun_in_my_city(user, limit: false)
+	def self.all_fun_in_city(city, limit: false)
 		if limit
-			user.city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture']}).limit(limit)
+			city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture']}).limit(limit)
 		else
-			user.city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture'] })
+			city.events.includes(:categories).where(categories: { slug: ['leisure', 'culture'] })
 		end
 	end
 
-	def self.all_education_in_my_city(user, limit: false)
+	def self.all_education_in_city(city, limit: false)
 		if limit
-			user.city.events.includes(:categories).where(categories: { slug: ['education']}).limit(limit)
+			city.events.includes(:categories).where(categories: { slug: ['education']}).limit(limit)
 		else
-			user.city.events.includes(:categories).where(categories: { slug: ['education'] })
+			city.events.includes(:categories).where(categories: { slug: ['education'] })
 		end
 	end
 
-	def self.all_health_in_my_city(user, limit: false)
+	def self.all_health_in_city(city, limit: false)
 		if limit
-			user.city.events.includes(:categories).where(categories: { slug: ['health', 'sport']}).limit(limit)
+			city.events.includes(:categories).where(categories: { slug: ['health', 'sport']}).limit(limit)
 		else
-			user.city.events.includes(:categories).where(categories: { slug: ['health', 'sport'] })
+			city.events.includes(:categories).where(categories: { slug: ['health', 'sport'] })
 		end
 	end
 
-	def self.all_trends_in_my_city(user, limit: false)
+	def self.all_trends_in_city(city, limit: false)
 		if limit
-			user.city.events.where('agendas_count > 1').order('agendas_count DESC').limit(limit)
+			city.events.where('agendas_count > 1').order('agendas_count DESC').limit(limit)
 		else
-			user.city.events.where('agendas_count > 1').order('agendas_count DESC')
+			city.events.where('agendas_count > 1').order('agendas_count DESC')
 		end
 	end
 
