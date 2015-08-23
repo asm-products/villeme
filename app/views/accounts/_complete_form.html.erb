@@ -10,12 +10,14 @@
   <div class="panel-body">
   
     <%= f.input :name, required:true, autofocus: true, label: 'Nome completo', input_html:{ :'data-bv-notempty-message' => "O nome deve ser preechido.", pattern: "[a-zA-Z0-9]+", :'data-bv-regexp-message' => "O nome deve ter somente letras e números.",  :'data-bv-stringlength-max' => "60", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 60 e mais que 2 caracteres."} %>
-    <%= f.input :address, required:true, label: 'Endereço', input_html:{ 'id' => 'address', 'data-bv-notempty-message' => "O endereço deve ser preenchido.", :'data-bv-stringlength-max' => "140", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 140 e mais que 2 caracteres."} %>
-    <div class="block">
+
+    <div class="block u-margin-15-0" style="overflow:hidden">
       <%= f.association :personas, as: :check_boxes, label: false, prompt: t('welcome.modal.persona_identify'), if: @user.personas.size <= 1 %>
     </div>
-    <div id="map"></div>
 
+    <%= f.input :address, required:true, label: 'Endereço', input_html:{ 'id' => 'address', 'data-bv-notempty-message' => "O endereço deve ser preenchido.", :'data-bv-stringlength-max' => "140", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 140 e mais que 2 caracteres."} %>
+
+    <div id="map"></div>
 
   </div>
 

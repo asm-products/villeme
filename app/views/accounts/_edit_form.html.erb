@@ -19,17 +19,17 @@
     </div>
 
     <%= f.input :username, required: true, label: 'Nome de usuário', input_html:{ value: create_username, :'data-bv-notempty-message' => "O nome de usuário deve ser preechido.", pattern: "^[a-z0-9_-]{2,30}$", :'data-bv-regexp-message' => "O nome de usuário deve ter somente letras, números, hífen e underscore.", :'data-bv-stringlength-max' => "30", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome de usuário deve ter menos que 30 e mais que 2 caracteres.", :'data-bv-greaterthan-message' => "O nome de usuário deve ser maior que 2 caracteres."} %>
+
     <%= f.input :email, required: true, as: :email, label: 'Email', input_html:{ :'data-bv-emailaddress' => true, :'data-bv-emailaddress-message' => "Este email não é valido."} %>
+
     <div class="block u-margin-15-0" style="overflow:hidden">
       <label class="block">Perfil</label>
       <%= f.association :personas, as: :check_boxes, label: false, prompt: t('welcome.modal.persona_identify'), if: @user.personas.size <= 1 %>
     </div>
+
     <%= f.input :address, required:true, label: 'Endereço', input_html:{ id: 'address', :'data-bv-notempty-message' => "O endereço deve ser preenchido.", :'data-bv-stringlength-max' => "140", :'data-bv-stringlength-min' => "2",  :'data-bv-stringlength-message' => "O nome deve ter menos que 140 e mais que 2 caracteres."} %>
 
-
     <div id="map"></div>
-
-
   </div>
 
   <div class="panel-footer">
