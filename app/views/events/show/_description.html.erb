@@ -1,8 +1,8 @@
 
 <span class="EventSingle-description snippet">
-  <%= @event.description[0..360].html_safe %>
+  <%= @item.description[0..360].html_safe %>
 </span>
 
-<% if @event.description.length > 360 %>
+<% if @item.description.length > 360 %>
   <span class="read-more">Ler mais...</span>
 <% end %>

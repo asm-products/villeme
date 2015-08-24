@@ -3,30 +3,30 @@
 
 
   <!-- Email -->
-  <% unless @event.email.blank? %>
+  <% unless @item.email.blank? %>
   <div class="col-md-4 col-lg-4 u-no-padding">
     <p>
-      <%= @event.email %>
+      <%= @item.email %>
     </p>
   </div>
   <% end %>
   
 
   <!-- Telefone -->
-  <% unless @event.phone.blank? %>
+  <% unless @item.phone.blank? %>
   <div class="col-md-4 col-lg-4">
     <p>
-      <%= @event.phone %>
+      <%= @item.phone %>
     </p>
   </div>
   <% end %>
 
 
   <!-- Link -->
-  <% unless @event.link.blank? %>
+  <% unless @item.link.blank? %>
   <div class="col-md-4 col-lg-4">
     <p>
-      <%= link_to "#{clean_url @event.link[0..24]}...", @event.link, target: "_blank" %>
+      <%= link_to "#{clean_url @item.link[0..24]}...", @item.link, target: "_blank" %>
     </p>
   </div>
   <% end %>

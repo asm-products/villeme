@@ -7,13 +7,13 @@
   <div class="panel-body">
     <div class="avatar small-avatar">
       
-      <%= get_avatar @event.user, "26", "26" %>
+      <%= get_avatar @item.user, "26", "26" %>
       
       <div class="level-image">
-        <%= image_tag @event.user.level_icon_url, class: "has-tooltip", title: @event.user.level_name if @event.user.level %>
+        <%= image_tag @item.user.level_icon_url, class: "has-tooltip", title: @item.user.level_name if @item.user.level %>
       </div>
 
-      <%= link_to @event.user.name, show_user_path(@event.user) %> há <%= distance_of_time_in_words_to_now @event.created_at %>
+      <%= link_to @item.user.name, show_user_path(@item.user) %> há <%= distance_of_time_in_words_to_now @item.created_at %>
 
     </div>        
   </div>

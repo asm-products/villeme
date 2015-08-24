@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe EventsController do
+describe ItemsController do
 
   context 'when current user created the event' do
     describe '#edit' do

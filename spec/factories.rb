@@ -1,4 +1,7 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :item do
+    
+  end
+
   factory :user do
     name "John Doe"
     email "user@gmail.com"
@@ -56,6 +59,8 @@ FactoryGirl.define do
     image_content_type 'image/jpg'
     image_file_size 1024
     moderate 1
+    type "Event"
+    slug "campus-party"
   end
 
   factory :place do

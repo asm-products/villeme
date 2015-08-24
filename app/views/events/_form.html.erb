@@ -21,7 +21,7 @@
 
     <div class="panel-body">
 
-      <%= simple_form_for @event, defaults:{ label: false, wrapper_html: false}, :html => { multipart: true, class: "form-horizontal", id: "event-form" } do |f| %>
+      <%= simple_form_for @item, defaults:{ label: false, wrapper_html: false}, :html => { multipart: true, class: "form-horizontal", id: "event-form" } do |f| %>
 
 
           <!-- NOME DO EVENTO -->
@@ -120,7 +120,7 @@
           <div class="form-group has-helper" helper="<b>Dica 1:</b> Insira o preço cobrado para poder participar do evento.<br/><br/><b>Dica 2:</b> Use o espaço de <i>Detalhes</i> para colocar mais informações sobre os preços e a tabela para cada segmento de preço cobrado.<br><br><b>Obrigações:</b><ul><li>O preço deve ser preenchido.</li></ul>">
             <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Preço</label>
             <div class="col-lg-3">
-              <input id="event_cost_fake" value="<%= @event.cost unless @event.cost.blank? %>" class="string optional has-tooltip form-control has-focus-transition" data-max-length="12" data-min-length="1" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
+              <input id="event_cost_fake" value="<%= @item.cost unless @item.cost.blank? %>" class="string optional has-tooltip form-control has-focus-transition" data-max-length="12" data-min-length="1" title="A partir de" type="text" size="10" name="" placeholder="R$ 0,00" maxlength="10">
               <%= f.input :cost, as: :hidden, input_html:{maxlength: "10", class: "form-control has-focus-transition", data:{"max-length" => 25, "min-length" => 2}}  %>
             </div>
             <label class="control-label col-lg-2">Detalhes</label>
@@ -142,8 +142,8 @@
             <label class="control-label col-lg-3"><abbr title="Obrigatório">*</abbr> Imagem</label>
             <div class="col-lg-3">
 
-              <% unless @event.image.blank? %>
-                  <div class="img-thumbnail event-img image-upload" style="background-image: url('<%= @event.image.url(:thumb) %>')">
+              <% unless @item.image.blank? %>
+                  <div class="img-thumbnail event-img image-upload" style="background-image: url('<%= @item.image.url(:thumb) %>')">
 
                   </div>
               <% else %>

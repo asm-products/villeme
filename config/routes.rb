@@ -1,5 +1,7 @@
 CidadeVc::Application.routes.draw do
 
+  resources :items
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   resources :countries
 
@@ -27,11 +29,11 @@ CidadeVc::Application.routes.draw do
 
     root to: 'welcome#index', as: :welcome
 
-    resources :items, controller: 'events' do
+    resources :items do
       get :schedule, on: :member
     end
 
-    resources :events, controller: 'events', type: 'Event' do
+    resources :events, controller: 'items', type: 'Event' do
       get :schedule, on: :member
     end
 
@@ -111,7 +113,7 @@ CidadeVc::Application.routes.draw do
     get 'events/:event/fulldescription', to: 'events#full_description', as: 'full_description'
 
     # Aprove event to newsfeed
-    match 'events/aprove/:id', to: 'events#aprove', via: :put, as: 'event_aprove'
+    match 'items/aprove/:id', to: 'items#aprove', via: :put, as: 'item_aprove'
 
     # Friendship routes
     get "friendships/request", to: "friendships#request_friendship", as: :friend_request

@@ -5,7 +5,7 @@
     <% if user_signed_in? %>
         <%= simple_form_for @tip, action: :create, remote: true, authenticity_token: true, html: {id: "new-tip"}, defaults: { input_html: {class: "form-control"}, wrapper_html: {class: 'form-group'}} do |f| %>
             <%= f.input :description, label: false, as: :text, input_html: { rows: "1", class: "tip form-control transition"}, wrapper_html:{class: "form-group col-lg-9 col-md-9 col-sm-12 col-xs-12"}, placeholder: "Escreva uma dica sobre o evento..." %>
-            <%= f.input :event_id, as: :hidden, input_html: {value: @event.id} %>
+            <%= f.input :event_id, as: :hidden, input_html: {value: @item.id} %>
             <%= f.input :user_id, as: :hidden %>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
               <%= f.button :submit, "Enviar dica", class: 'btn btn-primary pull-right w-100' %>
@@ -21,7 +21,7 @@
 
 
 <ul class="list-group tips">
-  <% @event.tips.reverse.each do |tip| %>
+  <% @item.tips.reverse.each do |tip| %>
       <%= "<li class='list-group-item'><b>#{link_to tip.user.name, show_user_path(tip.user)}</b> - #{tip.description} — <span class='grey-font-50'>Há #{distance_of_time_in_words_to_now tip.created_at}</span></li>".html_safe %>
   <% end %>
 </ul>
