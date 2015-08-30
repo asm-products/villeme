@@ -271,7 +271,7 @@ class ItemsController < ApplicationController
     if params[:type] != nil
       "#{params[:type].downcase.pluralize}"
     elsif @item and @item.type != nil
-      @item.type
+      @item.type.downcase.pluralize
     else
       'items'
     end
