@@ -1,5 +1,4 @@
-
-//= require events/input
+#=require events/input
 
 (($) ->
 
