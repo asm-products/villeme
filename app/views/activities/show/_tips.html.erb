@@ -1,0 +1,27 @@
+
+<div class="u-padding-15-0">
+
+  <div class="row">
+    <% if user_signed_in? %>
+        <%= simple_form_for @tip, action: :create, remote: true, authenticity_token: true, html: {id: "new-tip"}, defaults: { input_html: {class: "form-control"}, wrapper_html: {class: 'form-group'}} do |f| %>
+            <%= f.input :description, label: false, as: :text, input_html: { rows: "1", class: "tip form-control transition"}, wrapper_html:{class: "form-group col-lg-9 col-md-9 col-sm-12 col-xs-12"}, placeholder: "Escreva uma dica sobre o evento..." %>
+            <%= f.input :event_id, as: :hidden, input_html: {value: @item.id} %>
+            <%= f.input :user_id, as: :hidden %>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <%= f.button :submit, "Enviar dica", class: 'btn btn-primary pull-right w-100' %>
+            </div>
+        <% end %>
+    <% else %>
+        <span class="u-padding-15 u-centralize"><%= t('event_show.user_not_logged.tips') %></span>
+    <% end %>
+  </div>
+
+  <span class="tip-counter p-0-15"><b></b></span>
+</div>
+
+
+<ul class="list-group tips">
+  <% @item.tips.reverse.each do |tip| %>
+      <%= "<li class='list-group-item'><b>#{link_to tip.user.name, show_user_path(tip.user)}</b> - #{tip.description} — <span class='grey-font-50'>Há #{distance_of_time_in_words_to_now tip.created_at}</span></li>".html_safe %>
+  <% end %>
+</ul>

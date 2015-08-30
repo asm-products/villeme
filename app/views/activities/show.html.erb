@@ -1,0 +1,121 @@
+
+<% cache [current_user, @item, @item.agended_by_count[:count]], expires: 1.hour do %>
+
+    <% wiselinks_title(@item.name + ' em ' + @item.city_name + ' — Villeme') %>
+    <%= content_for :title, @item.name + ' em ' + @item.city_name %>
+
+    <%= stylesheet_link_tag params[:controller] %>
+    <%= include_gon %>
+    <%= javascript_include_tag params[:controller] %>
+    <%= javascript_include_tag 'gmaps-builder-event', 'jquery-raty', 'ratyrate' %>
+
+
+    <!-- MAIN -->
+
+    <div id="main-content">
+
+      <div class="col-lg-8 col-md-8">
+
+        <div id="event-<%= @item.id %>" class="EventSingle">
+
+          <div class="EventSingle-buttonsBox">
+            <% if agended(@item) %>
+                <span title='<%= @item.period_that_occurs %>' class='EventSingle-button EventSingle-dayButton js-EventDayButton is-schedule has-tooltip'><%= @item.day_of_week %></span>
+                <span class="EventSingle-button EventSingle-agendaButton js-EventAgendaButton is-schedule" data-schedule-url="<%= schedule_event_path(@item) %>"><span class="EventSingle-buttonText js-EventButtonText">Agendado</span><span class="EventSingle-agendedByCount js-agendedByCount has-tooltip" title="<%= @item.agended_by_count[:valid] ? @item.agended_by_count[:text] : nil %> "><%= @item.agended_by_count[:count] %></span></span>
+            <% else %>
+                <span title='<%= @item.period_that_occurs %>' class='EventSingle-button EventSingle-dayButton js-EventDayButton has-tooltip'><%= @item.day_of_week %></span>
+                <span class="EventSingle-button EventSingle-agendaButton js-EventAgendaButton" data-schedule-url="<%= schedule_event_path(@item) %>"><span class="EventSingle-buttonText js-EventButtonText">Agendar</span><span class="EventSingle-agendedByCount js-agendedByCount has-tooltip" title="<%= @item.agended_by_count[:valid] ? @item.agended_by_count[:text] : nil %> "><%= @item.agended_by_count[:count] %></span></span>
+            <% end %>
+          </div>
+
+          <div class="panel panel-default">
+
+
+            <!-- =Image -->
+            <div class="EventSingle-imageBox" style="background-image: url(<%= @item.image.url(:medium) %>)"></div>
+
+
+            <div class="panel-body">
+
+
+              <!-- =Title -->
+              <span class="EventSingle-subCat">
+                <%= @item.subcategory.name unless @item.subcategory.nil? %>
+              </span>
+              <h1 class="EventSingle-title">
+                <%= @item.name %>
+              </h1>
+
+
+              <!-- =Description -->
+              <div class="panel-body-item p-0-0-15">
+                <%= render 'events/show/description' %>
+              </div>
+
+            </div>
+
+            <ul class="list-group font-12">
+
+              <li class="list-group-item categories u-centralize u-padding-15-0">
+                <div class="row">
+
+                  <!-- =Categories -->
+                  <div class="col-lg-5 col-md-5 p-6-0">
+                    <% @item.category_ids.each do |id| %>
+                        <% # noinspection RailsChecklist05
+                           cat = Category.find(id) %>
+                        <%= link_to newsfeed_category_path(cat) do %>
+                            <%= image_tag "categories/#{cat.slug}.png", title: cat.name, class: "has-tooltip"  %>
+                        <% end %>
+                    <% end %>
+                  </div>
+
+                  <!-- =Rating -->
+                  <div class="col-lg-7 col-md-7 p-15-0-0-0">
+                    <%= rating_for @item, "geral", disable_after_rate: true, half_show: false %>
+                    <span class="block p-10-0-0-0 font-10"><span class="glyphicon glyphicon-user"></span> <%= @item.rates_count %></span>
+                  </div>
+
+                </div>
+              </li>
+
+              <!-- =Infos -->
+              <li class="list-group-item">
+                <%= render 'events/show/infos' %>
+              </li>
+
+
+              <!-- =Contacts -->
+              <% if @item.email.blank? == false or @item.phone.blank? == false or @item.link.blank? == false %>
+                  <li class="list-group-item">
+                    <%= render 'events/show/contacts' %>
+                  </li>
+              <% end %>
+
+            </ul>
+          </div>
+
+        </div>
+
+
+
+        <!-- =Tip -->
+        <div class="panel panel-default u-margin-15-0">
+          <%= render 'events/show/tips' %>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- =SIDEBAR -->
+
+      <%= render 'events/show/sidebar' %>
+
+
+    </div>
+
+<% end %>

@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   # GET /events.json
   def index
     @items = Item.all
-    render layout: 'centralize-lg', template: "#{get_item_type}/index"
+    render layout: 'centralize-lg', template: "#{get_item_route}/index"
   end
 
 
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
     # array with places for map
     gon.events_local_formatted = format_for_map_this(Item.all)
 
-    render template: "#{get_item_type}/show"
+    render template: "#{get_item_route}/show"
   end
 
 
@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
     set_current_user_lat_long_in_gon
     set_array_of_places_in_gon
 
-    render template: "#{get_item_type}/new"
+    render template: "#{get_item_route}/new"
   end
 
 
@@ -76,7 +76,7 @@ class ItemsController < ApplicationController
       gon.latitude = @item.relative_latitude
       gon.longitude = @item.relative_longitude
 
-      render template: "#{get_item_type}/edit"
+      render template: "#{get_item_route}/edit"
     else
       redirect_to root_path, alert: 'Ops! Você so pode editar os eventos que criou.'
     end
@@ -89,14 +89,14 @@ class ItemsController < ApplicationController
   # POST /events.json
   def create
     @item = current_user.items.create(item_params)
-    @item.type = params[:type]
+    @item.type = get_item_class
 
-    if params[:event][:place_attributes][:name]
+    if params[get_item_class.downcase][:place_attributes][:name]
 
-      place = Place.find_by name: params[:event][:place_attributes][:name]
+      place = Place.find_by name: params[get_item_class.downcase][:place_attributes][:name]
 
       if place.nil?
-        place = current_user.places.new(name: params[:event][:place_attributes][:name])
+        place = current_user.places.new(name: params[get_item_class.downcase][:place_attributes][:name])
         @item.copy_attributes_to place
         @item.place = place
       else
@@ -123,10 +123,10 @@ class ItemsController < ApplicationController
 
     @item.update_attributes(item_params)
 
-    place = Place.find_by(name: params[:event][:place_attributes][:name])
+    place = Place.find_by(name: params[get_item_class.downcase][:place_attributes][:name])
 
     if place.nil?
-      place = current_user.places.new(name: params[:event][:place_attributes][:name])
+      place = current_user.places.new(name: params[get_item_class.downcase][:place_attributes][:name])
       @item.copy_attributes_to place
       @item.place = place
     else
@@ -183,7 +183,7 @@ class ItemsController < ApplicationController
 
 
   def full_description
-    @item = Item.friendly.find params[:event]
+    @item = Item.friendly.find params[get_item_class.downcase]
     render json:{full_description: @item.description}
   end
 
@@ -208,7 +208,7 @@ class ItemsController < ApplicationController
 
 
   def item_params
-    params.require(params[:type].downcase).permit(
+    params.require(get_item_class.downcase).permit(
         :name,
         :description,
         :address,
@@ -267,23 +267,33 @@ class ItemsController < ApplicationController
     gon.places_array = places_array
   end
 
-  def get_item_type
+  def get_item_route
     if params[:type] != nil
       "#{params[:type].downcase.pluralize}"
     elsif @item and @item.type != nil
-      @item.type.downcase.pluralize
+      @item.type
     else
       'items'
     end
   end
 
+  def get_item_class
+    if params[:type] != nil
+      params[:type]
+    elsif @item and @item.type != nil
+      @item.type
+    else
+      'Item'
+    end
+  end
+
   def redirect_item_according_type
     if @item.type == 'Event'
-      redirect_to event_path @item, notice: 'O evento foi  criado com sucesso!' and return
+      redirect_to event_path @item, notice: 'O evento foi  criado com sucesso!'
     elsif @item.type == 'Activity'
-      redirect_to event_path @item, notice: 'A atividade foi  criado com sucesso!' and return
+      redirect_to activities_path @item, notice: 'A atividade foi  criado com sucesso!' and return
     else
-      redirect_to @item, notice: 'O item foi  criado com sucesso!' and return
+      redirect_to @item, notice: 'O item foi  criado com sucesso!'
     end
   end
 

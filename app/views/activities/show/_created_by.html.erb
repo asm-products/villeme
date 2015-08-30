@@ -1,0 +1,19 @@
+  
+  <div class="panel-heading">
+    <h3>Publicado por</h3>
+  </div>
+
+
+  <div class="panel-body">
+    <div class="avatar small-avatar">
+      
+      <%= get_avatar @item.user, "26", "26" %>
+      
+      <div class="level-image">
+        <%= image_tag @item.user.level_icon_url, class: "has-tooltip", title: @item.user.level_name if @item.user.level %>
+      </div>
+
+      <%= link_to @item.user.name, show_user_path(@item.user) %> há <%= distance_of_time_in_words_to_now @item.created_at %>
+
+    </div>        
+  </div>

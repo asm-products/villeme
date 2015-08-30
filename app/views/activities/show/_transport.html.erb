@@ -1,0 +1,15 @@
+<div class="panel-heading">
+  <h3>Transporte</h3>
+</div>
+
+<ul class="list-group">
+  <!-- Endereço -->
+  <% if user_signed_in? %>
+    <div class="list-group-item" title="Indo caminhando"><span class="data"><%= "#{@distance[:walk]}" %></span> caminhando</div>
+    <div class="list-group-item" title="Indo de bicicleta"><span class="data"><%= "#{@distance[:bike]}min." %></span> pedalando</div>
+    <div class="list-group-item" title="Indo de ônibus"><span class="data"><%= "#{@distance[:bus]}min." %></span> de ônibus</div>
+    <div class="list-group-item" title="Indo de carro"><span class="data"><%= "#{@distance[:car]}min." %></span> dirigindo</div>              
+  <% else %>
+    <div class="list-group-item"><%= t('event_show.user_not_logged.transport') %></div>
+  <% end %>
+</ul>

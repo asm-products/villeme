@@ -1,0 +1,9 @@
+<div class="panel-heading">
+  <h3>Amigos que agendaram</h3>
+</div>
+
+<div class="panel-body">
+  <% current_user.which_friends_will_this_event?(@item).each do |friend| %>
+    <%= get_avatar friend, "26", "26" %> <span><%= link_to friend.name, show_user_path(friend) %></span>
+  <% end %>
+</div>

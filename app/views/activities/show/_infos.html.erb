@@ -1,0 +1,53 @@
+<div class="row">
+
+
+  <!-- Periodo -->
+  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 u-no-padding">
+    <p>
+    <h3>Período</h3>
+    <div class="periodo clear">
+      <%= @item.period_that_occurs %>
+    </div>
+    </p>
+  </div>
+
+
+  <!-- Dias da semana -->
+  <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 u-no-padding">
+    <p>
+    <h3>Dias na semana</h3>
+    <div class="semana clear">
+      <%= @item.days_of_week %>
+    </div>
+    </p>
+  </div>
+
+
+  <!-- Horarios -->
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 u-no-padding">
+    <p>
+    <h3>Horários</h3>
+    <div class="horarios">
+      <% if @item.allday? %>
+          O dia todo
+      <% else %>
+          <% get_hours(@item).each do |hour| %>
+              <%= hour.html_safe %><br/>
+          <% end %>
+      <% end %>
+    </div>
+    </p>
+  </div>
+
+
+  <!-- Preço -->
+  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 u-no-padding">
+    <p>
+    <h3>Preço</h3>
+    <div class="preco clear">
+      <%= @item.price %>
+    </div>
+    </p>
+  </div>
+
+</div>

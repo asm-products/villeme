@@ -1,0 +1,10 @@
+
+<%= stylesheet_link_tag 'jqueryte/dist/jquery-te-1.4.0.css' %>
+<%= javascript_include_tag 'jqueryte/dist/jquery-te-1.4.0.min', 'events/active-jqueryet' %>
+<%= javascript_include_tag params[:controller] %>
+	
+<% content_for :header do %>
+	<%= link_to "Editar: #{@item.try(:name)}", root_path %>
+<% end %>
+
+<%= render :partial => 'events/form' %>
