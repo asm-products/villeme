@@ -270,7 +270,7 @@ class ItemsController < ApplicationController
   def get_item_type
     if params[:type] != nil
       "#{params[:type].downcase.pluralize}"
-    elsif @item.type != nil
+    elsif @item and @item.type != nil
       @item.type.downcase.pluralize
     else
       'items'
