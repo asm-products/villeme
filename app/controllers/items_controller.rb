@@ -90,13 +90,14 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.create(item_params)
     @item.type = get_item_class(text: true)
+    object_place_name = params[get_item_class(text: true).downcase][:place_attributes][:name]
 
-    if params[get_item_class(text: true).downcase][:place_attributes][:name]
+    if object_place_name
 
-      place = Place.find_by name: params[get_item_class(text: true).downcase][:place_attributes][:name]
+      place = Place.find_by name: object_place_name
 
       if place.nil?
-        place = current_user.places.new(name: params[get_item_class(text: true).downcase][:place_attributes][:name])
+        place = current_user.places.new(name: object_place_name)
         @item.copy_attributes_to place
         @item.place = place
       else
@@ -123,10 +124,12 @@ class ItemsController < ApplicationController
 
     @item.update_attributes(item_params)
 
-    place = Place.find_by(name: params[get_item_class.downcase][:place_attributes][:name])
+    object_place_name = params[get_item_class.downcase][:place_attributes][:name]
+
+    place = Place.find_by(name: object_place_name)
 
     if place.nil?
-      place = current_user.places.new(name: params[get_item_class.downcase][:place_attributes][:name])
+      place = current_user.places.new(name: object_place_name)
       @item.copy_attributes_to place
       @item.place = place
     else
@@ -134,14 +137,11 @@ class ItemsController < ApplicationController
       @item.place = place
     end
 
-
     if @item.save
       redirect_item_according_type
     else
       render action: 'new', alert: 'O evento não pode ser atualizado, arrume as informações abaixo.'
     end
-
-
   end
 
 
