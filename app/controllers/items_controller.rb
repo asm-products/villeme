@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @items = Item.all
+    @items = get_item_class.all
     render layout: 'centralize-lg', template: "#{get_item_route}/index"
   end
 
@@ -89,14 +89,14 @@ class ItemsController < ApplicationController
   # POST /events.json
   def create
     @item = current_user.items.create(item_params)
-    @item.type = get_item_class
+    @item.type = get_item_class(text: true)
 
-    if params[get_item_class.downcase][:place_attributes][:name]
+    if params[get_item_class(text: true).downcase][:place_attributes][:name]
 
-      place = Place.find_by name: params[get_item_class.downcase][:place_attributes][:name]
+      place = Place.find_by name: params[get_item_class(text: true).downcase][:place_attributes][:name]
 
       if place.nil?
-        place = current_user.places.new(name: params[get_item_class.downcase][:place_attributes][:name])
+        place = current_user.places.new(name: params[get_item_class(text: true).downcase][:place_attributes][:name])
         @item.copy_attributes_to place
         @item.place = place
       else
@@ -183,7 +183,7 @@ class ItemsController < ApplicationController
 
 
   def full_description
-    @item = Item.friendly.find params[get_item_class.downcase]
+    @item = Item.friendly.find params[get_item_class(text: true).downcase]
     render json:{full_description: @item.description}
   end
 
@@ -208,7 +208,7 @@ class ItemsController < ApplicationController
 
 
   def item_params
-    params.require(get_item_class.downcase).permit(
+    params.require(get_item_class(text: true).downcase).permit(
         :name,
         :description,
         :address,
@@ -277,13 +277,13 @@ class ItemsController < ApplicationController
     end
   end
 
-  def get_item_class
+  def get_item_class(options = {text: false})
     if params[:type] != nil
-      params[:type]
+      options[:text] ? params[:type] : params[:type].constantize
     elsif @item and @item.type != nil
-      @item.type
+      options[:text] ? @item.type : @item.type.constantize
     else
-      'Item'
+      options[:text] ? 'Item' : 'Item'.constantize
     end
   end
 
@@ -291,7 +291,7 @@ class ItemsController < ApplicationController
     if @item.type == 'Event'
       redirect_to event_path @item, notice: 'O evento foi  criado com sucesso!'
     elsif @item.type == 'Activity'
-      redirect_to activities_path @item, notice: 'A atividade foi  criado com sucesso!' and return
+      redirect_to activity_path @item, notice: 'A atividade foi  criado com sucesso!' and return
     else
       redirect_to @item, notice: 'O item foi  criado com sucesso!'
     end
