@@ -35,10 +35,10 @@
       <ul class="Navbar-links hidden-xs">
         <% if current_or_guest_user.guest? %>
             <li><%= link_to "Início", root_path, class: "page-selected" %></li>
-            <li><%= link_to_function "Criar evento", 'Villeme.Ux.loginModal("Você precisar estar logado para criar um evento.")', class: 'unlogged' %></li>
+            <li><%= link_to_function 'Postar item', 'Villeme.Ux.loginModal("Você precisar estar logado para criar um evento.")', class: 'unlogged' %></li>
         <% else %>
             <li><%= link_to "Início", root_path, class: "page-selected" %></li>
-            <li><%= link_to 'Criar evento', new_event_path %></li>
+            <li><%= link_to 'Postar item', new_item_path %></li>
         <% end %>
 
       </ul>

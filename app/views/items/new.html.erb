@@ -1,5 +1,31 @@
-<h1>New item</h1>
+<%= stylesheet_link_tag 'modules/ItemPanel' %>
 
-<%= render 'form' %>
+<div class="col-lg-9 col-md-9">
 
-<%= link_to 'Back', items_path %>
+  <div class="panel-heading u-centralize"><h2>O que você vai criar?</h2></div>
+
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-6 u-centralize">
+        <%= link_to new_event_path, data: {push: true} do %>
+            <div class="ItemPanel panel u-padding-15">
+              <div class="ItemPanel-icon"><%= image_tag 'event.png' %></div>
+              <h2 class="ItemPanel-title">Evento</h2>
+              <p class="ItemPanel-description">Cinema, teatro, feiras, palestras, mobilizações, atendimento de dentista no posto de saude etc...</p>
+            </div>
+        <% end %>
+      </div>
+      <div class="col-lg-6 u-centralize">
+
+        <%= link_to new_activity_path, data: {push: true} do %>
+            <div class="ItemPanel panel u-padding-15">
+              <div class="ItemPanel-icon"><%= image_tag 'bicycle.png' %></div>
+              <h2 class="ItemPanel-title">Atividade</h2>
+              <p class="ItemPanel-description">Andar de bicicleta, correr, passear com a familia, pegar um sol, caminhar, jogar basquete etc...</p>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
