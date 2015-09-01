@@ -8,7 +8,7 @@ describe Event, type: :model do
     it { is_expected.to belong_to :place }
     it { is_expected.to belong_to :user }
     it { is_expected.to belong_to :price }
-    it { is_expected.to belong_to :subcategory }
+    it { is_expected.to have_and_belong_to_many :subcategories }
     it { is_expected.to have_and_belong_to_many :personas }
     it { is_expected.to have_and_belong_to_many :categories }
     it { is_expected.to have_and_belong_to_many :weeks }
