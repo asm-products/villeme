@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821193745) do
+ActiveRecord::Schema.define(version: 20150901195529) do
 
   create_table "agenda_items", force: true do |t|
     t.integer  "item_id"
@@ -252,6 +252,14 @@ ActiveRecord::Schema.define(version: 20150821193745) do
 
   add_index "items_personas", ["item_id"], name: "index_items_personas_on_item_id"
   add_index "items_personas", ["persona_id"], name: "index_items_personas_on_persona_id"
+
+  create_table "items_subcategories", id: false, force: true do |t|
+    t.integer "item_id"
+    t.integer "subcategory_id"
+  end
+
+  add_index "items_subcategories", ["item_id"], name: "index_items_subcategories_on_item_id"
+  add_index "items_subcategories", ["subcategory_id"], name: "index_items_subcategories_on_subcategory_id"
 
   create_table "items_weeks", id: false, force: true do |t|
     t.integer "item_id"
