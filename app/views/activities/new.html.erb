@@ -4,14 +4,14 @@
 <%= javascript_include_tag params[:controller] %>
 
 
-<%= content_for :title, 'Criar evento na cidade' %>
+<%= content_for :title, 'Criar atividade na cidade' %>
 
 <% content_for :header do %>
-	Criar evento
+	Criar atividade
 <% end %>
 
 <div class="InformationBox">
   <span class="InformationBox-text"><%= t('events.new.info').html_safe %></span>
 </div>
 
-<%= render :partial => 'events/form' %>
+<%= render :partial => 'activities/form' %>
