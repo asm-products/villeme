@@ -6,8 +6,8 @@ class CreateInvites < ActiveRecord::Migration
       t.string :name
       t.integer :city
       t.integer :persona
-      t.string :persona_sugest
-      t.string :city_sugest
+      t.string :persona_suggest
+      t.string :city_suggest
       t.string :key
 
       t.timestamps
