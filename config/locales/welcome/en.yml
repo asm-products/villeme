@@ -62,7 +62,7 @@ en:
       name_of_city: "What is the name of the city?"
       persona_identify: "Select 2 profiles you most identify:"
       create_persona: "+ Create persona"
-      persona_sugest: "I want to suggest a persona"
+      persona_suggest: "I want to suggest a persona"
       in_one_word: "In a word"
       confirm: "Confirm"
       i_want_invite: "I want an invite!"
