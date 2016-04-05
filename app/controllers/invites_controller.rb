@@ -5,7 +5,7 @@ class InvitesController < ApplicationController
 
   # acesso somente para admin
   before_action :is_admin, except: :create
-  
+
 
   layout 'full-width'
 
@@ -90,8 +90,8 @@ class InvitesController < ApplicationController
                                      :email,
                                      :name,
                                      :address,
-                                     :persona_sugest,
-                                     :city_sugest,
+                                     :persona_suggest,
+                                     :city_suggest,
                                      :locale,
                                      :key,
                                      :persona_ids => []
