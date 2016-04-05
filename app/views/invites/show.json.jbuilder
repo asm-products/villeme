@@ -1,1 +1,1 @@
-json.extract! @invite, :id, :user_id, :email, :name, :city, :persona, :persona_sugest, :city_sugest, :key, :created_at, :updated_at
+json.extract! @invite, :id, :user_id, :email, :name, :city, :persona, :persona_suggest, :city_suggest, :key, :created_at, :updated_at
